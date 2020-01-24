@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import PseudoRandomnessContract from "./contracts/PseudoRandomness.json";
-import getWeb3 from "./getWeb3";
+import PseudoRandomnessContract from "../../contracts/PseudoRandomness.json";
+import getWeb3 from "../../getWeb3";
 
 import "./App.css";
 
