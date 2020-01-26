@@ -2,6 +2,16 @@
   padding: 1rem 2rem;
 }
 
+.contract-balance {
+  background-color: #5c0a93;
+  height: 25px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
 .navbar-icon-menu {
   display: none;
 }
