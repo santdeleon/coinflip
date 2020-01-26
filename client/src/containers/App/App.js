@@ -22,7 +22,9 @@ class App extends Component {
     isActive: false,
     betWon: false,
     statusMessage: "",
-    statusIsDisplayed: false
+    statusIsDisplayed: false,
+    isOwner: false,
+    isUser: false
   };
 
   componentDidMount = async () => {
@@ -35,6 +37,9 @@ class App extends Component {
         CoinFlip.abi,
         deployedNetwork && deployedNetwork.address,
       );
+      let lookupOwner = await instance.methods.getOwner().call();
+      const owner = lookupOwner[0];
+      const user = accounts[0];
 
       const balanceInWei = await web3.eth.getBalance(deployedNetwork.address);
       const balanceInEth = web3.utils.fromWei(balanceInWei, "ether");
@@ -44,7 +49,9 @@ class App extends Component {
         accounts,
         contract: instance,
         contractBalance: balanceInEth,
-        contractAddress: deployedNetwork.address
+        contractAddress: deployedNetwork.address,
+        isOwner: (owner === user) ? true : false,
+        isUser: (owner !== user) ? true : false
       });
     } catch (error) {
       alert(
@@ -166,6 +173,8 @@ class App extends Component {
           isActive={this.state.isActive}
           withdrawOneEther={this.withdrawOneEther}
           withdrawAllEther={this.withdrawAllEther}
+          isOwner={this.state.isOwner}
+          isUser={this.state.isUser}
         />
         {/*<Footer />*/}
       </div>
