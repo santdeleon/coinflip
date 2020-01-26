@@ -2,21 +2,9 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.Loader {
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-}
+.hyphens { background: url('../../assets/img/hyphens.svg');height: 1px;width: 100%;}
+.rainbow-top {background: linear-gradient(to right, #f76f6f , #fcfc83, #fcca67, #84ffaf, #83e0f7, #ca67e5, #ff87e1);padding: 2.5px;}
