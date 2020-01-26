@@ -6,19 +6,19 @@ import { Delete } from 'react-feather';
 
 import './Body.css';
 
-function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundContract, withdrawOneEther, withdrawAllEther, isOwner, isUser}) {
+function Body(props) {
 
   return (
     <section>
       <div className="withdraw-wrapper row flex">
         <div className="col flex flex-column align-items-center">
-          <p className="lead text-muted">Hello <span className="ownerUser">{isOwner ? "owner" : "user"}</span>{isOwner ? ", ready to withdraw your funds?" : ", ready to play CoinFlip?"}</p>
-          <div className="withdraw-buttons flex" style={isOwner ? {display: "flex"} : {display: "none"}}>
+          <p className="lead text-muted">Hello <span className="ownerUser">{props.isOwner ? "owner" : "user"}</span>{props.isOwner ? ", ready to withdraw your funds?" : ", ready to play CoinFlip?"}</p>
+          <div className="withdraw-buttons flex" style={props.isOwner ? {display: "flex"} : {display: "none"}}>
             <div className="withdraw-btn-wrapper flex flex-column">
-              <button id="withdrawBtn" className="btn withdraw-btn" onClick={withdrawOneEther}>Withdraw a little</button>
+              <button id="withdrawBtn" className="btn withdraw-btn" onClick={props.withdrawOneEther}>Withdraw a little</button>
             </div>
             <div className="withdraw-btn-wrapper flex flex-column">
-              <button id="withdrawAllBtn" className="btn withdraw-all-btn" onClick={withdrawAllEther}>Withdraw a lot</button>
+              <button id="withdrawAllBtn" className="btn withdraw-all-btn" onClick={props.withdrawAllEther}>Withdraw a lot</button>
             </div>
           </div>
         </div>
@@ -36,29 +36,29 @@ function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundCo
           </p>
 
           <div className="fund-contract-btn-wrapper flex">
-            <button id="fundContractBtn" className="btn fund-contract-btn" onClick={fundContract}>Fund me</button>
+            <button id="fundContractBtn" className="btn fund-contract-btn" onClick={props.fundContract}>Fund me</button>
           </div>
 
           <div className="funding-amount-wrapper flex row align-items-center">
-            <div id="1" className={`funding-amount flex col align-items-center justify-content-center ${(fundAmount === "1") ? "active" : ""}`} onClick={selectFundAmount}>
+            <div id="1" className={`funding-amount flex col align-items-center justify-content-center ${(props.fundAmount === "1") ? "active" : ""}`} onClick={props.selectFundAmount}>
               <FontAwesomeIcon className="crypto-logo" icon={faEthereum}/>
               <p>1</p>
             </div>
-            <div id="2" className={`funding-amount flex col align-items-center justify-content-center ${(fundAmount === "2") ? "active" : ""}`} onClick={selectFundAmount}>
+            <div id="2" className={`funding-amount flex col align-items-center justify-content-center ${(props.fundAmount === "2") ? "active" : ""}`} onClick={props.selectFundAmount}>
               <FontAwesomeIcon className="crypto-logo" icon={faEthereum}/>
               <p>2</p>
             </div>
-            <div id="5" className={`funding-amount flex col align-items-center justify-content-center ${(fundAmount === "5") ? "active" : ""}`} onClick={selectFundAmount}>
+            <div id="5" className={`funding-amount flex col align-items-center justify-content-center ${(props.fundAmount === "5") ? "active" : ""}`} onClick={props.selectFundAmount}>
               <FontAwesomeIcon className="crypto-logo" icon={faEthereum}/>
               <p>5</p>
             </div>
           </div>
 
-          <div className="flex flex-column show-funding-amount" style={fundAmount === "" ? {display: "none"} : null}>
+          <div className="flex flex-column show-funding-amount" style={props.fundAmount === "" ? {display: "none"} : null}>
             <h4 style={{fontWeight: "lighter", padding: "0"}}>You'd like to fund:</h4>
             <div className="flex funding-display-wrapper">
-              <input id="fundingAmount" type="text" className="contract-balance" value={`${fundAmount} ether`} readOnly/>
-              <button id="resetFundingBtn" className="btn flex align-items-center justify-content-center" onClick={refreshFundAmount}><Delete size={22} className="delete"/></button>
+              <input id="fundingAmount" type="text" className="contract-balance" value={`${props.fundAmount} ether`} readOnly/>
+              <button id="resetFundingBtn" className="btn flex align-items-center justify-content-center" onClick={props.refreshFundAmount}><Delete size={22} className="delete"/></button>
             </div>
           </div>
         </div>
