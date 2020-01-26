@@ -14,6 +14,7 @@ contract CoinFlip2 is PseudoRandomness, Ownable, Modifiers {
 
     function bet(address payable _gambler, uint _amount) public payable
         costs(0.01 ether)
+        setBettingLimit()
         amountSentMustMatch(_amount)
         onlySender(_gambler)
         mustHaveRequiredFunds(_gambler, _amount)

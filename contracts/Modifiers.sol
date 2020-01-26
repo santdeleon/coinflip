@@ -8,6 +8,11 @@ contract Modifiers {
       _;
     }
 
+    modifier setBettingLimit() {
+      require(msg.value <= 5 ether, "You can't wager more than 5 ether");
+      _;
+    }
+
     modifier amountSentMustMatch(uint amount) {
       require(msg.value == amount, "You must send the amount specified");
       _;
