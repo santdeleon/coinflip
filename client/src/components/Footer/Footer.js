@@ -9,7 +9,6 @@ function Footer() {
   return (
     <section className="Footer">
       <footer>
-
         <div className="row footer-bottom donations flex justify-content-between">
           <div className="flex flex-column">
             <p class="donate-text">show some <span className="heart">♥</span> donate crypto.</p>

@@ -1,12 +1,12 @@
-.Footer {
+footer {
   position: fixed;
+  right: 0;
   bottom: 0;
-  width: 100%;
+  left: 0;
 }
 
 .footer-bottom {
   padding: 0 2rem 1rem 2rem;
-  display: flex;
   align-items: center;
 }
 
@@ -47,6 +47,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  footer {
+    position: inherit;
+  }
+
   .footer-bottom {
     flex-direction: column;
   }

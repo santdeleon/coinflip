@@ -1,0 +1,105 @@
+.Body {
+  padding: 2rem;
+}
+
+.Body-text {
+  max-width: 33%;
+  text-align: left;
+}
+
+.yeah {
+  margin: 0;
+  font-size: 12px;
+}
+
+.Body-title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0 0;
+}
+
+.btc-color {
+  color: #E98716;
+  font-weight: bold;
+}
+
+.intro {
+  font-weight: normal;
+  line-height: 25px;
+}
+
+.fund-contract-btn {
+  margin-top: 1rem;
+  color: #222;
+  height: 50px;
+  width: 150px;
+  background-color: #fee78d;
+  padding: 5px 20px 5px 20px;
+  border: 1px solid #222;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 15px;
+  -webkit-box-shadow: inset 0 0 0 0.14em #f7d147, 0px 3px 0px 0px rgba(40, 40, 40, 0.1);
+  box-shadow: inset 0 0 0 0.24em #f7d147, 0px 3px 0px 0px rgba(40, 40, 40, 0.1);
+  -webkit-transition: all 0.14s ease-in;
+  -o-transition: all 0.14s ease-in;
+  transition: all 0.14s ease-in;
+  cursor: pointer;
+}
+
+.fund-contract-btn:hover {
+  transform: translateY(-0.14rem);
+  box-shadow: inset 0 0 0 0.24em #f7d147, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
+}
+
+.funding-amount-wrapper {
+  margin-top: 20px;
+}
+
+.funding-amount {
+  width: 100px;
+  padding: 10px 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: 0.15s all ease-in;
+  cursor: pointer;
+}
+
+.funding-amount:not(:first-child) {
+  margin-left: 15px;
+}
+
+.funding-amount:nth-child(1) {
+  background-color: #d963f9;
+  box-shadow: inset 0 0 0 0.24em #af50c9, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
+}
+
+.funding-amount:nth-child(2) {
+  background-color: #48dcf9;
+  box-shadow: inset 0 0 0 0.24em #3bb8ce, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
+}
+
+.funding-amount:nth-child(3) {
+  background-color: #45f9ae;
+  box-shadow: inset 0 0 0 0.24em #45e09f, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
+}
+
+
+.funding-amount:hover,
+.funding-amount:active,
+.funding-amount:focus,
+.funding-amount .selected {
+  transform: translateY(-0.14rem);
+}
+
+.funding-amount p {
+  margin: 0;
+  margin-left: 15px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.fund-div-header:nth-child(1) {color: pink;}
+.fund-div-header:nth-child(2) {color: purple;}
+.fund-div-header:nth-child(3) {color: orange;}

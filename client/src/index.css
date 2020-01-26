@@ -40,3 +40,5 @@ li {
 .w-100 { width: 100%; }
 .text-left { text-align: left; }
 .mx-auto { margin: 0 auto; }
+.text-muted { color: #706d6a; }
+.lead { margin-top: 5px; font-size: normal; font-size: 14px;}
