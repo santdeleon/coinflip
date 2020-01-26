@@ -12,17 +12,21 @@ import Footer from "../../components/Footer/Footer";
 import "./App.css";
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+  state = {
+    web3: null,
+    accounts: null,
+    contract: null,
+    contractBalance: null,
+    betWon: false,
+    fundAmount: "",
+    isClicked: false,
+    network: null
+  };
 
   componentDidMount = async () => {
     try {
-      // Get network provider and web3 instance.
       const web3 = await getWeb3();
-
-      // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-
-      // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = CoinFlip.networks[networkId];
       const instance = new web3.eth.Contract(
@@ -30,11 +34,17 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance });
+      console.log(CoinFlip);
+      const balanceInWei = await web3.eth.getBalance(accounts[0]);
+      console.log(balanceInWei);
+
+      this.setState({
+        web3,
+        accounts,
+        contract: instance,
+        contractBalance: instance
+      });
     } catch (error) {
-      // Catch any errors for any of the above operations.
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`,
       );
@@ -55,7 +65,7 @@ class App extends Component {
       <div className="App">
         <div className="rainbow-top"></div>
         <SuccessBar />
-        <Navbar />
+        <Navbar contractBalance={this.state.contractBalance}/>
         <Body />
         <Footer />
       </div>

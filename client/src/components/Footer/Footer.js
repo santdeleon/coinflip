@@ -11,7 +11,7 @@ function Footer() {
       <footer>
         <div className="row footer-bottom donations flex justify-content-between">
           <div className="flex flex-column">
-            <p class="donate-text">show some <span className="heart">♥</span> donate crypto.</p>
+            <p className="donate-text">show some <span className="heart">♥</span> donate crypto.</p>
 
             <div className="col flex btc-wrapper">
               <div className="flex">

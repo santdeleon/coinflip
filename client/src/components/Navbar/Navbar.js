@@ -7,7 +7,8 @@ import Github from "../../assets/img/github.svg";
 
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({contractBalance}) {
+
   return (
     <section className="Navbar">
       <nav className="navbar flex align-center justify-content-between">
@@ -21,7 +22,7 @@ function Navbar() {
           <ul className="navbar-menu flex align-center">
             <li className="nav-item">
               <span style={{cursor: "inherit", color: "black", marginRight: "5px"}}>Contract balance: </span>
-              <input id="contractBalance" type="text" className="contract-balance" />
+              <input id="contractBalance" type="text" className="contract-balance" value={`${contractBalance} ether`} readOnly/>
             </li>
             <li className="nav-item"><a href="mailto:sant@santdeleon.co">Contact</a></li>
           </ul>
