@@ -1,5 +1,5 @@
 import React from "react";
-import { DollarSign, Phone } from 'react-feather';
+import { Send } from 'react-feather';
 
 import Logo from "../../assets/img/coinflip-logo.svg";
 import Sun from "../../assets/img/sun.svg";
@@ -15,12 +15,10 @@ function Navbar() {
 
         <div className="navbar-nav flex align-center">
           <ul className="navbar-icon-menu flex align-center">
-            <li className="nav-icon-item"><DollarSign /></li>
-            <li className="nav-icon-item"><a href="mailto:sant@santdeleon.co"><Phone size={22}/></a></li>
+            <li className="nav-icon-item"><a href="mailto:sant@santdeleon.co"><Send size={22}/></a></li>
           </ul>
 
           <ul className="navbar-menu flex align-center">
-            <li className="nav-item">Donate</li>
             <li className="nav-item"><a href="mailto:sant@santdeleon.co">Contact</a></li>
           </ul>
 

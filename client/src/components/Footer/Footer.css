@@ -1,0 +1,57 @@
+.Footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-bottom {
+  padding: 0 2rem 1rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.bitcoin-logo {color: #E98716;}
+.social-link:hover {color: #ea59de;}
+.heart {color: red;}
+
+.donate-text {
+  text-align: left;
+  font-size: 14px;
+}
+
+.donations {
+  background-color: ghostwhite;
+}
+
+.crypto-logo {
+  font-size: 18px;
+}
+
+.crypto-text {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.eth-wrapper {
+  padding-top: 5px;
+}
+
+.copyright-text,
+.credit-text {
+  font-size: 14px;
+}
+
+.credit-text {
+  margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .donate-text {
+    text-align: center;
+  }
+}

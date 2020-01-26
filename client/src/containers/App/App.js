@@ -4,6 +4,7 @@ import getWeb3 from "../../getWeb3";
 
 import Loader from "../../components/Loader/Loader";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 
 import "./App.css";
@@ -52,6 +53,7 @@ class App extends Component {
       <div className="App">
         <div className="rainbow-top"></div>
         <Navbar />
+        <Footer />
       </div>
     );
   }
