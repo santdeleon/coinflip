@@ -6,7 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import Navbar from "../../components/Navbar/Navbar";
 import Message from "../../components/Message/Message";
 import Body from "../../components/Body/Body";
-// import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/Footer/Footer";
 
 
 import "./App.css";
@@ -176,7 +176,7 @@ class App extends Component {
           isOwner={this.state.isOwner}
           isUser={this.state.isUser}
         />
-        {/*<Footer />*/}
+        <Footer />
       </div>
     );
   }
