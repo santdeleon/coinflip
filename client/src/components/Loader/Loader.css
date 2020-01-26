@@ -1,0 +1,12 @@
+.Loader {
+  background-color: black;
+  height: 100vh;
+}
+
+.Loader div {
+  height: 100%;
+}
+
+.Loader img {
+  height: 75vh;
+}
