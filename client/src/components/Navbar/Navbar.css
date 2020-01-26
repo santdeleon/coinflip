@@ -10,6 +10,8 @@
   font-weight: 500;
   border: 1px solid transparent;
   border-radius: 6px;
+  font-family: monospace;
+  padding-left: 10px;
 }
 
 .navbar-icon-menu {
