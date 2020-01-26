@@ -34,15 +34,13 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
-      console.log(CoinFlip);
-      const balanceInWei = await web3.eth.getBalance(accounts[0]);
-      console.log(balanceInWei);
+      const balanceInWei = await web3.eth.getBalance(deployedNetwork.address);
 
       this.setState({
         web3,
         accounts,
         contract: instance,
-        contractBalance: instance
+        contractBalance: balanceInWei
       });
     } catch (error) {
       alert(

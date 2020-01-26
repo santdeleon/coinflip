@@ -5642,9 +5642,64 @@
     "name": "solc",
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0xf8e99859e696debf4ef1752d671f759f7f63a1116efe995d789edfb3849c3549": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "gambler",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "betWon",
+              "type": "bool"
+            }
+          ],
+          "name": "BetPlaced",
+          "type": "event",
+          "signature": "0xf8e99859e696debf4ef1752d671f759f7f63a1116efe995d789edfb3849c3549"
+        },
+        "0x0939f6f4877faf071412e527bc4c6d0bd65ad077e52b57334f7765265647a7f1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "funder",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "ContractFunded",
+          "type": "event",
+          "signature": "0x0939f6f4877faf071412e527bc4c6d0bd65ad077e52b57334f7765265647a7f1"
+        }
+      },
+      "links": {},
+      "address": "0x2ce389d2f4E632176f7bF470BbC3426aF329597E",
+      "transactionHash": "0x154295c168e002891b57623cde01089e63f2983257b11174ea307942b9a4a0b8"
+    }
+  },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-01-26T14:56:24.544Z",
+  "updatedAt": "2020-01-26T15:02:14.115Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
