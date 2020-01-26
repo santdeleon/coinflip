@@ -36,7 +36,7 @@ function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundCo
           </p>
 
           <div className="fund-contract-btn-wrapper flex">
-            <button id="fundContractBtn" className="btn fund-contract-btn" onClick={fundContract}>Fund me!</button>
+            <button id="fundContractBtn" className="btn fund-contract-btn" onClick={fundContract}>Fund me</button>
           </div>
 
           <div className="funding-amount-wrapper flex row align-items-center">
@@ -63,7 +63,39 @@ function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundCo
           </div>
         </div>
 
-        <div className="flex col"></div>
+        <div className="Game flex col flex-column">
+            <code className="game-screen flex flex-column">
+
+              <h1 style={{ fontWeight: "lighter"}}>Let's Play</h1>
+
+              <div className="flex justify-content-between">
+                <div className="flex flex-column text-left rules" style={{paddingLeft: "15px"}}>
+                  <h3 className="rules-title" style={{ fontWeight: "lighter"}}>Rules:</h3>
+                  <ul className="rules-menu" style={{fontSize: "12px"}}>
+                    <li className="rule">- You must use your own address</li>
+                    <li className="rule">- If you win you get double your bet</li>
+                    <li className="rule">- Bet's must be more than 0.01 ether</li>
+                    <li className="rule">- You must send the amount you specify</li>
+                  </ul>
+                </div>
+
+                <div className="flex flex-column text-left results" style={{paddingRight: "15px"}}>
+                  <h3 className="results-title text-center" style={{ fontWeight: "lighter"}}>Results:</h3>
+                  <ul className="rules-menu" style={{fontSize: "12px"}}>
+                    <li className="result">You must use your own address</li>
+                    <li className="result">If you win you get double your bet</li>
+                    <li className="result">Bet's must be more than 0.01 ether</li>
+                    <li className="result">You must send the amount you specify</li>
+                  </ul>
+                </div>
+              </div>
+
+            </code>
+            <div className="flex game-functions justify-content-center align-items-center">
+              <input type="text" className="select-bet" placeholder="How much ether?"/>
+              <button id="betBtn" type="button" className="btn bet-btn">Place Bet</button>
+            </div>
+        </div>
       </div>
     </section>
   )
