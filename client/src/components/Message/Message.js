@@ -7,12 +7,12 @@ import './Message.css';
 function Message({statusMessage, statusIsDisplayed, removeStatusMessage}) {
   let statusColor = null;
 
-  if (statusMessage === "Sorry, you can't send zero ether to the contract!") {
+  if (
+    statusMessage === "Sorry, you can't send zero ether to the contract!" ||
+    statusMessage === "Sorry, there are no funds to withdraw."
+  ) {
     statusColor = "#f7608b";
-  }
-  if (statusMessage === "Your donation has been accepted. Thanks for your support!") {
-    statusColor = "#52f292";
-  }
+  } else statusColor = "#52f292"
 
   return (
     <section

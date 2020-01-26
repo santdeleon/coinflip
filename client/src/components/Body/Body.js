@@ -6,10 +6,24 @@ import { Delete } from 'react-feather';
 
 import './Body.css';
 
-function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundContract}) {
+function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundContract, withdrawOneEther, withdrawAllEther}) {
 
   return (
     <section>
+      <div className="withdraw-wrapper row flex">
+        <div className="col flex flex-column align-items-center">
+          <p className="lead text-muted">Hello <span className="owner">owner</span>, ready to withdraw your funds?</p>
+          <div className="withdraw-buttons flex">
+            <div className="withdraw-btn-wrapper flex flex-column">
+              <button id="withdrawBtn" className="btn withdraw-btn" onClick={withdrawOneEther}>Withdraw a little</button>
+            </div>
+            <div className="withdraw-btn-wrapper flex flex-column">
+              <button id="withdrawAllBtn" className="btn withdraw-all-btn" onClick={withdrawAllEther}>Withdraw a lot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="Body row flex justify-content-between">
         <div className="col flex flex-column text-left Body-text">
           <p className="yeah text-muted">-- yeah.</p>

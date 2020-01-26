@@ -20,10 +20,8 @@ function Navbar({contractBalance}) {
           </ul>
 
           <ul className="navbar-menu flex align-center">
-            <li className="nav-item">
-              <span style={{cursor: "inherit", color: "black", marginRight: "5px"}}>Contract balance: </span>
-              <input id="contractBalance" type="text" className="contract-balance" value={`${contractBalance} ether`} readOnly/>
-            </li>
+          <span style={{cursor: "inherit", color: "black", marginRight: "5px"}}>Contract balance: </span>
+          <input id="contractBalance" type="text" className="contract-balance" value={`${contractBalance} ether`} readOnly/>
             <li className="nav-item"><a href="mailto:sant@santdeleon.co">Contact</a></li>
           </ul>
 

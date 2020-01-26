@@ -6,7 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import Navbar from "../../components/Navbar/Navbar";
 import Message from "../../components/Message/Message";
 import Body from "../../components/Body/Body";
-import Footer from "../../components/Footer/Footer";
+// import Footer from "../../components/Footer/Footer";
 
 
 import "./App.css";
@@ -54,21 +54,15 @@ class App extends Component {
     }
   };
 
-  removeStatusMessage = (e) => {
-    this.setState({
-      statusIsDisplayed: false
-    });
-  }
+  removeStatusMessage = (e) => { this.setState({ statusIsDisplayed: false });};
 
   selectFundAmount = (e) => {
     let donation = e.target.id;
     if (donation === "") donation = "0";
-    this.setState({
-      fundAmount: donation
-    });
-  }
+    this.setState({ fundAmount: donation });
+  };
 
-  refreshFundAmount = (e) => { this.setState({fundAmount: "0"}); }
+  refreshFundAmount = (e) => { this.setState({fundAmount: "0"}); };
 
   fundContract = async (e) => {
     const { web3, accounts, contract, contractAddress } = this.state;
@@ -98,13 +92,57 @@ class App extends Component {
       console.log(receipt);
     });
 
-    const balance = await web3.eth.getBalance(contractAddress);
+    let balance = await web3.eth.getBalance(contractAddress);
     this.setState({
       contractBalance: web3.utils.fromWei(balance, "ether"),
       statusMessage: "Your donation has been accepted. Thanks for your support!",
       statusIsDisplayed: true
     });
-  }
+  };
+
+  withdrawOneEther = async (e) => {
+    const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
+    let withdrawalAmount = web3.utils.toWei("1", "ether");
+
+    if (contractBalance <= 0) {
+      this.setState({
+        statusMessage: "Sorry, there are no funds to withdraw.",
+        statusIsDisplayed: true
+      });
+      return;
+    }
+
+    if (contractBalance < withdrawalAmount && contractBalance > 0) {
+      withdrawalAmount = web3.utils.toWei(contractBalance, "ether");
+    }
+
+    await contract.methods.withdraw(withdrawalAmount).send({from: accounts[0]});
+    let balance = await web3.eth.getBalance(contractAddress);
+    this.setState({
+      contractBalance: web3.utils.fromWei(balance, "ether"),
+      statusMessage: `Your account ${accounts[0]} now has ${web3.utils.fromWei(withdrawalAmount, "ether")} more ether.`,
+      statusIsDisplayed: true
+    });
+  };
+
+  withdrawAllEther = async (e) => {
+    const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
+    if (contractBalance <= 0) {
+      this.setState({
+        statusMessage: "Sorry, there are no funds to withdraw.",
+        statusIsDisplayed: true
+      });
+      return;
+    };
+    let balanceBefore = contractBalance;
+    await contract.methods.withdrawAll().send({from: accounts[0]});
+    let balanceAfter = await web3.eth.getBalance(contractAddress);
+    this.setState({
+      contractBalance: web3.utils.fromWei(balanceAfter, "ether"),
+      statusMessage: `Your account ${accounts[0]} now has ${balanceBefore} more ether.`,
+      statusIsDisplayed: true
+    });
+  };
 
   render() {
     if (!this.state.web3) {
@@ -126,8 +164,10 @@ class App extends Component {
           refreshFundAmount={this.refreshFundAmount}
           fundContract={this.fundContract}
           isActive={this.state.isActive}
+          withdrawOneEther={this.withdrawOneEther}
+          withdrawAllEther={this.withdrawAllEther}
         />
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }
