@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import CoinFlip from "../../contracts/CoinFlip.json";
 import getWeb3 from "../../getWeb3";
+
 import Loader from "../../components/Loader/Loader";
+import Navbar from "../../components/Navbar/Navbar";
+
 
 import "./App.css";
 
@@ -44,16 +47,13 @@ class App extends Component {
         </>
       );
     }
+
     return (
-      <>
-        <Loader />
-      </>
-    );
-    {/*return (
       <div className="App">
         <div className="rainbow-top"></div>
+        <Navbar />
       </div>
-    );*/}
+    );
   }
 }
 

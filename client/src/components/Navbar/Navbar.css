@@ -1,0 +1,39 @@
+.navbar {
+  padding: 1rem 2rem;
+}
+
+.navbar-icon-menu {
+  display: none;
+}
+
+.navbar-icon-menu,
+.navbar-menu {
+  margin-right: 15px;
+}
+
+.nav-icon-item,
+.nav-item,
+.sun-icon {
+  cursor: pointer;
+}
+
+.nav-icon-item:hover,
+.nav-item:hover {
+  color: #ea59de;
+}
+
+.github-icon {
+  margin-right: 15px;
+}
+
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+  .navbar-icon-menu {
+    display: inherit;
+  }
+
+  .navbar-menu {
+    display: none;
+  }
+}
