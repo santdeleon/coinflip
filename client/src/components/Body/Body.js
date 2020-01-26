@@ -1,10 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
+import { Delete } from 'react-feather';
+
 
 import './Body.css';
 
-function Body() {
+function Body({selectFundAmount, isActive, refreshFundAmount, fundAmount, fundContract}) {
+
   return (
     <section>
       <div className="Body row flex justify-content-between">
@@ -19,21 +22,29 @@ function Body() {
           </p>
 
           <div className="fund-contract-btn-wrapper flex">
-            <button id="fundContractBtn" className="btn fund-contract-btn">Fund me!</button>
+            <button id="fundContractBtn" className="btn fund-contract-btn" onClick={fundContract}>Fund me!</button>
           </div>
 
           <div className="funding-amount-wrapper flex row align-items-center">
-            <div id="1" className="funding-amount flex col align-items-center justify-content-center">
+            <div id="1" className={`funding-amount flex col align-items-center justify-content-center ${(fundAmount === "1") ? "active" : ""}`} onClick={selectFundAmount}>
               <FontAwesomeIcon className="crypto-logo" icon={faEthereum}/>
               <p>1</p>
             </div>
-            <div id="2" className="funding-amount flex col align-items-center justify-content-center">
+            <div id="2" className={`funding-amount flex col align-items-center justify-content-center ${(fundAmount === "2") ? "active" : ""}`} onClick={selectFundAmount}>
               <FontAwesomeIcon className="crypto-logo" icon={faEthereum}/>
               <p>2</p>
             </div>
-            <div id="5" className="funding-amount flex col align-items-center justify-content-center">
+            <div id="5" className={`funding-amount flex col align-items-center justify-content-center ${(fundAmount === "5") ? "active" : ""}`} onClick={selectFundAmount}>
               <FontAwesomeIcon className="crypto-logo" icon={faEthereum}/>
               <p>5</p>
+            </div>
+          </div>
+
+          <div className="flex flex-column show-funding-amount" style={fundAmount === "" ? {display: "none"} : null}>
+            <h4 style={{fontWeight: "lighter", padding: "0"}}>You'd like to fund:</h4>
+            <div className="flex funding-display-wrapper">
+              <input id="fundingAmount" type="text" className="contract-balance" value={`${fundAmount} ether`} readOnly/>
+              <button id="resetFundingBtn" className="btn flex align-items-center justify-content-center" onClick={refreshFundAmount}><Delete size={22} className="delete"/></button>
             </div>
           </div>
         </div>

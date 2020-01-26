@@ -85,12 +85,16 @@
   box-shadow: inset 0 0 0 0.24em #45e09f, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
 }
 
+.funding-amount.active {
+  background-color: black;
+  box-shadow: inset 0 0 0 0.24em black, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
+  color: white;
+  transform: translateY(-0.24rem);
+}
 
-.funding-amount:hover,
-.funding-amount:active,
-.funding-amount:focus,
-.funding-amount .selected {
-  transform: translateY(-0.14rem);
+
+.funding-amount:hover {
+  transform: translateY(-0.24rem);
 }
 
 .funding-amount p {
@@ -99,6 +103,44 @@
   font-size: 18px;
   font-weight: normal;
 }
+
+.show-funding-amount {
+  margin-top: 1rem;
+}
+
+#resetFundingBtn {
+  margin-left: 10px;
+  width: 100px;
+  height: 30px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.15s all ease-in;
+}
+
+.delete {
+  color: #e51978;
+  transition: 0.15s all ease-in;
+}
+
+#resetFundingBtn:hover {
+  background-color: #e51978;
+  bordeR: 1px solid #e51978;
+  color: white;
+}
+
+#resetFundingBtn:hover .delete {
+  color: white;
+}
+
+.funding-display-wrapper {
+  justify-content: flex-start;
+}
+
+.active {
+  background-color: black;
+}
+
 
 @media only screen and (max-width: 768px) {
   .Body {
@@ -111,7 +153,8 @@
   }
 
   .fund-contract-btn-wrapper,
-  .funding-amount-wrapper {
+  .funding-amount-wrapper,
+  .funding-display-wrapper {
     justify-content: center;
   }
 }
