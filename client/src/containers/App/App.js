@@ -4,6 +4,7 @@ import getWeb3 from "../../getWeb3";
 
 import Loader from "../../components/Loader/Loader";
 import Navbar from "../../components/Navbar/Navbar";
+import SuccessBar from "../../components/SuccessBar/SuccessBar";
 import Body from "../../components/Body/Body";
 import Footer from "../../components/Footer/Footer";
 
@@ -53,6 +54,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="rainbow-top"></div>
+        <SuccessBar />
         <Navbar />
         <Body />
         <Footer />

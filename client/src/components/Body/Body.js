@@ -4,7 +4,7 @@ import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 
 import './Body.css';
 
-function Footer() {
+function Body() {
   return (
     <section>
       <div className="Body row flex justify-content-between">
@@ -14,7 +14,7 @@ function Footer() {
           <p className="lead text-muted">but who wants to dollar cost average.</p>
 
           <p className="intro">
-            Well don't worry, here at Coinflip.io we got you covered. Just toss some coin at
+            Well don't worry, here at Coinflip.io we got you covered. Just toss some coin to
             your witcher and watch your money double.
           </p>
 
@@ -44,4 +44,4 @@ function Footer() {
   )
 }
 
-export default Footer;
+export default Body;
