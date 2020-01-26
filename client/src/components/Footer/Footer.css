@@ -48,7 +48,7 @@ footer {
 
 @media only screen and (max-width: 768px) {
   footer {
-    position: inherit;
+    position: none;
   }
 
   .footer-bottom {

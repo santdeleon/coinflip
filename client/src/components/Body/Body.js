@@ -6,19 +6,21 @@ import './Body.css';
 
 function Footer() {
   return (
-    <section className="Body">
-      <div className="row flex justify-content-between">
+    <section>
+      <div className="Body row flex justify-content-between">
         <div className="col flex flex-column text-left Body-text">
           <p className="yeah text-muted">-- yeah.</p>
           <h1 className="Body-title">We all need more <span className="btc-color">Bitcoin</span>.</h1>
-          <p className="lead text-muted">and who wants to dollar cost average.</p>
+          <p className="lead text-muted">but who wants to dollar cost average.</p>
 
           <p className="intro">
             Well don't worry, here at Coinflip.io we got you covered. Just toss some coin at
             your witcher and watch your money double.
           </p>
 
-          <button id="fundContractBtn" className="btn fund-contract-btn">Fund me!</button>
+          <div className="fund-contract-btn-wrapper flex">
+            <button id="fundContractBtn" className="btn fund-contract-btn">Fund me!</button>
+          </div>
 
           <div className="funding-amount-wrapper flex row align-items-center">
             <div id="1" className="funding-amount flex col align-items-center justify-content-center">
@@ -35,6 +37,8 @@ function Footer() {
             </div>
           </div>
         </div>
+
+        <div className="flex col"></div>
       </div>
     </section>
   )
