@@ -49,7 +49,49 @@ contract("CoinFlip", async (accounts) => {
     });
   });
 
-  context("when withdrawing the balance of the contract address", async () => {
+  context("when withdrawing some of the balance of the contract address", async () => {
+    it("shouldn't allow a withdraw of more ether than the contract has", async () => {
+      let oneEther = web3.utils.toWei("1", "ether");
+      let halfAnEther = web3.utils.toWei("0.5", "ether");
+      await instance.fundContract({from: owner, value: halfAnEther});
+
+      //fails because the contract has 0.5 ether and you want to withdraw 1 ether
+      await truffleAssert.fails(instance.withdraw(oneEther, {from: owner}), truffleAssert.ErrorType.REVERT);
+    });
+
+    it("shouldn't allow anyone but the contract owner to withdraw some of the funds", async () => {
+      let oneEther = web3.utils.toWei("1", "ether");
+      await instance.fundContract({from: bob, value: oneEther});
+      await truffleAssert.fails(instance.withdraw(oneEther, {from: bob}), truffleAssert.ErrorType.REVERT);
+    });
+
+    it("should allow the contract owner to withdraw some of the contract balance and subtract the withdrawal from the contract balance", async () => {
+      let oneEther = web3.utils.toWei("1", "ether");
+      // fund the contract some ether
+      await instance.fundContract({from: owner, value: oneEther, gasPrice: gasPrice});
+      // get the contract balance
+      let contractBalance = parseFloat(await web3.eth.getBalance(instance.address));
+      // get the contract owner balance
+      let ownerBalance = parseFloat(await web3.eth.getBalance(owner));
+      // owner withdraws 1 ether
+      let withdrawal = await instance.withdraw(oneEther, {from: owner});
+      // get the amount of gas used from the withdraw
+      let gasUsed = withdrawal.receipt.gasUsed;
+      // get the owner balance after the withdraw
+      let newOwnerBalance = parseFloat(await web3.eth.getBalance(owner));
+      // do some math to assure the withdraw was correct
+      let math = (ownerBalance + parseFloat(oneEther)) - (gasPrice * gasUsed);
+      // get the contract balance after the withdraw to assure the withdrawal was subtracted
+      let finalContractBalance = parseFloat(await web3.eth.getBalance(instance.address));
+
+      // if the math was correct it should equal the owners balance
+      assert(newOwnerBalance === math);
+      // if the math was correct the contract balance should be (the contract balance before - 1 ether)
+      assert(finalContractBalance === (contractBalance - parseFloat(oneEther)));
+    });
+  });
+
+  context("when withdrawing the entire balance of the contract address", async () => {
     it("shouldn't allow anyone but the contract owner to withdraw the contract balance", async () => {
       await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether")});
       await truffleAssert.fails(instance.withdrawAll({from: bob}), truffleAssert.ErrorType.REVERT);
@@ -62,15 +104,15 @@ contract("CoinFlip", async (accounts) => {
       let contractBalance = parseFloat(await web3.eth.getBalance(instance.address));
       // get the contract owner balance
       let ownerBalance = parseFloat(await web3.eth.getBalance(owner));
-      // owner withdrawals all the funds
+      // owner withdraws all the funds
       let withdrawal = await instance.withdrawAll({from: owner});
-      // get the amount of gas used from the withdrawal
+      // get the amount of gas used from the withdraw
       let gasUsed = withdrawal.receipt.gasUsed;
-      // get the owner balance after the withdrawal
+      // get the owner balance after the withdraw
       let newOwnerBalance = parseFloat(await web3.eth.getBalance(owner));
-      // do some math to assure the withdrawal was correct
+      // do some math to assure the withdraw was correct
       let math = (ownerBalance + contractBalance) - (gasPrice * gasUsed);
-      // get the contract balance after the withdrawal to assure its now empty
+      // get the contract balance after the withdraw to assure its now empty
       let finalContractBalance = parseFloat(await web3.eth.getBalance(instance.address));
 
       // if the math was correct it should equal the owners balance
@@ -79,6 +121,7 @@ contract("CoinFlip", async (accounts) => {
       assert(finalContractBalance === 0);
     });
   });
+
 
   // context("when placing a bet", async () => {
   //   it("shouldn't allow a bet if the sender sends less than the wager", async () => {
