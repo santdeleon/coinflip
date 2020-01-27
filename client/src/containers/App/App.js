@@ -121,14 +121,36 @@ class App extends Component {
   placeBet = async (e) => {
     const { web3, accounts, contract, contractAddress } = this.state;
     let { betAmount } = this.state;
+    console.log(betAmount);
     if (betAmount.match(/[a-zA-Z]/)) {
       this.setState({
         statusMessage: "Sorry, you can only bet with numbers! Check your bet amount.",
         statusIsDisplayed: true
       });
       return;
+    } else if (betAmount > 5) {
+      this.setState({
+        statusMessage: "Sorry, you can't bet more than 5 ether.",
+        statusIsDisplayed: true
+      });
+      return;
+    } else if (betAmount === "0") {
+      this.setState({
+        statusMessage: "Sorry, you can't bet 0 ether",
+        statusIsDisplayed: true
+      });
+      return;
     }
+
     betAmount = web3.utils.toWei(betAmount, "ether");
+
+    if (parseInt(betAmount) > parseInt(await web3.eth.getBalance(contractAddress))) {
+      this.setState({
+        statusMessage: "Sorry, you can't bet more than the contract balance.",
+        statusIsDisplayed: true
+      });
+      return;
+    }
 
     let config = {
       from: accounts[0],
@@ -142,7 +164,7 @@ class App extends Component {
     let newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
 
     this.setState({
-      betAmount: "",
+      betAmount: web3.utils.fromWei(betAmount, "ether"),
       betWon: results.betWon,
       gamblersAddress: results.gambler,
       userBalanceBeforeBet: oldUserBalance,
