@@ -16,6 +16,13 @@ contract("CoinFlip", async (accounts) => {
     instance = await CoinFlip.new();
   });
 
+  context("when deploying the contract", async () => {
+    it("should set the deployer of the contract as the owner of the contract", async () => {
+      let ownerLookup = await instance.getOwner({from: alice});
+      truffleAssert.passes(ownerLookup[0] === owner, truffleAssert.ErrorType.REVERT);
+    });
+  });
+
   context("when retrieving contract info", async () => {
     it("should return the correct contract address and contract balance", async () => {
       let addressMatches, balanceMatches;
@@ -42,12 +49,11 @@ contract("CoinFlip", async (accounts) => {
     });
   });
 
-  context("when deploying the contract", async () => {
-    it("should set the deployer of the contract as the owner of the contract", async () => {
-      let ownerLookup = await instance.getOwner({from: alice});
-      truffleAssert.passes(ownerLookup[0] === owner, truffleAssert.ErrorType.REVERT);
-    });
-  });
+  /* @dev
+  *  When looking at the withdraw and withdrawAll functions
+  * 'withdraw' - is the action of withdrawing (VERB)
+  * 'withdrawal' - is the result of the withdraw (NOUN)
+  */
 
   context("when withdrawing some of the balance of the contract address", async () => {
     it("shouldn't allow a withdraw of more ether than the contract has", async () => {
@@ -119,6 +125,28 @@ contract("CoinFlip", async (accounts) => {
       assert(newOwnerBalance === math);
       // if the math was correct the contract balance should be empty (0)
       assert(finalContractBalance === 0);
+    });
+  });
+
+  context("when funding to the contract", async () => {
+    /* @dev
+    * The following test fails if the user has less than 1 million ether.
+    * This type of assertion isn't ideal, however, the user will get a rejection regardless
+    * if they try to send more funds to the contract than they have.
+    * This test is a visual respresentation of that but is not a necessary test in context.
+    */
+    it("shouldn't allow a funding of more ether than the sender has", async () => {
+      let doesntHaveEnoughFunds;
+      // set a *somewhat* unobtainable ether amount
+      let msgValue = parseFloat(web3.utils.toWei("1000000", "ether"));
+      let sendersBalance = await web3.eth.getBalance(alice);
+      (sendersBalance < msgValue) ? doesntHaveEnoughFunds = true : doesntHaveEnoughFunds = false;
+      assert(doesntHaveEnoughFunds === true);
+    });
+
+    it("should allow the sender to fund the contract", async () => {
+      let funding = await instance.fundContract({from: alice, value: web3.utils.toWei("0.01", "ether")});
+      truffleAssert.passes(funding, truffleAssert.ErrorType.REVERT);
     });
   });
 
