@@ -74,9 +74,9 @@ function Body(props) {
                   <ul className="rules-menu" style={{fontSize: "12px"}}>
                     <li className="rule">- You must use your own address</li>
                     <li className="rule">- If you win you get double your bet</li>
-                    <li className="rule">- Bet's must be more than 0.01 ether</li>
                     <li className="rule">- You must send the amount you specify</li>
                     <li className="rule">- You can't wager more ether than the contract balance has</li>
+                    <li className="rule">- Bet's must be more than 0.01 ether but no more than 5 ether</li>
                     <li className="rule">- Good Luck! Have Fun.</li>
                   </ul>
                 </div>
