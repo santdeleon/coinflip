@@ -4,6 +4,7 @@ var truffleAssert = require("truffle-assertions");
 
 contract("PseudoRandomness", async (accounts) => {
   const [owner, alice, bob] = accounts;
+  let instance;
 
   beforeEach(async () => {
     instance = await PseudoRandomness.new();
