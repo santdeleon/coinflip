@@ -1,5 +1,5 @@
-var PseudoRandomness = artifacts.require("./PseudoRandomness.sol");
+var CoinFlip = artifacts.require("./CoinFlip.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(PseudoRandomness);
+  deployer.deploy(CoinFlip);
 };

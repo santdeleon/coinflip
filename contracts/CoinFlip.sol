@@ -5,7 +5,7 @@ import './Modifiers.sol';
 
 pragma solidity 0.5.12;
 
-contract CoinFlip2 is PseudoRandomness, Ownable, Modifiers {
+contract CoinFlip is PseudoRandomness, Ownable, Modifiers {
 
     address payable public contractAddress = address(uint160(address(this)));
 
