@@ -148,6 +148,15 @@ contract("CoinFlip", async (accounts) => {
       let funding = await instance.fundContract({from: alice, value: web3.utils.toWei("0.01", "ether")});
       truffleAssert.passes(funding, truffleAssert.ErrorType.REVERT);
     });
+
+    it("should emit an event if the contract was successfully funded", async () => {
+      let eventEmitted;
+
+      let funding = await instance.fundContract({from: alice, value: web3.utils.toWei("0.01", "ether")});
+      let receipt = funding.receipt;
+      (receipt.logs[0].event = "ContractFunded") ? eventEmitted = true : eventEmitted = false;
+      truffleAssert.passes(eventEmitted, truffleAssert.ErrorType.REVERT);
+    });
   });
 
 
