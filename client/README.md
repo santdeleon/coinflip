@@ -8,7 +8,8 @@
 2. `cd` into your new project directory
 3. run `npm install` to install the required dependancies
 4. `cd client` and run `npm start` to run a local environment
-5. Have fun!
+5. start up your local ganache server
+6. Have fun!
 
 ### Requirements
 This application was built with [React](https://reactjs.org/). If you don't have prior experience with React or JavaScript this application may be a bit hard to follow.
