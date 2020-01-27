@@ -255,5 +255,21 @@ contract("CoinFlip", async (accounts) => {
         expect(expectedErr).to.equal("You can't use someone else's address");
       });
     });
+
+    // modifier setBettingLimit()
+    context("testing the setBettingLimit() modifier", async () => {
+      it("shouldn't allow the user to bet more than 5 ether", async () => {
+        let expectedErr;
+
+        try {
+          await instance.bet(alice, web3.utils.toWei("6", "ether"), { from: alice, value: web3.utils.toWei("6", "ether") });
+        } catch (err) {
+          expectedErr = err.reason;
+        }
+
+        expect(expectedErr).to.equal("You can't wager more than 5 ether");
+      });
+    });
+
   });
 });
