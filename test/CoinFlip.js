@@ -50,16 +50,26 @@ contract("CoinFlip", async (accounts) => {
     });
 
     it("should allow the contract owner to withdraw the contract balance and set contract balance to 0", async () => {
+      // fund the contract some ether
       await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether"), gasPrice: gasPrice});
+      // get the contract balance
       let contractBalance = parseFloat(await web3.eth.getBalance(instance.address));
+      // get the contract owner balance
       let ownerBalance = parseFloat(await web3.eth.getBalance(owner));
+      // owner withdrawals all the funds
       let withdrawal = await instance.withdrawAll({from: owner});
+      // get the amount of gas used from the withdrawal
       let gasUsed = withdrawal.receipt.gasUsed;
+      // get the owner balance after the withdrawal
       let newOwnerBalance = parseFloat(await web3.eth.getBalance(owner));
+      // do some math to assure the withdrawal was correct
       let math = (ownerBalance + contractBalance) - (gasPrice * gasUsed);
+      // get the contract balance after the withdrawal to assure its now empty
       let finalContractBalance = parseFloat(await web3.eth.getBalance(instance.address));
 
+      // if the math was correct it should equal the owners balance
       assert(newOwnerBalance === math);
+      // if the math was correct the contract balance should be empty (0)
       assert(finalContractBalance === 0);
     });
   });
