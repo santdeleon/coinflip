@@ -203,6 +203,42 @@ contract("CoinFlip", async (accounts) => {
 
   // function bet()
   context("when placing a bet", async () => {
+
+    // modifier costs()
+    context("testing the costs() modifier", async () => {
+      it("shouldn't allow the user to bet less than 0.01 ether", async () => {
+        let expectedErr;
+
+        try {
+          await instance.bet(alice, web3.utils.toWei("0.001", "ether"), { from: alice, value: web3.utils.toWei("0.001", "ether") });
+        } catch (err) {
+          expectedErr = err.reason;
+        }
+
+        expect(expectedErr).to.equal("You must send the required cost or more");
+      });
+
+      it("should allow the user to bet if they bet more than 0.01 ether", async () => {
+        let bet = await instance.bet(alice, web3.utils.toWei("0.02", "ether"), { from: alice, value: web3.utils.toWei("0.02", "ether") });
+        truffleAssert.passes(bet, truffleAssert.ErrorType.REVERT);
+      });
+    });
+
+    // modifier setBettingLimit()
+    context("testing the setBettingLimit() modifier", async () => {
+      it("shouldn't allow the user to bet more than 5 ether", async () => {
+        let expectedErr;
+
+        try {
+          await instance.bet(alice, web3.utils.toWei("6", "ether"), { from: alice, value: web3.utils.toWei("6", "ether") });
+        } catch (err) {
+          expectedErr = err.reason;
+        }
+
+        expect(expectedErr).to.equal("You can't wager more than 5 ether");
+      });
+    });
+
     // modifier amountSentMustMatch()
     context("testing the amountSentMustMatch() modifier", async () => {
       it("shouldn't allow a bet if the sender sends less than the wager", async () => {
@@ -255,21 +291,5 @@ contract("CoinFlip", async (accounts) => {
         expect(expectedErr).to.equal("You can't use someone else's address");
       });
     });
-
-    // modifier setBettingLimit()
-    context("testing the setBettingLimit() modifier", async () => {
-      it("shouldn't allow the user to bet more than 5 ether", async () => {
-        let expectedErr;
-
-        try {
-          await instance.bet(alice, web3.utils.toWei("6", "ether"), { from: alice, value: web3.utils.toWei("6", "ether") });
-        } catch (err) {
-          expectedErr = err.reason;
-        }
-
-        expect(expectedErr).to.equal("You can't wager more than 5 ether");
-      });
-    });
-
   });
 });
