@@ -160,29 +160,36 @@ contract("CoinFlip", async (accounts) => {
   });
 
 
-  // context("when placing a bet", async () => {
-  //   it("shouldn't allow a bet if the sender sends less than the wager", async () => {
-  //     let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.001", "ether") });
-  //     truffleAssert.fails(wager, truffleAssert.ErrorType.REVERT);
-  //   });
-  //
-  //   it("shouldn't allow a bet if the sender sends more than the amount being wagered", async () => {
-  //     let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.02", "ether") });
-  //     console.log(wager.receipt);
-  //     truffleAssert.fails(wager, truffleAssert.ErrorType.REVERT);
-  //   });
-  //
-  //   it("shouldn't allow a bet if the sender isn't wagering their own address", async () => {
-  //     let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: bob, value: web3.utils.toWei("0.01", "ether") });
-  //     truffleAssert.fails(wager, truffleAssert.ErrorType.REVERT);
-  //   });
-  //
-  //   it("should allow a bet if the sender sends the amount being wagered", async () => {
-  //     let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
-  //     let rand = await instance.random();
-  //     console.log(`Random number was: ${rand}`);
-  //     console.log(wager.receipt);
-  //     truffleAssert.passes(wager);
-  //   });
-  // });
+  context("when placing a bet", async () => {
+    it("shouldn't allow a bet if the sender sends less than the wager", async () => {
+      let expectedErr;
+
+      try {
+        await instance.bet(alice, web3.utils.toWei("1", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
+      } catch (err) {
+        expectedErr = err.reason;
+      }
+
+      expect(expectedErr).to.equal("You must send the amount specified");
+    });
+
+    // it("shouldn't allow a bet if the sender sends more than the amount being wagered", async () => {
+    //   let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.02", "ether") });
+    //   console.log(wager.receipt);
+    //   truffleAssert.fails(wager, truffleAssert.ErrorType.REVERT);
+    // });
+    //
+    // it("shouldn't allow a bet if the sender isn't wagering their own address", async () => {
+    //   let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: bob, value: web3.utils.toWei("0.01", "ether") });
+    //   truffleAssert.fails(wager, truffleAssert.ErrorType.REVERT);
+    // });
+    //
+    // it("should allow a bet if the sender sends the amount being wagered", async () => {
+    //   let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
+    //   let rand = await instance.random();
+    //   console.log(`Random number was: ${rand}`);
+    //   console.log(wager.receipt);
+    //   truffleAssert.passes(wager);
+    // });
+  });
 });
