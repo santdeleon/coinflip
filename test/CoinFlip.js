@@ -16,20 +16,13 @@ contract("CoinFlip", async (accounts) => {
     instance = await CoinFlip.new();
   });
 
-  context("when deploying the contract", async () => {
-    it("should set the deployer of the contract as the owner of the contract", async () => {
-      let ownerLookup = await instance.getOwner({from: alice});
-      truffleAssert.passes(ownerLookup[0] === owner, truffleAssert.ErrorType.REVERT);
-    });
-  });
-
   context("when retrieving contract info", async () => {
     it("should return the correct contract address and contract balance", async () => {
       let addressMatches, balanceMatches;
 
       let contractLookup = await instance.getContract({from: alice});
       (contractLookup[0] === instance.address) ? addressMatches = true : addressMatches = false;
-      (parseInt(contractLookup[1]) === parseInt(await web3.eth.getBalance(instance.address))) ? balanceMatches = true : balanceMatches = false;
+      (parseFloat(contractLookup[1]) === parseFloat(await web3.eth.getBalance(instance.address))) ? balanceMatches = true : balanceMatches = false;
       truffleAssert.passes(addressMatches, balanceMatches, truffleAssert.ErrorType.REVERT);
     });
 
@@ -38,8 +31,36 @@ contract("CoinFlip", async (accounts) => {
 
       let ownerLookup = await instance.getOwner({from: alice});
       (ownerLookup[0] === owner) ? addressMatches = true : addressMatches = false;
-      (parseInt(ownerLookup[1]) === parseInt(await web3.eth.getBalance(owner))) ? balanceMatches = true : balanceMatches = false;
+      (parseFloat(ownerLookup[1]) === parseFloat(await web3.eth.getBalance(owner))) ? balanceMatches = true : balanceMatches = false;
       truffleAssert.passes(addressMatches, balanceMatches, truffleAssert.ErrorType.REVERT);
+    });
+  });
+
+  context("when deploying the contract", async () => {
+    it("should set the deployer of the contract as the owner of the contract", async () => {
+      let ownerLookup = await instance.getOwner({from: alice});
+      truffleAssert.passes(ownerLookup[0] === owner, truffleAssert.ErrorType.REVERT);
+    });
+  });
+
+  context("when withdrawing the balance of the contract address", async () => {
+    it("shouldn't allow anyone but the contract owner to withdraw the contract balance", async () => {
+      await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether")});
+      await truffleAssert.fails(instance.withdrawAll({from: bob}), truffleAssert.ErrorType.REVERT);
+    });
+
+    it("should allow the contract owner to withdraw the contract balance and set contract balance to 0", async () => {
+      await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether"), gasPrice: gasPrice});
+      let contractBalance = parseFloat(await web3.eth.getBalance(instance.address));
+      let ownerBalance = parseFloat(await web3.eth.getBalance(owner));
+      let withdrawal = await instance.withdrawAll({from: owner});
+      let gasUsed = withdrawal.receipt.gasUsed;
+      let newOwnerBalance = parseFloat(await web3.eth.getBalance(owner));
+      let math = (ownerBalance + contractBalance) - (gasPrice * gasUsed);
+      let finalContractBalance = parseFloat(await web3.eth.getBalance(instance.address));
+
+      assert(newOwnerBalance === math);
+      assert(finalContractBalance === 0);
     });
   });
 
