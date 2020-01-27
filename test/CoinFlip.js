@@ -20,8 +20,11 @@ contract("CoinFlip", async (accounts) => {
     it("should return the correct contract address and contract balance", async () => {
       let addressMatches, balanceMatches;
 
+      // get the contract info
       let contractLookup = await instance.getContract({from: alice});
+      // assure the contract address is correct
       (contractLookup[0] === instance.address) ? addressMatches = true : addressMatches = false;
+      // assure the contract balance is correct
       (parseFloat(contractLookup[1]) === parseFloat(await web3.eth.getBalance(instance.address))) ? balanceMatches = true : balanceMatches = false;
       truffleAssert.passes(addressMatches, balanceMatches, truffleAssert.ErrorType.REVERT);
     });
