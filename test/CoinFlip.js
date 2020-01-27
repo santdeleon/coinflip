@@ -24,12 +24,21 @@ contract("CoinFlip", async (accounts) => {
   });
 
   context("when retrieving contract info", async () => {
-    it("should return the contract address and contract balance", async () => {
+    it("should return the correct contract address and contract balance", async () => {
       let addressMatches, balanceMatches;
 
       let contractLookup = await instance.getContract({from: alice});
       (contractLookup[0] === instance.address) ? addressMatches = true : addressMatches = false;
       (parseInt(contractLookup[1]) === parseInt(await web3.eth.getBalance(instance.address))) ? balanceMatches = true : balanceMatches = false;
+      truffleAssert.passes(addressMatches, balanceMatches, truffleAssert.ErrorType.REVERT);
+    });
+
+    it("should return the correct contract owner address and contract owner balance", async () => {
+      let addressMatches, balanceMatches;
+
+      let ownerLookup = await instance.getOwner({from: alice});
+      (ownerLookup[0] === owner) ? addressMatches = true : addressMatches = false;
+      (parseInt(ownerLookup[1]) === parseInt(await web3.eth.getBalance(owner))) ? balanceMatches = true : balanceMatches = false;
       truffleAssert.passes(addressMatches, balanceMatches, truffleAssert.ErrorType.REVERT);
     });
   });
