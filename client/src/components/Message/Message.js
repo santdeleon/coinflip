@@ -1,19 +1,13 @@
 import React from "react";
 import { XSquare } from 'react-feather';
 
-
 import './Message.css';
+
 
 function Message({statusMessage, statusIsDisplayed, removeStatusMessage}) {
   let statusColor = null;
 
-  if (
-    statusMessage === "Sorry, you can't send zero ether to the contract!" ||
-    statusMessage === "Sorry, there are no funds to withdraw." ||
-    statusMessage === "Sorry, you can only bet with numbers! Check your bet amount."
-  ) {
-    statusColor = "#f7608b";
-  } else statusColor = "#52f292"
+  (statusMessage.match(/^[Sorry]/)) ? statusColor = "#f7608b" : statusColor = "#52f292";
 
   return (
     <section
