@@ -76,24 +76,27 @@ function Body(props) {
                     <li className="rule">- If you win you get double your bet</li>
                     <li className="rule">- Bet's must be more than 0.01 ether</li>
                     <li className="rule">- You must send the amount you specify</li>
+                    <li className="rule">- You can't wager more ether than the contract balance has</li>
+                    <li className="rule">- Good Luck! Have Fun.</li>
                   </ul>
                 </div>
 
                 <div className="flex flex-column text-left results" style={{paddingRight: "15px"}}>
                   <h3 className="results-title text-center" style={{ fontWeight: "lighter"}}>Results:</h3>
                   <ul className="rules-menu" style={{fontSize: "12px"}}>
-                    <li className="result">You must use your own address</li>
-                    <li className="result">If you win you get double your bet</li>
-                    <li className="result">Bet's must be more than 0.01 ether</li>
-                    <li className="result">You must send the amount you specify</li>
+                    <li className="result">{`Bet won: ${props.betWon}`}</li>
+                    <li className="result">{`How much was bet: ${props.howMuchWasBet} ether`}</li>
+                    <li className="result">{`Balance before bet: ${props.userBalanceBeforeBet}`}</li>
+                    <li className="result">{`Balance after bet: ${props.newBalance}`}</li>
+                    <li className="result">{`Address Used: ${props.gamblersAddress}`}</li>
                   </ul>
                 </div>
               </div>
 
             </code>
             <div className="flex game-functions justify-content-center align-items-center">
-              <input type="text" className="select-bet" placeholder="How much ether?"/>
-              <button id="betBtn" type="button" className="btn bet-btn">Place Bet</button>
+              <input type="text" className="select-bet" placeholder="How much ether?" onChange={props.handleBet}/>
+              <button id="betBtn" type="button" className="btn bet-btn" onClick={props.placeBet}>Place Bet</button>
             </div>
         </div>
       </div>

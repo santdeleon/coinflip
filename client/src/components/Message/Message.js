@@ -9,7 +9,8 @@ function Message({statusMessage, statusIsDisplayed, removeStatusMessage}) {
 
   if (
     statusMessage === "Sorry, you can't send zero ether to the contract!" ||
-    statusMessage === "Sorry, there are no funds to withdraw."
+    statusMessage === "Sorry, there are no funds to withdraw." ||
+    statusMessage === "Sorry, you can only bet with numbers! Check your bet amount."
   ) {
     statusColor = "#f7608b";
   } else statusColor = "#52f292"

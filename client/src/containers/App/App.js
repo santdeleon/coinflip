@@ -18,13 +18,18 @@ class App extends Component {
     contract: null,
     contractBalance: null,
     contractAddress: null,
+    isOwner: false,
+    isUser: false,
+    userBalanceBeforeBet: "",
+    userBalance: null,
     fundAmount: "",
     isActive: false,
-    betWon: false,
     statusMessage: "",
     statusIsDisplayed: false,
-    isOwner: false,
-    isUser: false
+    betAmount: "",
+    betWon: "",
+    gamblersAddress: null,
+    howMuchWasBet: ""
   };
 
   componentDidMount = async () => {
@@ -50,8 +55,12 @@ class App extends Component {
         contract: instance,
         contractBalance: balanceInEth,
         contractAddress: deployedNetwork.address,
-        isOwner: (owner === user) ? true : false,
-        isUser: (owner !== user) ? true : false
+        isOwner: (user === owner) ? true : false,
+        isUser: (user !== owner) ? true : false,
+        betWon: "",
+        gamblersAddress: "",
+        userBalance: "",
+        howMuchWasBet: ""
       });
     } catch (error) {
       alert(
@@ -104,6 +113,44 @@ class App extends Component {
       contractBalance: web3.utils.fromWei(balance, "ether"),
       statusMessage: "Your donation has been accepted. Thanks for your support!",
       statusIsDisplayed: true
+    });
+  };
+
+  handleBet = (e) => {this.setState({ betAmount: e.target.value});};
+
+  placeBet = async (e) => {
+    const { web3, accounts, contract, contractAddress } = this.state;
+    let { betAmount } = this.state;
+    if (betAmount.match(/[a-zA-Z]/)) {
+      this.setState({
+        statusMessage: "Sorry, you can only bet with numbers! Check your bet amount.",
+        statusIsDisplayed: true
+      });
+      return;
+    }
+    betAmount = web3.utils.toWei(betAmount, "ether");
+
+    let config = {
+      from: accounts[0],
+      value: betAmount
+    };
+
+    let oldUserBalance = await web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
+    let bet = await contract.methods.bet(accounts[0], betAmount).send(config);
+    let results = bet.events.BetPlaced.returnValues;
+    let newUserBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
+    let newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
+
+    this.setState({
+      betAmount: "",
+      betWon: results.betWon,
+      gamblersAddress: results.gambler,
+      userBalanceBeforeBet: oldUserBalance,
+      userBalance: newUserBalance,
+      statusMessage: "Bet successfully made.",
+      statusIsDisplayed: true,
+      howMuchWasBet: web3.utils.fromWei(results.amount, "ether"),
+      contractBalance: newContractBalance,
     });
   };
 
@@ -166,6 +213,8 @@ class App extends Component {
         <Message statusMessage={this.state.statusMessage} removeStatusMessage={this.removeStatusMessage} statusIsDisplayed={this.state.statusIsDisplayed}/>
         <Navbar contractBalance={this.state.contractBalance}/>
         <Body
+          isOwner={this.state.isOwner}
+          isUser={this.state.isUser}
           fundAmount={this.state.fundAmount}
           selectFundAmount={this.selectFundAmount}
           refreshFundAmount={this.refreshFundAmount}
@@ -173,8 +222,14 @@ class App extends Component {
           isActive={this.state.isActive}
           withdrawOneEther={this.withdrawOneEther}
           withdrawAllEther={this.withdrawAllEther}
-          isOwner={this.state.isOwner}
-          isUser={this.state.isUser}
+          handleBet={this.handleBet}
+          betAmount={this.state.betAmount}
+          placeBet={this.placeBet}
+          betWon={this.state.betWon}
+          gamblersAddress={this.state.gamblersAddress}
+          howMuchWasBet={this.state.howMuchWasBet}
+          userBalanceBeforeBet={this.state.userBalanceBeforeBet}
+          newBalance={this.state.userBalance}
         />
         <Footer />
       </div>
