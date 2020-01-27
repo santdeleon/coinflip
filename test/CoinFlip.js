@@ -24,6 +24,8 @@ contract("CoinFlip", async (accounts) => {
   });
 
   context("when retrieving contract info", async () => {
+
+    // function getContract()
     it("should return the correct contract address and contract balance", async () => {
       let addressMatches, balanceMatches;
 
@@ -36,6 +38,7 @@ contract("CoinFlip", async (accounts) => {
       truffleAssert.passes(addressMatches, balanceMatches, truffleAssert.ErrorType.REVERT);
     });
 
+    // function getOwner()
     it("should return the correct contract owner address and contract owner balance", async () => {
       let addressMatches, balanceMatches;
 
@@ -49,26 +52,40 @@ contract("CoinFlip", async (accounts) => {
     });
   });
 
-  /* @dev
-  *  When looking at the withdraw and withdrawAll functions
-  * 'withdraw' - is the action of withdrawing (VERB)
-  * 'withdrawal' - is the result of the withdraw (NOUN)
-  */
+  // /* @dev
+  // *  When looking at the withdraw and withdrawAll functions
+  // * 'withdraw' - is the action of withdrawing (VERB)
+  // * 'withdrawal' - is the result of the withdraw (NOUN)
+  // */
 
+  // // function withdraw()
   context("when withdrawing some of the balance of the contract address", async () => {
-    it("shouldn't allow a withdraw of more ether than the contract has", async () => {
-      let oneEther = web3.utils.toWei("1", "ether");
-      let halfAnEther = web3.utils.toWei("0.5", "ether");
-      await instance.fundContract({from: owner, value: halfAnEther});
 
-      //fails because the contract has 0.5 ether and you want to withdraw 1 ether
-      await truffleAssert.fails(instance.withdraw(oneEther, {from: owner}), truffleAssert.ErrorType.REVERT);
+    // modifier mustHaveRequiredFunds()
+    context("testing the mustHaveRequiredFunds() modifier", async () => {
+      it("shouldn't allow a withdraw of more ether than the contract has", async () => {
+        let oneEther = web3.utils.toWei("1", "ether");
+        let halfAnEther = web3.utils.toWei("0.5", "ether");
+        await instance.fundContract({from: owner, value: halfAnEther});
+
+        //fails because the contract has 0.5 ether and you want to withdraw 1 ether
+        await truffleAssert.fails(instance.withdraw(oneEther, {from: owner}), truffleAssert.ErrorType.REVERT);
+      });
     });
 
-    it("shouldn't allow anyone but the contract owner to withdraw some of the funds", async () => {
-      let oneEther = web3.utils.toWei("1", "ether");
-      await instance.fundContract({from: bob, value: oneEther});
-      await truffleAssert.fails(instance.withdraw(oneEther, {from: bob}), truffleAssert.ErrorType.REVERT);
+    // modifier onlyOwner()
+    context("testing the onlyOwner() modifier", async () => {
+      it("shouldn't allow a non owner to withdraw some of the funds", async () => {
+        let oneEther = web3.utils.toWei("1", "ether");
+        await instance.fundContract({from: bob, value: oneEther});
+        await truffleAssert.fails(instance.withdraw(oneEther, {from: bob}), truffleAssert.ErrorType.REVERT);
+      });
+
+      it("should allow the owner to withdraw some funds", async () => {
+        let oneEther = web3.utils.toWei("1", "ether");
+        await instance.fundContract({from: bob, value: oneEther});
+        await truffleAssert.passes(instance.withdraw(oneEther, {from: owner}), truffleAssert.ErrorType.REVERT);
+      });
     });
 
     it("should allow the contract owner to withdraw some of the contract balance and subtract the withdrawal from the contract balance", async () => {
@@ -90,17 +107,30 @@ contract("CoinFlip", async (accounts) => {
       // get the contract balance after the withdraw to assure the withdrawal was subtracted
       let finalContractBalance = parseFloat(await web3.eth.getBalance(instance.address));
 
-      // if the math was correct it should equal the owners balance
-      assert(newOwnerBalance === math);
-      // if the math was correct the contract balance should be (the contract balance before - 1 ether)
-      assert(finalContractBalance === (contractBalance - parseFloat(oneEther)));
+      truffleAssert.passes(
+        // if the math was correct it should equal the owners balance
+        newOwnerBalance === math &&
+        // if the math was correct the contract balance should be (the contract balance before - 1 ether)
+        finalContractBalance === (contractBalance - parseFloat(oneEther))
+        , truffleAssert.ErrorType.REVERT
+      );
     });
   });
 
+  // function withdrawAll()
   context("when withdrawing the entire balance of the contract address", async () => {
-    it("shouldn't allow anyone but the contract owner to withdraw the contract balance", async () => {
-      await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether")});
-      await truffleAssert.fails(instance.withdrawAll({from: bob}), truffleAssert.ErrorType.REVERT);
+
+    // modifier onlyOwner()
+    context("testing the onlyOwner() modifier", async () => {
+      it("shouldn't allow a non owner to withdraw the contract balance", async () => {
+        await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether")});
+        await truffleAssert.fails(instance.withdrawAll({from: bob}), truffleAssert.ErrorType.REVERT);
+      });
+
+      it("should allow the owner to withdraw the contract balance", async () => {
+        await instance.fundContract({from: bob, value: web3.utils.toWei("1", "ether")});
+        await truffleAssert.passes(instance.withdrawAll({from: owner}), truffleAssert.ErrorType.REVERT);
+      });
     });
 
     it("should allow the contract owner to withdraw the contract balance and set contract balance to 0", async () => {
@@ -121,13 +151,17 @@ contract("CoinFlip", async (accounts) => {
       // get the contract balance after the withdraw to assure its now empty
       let finalContractBalance = parseFloat(await web3.eth.getBalance(instance.address));
 
-      // if the math was correct it should equal the owners balance
-      assert(newOwnerBalance === math);
-      // if the math was correct the contract balance should be empty (0)
-      assert(finalContractBalance === 0);
+      truffleAssert.passes(
+        // if the math was correct it should equal the owners balance
+        newOwnerBalance === math &&
+        // if the math was correct the contract balance should be empty (0)
+        finalContractBalance === 0
+        , truffleAssert.ErrorType.REVERT
+      );
     });
   });
 
+  // function fundContract()
   context("when funding to the contract", async () => {
     /* @dev
     * The following test fails if the user has less than 1 million ether.
@@ -135,13 +169,17 @@ contract("CoinFlip", async (accounts) => {
     * if they try to send more funds to the contract than they have.
     * This test is a visual respresentation of that but is not a necessary test in context.
     */
-    it("shouldn't allow a funding of more ether than the sender has", async () => {
-      let doesntHaveEnoughFunds;
-      // set a *somewhat* unobtainable ether amount
-      let msgValue = parseFloat(web3.utils.toWei("1000000", "ether"));
-      let sendersBalance = await web3.eth.getBalance(alice);
-      (sendersBalance < msgValue) ? doesntHaveEnoughFunds = true : doesntHaveEnoughFunds = false;
-      assert(doesntHaveEnoughFunds === true);
+
+    //modifier mustHaveRequiredFunds()
+    context("testing mustHaveRequiredFunds() modifier", async () => {
+      it("shouldn't allow a funding of more ether than the sender has", async () => {
+        let doesntHaveEnoughFunds;
+        // set a *somewhat* unobtainable ether amount
+        let msgValue = parseFloat(web3.utils.toWei("1000000", "ether"));
+        let sendersBalance = await web3.eth.getBalance(alice);
+        (sendersBalance < msgValue) ? doesntHaveEnoughFunds = true : doesntHaveEnoughFunds = false;
+        assert(doesntHaveEnoughFunds === true);
+      });
     });
 
     it("should allow the sender to fund the contract", async () => {
@@ -149,57 +187,73 @@ contract("CoinFlip", async (accounts) => {
       truffleAssert.passes(funding, truffleAssert.ErrorType.REVERT);
     });
 
-    it("should emit an event if the contract was successfully funded", async () => {
-      let eventEmitted;
+    // event ContractFunded()
+    context("testing the ContractFunded event", async () => {
+      it("should emit an event if the contract was successfully funded", async () => {
+        let eventEmitted;
 
-      let funding = await instance.fundContract({from: alice, value: web3.utils.toWei("0.01", "ether")});
-      let receipt = funding.receipt;
-      (receipt.logs[0].event = "ContractFunded") ? eventEmitted = true : eventEmitted = false;
-      truffleAssert.passes(eventEmitted, truffleAssert.ErrorType.REVERT);
+        let funding = await instance.fundContract({from: alice, value: web3.utils.toWei("0.01", "ether")});
+        let receipt = funding.receipt;
+        (receipt.logs[0].event = "ContractFunded") ? eventEmitted = true : eventEmitted = false;
+        truffleAssert.passes(eventEmitted, truffleAssert.ErrorType.REVERT);
+      });
     });
   });
 
 
+  // function bet()
   context("when placing a bet", async () => {
-    it("shouldn't allow a bet if the sender sends less than the wager", async () => {
-      let expectedErr;
+    // modifier amountSentMustMatch()
+    context("testing the amountSentMustMatch() modifier", async () => {
+      it("shouldn't allow a bet if the sender sends less than the wager", async () => {
+        let expectedErr;
 
-      try {
-        await instance.bet(alice, web3.utils.toWei("1", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
-      } catch (err) {
-        expectedErr = err.reason;
-      }
+        try {
+          await instance.bet(alice, web3.utils.toWei("1", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
+        } catch (err) {
+          expectedErr = err.reason;
+        }
 
-      expect(expectedErr).to.equal("You must send the amount specified");
+        expect(expectedErr).to.equal("You must send the amount specified");
+      });
+
+      it("shouldn't allow a bet if the sender sends more than the amount being wagered", async () => {
+        let expectedErr;
+
+        try {
+          await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("1", "ether") });
+        } catch (err) {
+          expectedErr = err.reason;
+        }
+
+        expect(expectedErr).to.equal("You must send the amount specified");
+      });
+
+      /* @dev
+      * Most of the time this test passes. When it doesn't it logs a revert.
+      * This test is valid, I believe it to be a timeout issue or an underflow/overflow issue.
+      * The CoinFlip contract doesn't inherit SafeMath so using SafeMath might permenantly fix this reversion.
+      */
+      it("should allow a bet if the sender sends the exact amount being wagered", async () => {
+        let wagerAmount = web3.utils.toWei("0.02", "ether");
+        let wager = await instance.bet(alice, wagerAmount, { from: alice, value: wagerAmount });
+        truffleAssert.passes(wager, truffleAssert.ErrorType.REVERT);
+      });
     });
 
-    it("shouldn't allow a bet if the sender sends more than the amount being wagered", async () => {
-      let expectedErr;
+    // modifier onlySender()
+    context("testing the onlySender() modifier", async () => {
+      it("shouldn't allow a bet if the sender isn't wagering their own address", async () => {
+        let expectedErr;
 
-      try {
-        await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("1", "ether") });
-      } catch (err) {
-        expectedErr = err.reason;
-      }
+        try {
+          await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: bob, value: web3.utils.toWei("0.01", "ether") });
+        } catch (err) {
+          expectedErr = err.reason;
+        }
 
-      expect(expectedErr).to.equal("You must send the amount specified");
-    });
-
-    it("shouldn't allow a bet if the sender isn't wagering their own address", async () => {
-      let expectedErr;
-
-      try {
-        await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: bob, value: web3.utils.toWei("0.01", "ether") });
-      } catch (err) {
-        expectedErr = err.reason;
-      }
-
-      expect(expectedErr).to.equal("You can't use someone else's address");
-    });
-
-    it("should allow a bet if the sender sends the amount being wagered", async () => {
-      let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
-      truffleAssert.passes(wager);
+        expect(expectedErr).to.equal("You can't use someone else's address");
+      });
     });
   });
 });
