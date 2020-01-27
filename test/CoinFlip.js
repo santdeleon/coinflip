@@ -197,13 +197,9 @@ contract("CoinFlip", async (accounts) => {
       expect(expectedErr).to.equal("You can't use someone else's address");
     });
 
-
-    // it("should allow a bet if the sender sends the amount being wagered", async () => {
-    //   let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
-    //   let rand = await instance.random();
-    //   console.log(`Random number was: ${rand}`);
-    //   console.log(wager.receipt);
-    //   truffleAssert.passes(wager);
-    // });
+    it("should allow a bet if the sender sends the amount being wagered", async () => {
+      let wager = await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
+      truffleAssert.passes(wager);
+    });
   });
 });
