@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .hyphens { background: url('../../assets/img/hyphens.svg');height: 1px;width: 100%;}

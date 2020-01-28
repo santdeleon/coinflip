@@ -1,7 +1,8 @@
 footer {
-  right: 0;
+  position: fixed;
   bottom: 0;
   left: 0;
+  right: 0;
 }
 
 .footer-bottom {
@@ -47,7 +48,7 @@ footer {
 
 @media only screen and (max-width: 768px) {
   footer {
-    position: none;
+    position: static;
   }
 
   .footer-bottom {
