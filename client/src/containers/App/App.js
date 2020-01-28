@@ -73,8 +73,8 @@ class App extends Component {
   removeStatusMessage = (e) => { this.setState({ statusIsDisplayed: false });};
 
   selectFundAmount = (e) => {
-    let donation = e.target.id;
-    if (donation === "") donation = "0";
+    let donation;
+    (e.currentTarget.id === "") ? donation = "" : donation = e.currentTarget.id;
     this.setState({ fundAmount: donation });
   };
 
