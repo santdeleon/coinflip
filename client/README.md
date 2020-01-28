@@ -7,9 +7,10 @@
 1. `git clone` this repo to your local environment
 2. `cd` into your new project directory
 3. run `npm install` to install the required dependancies
-4. `cd client` and run `npm start` to run a local environment
-5. start up your local ganache server
-6. Have fun!
+4. start up your local Ganache GUI
+5. run `truffle migrate` to deploy the contracts
+6. `cd client` and run `npm start` to spin up the React front end
+7. Have fun!
 
 ### Requirements
 This application was built with [React](https://reactjs.org/). If you don't have prior experience with React or JavaScript this application may be a bit hard to follow.
