@@ -6,6 +6,7 @@ contract("CoinFlip", async (accounts) => {
   // this takes the first 3 Ganache accounts and sets them equal to the accounts at that index
   // accounts[0] = owner, accounts[1] = alice, accounts[2] = bob
   const [owner, alice, bob] = accounts;
+  // set a temporary instance variable to instantiate a new version of on each test
   let instance;
   // gasPrice and gasLimit are default values on the Ganache client
   const gasPrice = 20000000000;
@@ -16,14 +17,14 @@ contract("CoinFlip", async (accounts) => {
     instance = await CoinFlip.new();
   });
 
-  xcontext("when deploying the contract", async () => {
+  context("when deploying the contract", async () => {
     it("should set the deployer of the contract as the owner of the contract", async () => {
       let ownerLookup = await instance.getOwner({from: alice});
       truffleAssert.passes(ownerLookup[0] === owner, truffleAssert.ErrorType.REVERT);
     });
   });
 
-  xcontext("when retrieving contract info", async () => {
+  context("when retrieving contract info", async () => {
 
     // function getContract()
     it("should return the correct contract address and contract balance", async () => {
@@ -59,7 +60,7 @@ contract("CoinFlip", async (accounts) => {
   */
 
   // function withdraw()
-  xcontext("when withdrawing some of the balance of the contract address", async () => {
+  context("when withdrawing some of the balance of the contract address", async () => {
 
     // modifier mustHaveRequiredFunds()
     context("testing the mustHaveRequiredFunds() modifier", async () => {
@@ -132,7 +133,7 @@ contract("CoinFlip", async (accounts) => {
   });
 
   // function withdrawAll()
-  xcontext("when withdrawing the entire balance of the contract address", async () => {
+  context("when withdrawing the entire balance of the contract address", async () => {
 
     // modifier onlyOwner()
     context("testing the onlyOwner() modifier", async () => {
@@ -176,14 +177,14 @@ contract("CoinFlip", async (accounts) => {
   });
 
   // function fundContract()
-  xcontext("when funding to the contract", async () => {
+  context("when funding to the contract", async () => {
+
     /* @dev
     * The following test fails if the user has less than 1 million ether.
     * This type of assertion isn't ideal, however, the user will get a rejection regardless
     * if they try to send more funds to the contract than they have.
     * This test is a visual respresentation of that but is not a necessary test in context.
     */
-
     //modifier mustHaveRequiredFunds()
     context("testing mustHaveRequiredFunds() modifier", async () => {
       it("shouldn't allow a funding of more ether than the sender has", async () => {
@@ -230,29 +231,10 @@ contract("CoinFlip", async (accounts) => {
 
         expect(expectedErr).to.equal("You must send the required cost or more");
       });
-
-      /* @dev
-      * I wrote this test as a try catch to avoid the reversion error that happenened on a successful bet
-      */
-      // it("should allow the user to bet if they bet more than 0.01 ether", async () => {
-      //   let wasErr = "";
-      //
-      //   try {
-      //     await instance.bet(alice, web3.utils.toWei("0.02", "ether"), { from: alice, value: web3.utils.toWei("0.02", "ether") });
-      //   } catch (err) {
-      //     if (err) {
-      //       wasErr = true;
-      //       console.log(err);
-      //     }
-      //   }
-      //
-      //   console.log(`WAS THERE AN ERROR: ${wasErr}`);
-      //   expect(wasErr).to.equal("");
-      // });
     });
 
     // modifier setBettingLimit()
-    xcontext("testing the setBettingLimit() modifier", async () => {
+    context("testing the setBettingLimit() modifier", async () => {
       it("shouldn't allow the user to bet more than 5 ether", async () => {
         let expectedErr;
 
@@ -267,7 +249,7 @@ contract("CoinFlip", async (accounts) => {
     });
 
     // modifier amountSentMustMatch()
-    xcontext("testing the amountSentMustMatch() modifier", async () => {
+    context("testing the amountSentMustMatch() modifier", async () => {
       it("shouldn't allow a bet if the sender sends less than the wager", async () => {
         let expectedErr;
 
@@ -291,26 +273,10 @@ contract("CoinFlip", async (accounts) => {
 
         expect(expectedErr).to.equal("You must send the amount specified");
       });
-
-      it("should allow a bet if the sender sends the exact amount being wagered", async () => {
-        let wasErr = "";
-        let wagerAmount = web3.utils.toWei("0.02", "ether");
-
-        try {
-          await instance.bet(alice, wagerAmount, { from: alice, value: wagerAmount });
-        } catch (err) {
-          if (err) {
-            wasErr = true;
-            console.log(err);
-          }
-        }
-        console.log(`WAS THERE AN ERROR: ${wasErr}`);
-        expect(wasErr).to.equal("");
-      });
     });
 
     // modifier onlySender()
-    xcontext("testing the onlySender() modifier", async () => {
+    context("testing the onlySender() modifier", async () => {
       it("shouldn't allow a bet if the sender isn't wagering their own address", async () => {
         let expectedErr;
 
