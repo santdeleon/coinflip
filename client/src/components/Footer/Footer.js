@@ -21,7 +21,7 @@ function Footer() {
 
             <div className="col flex eth-wrapper">
               <div className="flex">
-                <FontAwesomeIcon className="crypto-logo ethereum-logo" icon={faEthereum}/><span className="crypto-text">0x64dF4A3216C6835F48B2A34c98591ef5bD82eb71</span>
+                <FontAwesomeIcon className="crypto-logo ethereum-logo" icon={faEthereum}/><span className="crypto-text">0x1AFf2CcF3928D8b7D3F031c127957D5063aAf05F</span>
               </div>
             </div>
           </div>
