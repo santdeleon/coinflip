@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CoinFlip from "../../contracts/CoinFlip.json";
-import getWeb3 from "../../getWeb3";
+import getWeb3 from "../../components/getWeb3/getWeb3";
 
 import Loader from "../../components/Loader/Loader";
 import Navbar from "../../components/Navbar/Navbar";
