@@ -1,7 +1,7 @@
 pragma solidity 0.5.12;
 
 
-contract Modifiers {
+contract usingModifiers {
 
    modifier costs(uint cost) {
       require(msg.value >= cost, "You must send the required cost or more");
@@ -15,11 +15,6 @@ contract Modifiers {
 
     modifier amountSentMustMatch(uint amount) {
       require(msg.value == amount, "You must send the amount specified");
-      _;
-    }
-
-    modifier onlySender(address sender) {
-      require(sender == msg.sender, "You can't use someone else's address");
       _;
     }
 

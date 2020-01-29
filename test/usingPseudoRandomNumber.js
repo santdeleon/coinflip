@@ -1,13 +1,13 @@
-const PseudoRandomness = artifacts.require("PseudoRandomness");
+const usingPseudoRandomNumber = artifacts.require("usingPseudoRandomNumber");
 var truffleAssert = require("truffle-assertions");
 
 
-contract("PseudoRandomness", async (accounts) => {
+contract("usingPseudoRandomNumber", async (accounts) => {
   const [owner, alice, bob] = accounts;
   let instance;
 
   beforeEach(async () => {
-    instance = await PseudoRandomness.new();
+    instance = await usingPseudoRandomNumber.new();
   });
 
   context("when testing random number generation", async () => {

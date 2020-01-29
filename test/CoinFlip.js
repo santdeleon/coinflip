@@ -224,7 +224,7 @@ contract("CoinFlip", async (accounts) => {
         let expectedErr;
 
         try {
-          await instance.bet(alice, web3.utils.toWei("0.001", "ether"), { from: alice, value: web3.utils.toWei("0.001", "ether") });
+          await instance.bet(web3.utils.toWei("0.001", "ether"), { from: alice, value: web3.utils.toWei("0.001", "ether") });
         } catch (err) {
           expectedErr = err.reason;
         }
@@ -239,7 +239,7 @@ contract("CoinFlip", async (accounts) => {
         let expectedErr;
 
         try {
-          await instance.bet(alice, web3.utils.toWei("6", "ether"), { from: alice, value: web3.utils.toWei("6", "ether") });
+          await instance.bet(web3.utils.toWei("6", "ether"), { from: alice, value: web3.utils.toWei("6", "ether") });
         } catch (err) {
           expectedErr = err.reason;
         }
@@ -254,7 +254,7 @@ contract("CoinFlip", async (accounts) => {
         let expectedErr;
 
         try {
-          await instance.bet(alice, web3.utils.toWei("1", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
+          await instance.bet(web3.utils.toWei("1", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
         } catch (err) {
           expectedErr = err.reason;
         }
@@ -266,27 +266,12 @@ contract("CoinFlip", async (accounts) => {
         let expectedErr;
 
         try {
-          await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("1", "ether") });
+          await instance.bet(web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("1", "ether") });
         } catch (err) {
           expectedErr = err.reason;
         }
 
         expect(expectedErr).to.equal("You must send the amount specified");
-      });
-    });
-
-    // modifier onlySender()
-    context("testing the onlySender() modifier", async () => {
-      it("shouldn't allow a bet if the sender isn't wagering their own address", async () => {
-        let expectedErr;
-
-        try {
-          await instance.bet(alice, web3.utils.toWei("0.01", "ether"), { from: bob, value: web3.utils.toWei("0.01", "ether") });
-        } catch (err) {
-          expectedErr = err.reason;
-        }
-
-        expect(expectedErr).to.equal("You can't use someone else's address");
       });
     });
 
