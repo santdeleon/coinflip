@@ -121,7 +121,6 @@ class App extends Component {
   placeBet = async (e) => {
     const { web3, accounts, contract, contractAddress } = this.state;
     let { betAmount } = this.state;
-    console.log(betAmount);
     if (betAmount.match(/[a-zA-Z]/)) {
       this.setState({
         statusMessage: "Sorry, you can only bet with numbers! Check your bet amount.",
@@ -158,7 +157,7 @@ class App extends Component {
     };
 
     let oldUserBalance = await web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
-    let bet = await contract.methods.bet(accounts[0], betAmount).send(config);
+    let bet = await contract.methods.bet(betAmount).send(config);
     let results = bet.events.BetPlaced.returnValues;
     let newUserBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
     let newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");

@@ -72,7 +72,6 @@ function Body(props) {
                 <div className="flex flex-column text-left rules" style={{paddingLeft: "15px"}}>
                   <h3 className="rules-title" style={{ fontWeight: "lighter"}}>Rules:</h3>
                   <ul className="rules-menu" style={{fontSize: "12px"}}>
-                    <li className="rule">- You must use your own address</li>
                     <li className="rule">- If you win you get double your bet</li>
                     <li className="rule">- You must send the amount you specify</li>
                     <li className="rule">- You can't wager more ether than the contract balance has</li>

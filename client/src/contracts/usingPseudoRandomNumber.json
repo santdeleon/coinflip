@@ -1,5 +1,5 @@
 {
-  "contractName": "PseudoRandomness",
+  "contractName": "usingPseudoRandomNumber",
   "abi": [
     {
       "constant": true,
@@ -17,25 +17,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"random\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/PseudoRandomness.sol\":\"PseudoRandomness\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/PseudoRandomness.sol\":{\"keccak256\":\"0x7d5a627ad8cefb64832cb240f0e5eee1bcc3f05d037e301d185cec53398e622f\",\"urls\":[\"bzz-raw://135266e2e6ed266d3383cd7e625eb84478c8d9b4657d874e0f81d30da596440f\",\"dweb:/ipfs/QmQ3DkeZE3xFUvPExd2Wz8CH7PzKcaCfEdmqK3E7stYyMT\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a723158207352c20984f825984fe2939d49ed04df83bcf97ba1635d1c6a94e3329c529cc164736f6c634300050c0032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a723158207352c20984f825984fe2939d49ed04df83bcf97ba1635d1c6a94e3329c529cc164736f6c634300050c0032",
-  "sourceMap": "25:105:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:105:4;;;;;;;",
-  "deployedSourceMap": "25:105:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:105:4;;;;;;;;;;;;;;;;;;;55:73;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;94:7;122:1;116:3;:7;;;;;;109:14;;55:73;:::o",
-  "source": "pragma solidity 0.5.12;\n\ncontract PseudoRandomness {\n  function random() public view returns (uint256) {\n    return now % 2;\n  }\n}\n",
-  "sourcePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/PseudoRandomness.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"random\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingPseudoRandomNumber.sol\":\"usingPseudoRandomNumber\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingPseudoRandomNumber.sol\":{\"keccak256\":\"0x610b516e4c0a208ffc31be58bf332adb60b3efb42e71286b59bedffa9111e250\",\"urls\":[\"bzz-raw://fdd8144a27c09f96481fdf216dd433881940b781a1ebcc674162718cf4b27e14\",\"dweb:/ipfs/QmXRpEbKJW69pKw7SDEo75vRn5YDhgrHsoUKDLhrTHZaDy\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582046d9188cd2df3255bdaae0ff3e140a687e80fb16faad1da1f04cc9a84021786d64736f6c634300050c0032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582046d9188cd2df3255bdaae0ff3e140a687e80fb16faad1da1f04cc9a84021786d64736f6c634300050c0032",
+  "sourceMap": "25:109:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:109:4;;;;;;;",
+  "deployedSourceMap": "25:109:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:109:4;;;;;;;;;;;;;;;;;;;62:70;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;101:4;126:1;120:3;:7;;;;;;113:14;;62:70;:::o",
+  "source": "pragma solidity 0.5.12;\n\ncontract usingPseudoRandomNumber {\n  function random() public view returns (uint) {\n    return now % 2;\n  }\n}\n",
+  "sourcePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingPseudoRandomNumber.sol",
   "ast": {
-    "absolutePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/PseudoRandomness.sol",
+    "absolutePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingPseudoRandomNumber.sol",
     "exportedSymbols": {
-      "PseudoRandomness": [
-        383
+      "usingPseudoRandomNumber": [
+        375
       ]
     },
-    "id": 384,
+    "id": 376,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 372,
+        "id": 364,
         "literals": [
           "solidity",
           "0.5",
@@ -50,18 +50,18 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 383,
+        "id": 375,
         "linearizedBaseContracts": [
-          383
+          375
         ],
-        "name": "PseudoRandomness",
+        "name": "usingPseudoRandomNumber",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 381,
+              "id": 373,
               "nodeType": "Block",
-              "src": "103:25:4",
+              "src": "107:25:4",
               "statements": [
                 {
                   "expression": {
@@ -70,19 +70,19 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 379,
+                    "id": 371,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 377,
+                      "id": 369,
                       "name": "now",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 400,
-                      "src": "116:3:4",
+                      "referencedDeclaration": 392,
+                      "src": "120:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -93,14 +93,14 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "32",
-                      "id": 378,
+                      "id": 370,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "122:1:4",
+                      "src": "126:1:4",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_2_by_1",
@@ -108,43 +108,43 @@
                       },
                       "value": "2"
                     },
-                    "src": "116:7:4",
+                    "src": "120:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 376,
-                  "id": 380,
+                  "functionReturnParameters": 368,
+                  "id": 372,
                   "nodeType": "Return",
-                  "src": "109:14:4"
+                  "src": "113:14:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 382,
+            "id": 374,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "random",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 373,
+              "id": 365,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "70:2:4"
+              "src": "77:2:4"
             },
             "returnParameters": {
-              "id": 376,
+              "id": 368,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 375,
+                  "id": 367,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 382,
-                  "src": "94:7:4",
+                  "scope": 374,
+                  "src": "101:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -152,10 +152,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 374,
-                    "name": "uint256",
+                    "id": 366,
+                    "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "94:7:4",
+                    "src": "101:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -165,33 +165,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "93:9:4"
+              "src": "100:6:4"
             },
-            "scope": 383,
-            "src": "55:73:4",
+            "scope": 375,
+            "src": "62:70:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 384,
-        "src": "25:105:4"
+        "scope": 376,
+        "src": "25:109:4"
       }
     ],
-    "src": "0:131:4"
+    "src": "0:135:4"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/PseudoRandomness.sol",
+    "absolutePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingPseudoRandomNumber.sol",
     "exportedSymbols": {
-      "PseudoRandomness": [
-        383
+      "usingPseudoRandomNumber": [
+        375
       ]
     },
-    "id": 384,
+    "id": 376,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 372,
+        "id": 364,
         "literals": [
           "solidity",
           "0.5",
@@ -206,18 +206,18 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 383,
+        "id": 375,
         "linearizedBaseContracts": [
-          383
+          375
         ],
-        "name": "PseudoRandomness",
+        "name": "usingPseudoRandomNumber",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 381,
+              "id": 373,
               "nodeType": "Block",
-              "src": "103:25:4",
+              "src": "107:25:4",
               "statements": [
                 {
                   "expression": {
@@ -226,19 +226,19 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 379,
+                    "id": 371,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 377,
+                      "id": 369,
                       "name": "now",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 400,
-                      "src": "116:3:4",
+                      "referencedDeclaration": 392,
+                      "src": "120:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -249,14 +249,14 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "32",
-                      "id": 378,
+                      "id": 370,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "122:1:4",
+                      "src": "126:1:4",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_2_by_1",
@@ -264,43 +264,43 @@
                       },
                       "value": "2"
                     },
-                    "src": "116:7:4",
+                    "src": "120:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 376,
-                  "id": 380,
+                  "functionReturnParameters": 368,
+                  "id": 372,
                   "nodeType": "Return",
-                  "src": "109:14:4"
+                  "src": "113:14:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 382,
+            "id": 374,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "random",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 373,
+              "id": 365,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "70:2:4"
+              "src": "77:2:4"
             },
             "returnParameters": {
-              "id": 376,
+              "id": 368,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 375,
+                  "id": 367,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 382,
-                  "src": "94:7:4",
+                  "scope": 374,
+                  "src": "101:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -308,10 +308,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 374,
-                    "name": "uint256",
+                    "id": 366,
+                    "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "94:7:4",
+                    "src": "101:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -321,35 +321,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "93:9:4"
+              "src": "100:6:4"
             },
-            "scope": 383,
-            "src": "55:73:4",
+            "scope": 375,
+            "src": "62:70:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 384,
-        "src": "25:105:4"
+        "scope": 376,
+        "src": "25:109:4"
       }
     ],
-    "src": "0:131:4"
+    "src": "0:135:4"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
-  "networks": {
-    "5777": {
-      "events": {},
-      "links": {},
-      "address": "0xE3E95D3f0cEDC146Da4B244fC2828b0D1d911cCF",
-      "transactionHash": "0x1e876680b7ad28d1c5f5ee97c84d5f9a9bd230d5ee368e92187f40626e0c60cc"
-    }
-  },
+  "networks": {},
   "schemaVersion": "3.0.20",
-  "updatedAt": "2020-01-28T18:08:32.245Z",
+  "updatedAt": "2020-01-29T03:15:22.434Z",
   "devdoc": {
     "methods": {}
   },
