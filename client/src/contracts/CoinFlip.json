@@ -5901,6 +5901,59 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0xf8e99859e696debf4ef1752d671f759f7f63a1116efe995d789edfb3849c3549": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "gambler",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "betWon",
+              "type": "bool"
+            }
+          ],
+          "name": "BetPlaced",
+          "type": "event",
+          "signature": "0xf8e99859e696debf4ef1752d671f759f7f63a1116efe995d789edfb3849c3549"
+        },
+        "0x0939f6f4877faf071412e527bc4c6d0bd65ad077e52b57334f7765265647a7f1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "funder",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "ContractFunded",
+          "type": "event",
+          "signature": "0x0939f6f4877faf071412e527bc4c6d0bd65ad077e52b57334f7765265647a7f1"
+        }
+      },
+      "links": {},
+      "address": "0xeE7326A85306811f669Ef5c92fe9dDa753d46447",
+      "transactionHash": "0x561c8f2f29558a97ac5e9e8d63569643a22a280097ba68aa67595a81ed507e8b"
+    },
     "5777": {
       "events": {
         "0xf8e99859e696debf4ef1752d671f759f7f63a1116efe995d789edfb3849c3549": {
@@ -5956,7 +6009,7 @@
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-01-30T05:35:22.415Z",
+  "updatedAt": "2020-01-30T06:01:07.898Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
