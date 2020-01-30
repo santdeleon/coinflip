@@ -1,15 +1,15 @@
 {
   "contractName": "usingModifiers",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingModifiers.sol\":\"usingModifiers\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingModifiers.sol\":{\"keccak256\":\"0xd9f9ba44206b230559815bd5d07e866aacbc48db5b5efcba65daa78192faed51\",\"urls\":[\"bzz-raw://9a46aa5341078f2cc5afc8f6d73476f7e5c46fc087a342431209e0c2ea8b2697\",\"dweb:/ipfs/QmSMAuRjf5GLtpN5TGiTS6CVnMhUnQEQbjJbNHHcnwW6Xx\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582039cf4f1bce4e10696fff07ae6f0b87768861ee7bc28c70cd3a0e6c938874027764736f6c634300050c0032",
-  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582039cf4f1bce4e10696fff07ae6f0b87768861ee7bc28c70cd3a0e6c938874027764736f6c634300050c0032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol\":\"usingModifiers\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol\":{\"keccak256\":\"0xd9f9ba44206b230559815bd5d07e866aacbc48db5b5efcba65daa78192faed51\",\"urls\":[\"bzz-raw://9a46aa5341078f2cc5afc8f6d73476f7e5c46fc087a342431209e0c2ea8b2697\",\"dweb:/ipfs/QmSMAuRjf5GLtpN5TGiTS6CVnMhUnQEQbjJbNHHcnwW6Xx\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582065cb5207564923da0fbf3439f93dbe4074d5cbf1582bf2d8b576b4154a382e3b64736f6c634300050c0032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582065cb5207564923da0fbf3439f93dbe4074d5cbf1582bf2d8b576b4154a382e3b64736f6c634300050c0032",
   "sourceMap": "26:596:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:596:3;;;;;;;",
   "deployedSourceMap": "26:596:3:-;;;;;",
   "source": "pragma solidity 0.5.12;\n\n\ncontract usingModifiers {\n\n   modifier costs(uint cost) {\n      require(msg.value >= cost, \"You must send the required cost or more\");\n      _;\n    }\n\n    modifier setBettingLimit() {\n      require(msg.value <= 5 ether, \"You can't wager more than 5 ether\");\n      _;\n    }\n\n    modifier amountSentMustMatch(uint amount) {\n      require(msg.value == amount, \"You must send the amount specified\");\n      _;\n    }\n\n    modifier mustHaveRequiredFunds(address _address, uint amount) {\n      require(_address.balance >= amount, \"There are not enough funds to create this transaction\");\n      _;\n    }\n}\n",
-  "sourcePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingModifiers.sol",
+  "sourcePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol",
   "ast": {
-    "absolutePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingModifiers.sol",
+    "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol",
     "exportedSymbols": {
       "usingModifiers": [
         362
@@ -774,7 +774,7 @@
     "src": "0:623:3"
   },
   "legacyAST": {
-    "absolutePath": "/Users/sdeleon/Desktop/code/projects/blockchain/coinflip/contracts/usingModifiers.sol",
+    "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol",
     "exportedSymbols": {
       "usingModifiers": [
         362
@@ -1543,8 +1543,8 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.20",
-  "updatedAt": "2020-01-29T03:15:22.433Z",
+  "schemaVersion": "3.0.19",
+  "updatedAt": "2020-01-30T05:35:16.234Z",
   "devdoc": {
     "methods": {}
   },
