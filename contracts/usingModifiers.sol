@@ -13,11 +13,6 @@ contract usingModifiers {
       _;
     }
 
-    modifier amountSentMustMatch(uint amount) {
-      require(msg.value == amount, "You must send the amount specified");
-      _;
-    }
-
     modifier mustHaveRequiredFunds(address _address, uint amount) {
       require(_address.balance >= amount, "There are not enough funds to create this transaction");
       _;
