@@ -248,33 +248,6 @@ contract("CoinFlip", async (accounts) => {
       });
     });
 
-    // modifier amountSentMustMatch()
-    context("testing the amountSentMustMatch() modifier", async () => {
-      it("shouldn't allow a bet if the sender sends less than the wager", async () => {
-        let expectedErr;
-
-        try {
-          await instance.bet(web3.utils.toWei("1", "ether"), { from: alice, value: web3.utils.toWei("0.01", "ether") });
-        } catch (err) {
-          expectedErr = err.reason;
-        }
-
-        expect(expectedErr).to.equal("You must send the amount specified");
-      });
-
-      it("shouldn't allow a bet if the sender sends more than the amount being wagered", async () => {
-        let expectedErr;
-
-        try {
-          await instance.bet(web3.utils.toWei("0.01", "ether"), { from: alice, value: web3.utils.toWei("1", "ether") });
-        } catch (err) {
-          expectedErr = err.reason;
-        }
-
-        expect(expectedErr).to.equal("You must send the amount specified");
-      });
-    });
-
     // modifier mustHaveRequiredFunds()
     context("testing the mustHaveRequiredFunds() modifier", async () => {
       it("shouldn't allow the user to bet if they don't have enough funds", async () => {
