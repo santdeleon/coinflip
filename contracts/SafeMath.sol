@@ -1,25 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
-
-@santdeleon
-OpenZeppelin
-/
-openzeppelin-contracts
-7.7k
-453
-7.8k3.1k
- Code Issues 84 Pull requests 7 Actions Security Insights
-openzeppelin-contracts/contracts/math/SafeMath.sol
-@frangio frangio remove beta notice
-c4bb7b7 on Oct 29, 2019
-@frangio@nventuro@spalladino@ajsantander@Flash-Git@JeanoLee@DeltaBalances@sohkai@philbirt@pemulis@Janther@joeykrug@emn178@elch-yan@artiebits@balajipachai@Skyge
-156 lines (143 sloc)  5.17 KB
-
 pragma solidity ^0.5.0;
 
 /**
@@ -176,15 +154,3 @@ library SafeMath {
         return a % b;
     }
 }
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
