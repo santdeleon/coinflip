@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const mnemonic = fs.readFileSync(".secret").toString().trim();
-const projectId = "587c0d97f7ae4e67aeed916ef391ce39";
+const projectId = "313d0965856b40b28a7ccfd1bb0e237a";
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
   contracts_build_directory: path.join(__dirname, "client/src/contracts"),
   networks: {
     develop: {
-      provider: () => new HDWalletProvider(mnemonic, "http://127.0.0.1:7545"),
+      provider: () => new HDWalletProvider(mnemonic, `http://127.0.0.1:7545`),
       network_id: "*"
     },
     ropsten: {
