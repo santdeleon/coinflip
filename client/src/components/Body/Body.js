@@ -87,7 +87,7 @@ function Body(props) {
                     <li className="result">{`How much was bet: ${props.howMuchWasBet} ether`}</li>
                     <li className="result">{`Balance before bet: ${props.userBalanceBeforeBet}`}</li>
                     <li className="result">{`Balance after bet: ${props.newBalance}`}</li>
-                    <li className="result">{`Address Used: ${props.gamblersAddress}`}</li>
+                    <li className="result">{`Address Used: ${props.playersAddress}`}</li>
                   </ul>
                 </div>
               </div>

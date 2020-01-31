@@ -28,7 +28,7 @@ class App extends Component {
     statusIsDisplayed: false,
     betAmount: "",
     betWon: "",
-    gamblersAddress: null,
+    playersAddress: null,
     howMuchWasBet: ""
   };
 
@@ -58,7 +58,7 @@ class App extends Component {
         isOwner: (user === owner) ? true : false,
         isUser: (user !== owner) ? true : false,
         betWon: "",
-        gamblersAddress: "",
+        playersAddress: "",
         userBalance: "",
         howMuchWasBet: ""
       });
@@ -97,7 +97,7 @@ class App extends Component {
       value: web3.utils.toWei(fundAmount, "ether")
     };
 
-    const donation = await contract.methods.fundContract().send(config)
+    await contract.methods.fundContract().send(config)
     .on("transactionHash", (hash) => {
       console.log(hash);
     })
@@ -116,7 +116,7 @@ class App extends Component {
     });
   };
 
-  handleBet = (e) => {this.setState({ betAmount: e.target.value});};
+  handleBet = (e) => { this.setState({ betAmount: e.target.value}); };
 
   placeBet = async (e) => {
     const { web3, accounts, contract, contractAddress } = this.state;
@@ -157,22 +157,32 @@ class App extends Component {
     };
 
     let oldUserBalance = await web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
-    let bet = await contract.methods.bet(betAmount).send(config);
-    let results = bet.events.BetPlaced.returnValues;
-    let newUserBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
-    let newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
-
-    this.setState({
-      betAmount: web3.utils.fromWei(betAmount, "ether"),
-      betWon: results.betWon,
-      gamblersAddress: results.gambler,
-      userBalanceBeforeBet: oldUserBalance,
-      userBalance: newUserBalance,
-      statusMessage: "Bet successfully made.",
-      statusIsDisplayed: true,
-      howMuchWasBet: web3.utils.fromWei(results.amount, "ether"),
-      contractBalance: newContractBalance,
+    let bet = await contract.methods.bet(betAmount).send(config)
+    .on("transactionHash", (hash) => {
+      console.log(hash);
+    })
+    .on("confirmation", (confirmationNum) => {
+      console.log(confirmationNum);
+    })
+    .on("receipt", (receipt) => {
+      console.log(receipt);
     });
+
+    // let results = bet.events.BetPlaced.returnValues;
+    // let newUserBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
+    // let newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
+
+    // this.setState({
+    //   betAmount: web3.utils.fromWei(betAmount, "ether"),
+    //   betWon: results.betWon,
+    //   playersAddress: results.gambler,
+    //   userBalanceBeforeBet: oldUserBalance,
+    //   userBalance: newUserBalance,
+    //   statusMessage: "Bet successfully made.",
+    //   statusIsDisplayed: true,
+    //   howMuchWasBet: web3.utils.fromWei(results.amount, "ether"),
+    //   contractBalance: newContractBalance,
+    // });
   };
 
   withdrawOneEther = async (e) => {
@@ -247,7 +257,7 @@ class App extends Component {
           betAmount={this.state.betAmount}
           placeBet={this.placeBet}
           betWon={this.state.betWon}
-          gamblersAddress={this.state.gamblersAddress}
+          playersAddress={this.state.playersAddress}
           howMuchWasBet={this.state.howMuchWasBet}
           userBalanceBeforeBet={this.state.userBalanceBeforeBet}
           newBalance={this.state.userBalance}
