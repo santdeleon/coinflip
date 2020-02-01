@@ -185,7 +185,7 @@ class App extends Component {
       return;
     }
 
-    if (contractBalance < withdrawalAmount && contractBalance > 0) {
+    if (contractBalance < withdrawalAmount) {
       withdrawalAmount = web3.utils.toWei(contractBalance, "ether");
     }
 
