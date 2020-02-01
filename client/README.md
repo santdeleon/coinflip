@@ -3,13 +3,25 @@
 - A decentralized gambling application built on the Ethereum Network.
 - Project phase 1 of the Ivan on Tech Academy program
 
-## To start
+## To start working locally
 1. `git clone` this repo to your local environment
 2. `cd` into your new project directory
 3. `git checkout develop` to get the current working version of the app
 4. run `npm install` to install the required dependancies
 5. start up your local Ganache GUI
 6. run `truffle migrate` to deploy the contracts
+7. `cd client` and run `npm start` to spin up the React front end
+8. Have fun!
+
+## To start working on the Ropsten test network
+1. `git clone` this repo to your local environment
+2. `cd` into your new project directory
+3. `git checkout testing/ropsten` to get the current working version of the app
+4. run `npm install` to install the required dependancies
+5. open the *truffle-config.js* file to configure the deployment with your address (*You'll need to get setup with a project on* [Infura](https://infura.io/))
+6. import the project id from your new Infura project and set it in the *truffle-config.js*
+7. create a .secret file (*Don't forget to .gitignore it*) with your Ethereum address' seed phrase inside.
+6. run `truffle migrate --network ropsten` to deploy the contract on the testnet
 7. `cd client` and run `npm start` to spin up the React front end
 8. Have fun!
 
@@ -24,8 +36,4 @@ This application was built with [React](https://reactjs.org/). If you don't have
 - Truffle Suite
 
 ## Contributing
-This project is just for fun and educational purposes. If you'd like to play with it feel free to follow the *To start* section to get up and running. If you want to contribute to the origin repo just fork this repo and push up your changes to the `develop` branch.
-
-If this project helped you out feel free to contact me and tell me about it!
-
-**note: if you're looking for a pristine React app, this is not it. It is a bit rough and can use some major refactoring to be a clean app. Nonetheless, it is still a good learning tool :)
+At the moment the project is not up for collaboration but if you find any issues and would like to highlight them, feel free to clone the repo and create a pull request.
