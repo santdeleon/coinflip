@@ -34,6 +34,10 @@ contract Betting is usingModifiers, usingProvable  {
     mapping (uint => address) public betToPlayer;
     mapping (address => uint) public playerBetCount;
 
+    function getBetCount() public view returns (uint) {
+      return bets.length;
+    }
+
     function bet(uint _amount) public payable
         costs(0.01 ether)
         setBettingLimit()
@@ -45,6 +49,14 @@ contract Betting is usingModifiers, usingProvable  {
         betToPlayer[id] = msg.sender;
         playerBetCount[msg.sender] += 1;
         emit BetPlaced(_queryId, msg.sender, _amount);
+    }
+
+    function update() payable public returns (bytes32) {
+        uint QUERY_EXECUTION_DELAY = 0;
+        uint GAS_FOR_CALLBACK = 200000;
+        bytes32 queryId = provable_newRandomDSQuery(QUERY_EXECUTION_DELAY, NUM_RANDOM_BYTES_REQUESTED, GAS_FOR_CALLBACK);
+        emit LogNewProvableQuery("Provable query was sent, standing by for the answer...");
+        return queryId;
     }
 
     function __callback(bytes32 _queryId, string memory _result, bytes memory _proof) public {
@@ -79,13 +91,5 @@ contract Betting is usingModifiers, usingProvable  {
                 }
             }
         }
-    }
-
-    function update() payable public returns (bytes32) {
-        uint QUERY_EXECUTION_DELAY = 0;
-        uint GAS_FOR_CALLBACK = 200000;
-        bytes32 queryId = provable_newRandomDSQuery(QUERY_EXECUTION_DELAY, NUM_RANDOM_BYTES_REQUESTED, GAS_FOR_CALLBACK);
-        emit LogNewProvableQuery("Provable query was sent, standing by for the answer...");
-        return queryId;
     }
 }
