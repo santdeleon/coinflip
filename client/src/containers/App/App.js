@@ -42,10 +42,9 @@ class App extends Component {
         CoinFlip.abi,
         deployedNetwork && deployedNetwork.address,
       );
-      let lookupOwner = await instance.methods.getOwner().call();
-      const owner = lookupOwner[0];
-      const user = accounts[0];
 
+      const owner = await instance.methods.owner().call();
+      const user = accounts[0];
       const balanceInWei = await web3.eth.getBalance(deployedNetwork.address);
       const balanceInEth = web3.utils.fromWei(balanceInWei, "ether");
 
@@ -70,43 +69,23 @@ class App extends Component {
     }
   };
 
-  removeStatusMessage = (e) => { this.setState({ statusIsDisplayed: false });};
+  removeStatusMessage = () => { this.setState({ statusIsDisplayed: false }); };
 
-  selectFundAmount = (e) => {
-    let donation;
-    (e.currentTarget.id === "") ? donation = "" : donation = e.currentTarget.id;
-    this.setState({ fundAmount: donation });
-  };
+  selectFundAmount = (e) => { this.setState({ fundAmount: e.currentTarget.id }); };
 
-  refreshFundAmount = (e) => { this.setState({fundAmount: "0"}); };
+  refreshFundAmount = () => { this.setState({ fundAmount: "0" }); };
 
-  fundContract = async (e) => {
+  fundContract = async () => {
     const { web3, accounts, contract, contractAddress } = this.state;
     let { fundAmount } = this.state;
 
     if (fundAmount === "0") {
-      this.setState({
-        statusMessage: "Sorry, you can't send zero ether to the contract!",
-        statusIsDisplayed: true
-      });
+      this.setState({ statusMessage: "Sorry, you can't send zero ether to the contract!", statusIsDisplayed: true });
       return;
     };
 
-    const config = {
-      from: accounts[0],
-      value: web3.utils.toWei(fundAmount, "ether")
-    };
-
-    await contract.methods.fundContract().send(config)
-    .on("transactionHash", (hash) => {
-      console.log(hash);
-    })
-    .on("confirmation", (confirmationNum) => {
-      console.log(confirmationNum);
-    })
-    .on("receipt", (receipt) => {
-      console.log(receipt);
-    });
+    const config = { from: accounts[0], value: web3.utils.toWei(fundAmount, "ether")};
+    await contract.methods.fundContract().send(config);
 
     let balance = await web3.eth.getBalance(contractAddress);
     this.setState({
@@ -121,6 +100,7 @@ class App extends Component {
   placeBet = async (e) => {
     const { web3, accounts, contract, contractAddress } = this.state;
     let { betAmount } = this.state;
+
     if (betAmount.match(/[a-zA-Z]/)) {
       this.setState({
         statusMessage: "Sorry, you can only bet with numbers! Check your bet amount.",
@@ -144,56 +124,64 @@ class App extends Component {
     betAmount = web3.utils.toWei(betAmount, "ether");
 
     if (parseInt(betAmount) > parseInt(await web3.eth.getBalance(contractAddress))) {
-      this.setState({
-        statusMessage: "Sorry, you can't bet more than the contract balance.",
-        statusIsDisplayed: true
-      });
+      this.setState({ statusMessage: "Sorry, you can't bet more than the contract balance.", statusIsDisplayed: true });
       return;
     }
 
-    let config = {
-      from: accounts[0],
-      value: betAmount
-    };
-
+    let queryId;
+    let currentBet;
+    let newUserBalance;
+    let newContractBalance;
+    let betCount = await contract.methods.getBetCount().call();
+    let config = { from: accounts[0], value: betAmount };
     let oldUserBalance = await web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
+
     let bet = await contract.methods.bet(betAmount).send(config)
     .on("transactionHash", (hash) => {
-      console.log(hash);
+      console.log(`Hash: ${hash}`);
     })
-    .on("confirmation", (confirmationNum) => {
+    .on("confirmation", async (confirmationNum) => {
       console.log(confirmationNum);
+
+
+      if (confirmationNum === 5) {
+        for (let i = 0; i <= betCount; i++) {
+          currentBet = await contract.methods.bets(i).call();
+
+          if (currentBet.queryId === queryId && currentBet.isPending === false) {
+            newUserBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
+            newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
+
+            this.setState({
+              betAmount: web3.utils.fromWei(betAmount, "ether"),
+              betWon: currentBet.betWon,
+              playersAddress: currentBet.player,
+              userBalanceBeforeBet: oldUserBalance,
+              userBalance: newUserBalance,
+              statusMessage: "Bet successfully made.",
+              statusIsDisplayed: true,
+              howMuchWasBet: web3.utils.fromWei(currentBet.amount, "ether"),
+              contractBalance: newContractBalance,
+            });
+          }
+        }
+      }
     })
     .on("receipt", (receipt) => {
       console.log(receipt);
     });
 
-    // let results = bet.events.BetPlaced.returnValues;
-    // let newUserBalance = web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), "ether");
-    // let newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
-
-    // this.setState({
-    //   betAmount: web3.utils.fromWei(betAmount, "ether"),
-    //   betWon: results.betWon,
-    //   playersAddress: results.gambler,
-    //   userBalanceBeforeBet: oldUserBalance,
-    //   userBalance: newUserBalance,
-    //   statusMessage: "Bet successfully made.",
-    //   statusIsDisplayed: true,
-    //   howMuchWasBet: web3.utils.fromWei(results.amount, "ether"),
-    //   contractBalance: newContractBalance,
-    // });
+    queryId = bet.events.BetPlaced.returnValues.queryId;
+    newContractBalance = web3.utils.fromWei(await web3.eth.getBalance(contractAddress), "ether");
+    this.setState({ contractBalance: newContractBalance });
   };
 
-  withdrawOneEther = async (e) => {
+  withdrawOneEther = async () => {
     const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
     let withdrawalAmount = web3.utils.toWei("1", "ether");
 
     if (contractBalance <= 0) {
-      this.setState({
-        statusMessage: "Sorry, there are no funds to withdraw.",
-        statusIsDisplayed: true
-      });
+      this.setState({ statusMessage: "Sorry, there are no funds to withdraw.", statusIsDisplayed: true });
       return;
     }
 
@@ -213,12 +201,10 @@ class App extends Component {
   withdrawAllEther = async (e) => {
     const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
     if (contractBalance <= 0) {
-      this.setState({
-        statusMessage: "Sorry, there are no funds to withdraw.",
-        statusIsDisplayed: true
-      });
+      this.setState({ statusMessage: "Sorry, there are no funds to withdraw.", statusIsDisplayed: true });
       return;
     };
+
     let balanceBefore = contractBalance;
     await contract.methods.withdrawAll().send({from: accounts[0]});
     let balanceAfter = await web3.eth.getBalance(contractAddress);
