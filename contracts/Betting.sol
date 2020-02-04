@@ -31,6 +31,7 @@ contract Betting is usingModifiers, usingProvable  {
 
     Bet[] public bets;
 
+    mapping (address => uint) balances;
     mapping (uint => address) public betToPlayer;
     mapping (address => uint) public playerBetCount;
 
