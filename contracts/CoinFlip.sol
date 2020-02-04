@@ -8,29 +8,25 @@ contract CoinFlip is Ownable, Betting {
 
     event ContractFunded(address funder, uint amount);
 
-    function fundContract() public payable mustHaveRequiredFunds(msg.sender, msg.value) {
+    function fundContract() public payable onlyOwner mustHaveRequiredFunds(msg.sender, msg.value) {
+        balances[contractAddress] = balances[contractAddress].add(msg.value);
         emit ContractFunded(msg.sender, msg.value);
     }
 
-    function withdraw(uint _amount) public onlyOwner mustHaveRequiredFunds(address(this), _amount) {
+    function withdrawBalance() public {
+        uint withdrawal = balances[msg.sender];
+        balances[msg.sender] = 0;
+        msg.sender.transfer(withdrawal);
+    }
+
+    function withdrawContract() public onlyOwner {
         assert(msg.sender == owner);
-        uint contractBalanceBefore = address(this).balance;
-        owner.transfer(_amount);
-        assert(address(this).balance == contractBalanceBefore - _amount);
+        uint withdrawal = balances[contractAddress];
+        balances[contractAddress] = 0;
+        msg.sender.transfer(withdrawal);
     }
 
-    function withdrawAll() public onlyOwner {
-        assert(msg.sender == owner);
-        uint withdrawalAmount = address(this).balance;
-        owner.transfer(withdrawalAmount);
-        assert(address(this).balance == 0);
-    }
-
-    function getContract() public view returns (address, uint) {
-        return (address(this), address(this).balance);
-    }
-
-    function getOwner() public view returns (address, uint) {
-        return (address(owner), address(owner).balance);
+    function getBalance() public view returns (uint) {
+        return balances[msg.sender];
     }
 }
