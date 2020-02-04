@@ -6,6 +6,7 @@ import './SafeMath.sol';
 pragma solidity 0.5.12;
 
 contract Betting is usingModifiers, usingProvable  {
+
     using SafeMath for uint256;
 
     constructor() public {
@@ -13,43 +14,51 @@ contract Betting is usingModifiers, usingProvable  {
         update();
     }
 
+    address public contractAddress = address(this);
+
     uint constant MAX_INT_FROM_BYTE = 256;
     uint constant NUM_RANDOM_BYTES_REQUESTED = 1;
 
     event LogNewProvableQuery(string description);
-    event BetPlaced(bytes32 queryId, address player, uint amount);
+    event BetPlaced(bytes32 queryId, address indexed player, uint amount);
     event BetFailed(bytes32 queryId, string reason);
-    event BetComplete(bytes32 queryId, address player, uint amount, bool betWon);
+    event BetComplete(bytes32 queryId, address indexed player, uint amount, bool betWon);
 
     struct Bet {
         bytes32 queryId;
-        address payable player;
-        uint amount;
+        address player;
+        uint betAmount;
+        uint calculatedBetAmount;
         bool betWon;
         bool isPending;
     }
 
     Bet[] public bets;
 
-    mapping (address => uint) balances;
+    mapping (address => uint) public balances;
     mapping (uint => address) public betToPlayer;
     mapping (address => uint) public playerBetCount;
 
     function getBetCount() public view returns (uint) {
-      return bets.length;
+        return bets.length;
     }
 
-    function bet(uint _amount) public payable
+    function bet() public payable
         costs(0.01 ether)
         setBettingLimit()
-        mustHaveRequiredFunds(msg.sender, _amount)
-        mustHaveRequiredFunds(address(this), _amount)
+        mustHaveRequiredFunds(msg.sender, msg.value)
+        mustHaveRequiredFunds(contractAddress, msg.value)
     {
+        uint queryPrice = provable_getPrice("Random");
+        require(queryPrice < balances[contractAddress]);
+        uint _calculatedBet = msg.value.sub(queryPrice);
+        balances[contractAddress] = balances[contractAddress].add(_calculatedBet);
         bytes32 _queryId = update();
-        uint id = bets.push(Bet(_queryId, msg.sender, _amount, false, true)) - 1;
+        uint id = bets.push(Bet(_queryId, msg.sender, msg.value, _calculatedBet, false, true)) - 1;
         betToPlayer[id] = msg.sender;
-        playerBetCount[msg.sender] += 1;
-        emit BetPlaced(_queryId, msg.sender, _amount);
+        playerBetCount[msg.sender].add(1);
+        emit BetPlaced(_queryId, msg.sender, _calculatedBet);
+        assert(balances[contractAddress] == contractAddress.balance);
     }
 
     function update() payable public returns (bytes32) {
@@ -79,14 +88,13 @@ contract Betting is usingModifiers, usingProvable  {
                     // Player lost
                     if (randomNumber <= 128) {
                         b.betWon = false;
-                        emit BetComplete(_queryId, b.player, b.amount, b.betWon);
+                        emit BetComplete(_queryId, b.player, b.betAmount, b.betWon);
 
                     // Player Won
                     } else if (randomNumber >= 129) {
-                        uint earnings = b.amount.mul(2);
-
                         b.betWon = true;
-                        address(b.player).transfer(earnings);
+                        uint earnings = b.calculatedBetAmount.mul(2);
+                        balances[b.player] = balances[b.player].add(earnings);
                         emit BetComplete(_queryId, b.player, earnings, b.betWon);
                     }
                 }

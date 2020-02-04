@@ -11,9 +11,11 @@ contract CoinFlip is Ownable, Betting {
     function fundContract() public payable onlyOwner mustHaveRequiredFunds(msg.sender, msg.value) {
         balances[contractAddress] = balances[contractAddress].add(msg.value);
         emit ContractFunded(msg.sender, msg.value);
+        balances[contractAddress] = balances[contractAddress].add(msg.value);
     }
 
     function withdrawBalance() public {
+        require(balances[msg.sender] > 0, "There are no funds to withdraw");
         uint withdrawal = balances[msg.sender];
         balances[msg.sender] = 0;
         msg.sender.transfer(withdrawal);
@@ -28,5 +30,9 @@ contract CoinFlip is Ownable, Betting {
 
     function getBalance() public view returns (uint) {
         return balances[msg.sender];
+    }
+
+    function verifyMapping() public view returns (uint) {
+        return balances[contractAddress];
     }
 }
