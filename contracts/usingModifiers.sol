@@ -12,9 +12,4 @@ contract usingModifiers {
       require(msg.value <= 5 ether, "You can't wager more than 5 ether");
       _;
     }
-
-    modifier mustHaveRequiredFunds(address _address, uint amount) {
-      require(_address.balance >= amount, "There are not enough funds to create this transaction");
-      _;
-    }
 }

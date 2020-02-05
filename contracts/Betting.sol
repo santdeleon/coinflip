@@ -16,6 +16,7 @@ contract Betting is usingModifiers, usingProvable  {
 
     address public contractAddress = address(this);
 
+    uint QUERY_PRICE = provable_getPrice("Random");
     uint constant MAX_INT_FROM_BYTE = 256;
     uint constant NUM_RANDOM_BYTES_REQUESTED = 1;
 
@@ -43,18 +44,15 @@ contract Betting is usingModifiers, usingProvable  {
         return bets.length;
     }
 
-    function bet() public payable
-        costs(0.01 ether)
-        setBettingLimit()
-        mustHaveRequiredFunds(msg.sender, msg.value)
-        mustHaveRequiredFunds(contractAddress, msg.value)
-    {
-        uint queryPrice = provable_getPrice("Random");
-        require(queryPrice < balances[contractAddress]);
-        uint _calculatedBet = msg.value.sub(queryPrice);
+    function bet(uint _amount) public payable costs(0.01 ether) setBettingLimit() {
+        require(msg.sender.balance >= _amount);
+        require(balances[contractAddress] >= _amount.add(QUERY_PRICE));
+        require(QUERY_PRICE < balances[contractAddress]);
+
+        uint _calculatedBet = _amount.sub(QUERY_PRICE);
         balances[contractAddress] = balances[contractAddress].add(_calculatedBet);
         bytes32 _queryId = update();
-        uint id = bets.push(Bet(_queryId, msg.sender, msg.value, _calculatedBet, false, true)) - 1;
+        uint id = bets.push(Bet(_queryId, msg.sender, _amount, _calculatedBet, false, true)) - 1;
         betToPlayer[id] = msg.sender;
         playerBetCount[msg.sender] = playerBetCount[msg.sender].add(1);
         emit BetPlaced(_queryId, msg.sender, _calculatedBet);
@@ -94,6 +92,7 @@ contract Betting is usingModifiers, usingProvable  {
                     } else if (randomNumber >= 129) {
                         b.betWon = true;
                         uint earnings = b.calculatedBetAmount.mul(2);
+                        balances[contractAddress] = balances[contractAddress].sub(earnings);
                         balances[b.player] = balances[b.player].add(earnings);
                         emit BetComplete(_queryId, b.player, earnings, b.betWon);
                     }

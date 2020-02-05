@@ -15,7 +15,7 @@ function Body(props) {
           <p className="lead text-muted">Hello <span className="ownerUser">{props.isOwner ? "owner" : "user"}</span>{props.isOwner ? ", ready to withdraw your funds?" : ", ready to play CoinFlip?"}</p>
           <div className="withdraw-buttons flex">
             <div className="withdraw-btn-wrapper flex flex-column">
-              <button id="withdrawBalanceBtn" className="btn withdraw-balance-btn" onClick={props.withdrawContractBalance}>Withdraw Balance</button>
+              <button id="withdrawBalanceBtn" className="btn withdraw-balance-btn" onClick={props.withdrawPlayerBalance}>Withdraw Balance</button>
             </div>
 
             <div className="withdraw-btn-wrapper flex flex-column" style={props.isOwner ? {display: "flex"} : {display: "none"}}>

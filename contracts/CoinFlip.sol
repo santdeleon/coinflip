@@ -8,7 +8,8 @@ contract CoinFlip is Ownable, Betting {
 
     event ContractFunded(uint amount);
 
-    function fundContract() public payable onlyOwner mustHaveRequiredFunds(msg.sender, msg.value) {
+    function fundContract() public payable onlyOwner {
+        require(msg.sender.balance >= msg.value);
         balances[contractAddress] = balances[contractAddress].add(msg.value);
         emit ContractFunded(msg.value);
     }
@@ -22,6 +23,7 @@ contract CoinFlip is Ownable, Betting {
 
     function withdrawContract() public onlyOwner {
         assert(msg.sender == owner);
+        require(balances[contractAddress] > 0, "There are no funds to withdraw");
         uint withdrawalAmount = balances[contractAddress];
         balances[contractAddress] = 0;
         msg.sender.transfer(withdrawalAmount);
