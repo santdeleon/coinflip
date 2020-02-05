@@ -56,7 +56,7 @@ contract Betting is usingModifiers, usingProvable  {
         bytes32 _queryId = update();
         uint id = bets.push(Bet(_queryId, msg.sender, msg.value, _calculatedBet, false, true)) - 1;
         betToPlayer[id] = msg.sender;
-        playerBetCount[msg.sender].add(1);
+        playerBetCount[msg.sender] = playerBetCount[msg.sender].add(1);
         emit BetPlaced(_queryId, msg.sender, _calculatedBet);
         assert(balances[contractAddress] == contractAddress.balance);
     }
