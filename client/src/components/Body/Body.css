@@ -4,11 +4,14 @@
   text-align: right;
 }
 
+.withdraw-buttons {
+  justify-content: center;
+}
+
 .ownerUser {
   color: #ff3873;
 }
 
-.withdraw-btn,
 .withdraw-all-btn {
   color: #222;
   height: 30px;
@@ -19,21 +22,6 @@
   font-weight: 500;
   font-size: 13px;
   cursor: pointer;
-}
-
-.withdraw-btn {
-  margin-right: 1rem;
-  background-color: #ffbc38;
-  -webkit-box-shadow: inset 0 0 0 0.14em #e2a431, 0px 3px 0px 0px rgba(40, 40, 40, 0.1);
-  box-shadow: inset 0 0 0 0.24em #e2a431, 0px 3px 0px 0px rgba(40, 40, 40, 0.1);
-  -webkit-transition: all 0.14s ease-in;
-  -o-transition: all 0.14s ease-in;
-  transition: all 0.14s ease-in;
-}
-
-.withdraw-btn:hover {
-  transform: translateY(-0.14rem);
-  box-shadow: inset 0 0 0 0.24em #e2a431, 0px 3px 0px 0px rgba(40, 40, 40, 0.4);
 }
 
 .withdraw-all-btn {

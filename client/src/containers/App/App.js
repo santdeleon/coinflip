@@ -176,28 +176,6 @@ class App extends Component {
     this.setState({ contractBalance: newContractBalance });
   };
 
-  withdrawOneEther = async () => {
-    const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
-    let withdrawalAmount = web3.utils.toWei("1", "ether");
-
-    if (contractBalance <= 0) {
-      this.setState({ statusMessage: "Sorry, there are no funds to withdraw.", statusIsDisplayed: true });
-      return;
-    }
-
-    if (contractBalance < withdrawalAmount) {
-      withdrawalAmount = web3.utils.toWei(contractBalance, "ether");
-    }
-
-    await contract.methods.withdraw(withdrawalAmount).send({from: accounts[0]});
-    let balance = await web3.eth.getBalance(contractAddress);
-    this.setState({
-      contractBalance: web3.utils.fromWei(balance, "ether"),
-      statusMessage: `Your account ${accounts[0]} now has ${web3.utils.fromWei(withdrawalAmount, "ether")} more ether.`,
-      statusIsDisplayed: true
-    });
-  };
-
   withdrawAllEther = async (e) => {
     const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
     if (contractBalance <= 0) {
@@ -237,7 +215,6 @@ class App extends Component {
           refreshFundAmount={this.refreshFundAmount}
           fundContract={this.fundContract}
           isActive={this.state.isActive}
-          withdrawOneEther={this.withdrawOneEther}
           withdrawAllEther={this.withdrawAllEther}
           handleBet={this.handleBet}
           betAmount={this.state.betAmount}
