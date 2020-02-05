@@ -76,8 +76,13 @@ class App extends Component {
   refreshFundAmount = () => { this.setState({ fundAmount: "0" }); };
 
   fundContract = async () => {
-    const { web3, accounts, contract, contractAddress } = this.state;
+    const { web3, accounts, contract, contractAddress, isOwner } = this.state;
     let { fundAmount } = this.state;
+
+    if (!isOwner) {
+      this.setState({ statusMessage: "Sorry, only the owner of the contract can fund this game. Thanks for trying though!", statusIsDisplayed: true });
+      return;
+    };
 
     if (fundAmount === "0") {
       this.setState({ statusMessage: "Sorry, you can't send zero ether to the contract!", statusIsDisplayed: true });

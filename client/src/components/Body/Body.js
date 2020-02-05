@@ -13,9 +13,13 @@ function Body(props) {
       <div className="withdraw-wrapper row flex">
         <div className="col flex flex-column align-items-center">
           <p className="lead text-muted">Hello <span className="ownerUser">{props.isOwner ? "owner" : "user"}</span>{props.isOwner ? ", ready to withdraw your funds?" : ", ready to play CoinFlip?"}</p>
-          <div className="withdraw-buttons flex" style={props.isOwner ? {display: "flex"} : {display: "none"}}>
+          <div className="withdraw-buttons flex">
             <div className="withdraw-btn-wrapper flex flex-column">
-                <button id="withdrawAllBtn" className="btn withdraw-all-btn" onClick={props.withdrawAllEther}>Withdraw Balance</button>
+              <button id="withdrawBalanceBtn" className="btn withdraw-balance-btn" onClick={props.withdrawAllEther}>Withdraw Balance</button>
+            </div>
+
+            <div className="withdraw-btn-wrapper flex flex-column" style={props.isOwner ? {display: "flex"} : {display: "none"}}>
+                <button id="withdrawContractBtn" className="btn withdraw-contract-btn" onClick={props.withdrawAllEther}>Withdraw Contract</button>
             </div>
           </div>
         </div>
