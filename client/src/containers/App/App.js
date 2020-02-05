@@ -29,7 +29,8 @@ class App extends Component {
     betAmount: "",
     betWon: "",
     playersAddress: null,
-    howMuchWasBet: ""
+    howMuchWasBet: "",
+    playerBalance: null
   };
 
   componentDidMount = async () => {
@@ -43,8 +44,10 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
+      console.log(instance.methods);
       const owner = await instance.methods.owner().call();
       const user = accounts[0];
+      const playerBalance = await instance.methods.balances(user).call()
       const balanceInWei = await web3.eth.getBalance(deployedNetwork.address);
       const balanceInEth = web3.utils.fromWei(balanceInWei, "ether");
 
@@ -58,8 +61,9 @@ class App extends Component {
         isUser: (user !== owner) ? true : false,
         betWon: "",
         playersAddress: "",
-        userBalance: "",
-        howMuchWasBet: ""
+        userBalance: user.balance,
+        howMuchWasBet: "",
+        playerBalance: playerBalance
       });
     } catch (error) {
       alert(
@@ -181,7 +185,24 @@ class App extends Component {
     this.setState({ contractBalance: newContractBalance });
   };
 
-  withdrawAllEther = async (e) => {
+  // withdrawPlayerBalance = async (e) => {
+  //   const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
+  //   if (accounts[0].balance <= 0) {
+  //     this.setState({ statusMessage: "Sorry, there are no funds to withdraw.", statusIsDisplayed: true });
+  //     return;
+  //   };
+  //
+  //   let balanceBefore = contractBalance;
+  //   await contract.methods.withdrawBalance().send({from: accounts[0]});
+  //   let balanceAfter = await web3.eth.getBalance(contractAddress);
+  //   this.setState({
+  //     contractBalance: web3.utils.fromWei(balanceAfter, "ether"),
+  //     statusMessage: `Your account ${accounts[0]} now has ${balanceBefore} more ether.`,
+  //     statusIsDisplayed: true
+  //   });
+  // };
+
+  withdrawContractBalance = async (e) => {
     const { web3, contract, accounts, contractAddress, contractBalance } = this.state;
     if (contractBalance <= 0) {
       this.setState({ statusMessage: "Sorry, there are no funds to withdraw.", statusIsDisplayed: true });
@@ -189,7 +210,7 @@ class App extends Component {
     };
 
     let balanceBefore = contractBalance;
-    await contract.methods.withdrawAll().send({from: accounts[0]});
+    await contract.methods.withdrawContract().send({from: accounts[0]});
     let balanceAfter = await web3.eth.getBalance(contractAddress);
     this.setState({
       contractBalance: web3.utils.fromWei(balanceAfter, "ether"),
@@ -220,13 +241,14 @@ class App extends Component {
           refreshFundAmount={this.refreshFundAmount}
           fundContract={this.fundContract}
           isActive={this.state.isActive}
-          withdrawAllEther={this.withdrawAllEther}
+          withdrawContractBalance={this.withdrawContractBalance}
           handleBet={this.handleBet}
           betAmount={this.state.betAmount}
           placeBet={this.placeBet}
           betWon={this.state.betWon}
           playersAddress={this.state.playersAddress}
           howMuchWasBet={this.state.howMuchWasBet}
+          playerBalance={this.state.playerBalance}
           userBalanceBeforeBet={this.state.userBalanceBeforeBet}
           newBalance={this.state.userBalance}
         />

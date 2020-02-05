@@ -211,12 +211,16 @@
   background-color: black;
 }
 
+.player-balance-wrapper {
+  justify-content: flex-end;
+}
+
 .Game {
   width: 50%;
 }
 
 .game-screen {
-  margin-top: 4rem;
+  margin-top: 1rem;
   background-color: #141313;
   color: #fcfc49;
   border-radius: 5px;
@@ -296,6 +300,11 @@
   .funding-amount-wrapper,
   .funding-display-wrapper {
     justify-content: center;
+  }
+
+  .player-balance-wrapper {
+    justify-content: center;
+    align-items: center;
   }
 
   .Game {

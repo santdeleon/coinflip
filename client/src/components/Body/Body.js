@@ -15,11 +15,11 @@ function Body(props) {
           <p className="lead text-muted">Hello <span className="ownerUser">{props.isOwner ? "owner" : "user"}</span>{props.isOwner ? ", ready to withdraw your funds?" : ", ready to play CoinFlip?"}</p>
           <div className="withdraw-buttons flex">
             <div className="withdraw-btn-wrapper flex flex-column">
-              <button id="withdrawBalanceBtn" className="btn withdraw-balance-btn" onClick={props.withdrawAllEther}>Withdraw Balance</button>
+              <button id="withdrawBalanceBtn" className="btn withdraw-balance-btn" onClick={props.withdrawContractBalance}>Withdraw Balance</button>
             </div>
 
             <div className="withdraw-btn-wrapper flex flex-column" style={props.isOwner ? {display: "flex"} : {display: "none"}}>
-                <button id="withdrawContractBtn" className="btn withdraw-contract-btn" onClick={props.withdrawAllEther}>Withdraw Contract</button>
+                <button id="withdrawContractBtn" className="btn withdraw-contract-btn" onClick={props.withdrawContractBalance}>Withdraw Contract</button>
             </div>
           </div>
         </div>
@@ -65,6 +65,11 @@ function Body(props) {
         </div>
 
         <div className="Game flex col flex-column">
+            <div className="player-balance-wrapper flex" style={{marginTop: "2rem"}}>
+              <span style={{cursor: "inherit", color: "black", marginRight: "5px"}}>Your balance: </span>
+              <input id="playerBalance" type="text" className="contract-balance" value={`${props.playerBalance} ether`} readOnly/>
+            </div>
+
             <code className="game-screen flex flex-column">
 
               <h1 style={{ fontWeight: "lighter"}}>Let's Play</h1>
