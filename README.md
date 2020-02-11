@@ -1,7 +1,6 @@
 
 # CoinFlip.io
 - A decentralized gambling application built on the Ethereum Network.
-- Project phase 1 of the Ivan on Tech Academy program
 
 ## To start
 1. `git clone` this repo to your local environment
