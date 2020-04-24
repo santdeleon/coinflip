@@ -1,30 +1,51 @@
 import React from "react";
-// import {} from 'prop-types';
+import { string, bool, func } from 'prop-types';
 import { XSquare } from 'react-feather';
 
 import './Message.css';
 
-const propTypes = {};
-const defaultProps = {};
+const propTypes = {
+  statusMessage: string.isRequired,
+  statusIsDisplayed: bool.isRequired,
+  removeStatusMessage: func.isRequired
+};
+
+const defaultProps = {
+  statusMessage: "",
+  statusIsDisplayed: false,
+};
+
+let statusMessageBgColor;
 
 const Message = ({ statusMessage, statusIsDisplayed, removeStatusMessage }) => {
-  let statusColor = null;
-
-  (statusMessage.match(/^[Sorry]/)) ? statusColor = "#f7608b" : statusColor = "#52f292";
+  // handle status message background color
+  (statusMessage.match(/^[Sorry]/))
+    ? statusMessageBgColor = "#f7608b"
+    : statusMessageBgColor = "#52f292";
 
   return (
-    <section
-      className={`StatusMessage ${(statusIsDisplayed) ? "fade-in" : "fade-out"}`}
-      style={{backgroundColor: statusColor}}
+    <div
+      className={`
+        StatusMessage
+        ${(statusIsDisplayed)
+          ? "fade-in"
+          : "fade-out"
+        }
+      `}
+      style={{ backgroundColor: statusMessageBgColor }}
     >
-      <XSquare size={28} className="btn remove-status-message-btn" onClick={removeStatusMessage}/>
+      <XSquare
+        className="btn remove-status-message-btn"
+        size={28}
+        onClick={removeStatusMessage}
+      />
 
       <div className="row flex justify-content-center">
         <div className="col flex text-center">
           <h1 className="StatusMessage-text">{statusMessage}</h1>
         </div>
       </div>
-    </section>
+    </div>
   )
 };
 

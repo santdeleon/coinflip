@@ -7,8 +7,9 @@ import Github from '../../assets/img/github.svg';
 import './Navbar.css';
 
 const propTypes = {
-  contractBalance: number
+  contractBalance: number.isRequired
 };
+
 const defaultProps = {
   contractBalance: 0
 };
