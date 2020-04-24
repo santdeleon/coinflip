@@ -1,6 +1,6 @@
 
 # CoinFlip.io
-- A decentralized gambling application built on the Ethereum Network.
+> A decentralized gambling application built on the Ethereum Network.
 
 ## To start working locally
 1. `git clone` this repo to your local environment
