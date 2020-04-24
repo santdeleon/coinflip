@@ -1,40 +1,56 @@
-import React from "react";
-// import {} from 'prop-types';
-import { Send } from 'react-feather';
+import React from 'react';
+import { number } from 'prop-types';
 
-import Logo from "../../assets/img/coinflip-logo.svg";
-import Sun from "../../assets/img/sun.svg";
-import Github from "../../assets/img/github.svg";
+import Logo from '../../assets/img/coinflip-logo.svg';
+import Github from '../../assets/img/github.svg';
 
 import './Navbar.css';
 
-const propTypes = {};
-const defaultProps = {};
+const propTypes = {
+  contractBalance: number
+};
+const defaultProps = {
+  contractBalance: 0
+};
 
 const Navbar = ({ contractBalance }) => (
-  <div className="Navbar">
-    <nav className="navbar flex align-center justify-content-between">
-      <img src={Logo} className="navbar-brand" alt="app-logo" />
+  <div className='Navbar'>
+    <nav className='navbar flex align-center justify-content-between'>
+      <img src={Logo} className='navbar-brand' alt='app-logo' />
 
-      <div className="navbar-nav flex align-center">
-        <ul className="navbar-icon-menu flex align-center">
-          <li className="nav-icon-item"><a href="mailto:sant@santdeleon.co"><Send size={22}/></a></li>
-        </ul>
-
-        <ul className="navbar-menu flex align-center">
-        <span style={{cursor: "inherit", color: "black", marginRight: "5px"}}>Contract balance: </span>
-        <input id="contractBalance" type="text" className="contract-balance" value={`${contractBalance} ether`} readOnly/>
-          <li className="nav-item"><a href="mailto:sant@santdeleon.co">Contact</a></li>
-        </ul>
-
-        <div className="dark-light-mode-container">
-            <a href="https://github.com/santdeleon" target="_blank" rel="noopener noreferrer"><img src={Github} className="github-icon" alt="Github"/></a>
-            <img src={Sun} className="sun-icon" alt="Light Mode"/>
+      <div className='navbar-nav flex align-center'>
+        <div className="flex align-center">
+          <label
+            htmlFor='contractBalance'
+            style={{ marginRight: '1rem' }}
+          >
+            Contract balance:
+          </label>
+          <input
+            type='text'
+            id='contractBalance'
+            name='contractBalance'
+            className='contract-balance'
+            value={`${contractBalance} ether`}
+            style={{ width: '100px', marginRight: '1rem'}}
+            readOnly
+          />
+        </div>
+        <div className='flex'>
+            <a
+              href='https://github.com/santdeleon'
+              target='_blank'
+              rel='noopener noreferrer'
+              title='Github'
+              aria-label='Github'
+            >
+              <img src={Github} className='github-icon' alt='Github'/>
+            </a>
         </div>
       </div>
     </nav>
 
-    <div className="hyphens"></div>
+    <div className='hyphens'></div>
   </div>
 );
 
