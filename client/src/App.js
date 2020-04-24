@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import CoinFlip from "../../contracts/CoinFlip.json";
-import getWeb3 from "../../components/getWeb3/getWeb3";
 
-import Loader from "../../components/Loader/Loader";
-import Navbar from "../../components/Navbar/Navbar";
-import Message from "../../components/Message/Message";
-import Body from "../../components/Body/Body";
-import Footer from "../../components/Footer/Footer";
+import getWeb3 from "./components/getWeb3";
+import Loader from "./components/Loader";
+import Navbar from "./components/Navbar";
+import Message from "./components/Message";
+import Body from "./components/Body";
 
+import CoinFlipContract from "./contracts/CoinFlip.json";
 
 import "./App.css";
 
@@ -37,9 +36,9 @@ class App extends Component {
       const web3 = await getWeb3();
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = CoinFlip.networks[networkId];
+      const deployedNetwork = CoinFlipContract.networks[networkId];
       const instance = new web3.eth.Contract(
-        CoinFlip.abi,
+        CoinFlipContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
       let lookupOwner = await instance.methods.getOwner().call();
@@ -252,7 +251,6 @@ class App extends Component {
           userBalanceBeforeBet={this.state.userBalanceBeforeBet}
           newBalance={this.state.userBalance}
         />
-        <Footer />
       </div>
     );
   }

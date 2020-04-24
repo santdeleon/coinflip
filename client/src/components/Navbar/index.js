@@ -1,0 +1,43 @@
+import React from "react";
+// import {} from 'prop-types';
+import { Send } from 'react-feather';
+
+import Logo from "../../assets/img/coinflip-logo.svg";
+import Sun from "../../assets/img/sun.svg";
+import Github from "../../assets/img/github.svg";
+
+import './Navbar.css';
+
+const propTypes = {};
+const defaultProps = {};
+
+const Navbar = ({ contractBalance }) => (
+  <div className="Navbar">
+    <nav className="navbar flex align-center justify-content-between">
+      <img src={Logo} className="navbar-brand" alt="app-logo" />
+
+      <div className="navbar-nav flex align-center">
+        <ul className="navbar-icon-menu flex align-center">
+          <li className="nav-icon-item"><a href="mailto:sant@santdeleon.co"><Send size={22}/></a></li>
+        </ul>
+
+        <ul className="navbar-menu flex align-center">
+        <span style={{cursor: "inherit", color: "black", marginRight: "5px"}}>Contract balance: </span>
+        <input id="contractBalance" type="text" className="contract-balance" value={`${contractBalance} ether`} readOnly/>
+          <li className="nav-item"><a href="mailto:sant@santdeleon.co">Contact</a></li>
+        </ul>
+
+        <div className="dark-light-mode-container">
+            <a href="https://github.com/santdeleon" target="_blank" rel="noopener noreferrer"><img src={Github} className="github-icon" alt="Github"/></a>
+            <img src={Sun} className="sun-icon" alt="Light Mode"/>
+        </div>
+      </div>
+    </nav>
+
+    <div className="hyphens"></div>
+  </div>
+);
+
+Navbar.propTypes = propTypes;
+Navbar.defaultProps = defaultProps;
+export default Navbar;

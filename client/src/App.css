@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.hyphens {
+  background: url('./assets/img/hyphens.svg');
+  height: 1px;
+  width: 100%;
+}
+
+.rainbow-top {
+  background: linear-gradient(to right, #f76f6f , #fcfc83, #fcca67, #84ffaf, #83e0f7, #ca67e5, #ff87e1);
+  padding: 2.5px;
+}
+
+/* Custom Flexbox Styling */
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.align-center { align-items: center; }
+.justify-content-start { justify-content: flex-start; }
+.justify-content-center { justify-content: center; }
+.justify-content-end { justify-content: flex-end; }
+.justify-content-between { justify-content: space-between; }
+.justify-content-around { justify-content: space-around; }
+.w-100 { width: 100%; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.mx-auto { margin: 0 auto; }
+.text-muted { color: #706d6a; }
+.lead { margin-top: 5px; font-size: normal; font-size: 14px; }
+.btn { outline: 0; }

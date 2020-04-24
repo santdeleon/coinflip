@@ -1,10 +1,13 @@
 import React from "react";
+// import {} from 'prop-types';
 import { XSquare } from 'react-feather';
 
 import './Message.css';
 
+const propTypes = {};
+const defaultProps = {};
 
-function Message({statusMessage, statusIsDisplayed, removeStatusMessage}) {
+const Message = ({ statusMessage, statusIsDisplayed, removeStatusMessage }) => {
   let statusColor = null;
 
   (statusMessage.match(/^[Sorry]/)) ? statusColor = "#f7608b" : statusColor = "#52f292";
@@ -23,6 +26,8 @@ function Message({statusMessage, statusIsDisplayed, removeStatusMessage}) {
       </div>
     </section>
   )
-}
+};
 
+Message.propTypes = propTypes;
+Message.defaultProps = defaultProps;
 export default Message;
