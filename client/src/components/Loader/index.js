@@ -1,22 +1,16 @@
-import React from 'react';
-// import {} from 'prop-types';
-import Ethereum from '../../assets/gif/ethereum-loader-2.gif';
+import React from "react";
+import Gif from "../../assets/gif/eth-loader.gif";
 
-import './Loader.css';
-
-const propTypes = {};
-const defaultProps = {};
+import "./Loader.css";
 
 const Loader = () => (
   <div className="Loader">
     <div className="row flex">
       <div className="col flex flex-column align-items-center justify-content-center mx-auto">
-        <img src={Ethereum} className="mx-auto" alt="Ethereum Glitch"/>
+        <img src={Gif} className="mx-auto" alt="Ethereum Loader" />
       </div>
     </div>
   </div>
 );
 
-Loader.propTypes = propTypes;
-Loader.defaultProps = defaultProps;
 export default Loader;

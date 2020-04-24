@@ -1,57 +1,54 @@
-import React from 'react';
-import { number } from 'prop-types';
+import React from "react";
+import { string } from "prop-types";
 
-import Logo from '../../assets/img/coinflip-logo.svg';
-import Github from '../../assets/img/github.svg';
+import Logo from "../../assets/img/coinflip-logo.svg";
+import Github from "../../assets/img/github.svg";
 
-import './Navbar.css';
+import "./Navbar.css";
 
 const propTypes = {
-  contractBalance: number.isRequired
+  contractBalance: string.isRequired,
 };
 
 const defaultProps = {
-  contractBalance: 0
+  contractBalance: 0,
 };
 
 const Navbar = ({ contractBalance }) => (
-  <div className='Navbar'>
-    <nav className='navbar flex align-center justify-content-between'>
-      <img src={Logo} className='navbar-brand' alt='app-logo' />
+  <div className="Navbar">
+    <nav className="navbar flex align-center justify-content-between">
+      <img src={Logo} className="navbar-brand" alt="app-logo" />
 
-      <div className='navbar-nav flex align-center'>
+      <div className="navbar-nav flex align-center">
         <div className="flex align-center">
-          <label
-            htmlFor='contractBalance'
-            style={{ marginRight: '1rem' }}
-          >
+          <label htmlFor="contractBalance" style={{ marginRight: "1rem" }}>
             Contract balance:
           </label>
           <input
-            type='text'
-            id='contractBalance'
-            name='contractBalance'
-            className='contract-balance'
+            type="text"
+            id="contractBalance"
+            name="contractBalance"
+            className="contract-balance"
             value={`${contractBalance} ether`}
-            style={{ width: '100px', marginRight: '1rem'}}
+            style={{ width: "100px", marginRight: "1rem" }}
             readOnly
           />
         </div>
-        <div className='flex'>
-            <a
-              href='https://github.com/santdeleon'
-              target='_blank'
-              rel='noopener noreferrer'
-              title='Github'
-              aria-label='Github'
-            >
-              <img src={Github} className='github-icon' alt='Github'/>
-            </a>
+        <div className="flex">
+          <a
+            href="https://github.com/santdeleon"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Github"
+            aria-label="Github"
+          >
+            <img src={Github} className="github-icon" alt="Github" />
+          </a>
         </div>
       </div>
     </nav>
 
-    <div className='hyphens'></div>
+    <div className="hyphens"></div>
   </div>
 );
 

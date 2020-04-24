@@ -1,36 +1,34 @@
 import React from "react";
-import { string, bool, func } from 'prop-types';
-import { XSquare } from 'react-feather';
+import { string, bool, func } from "prop-types";
+import { XSquare } from "react-feather";
 
-import './Message.css';
+import "./Message.css";
 
 const propTypes = {
   statusMessage: string.isRequired,
   statusIsDisplayed: bool.isRequired,
-  removeStatusMessage: func.isRequired
+  removeStatusMessage: func.isRequired,
 };
 
 const defaultProps = {
   statusMessage: "",
   statusIsDisplayed: false,
+  removeStatusMessage: () => {},
 };
 
 let statusMessageBgColor;
 
 const Message = ({ statusMessage, statusIsDisplayed, removeStatusMessage }) => {
   // handle status message background color
-  (statusMessage.match(/^[Sorry]/))
-    ? statusMessageBgColor = "#f7608b"
-    : statusMessageBgColor = "#52f292";
+  statusMessage.match(/^[Sorry]/)
+    ? (statusMessageBgColor = "#f7608b")
+    : (statusMessageBgColor = "#52f292");
 
   return (
     <div
       className={`
         StatusMessage
-        ${(statusIsDisplayed)
-          ? "fade-in"
-          : "fade-out"
-        }
+        ${statusIsDisplayed ? "fade-in" : "fade-out"}
       `}
       style={{ backgroundColor: statusMessageBgColor }}
     >
@@ -46,7 +44,7 @@ const Message = ({ statusMessage, statusIsDisplayed, removeStatusMessage }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 Message.propTypes = propTypes;
