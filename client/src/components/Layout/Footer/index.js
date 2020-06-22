@@ -1,10 +1,5 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-// import { string, object, func, array, bool } from "prop-types";
-
-// const propTypes = {};
-
-// const defaultProps = {};
 
 const Footer = () => (
   <Navbar fixed="bottom">
@@ -16,6 +11,4 @@ const Footer = () => (
   </Navbar>
 );
 
-// Footer.defaultProps = propTypes;
-// Footer.defaultProps = defaultProps;
 export default Footer;

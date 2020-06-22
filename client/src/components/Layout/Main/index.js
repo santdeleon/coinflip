@@ -1,18 +1,24 @@
 import React from "react";
-// import {} from "prop-types";
+import { string } from "prop-types";
 
 import Interface from "./Interface";
 
-// const propTypes = {};
-//
-// const defaultProps = {};
+const propTypes = {
+  owner: string.isRequired,
+  user: string.isRequired,
+};
 
-const Main = () => (
+const defaultProps = {
+  owner: "",
+  user: "",
+};
+
+const Main = ({ owner, user }) => (
   <>
-    <Interface />
+    <Interface owner={owner} user={user} />
   </>
 );
 
-// Main.defaultProps = propTypes;
-// Main.defaultProps = defaultProps;
+Main.defaultProps = propTypes;
+Main.defaultProps = defaultProps;
 export default Main;

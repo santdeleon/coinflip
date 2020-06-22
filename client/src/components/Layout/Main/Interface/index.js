@@ -3,17 +3,23 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { string, object } from "prop-types";
+import { string } from "prop-types";
 
 import "./index.css";
 
-// const propTypes = {};
+const propTypes = {
+  owner: string.isRequired,
+  user: string.isRequired,
+};
 
-// const defaultProps = {};
+const defaultProps = {
+  owner: "",
+  user: "",
+};
 
 const Interface = ({ owner, user }) => {
   const [betAmount, setBetAmount] = useState("0.0");
-  const [currentTab, setCurrentTab] = useState("Play");
+  const [currentTab, setCurrentTab] = useState("Rules");
 
   const tabTo = (string) => {
     setCurrentTab(string);
@@ -168,6 +174,6 @@ const Interface = ({ owner, user }) => {
   );
 };
 
-// Interface.propTypes = propTypes;
-// Interface.defaultProps = defaultProps;
+Interface.propTypes = propTypes;
+Interface.defaultProps = defaultProps;
 export default Interface;
