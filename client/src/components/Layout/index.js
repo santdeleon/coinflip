@@ -4,6 +4,7 @@ import { string, object, func, array, bool } from "prop-types";
 import NavMenu from "./NavMenu";
 import Main from "./Main";
 import Message from "./Message";
+import Footer from "./Footer";
 
 import GithubIcon from "../../assets/img/github.svg";
 
@@ -45,6 +46,8 @@ const Layout = ({
       isUser={isUser}
       githubIcon={GithubIcon}
     />
+
+    <Footer />
   </>
 );
 
