@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { string, object, func, array, bool } from "prop-types";
+// import { string, object, func, array, bool } from "prop-types";
 
 // const propTypes = {};
 

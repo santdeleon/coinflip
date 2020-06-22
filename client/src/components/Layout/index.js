@@ -47,6 +47,8 @@ const Layout = ({
       githubIcon={GithubIcon}
     />
 
+    <Main />
+
     <Footer />
   </>
 );
