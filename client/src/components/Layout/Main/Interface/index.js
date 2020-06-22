@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { string, object } from "prop-types";
 
 import "./index.css";
@@ -10,7 +11,7 @@ import "./index.css";
 
 // const defaultProps = {};
 
-const Interface = () => {
+const Interface = ({ owner, user }) => {
   const [betAmount, setBetAmount] = useState("0.0");
   const [currentTab, setCurrentTab] = useState("Play");
 
@@ -100,10 +101,67 @@ const Interface = () => {
             </Row>
           )}
 
+          {/* Results Tab */}
+          {currentTab === "Results" && (
+            <Row>
+              <Col
+                xs={10}
+                className="border my-4 mx-auto text-left pt-2"
+                style={{ borderRadius: "20px" }}
+              >
+                <p className="mb-0">Game won</p>
+                <h5 style={{ color: "#C3C5CB" }}>No</h5>
+              </Col>
+              <Col xs={10} className="mx-auto text-center">
+                <FontAwesomeIcon className="text-muted" icon={faArrowDown} />
+              </Col>
+              <Col
+                xs={10}
+                className="border my-4 mx-auto text-left pt-2"
+                style={{ borderRadius: "20px" }}
+              >
+                <p className="mb-0">How much did I Win/lose</p>
+                <h5 style={{ color: "#C3C5CB" }}>No</h5>
+              </Col>
+            </Row>
+          )}
+
           {/* Content - Rules */}
-          {/* <Row className="justify-content-center mt-4">
-            <Col xs={10} className="border"></Col>
-          </Row> */}
+          {currentTab === "Rules" && (
+            <Row className="flex-column">
+              <Col
+                xs={10}
+                className="border my-4 mx-auto text-left pt-2"
+                style={{ borderRadius: "20px" }}
+              >
+                <ul className="p-0" style={{ listStyleType: "none" }}>
+                  <li className="rule mt-2">
+                    If you win you get double your bet.
+                  </li>
+                  <li className="rule mt-2">
+                    You can't wager more ether than the contract balance has.
+                  </li>
+                  <li className="rule mt-2">
+                    Bet's must be more than 0.01 ether but no more than 5 ether.
+                  </li>
+                  <li className="rule mt-2">Good Luck! Have Fun.</li>
+                </ul>
+              </Col>
+
+              <Col xs={10} className="mx-auto text-center mb-4">
+                <FontAwesomeIcon className="text-muted" icon={faArrowDown} />
+              </Col>
+
+              <Col className="mx-auto">
+                <Button
+                  className="send-btn w-50 font-weight-bold"
+                  onClick={() => tabTo("Play")}
+                >
+                  Got it
+                </Button>
+              </Col>
+            </Row>
+          )}
         </Col>
       </Row>
     </Container>
