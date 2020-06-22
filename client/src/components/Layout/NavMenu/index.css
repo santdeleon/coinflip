@@ -14,7 +14,7 @@
   padding-left: 10px;
 }
 
-/* Responsive Design */
+/* Media Queries */
 @media only screen and (max-width: 768px) {
   .github-icon {
     display: none;

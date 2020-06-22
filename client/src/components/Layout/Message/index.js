@@ -2,12 +2,12 @@ import React from "react";
 import { string, bool, func } from "prop-types";
 import { XSquare } from "react-feather";
 
-import "./Message.css";
+import "./index.css";
 
 const propTypes = {
   statusMessage: string.isRequired,
   statusIsDisplayed: bool.isRequired,
-  removeStatusMessage: func.isRequired,
+  removeStatusMessage: func,
 };
 
 const defaultProps = {

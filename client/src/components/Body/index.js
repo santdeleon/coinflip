@@ -4,10 +4,9 @@ import { Delete } from "react-feather";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 
-import "./Body.css";
+import "./index.css";
 
 const propTypes = {
-  betWon: string.isRequired,
   howMuchWasBet: string.isRequired,
   userBalanceBeforeBet: string.isRequired,
   newBalance: string.isRequired,
@@ -21,6 +20,7 @@ const propTypes = {
   handleBet: func.isRequired,
   placeBet: func.isRequired,
   isOwner: bool.isRequired,
+  betWon: bool.isRequired,
 };
 
 const defaultProps = {

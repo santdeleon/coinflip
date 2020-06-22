@@ -1,7 +1,7 @@
 import React from "react";
 import Gif from "../../assets/gif/eth-loader.gif";
 
-import "./Loader.css";
+import "./index.css";
 
 const Loader = () => (
   <div className="Loader">
