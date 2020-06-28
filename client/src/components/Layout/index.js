@@ -1,5 +1,5 @@
 import React from "react";
-import { string, object, func, array, bool } from "prop-types";
+import { string, object, func, bool } from "prop-types";
 
 import NavMenu from "./NavMenu";
 import Main from "./Main";
@@ -9,45 +9,49 @@ import Footer from "./Footer";
 import GithubIcon from "../../assets/img/github.svg";
 
 const propTypes = {
-  statusMessage: string.isRequired,
-  removeStatusMessage: func.isRequired,
-  statusIsDisplayed: bool.isRequired,
-  contractBalance: string.isRequired,
-  isOwner: bool.isRequired,
-  isUser: bool.isRequired,
+  user: object.isRequired,
+  game: object.isRequired,
+  message: string.isRequired,
+  setMessage: func.isRequired,
+  showMessage: bool.isRequired,
+  setShowMessage: func.isRequired,
 };
 
 const defaultProps = {
-  statusMessage: "",
-  removeStatusMessage: () => {},
-  statusIsDisplayed: false,
-  contractBalance: "string.isRequired",
-  isOwner: false,
-  isUser: false,
+  user: {},
+  game: {},
+  message: "",
+  setMessage: () => {},
+  showMessage: false,
+  setShowMessage: () => {},
 };
 
 const Layout = ({
-  statusMessage,
-  removeStatusMessage,
-  statusIsDisplayed,
-  contractBalance,
-  isOwner,
-  isUser,
+  user,
+  game,
+  message,
+  setMessage,
+  showMessage,
+  setShowMessage,
 }) => (
   <>
     <Message
-      statusMessage={statusMessage}
-      removeStatusMessage={removeStatusMessage}
+      message={message}
+      setMessage={setMessage}
+      showMessage={showMessage}
+      setShowMessage={setShowMessage}
     />
 
-    <NavMenu
-      contractBalance={contractBalance}
-      isOwner={isOwner}
-      isUser={isUser}
-      githubIcon={GithubIcon}
-    />
+    <NavMenu user={user} game={game} githubIcon={GithubIcon} />
 
-    <Main />
+    <Main
+      user={user}
+      game={game}
+      message={message}
+      setMessage={setMessage}
+      showMessage={showMessage}
+      setShowMessage={setShowMessage}
+    />
 
     <Footer />
   </>

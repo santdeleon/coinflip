@@ -1,29 +1,17 @@
-.StatusMessage {
+.message {
+  background: url("../../../assets/img/pattern-wallpaper.svg");
+  background-size: 50%;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  transition: .5s all ease-in;
-  padding: 1rem 0;
+  transition: 0.5s all ease-in;
   box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
-.remove-status-message-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-  transition: 0.01s all ease-in;
-}
-
 .remove-status-message-btn:hover {
   color: white;
-}
-
-.StatusMessage-text {
-  font-size: 18px;
-  font-weight: normal;
 }
 
 .fade-out {

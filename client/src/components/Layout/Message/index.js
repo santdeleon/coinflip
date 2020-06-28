@@ -1,48 +1,49 @@
 import React from "react";
+import { Row, Col } from "react-bootstrap";
 import { string, bool, func } from "prop-types";
 import { XSquare } from "react-feather";
 
 import "./index.css";
 
 const propTypes = {
-  statusMessage: string.isRequired,
-  statusIsDisplayed: bool.isRequired,
-  removeStatusMessage: func,
+  message: string.isRequired,
+  setMessage: func.isRequired,
+  showMessage: bool.isRequired,
+  setShowMessage: func.isRequired,
 };
 
 const defaultProps = {
-  statusMessage: "",
-  statusIsDisplayed: false,
-  removeStatusMessage: () => {},
+  message: "",
+  setMessage: () => {},
+  showMessage: false,
+  setShowMessage: () => {},
 };
 
-let statusMessageBgColor;
-
-const Message = ({ statusMessage, statusIsDisplayed, removeStatusMessage }) => {
-  // handle status message background color
-  statusMessage.match(/^[Sorry]/)
-    ? (statusMessageBgColor = "#f7608b")
-    : (statusMessageBgColor = "#52f292");
+const Message = ({ message, setMessage, showMessage, setShowMessage }) => {
+  const messageBgColor = message.match(/^[Sorry]/)
+    ? { backgroundColor: "#f7608b" }
+    : { backgroundColor: "#52f292" };
 
   return (
     <div
-      className={`
-        StatusMessage
-        ${statusIsDisplayed ? "fade-in" : "fade-out"}
-      `}
-      style={{ backgroundColor: statusMessageBgColor }}
+      className={` message ${showMessage ? "fade-in" : "fade-out"} py-3`}
+      style={messageBgColor}
     >
-      <XSquare
-        className="btn remove-status-message-btn"
-        size={28}
-        onClick={removeStatusMessage}
-      />
-
-      <div className="row flex justify-content-center">
-        <div className="col flex text-center">
-          <h1 className="StatusMessage-text">{statusMessage}</h1>
-        </div>
-      </div>
+      <Row className="align-items-center py-2">
+        <Col xs={2}></Col>
+        <Col xs={8}>
+          <h5 className="m-0">{message}</h5>
+        </Col>
+        <Col xs={2} className="d-flex justify-content-end">
+          <XSquare
+            role="button"
+            className="text-right remove-status-message-btn mr-5"
+            onClick={() => setShowMessage(false)}
+            size={28}
+            style={{ minWidth: "28px" }}
+          />
+        </Col>
+      </Row>
     </div>
   );
 };

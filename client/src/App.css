@@ -21,3 +21,26 @@
   );
   padding: 5px;
 }
+
+::-webkit-scrollbar {
+  background-color: #ff87e1;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 10px;
+  background: linear-gradient(
+    to bottom,
+    #ff87e1,
+    #ca67e5,
+    #83e0f7,
+    #84ffaf,
+    #fcfc83,
+    #fcca67,
+    #f76f6f
+  );
+}
+
+::selection {
+  background: #84fbb8;
+}

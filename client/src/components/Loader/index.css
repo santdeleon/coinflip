@@ -1,6 +1,7 @@
 .Loader {
   background-color: black;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .Loader div {
@@ -8,5 +9,5 @@
 }
 
 .Loader img {
-  height: 75vh;
+  height: 100vh;
 }

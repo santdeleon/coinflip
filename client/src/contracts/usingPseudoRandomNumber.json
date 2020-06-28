@@ -17,12 +17,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"random\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol\":\"usingPseudoRandomNumber\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol\":{\"keccak256\":\"0x610b516e4c0a208ffc31be58bf332adb60b3efb42e71286b59bedffa9111e250\",\"urls\":[\"bzz-raw://fdd8144a27c09f96481fdf216dd433881940b781a1ebcc674162718cf4b27e14\",\"dweb:/ipfs/QmXRpEbKJW69pKw7SDEo75vRn5YDhgrHsoUKDLhrTHZaDy\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a723158203cdb8d7a6c7afa1eaec49ce3a9ca049297a41584bd79a08cf6303c019cb7b6a664736f6c634300050c0032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a723158203cdb8d7a6c7afa1eaec49ce3a9ca049297a41584bd79a08cf6303c019cb7b6a664736f6c634300050c0032",
-  "sourceMap": "25:109:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:109:4;;;;;;;",
-  "deployedSourceMap": "25:109:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:109:4;;;;;;;;;;;;;;;;;;;62:70;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;101:4;126:1;120:3;:7;;;;;;113:14;;62:70;:::o",
-  "source": "pragma solidity 0.5.12;\n\ncontract usingPseudoRandomNumber {\n  function random() public view returns (uint) {\n    return now % 2;\n  }\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"random\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol\":\"usingPseudoRandomNumber\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol\":{\"keccak256\":\"0x32d395e3b742220e16fdf062e7bbce9b52bef86c5c17f3ced5d09a3bb8b4b7ad\",\"urls\":[\"bzz-raw://8fb9af11f278059f363c5d4fb504e834f5668e0b7affbad9c251ecb5ea620dad\",\"dweb:/ipfs/QmW9igM9iREAANwMPvbauskEUwg83WTPohn1y64UKYYWSY\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582087c97b9b145d0458d96dacd70e83ba3594743e9ff8774c1fee55afd959654ebb64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582087c97b9b145d0458d96dacd70e83ba3594743e9ff8774c1fee55afd959654ebb64736f6c63430005100032",
+  "sourceMap": "34:109:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:109:4;;;;;;;",
+  "deployedSourceMap": "34:109:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:109:4;;;;;;;;;;;;;;;;;;;71:70;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;110:4;135:1;129:3;:7;;;;;;122:14;;71:70;:::o",
+  "source": "pragma solidity >=0.4.21 <0.7.0;\n\ncontract usingPseudoRandomNumber {\n  function random() public view returns (uint) {\n    return now % 2;\n  }\n}\n",
   "sourcePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol",
   "ast": {
     "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol",
@@ -38,11 +38,15 @@
         "id": 364,
         "literals": [
           "solidity",
-          "0.5",
-          ".12"
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.7",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:4"
+        "src": "0:32:4"
       },
       {
         "baseContracts": [],
@@ -61,7 +65,7 @@
             "body": {
               "id": 373,
               "nodeType": "Block",
-              "src": "107:25:4",
+              "src": "116:25:4",
               "statements": [
                 {
                   "expression": {
@@ -82,7 +86,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 392,
-                      "src": "120:3:4",
+                      "src": "129:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -100,7 +104,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "126:1:4",
+                      "src": "135:1:4",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_2_by_1",
@@ -108,7 +112,7 @@
                       },
                       "value": "2"
                     },
-                    "src": "120:7:4",
+                    "src": "129:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -117,7 +121,7 @@
                   "functionReturnParameters": 368,
                   "id": 372,
                   "nodeType": "Return",
-                  "src": "113:14:4"
+                  "src": "122:14:4"
                 }
               ]
             },
@@ -132,7 +136,7 @@
               "id": 365,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "77:2:4"
+              "src": "86:2:4"
             },
             "returnParameters": {
               "id": 368,
@@ -144,7 +148,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 374,
-                  "src": "101:4:4",
+                  "src": "110:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -155,7 +159,7 @@
                     "id": 366,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "101:4:4",
+                    "src": "110:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -165,20 +169,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "100:6:4"
+              "src": "109:6:4"
             },
             "scope": 375,
-            "src": "62:70:4",
+            "src": "71:70:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 376,
-        "src": "25:109:4"
+        "src": "34:109:4"
       }
     ],
-    "src": "0:135:4"
+    "src": "0:144:4"
   },
   "legacyAST": {
     "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol",
@@ -194,11 +198,15 @@
         "id": 364,
         "literals": [
           "solidity",
-          "0.5",
-          ".12"
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.7",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:4"
+        "src": "0:32:4"
       },
       {
         "baseContracts": [],
@@ -217,7 +225,7 @@
             "body": {
               "id": 373,
               "nodeType": "Block",
-              "src": "107:25:4",
+              "src": "116:25:4",
               "statements": [
                 {
                   "expression": {
@@ -238,7 +246,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 392,
-                      "src": "120:3:4",
+                      "src": "129:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -256,7 +264,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "126:1:4",
+                      "src": "135:1:4",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_2_by_1",
@@ -264,7 +272,7 @@
                       },
                       "value": "2"
                     },
-                    "src": "120:7:4",
+                    "src": "129:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -273,7 +281,7 @@
                   "functionReturnParameters": 368,
                   "id": 372,
                   "nodeType": "Return",
-                  "src": "113:14:4"
+                  "src": "122:14:4"
                 }
               ]
             },
@@ -288,7 +296,7 @@
               "id": 365,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "77:2:4"
+              "src": "86:2:4"
             },
             "returnParameters": {
               "id": 368,
@@ -300,7 +308,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 374,
-                  "src": "101:4:4",
+                  "src": "110:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -311,7 +319,7 @@
                     "id": 366,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "101:4:4",
+                    "src": "110:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -321,28 +329,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "100:6:4"
+              "src": "109:6:4"
             },
             "scope": 375,
-            "src": "62:70:4",
+            "src": "71:70:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 376,
-        "src": "25:109:4"
+        "src": "34:109:4"
       }
     ],
-    "src": "0:135:4"
+    "src": "0:144:4"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.19",
-  "updatedAt": "2020-04-24T02:33:15.979Z",
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-06-27T19:34:36.316Z",
   "devdoc": {
     "methods": {}
   },

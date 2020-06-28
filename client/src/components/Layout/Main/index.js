@@ -1,21 +1,43 @@
 import React from "react";
-import { string } from "prop-types";
+import { object, string, bool, func } from "prop-types";
 
 import Interface from "./Interface";
 
 const propTypes = {
-  owner: string.isRequired,
-  user: string.isRequired,
+  user: object.isRequired,
+  game: object.isRequired,
+  message: string.isRequired,
+  setMessage: func.isRequired,
+  showMessage: bool.isRequired,
+  setShowMessage: func.isRequired,
 };
 
 const defaultProps = {
-  owner: "",
-  user: "",
+  user: {},
+  game: {},
+  message: "",
+  setMessage: () => {},
+  showMessage: false,
+  setShowMessage: () => {},
 };
 
-const Main = ({ owner, user }) => (
+const Main = ({
+  user,
+  game,
+  message,
+  setMessage,
+  showMessage,
+  setShowMessage,
+}) => (
   <>
-    <Interface owner={owner} user={user} />
+    <Interface
+      user={user}
+      game={game}
+      message={message}
+      setMessage={setMessage}
+      showMessage={showMessage}
+      setShowMessage={setShowMessage}
+    />
   </>
 );
 

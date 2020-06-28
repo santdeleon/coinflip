@@ -1,134 +1,54 @@
 import React, { useState, useEffect } from "react";
+// import { ethers } from "ethers";
 
-import CoinFlipContract from "./contracts/CoinFlip.json";
+import api from "./api";
 
-import getWeb3 from "./components/getWeb3";
-import Loader from "./components/Loader";
 import Layout from "./components/Layout";
+import Loader from "./components/Loader";
 
 import "./App.css";
 
 const App = () => {
-  const [web3, setWeb3] = useState(null);
-  const [accounts, setAccounts] = useState([]);
-  const [contract, setContract] = useState({});
-  const [contractBalance, setContractBalance] = useState("");
-  const [contractAddress, setContractAddress] = useState("");
-  const [isOwner, setIsOwner] = useState(false);
-  const [isUser, setIsUser] = useState(false);
-  const [betWon, setBetWon] = useState(false);
-  const [gamblersAddress, setGamblersAddress] = useState("");
-  const [userBalance, setUserBalance] = useState(0);
-  const [howMuchWasBet, setHowMuchWasBet] = useState("");
-  const [fundAmount, setFundAmount] = useState("");
-  const [betAmount, setBetAmount] = useState("");
-  const [isActive, setIsActive] = useState("");
-  const [userBalanceBeforeBet, setUserBalanceBeforeBet] = useState("");
-  const [statusMessage, setStatusMessage] = useState("");
-  const [statusIsDisplayed, setStatusIsDisplayed] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState({
+    user: { currentAddress: "" },
+    game: { contractBalance: 0 },
+  });
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const whichWeb3 = await getWeb3();
-        const whichAccounts = await web3.eth.getAccounts();
-        const networkId = await web3.eth.net.getId();
-        const deployedNetwork = CoinFlipContract.networks[networkId];
-        const instance = new web3.eth.Contract(
-          CoinFlipContract.abi,
-          deployedNetwork && deployedNetwork.address
-        );
-        let lookupOwner = await instance.methods.getOwner().call();
-        const owner = lookupOwner[0];
-        const user = accounts[0];
-        const balanceInWei = await web3.eth.getBalance(deployedNetwork.address);
-        const balanceInEth = web3.utils.fromWei(balanceInWei, "ether");
+      const user = await api.user();
+      const game = await api.game();
 
-        setWeb3(whichWeb3);
-        setAccounts(whichAccounts);
-        setContract(instance);
-        setContractBalance(balanceInEth);
-        setContractAddress(deployedNetwork.address);
-        user === owner ? setIsOwner(true) : setIsOwner(false);
-        user !== owner ? setIsUser(true) : setIsUser(false);
-      } catch (error) {
-        alert(
-          `Failed to load web3, accounts, or contract. Check console for details.`
-        );
-        console.error(error);
-      }
+      setData({ user, game });
+      setIsLoading(false);
     };
-  });
 
-  const removeStatusMessage = () => setStatusIsDisplayed(false);
+    fetchData();
+  }, []);
 
-  const selectFundAmount = (e) => setFundAmount(e.currentTarget.id);
-
-  const refreshFundAmount = () => setFundAmount("0");
-
-  const handleBet = (e) => setBetAmount(e.target.value);
-
-  //
-  // const fundContract = async (e) => {
-  //   const { web3, accounts, contract, contractAddress } = this.state;
-  //   let { fundAmount } = this.state;
-  //
-  //   if (fundAmount === "0") {
-  //     this.setState({
-  //       statusMessage: "Sorry, you can't send zero ether to the contract!",
-  //       statusIsDisplayed: true,
-  //     });
-  //     return;
-  //   }
-  //
-  //   const config = {
-  //     from: accounts[0],
-  //     value: web3.utils.toWei(fundAmount, "ether"),
-  //   };
-  //
-  //   const donation = await contract.methods
-  //     .fundContract()
-  //     .send(config)
-  //     .on("transactionHash", (hash) => {
-  //       console.log(hash);
-  //     })
-  //     .on("confirmation", (confirmationNum) => {
-  //       console.log(confirmationNum);
-  //     })
-  //     .on("receipt", (receipt) => {
-  //       console.log(receipt);
-  //     });
-  //
-  //   let balance = await web3.eth.getBalance(contractAddress);
-  //   this.setState({
-  //     contractBalance: web3.utils.fromWei(balance, "ether"),
-  //     statusMessage:
-  //       "Your donation has been accepted. Thanks for your support!",
-  //     statusIsDisplayed: true,
-  //   });
-  // };
-  //
-  //
   // const placeBet = async (e) => {
   //   const { web3, accounts, contract, contractAddress } = this.state;
   //   let { betAmount } = this.state;
   //   if (betAmount.match(/[a-zA-Z]/)) {
   //     this.setState({
-  //       statusMessage:
+  //       message:
   //         "Sorry, you can only bet with numbers! Check your bet amount.",
-  //       statusIsDisplayed: true,
+  //       showMessage: true,
   //     });
   //     return;
   //   } else if (betAmount > 5) {
   //     this.setState({
-  //       statusMessage: "Sorry, you can't bet more than 5 ether.",
-  //       statusIsDisplayed: true,
+  //       message: "Sorry, you can't bet more than 5 ether.",
+  //       showMessage: true,
   //     });
   //     return;
   //   } else if (betAmount === "0") {
   //     this.setState({
-  //       statusMessage: "Sorry, you can't bet 0 ether",
-  //       statusIsDisplayed: true,
+  //       message: "Sorry, you can't bet 0 ether",
+  //       showMessage: true,
   //     });
   //     return;
   //   }
@@ -139,8 +59,8 @@ const App = () => {
   //     parseInt(betAmount) > parseInt(await web3.eth.getBalance(contractAddress))
   //   ) {
   //     this.setState({
-  //       statusMessage: "Sorry, you can't bet more than the contract balance.",
-  //       statusIsDisplayed: true,
+  //       message: "Sorry, you can't bet more than the contract balance.",
+  //       showMessage: true,
   //     });
   //     return;
   //   }
@@ -171,8 +91,8 @@ const App = () => {
   //     gamblersAddress: results.gambler,
   //     userBalanceBeforeBet: oldUserBalance,
   //     userBalance: newUserBalance,
-  //     statusMessage: "Bet successfully made.",
-  //     statusIsDisplayed: true,
+  //     message: "Bet successfully made.",
+  //     showMessage: true,
   //     howMuchWasBet: web3.utils.fromWei(results.amount, "ether"),
   //     contractBalance: newContractBalance,
   //   });
@@ -190,8 +110,8 @@ const App = () => {
   //
   //   if (contractBalance <= 0) {
   //     this.setState({
-  //       statusMessage: "Sorry, there are no funds to withdraw.",
-  //       statusIsDisplayed: true,
+  //       message: "Sorry, there are no funds to withdraw.",
+  //       showMessage: true,
   //     });
   //     return;
   //   }
@@ -206,11 +126,11 @@ const App = () => {
   //   let balance = await web3.eth.getBalance(contractAddress);
   //   this.setState({
   //     contractBalance: web3.utils.fromWei(balance, "ether"),
-  //     statusMessage: `Your account ${accounts[0]} now has ${web3.utils.fromWei(
+  //     message: `Your account ${accounts[0]} now has ${web3.utils.fromWei(
   //       withdrawalAmount,
   //       "ether"
   //     )} more ether.`,
-  //     statusIsDisplayed: true,
+  //     showMessage: true,
   //   });
   // };
   //
@@ -224,8 +144,8 @@ const App = () => {
   //   } = this.state;
   //   if (contractBalance <= 0) {
   //     this.setState({
-  //       statusMessage: "Sorry, there are no funds to withdraw.",
-  //       statusIsDisplayed: true,
+  //       message: "Sorry, there are no funds to withdraw.",
+  //       showMessage: true,
   //     });
   //     return;
   //   }
@@ -234,45 +154,28 @@ const App = () => {
   //   let balanceAfter = await web3.eth.getBalance(contractAddress);
   //   this.setState({
   //     contractBalance: web3.utils.fromWei(balanceAfter, "ether"),
-  //     statusMessage: `Your account ${accounts[0]} now has ${balanceBefore} more ether.`,
-  //     statusIsDisplayed: true,
+  //     message: `Your account ${accounts[0]} now has ${balanceBefore} more ether.`,
+  //     showMessage: true,
   //   });
   // };
   //
-  // if (!web3) {
-  //   return (
-  //     <>
-  //       <Loader />
-  //     </>
-  //   );
-  // }
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="App">
-      <div className="rainbow-top"></div>
+      <div className="rainbow-top" />
 
       <Layout
-        statusMessage={statusMessage}
-        removeStatusMessage={removeStatusMessage}
-        statusIsDisplayed={statusIsDisplayed}
-        contractBalance={contractBalance}
-        isOwner={isOwner}
-        isUser={isUser}
-        // fundAmount={fundAmount}
-        // selectFundAmount={selectFundAmount}
-        // refreshFundAmount={refreshFundAmount}
-        // fundContract={fundContract}
-        // isActive={isActive}
+        user={data.user}
+        game={data.game}
+        message={message}
+        setMessage={setMessage}
+        showMessage={showMessage}
+        setShowMessage={setShowMessage}
         // withdrawOneEther={withdrawOneEther}
         // withdrawAllEther={withdrawAllEther}
-        // handleBet={handleBet}
-        // betAmount={betAmount}
         // placeBet={placeBet}
-        // betWon={betWon}
-        // gamblersAddress={gamblersAddress}
-        // howMuchWasBet={howMuchWasBet}
-        // userBalanceBeforeBet={userBalanceBeforeBet}
-        // newBalance={userBalance}
       />
     </div>
   );
