@@ -86,7 +86,7 @@ const TabBody = ({
             style={{ borderRadius: "20px" }}
           >
             <p className="mb-0">Sender</p>
-            <h5 className="muted-h5">{truncate(user.currentAddress, 32)}</h5>
+            <h5 className="muted-h5">{truncate(user.selectedAddress, 32)}</h5>
           </Col>
           <Col>
             <Button

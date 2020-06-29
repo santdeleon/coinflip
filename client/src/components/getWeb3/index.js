@@ -1,39 +1,28 @@
 import { ethers } from "ethers";
 
 const getWeb3 = async () => {
-  // TODO: Use this conditional check when using ethereum testnets
-  // if (window.ethereum) {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //
-  //   try {
-  //     await window.ethereum.enable();
-  //     return provider;
-  //   } catch (error) {
-  //     return error;
-  //   }
-  // }
-  // // Legacy dapp browsers...
-  // else if (window.provider) {
-  //   // Use Mist/MetaMask's provider.
-  //   const provider = window.provider;
-  //   console.log("Injected provider detected.");
-  //   return provider;
-  // }
-  // // Fallback to localhost;
-  // else {
-  //   const httpProvider = new Web3.providers.HttpProvider(
-  //     "http://127.0.0.1:7545"
-  //   );
-  //   const provider = new ethers.providers.Web3Provider(httpProvider);
-  //
-  //   console.log("No provider instance injected, using Local provider.");
-  //   return provider;
-  // }
+  let provider, signer;
 
-  const provider = new ethers.providers.JsonRpcProvider(
-    "http://127.0.0.1:7545"
-  );
-  return provider;
+  if (window.ethereum) {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+
+    try {
+      await window.ethereum.enable();
+      return [provider, signer];
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  } else if (window.provider) {
+    provider = window.provider;
+    signer = provider.getSigner();
+    return [provider, signer];
+  } else {
+    provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:7545");
+    signer = provider.getSigner();
+    return [provider, signer];
+  }
 };
 
 export default getWeb3;

@@ -77,13 +77,13 @@ const Interface = ({
   };
 
   const withdraw = async () => {
-    // let tx = await game.contract.withdraw();
-    // let receipt = await tx.wait(1);
-    //
-    // console.log(receipt);
-    // setMessage("Congrats! The funds have made it to your account.");
-    // setShowMessage(true);
-    // game.contractBalance = 0;
+    let tx = await game.contract.withdraw();
+    let receipt = await tx.wait(1);
+
+    console.log(receipt);
+    setMessage("Congrats! The funds have made it to your account.");
+    setShowMessage(true);
+    game.contractBalance = 0;
   };
 
   return (
