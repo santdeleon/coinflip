@@ -35,7 +35,7 @@ const NavMenu = ({ user, game, githubIcon }) => (
         readOnly
       />
       <a
-        href="https://github.com/santdeleon"
+        href="https://github.com/santdeleon/coinflip"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Github"
