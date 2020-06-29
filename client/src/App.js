@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from "react";
-// import { ethers } from "ethers";
 
 import api from "./api";
+
+import "./App.css";
 
 import Layout from "./components/Layout";
 import Loader from "./components/Loader";
 
-import "./App.css";
-
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState({
-    user: { currentAddress: "" },
-    game: { contractBalance: 0 },
-  });
+  const [data, setData] = useState({});
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const user = await api.user();
-      const game = await api.game();
+      const response = await api();
+      const user = response[0];
+      const game = response[1];
 
       setData({ user, game });
       setIsLoading(false);
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   //
   // const withdrawOneEther = async (e) => {

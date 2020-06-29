@@ -55,15 +55,15 @@ const Interface = ({
         console.log("Your transaction is being submitted...");
     }
 
+    let tx, receipt, sumEvent;
     const config = { value: ethers.utils.parseEther(transactionAmount) };
-    let tx;
 
     e.currentTarget.id === "Fund Contract"
       ? (tx = await game.contract.fundContract(config))
       : (tx = await game.contract.bet(config));
 
-    let receipt = await tx.wait(1);
-    let sumEvent = receipt.events.pop();
+    receipt = await tx.wait(1);
+    sumEvent = receipt.events.pop();
 
     console.log(sumEvent);
     setMessage(
@@ -76,28 +76,25 @@ const Interface = ({
     game.contractBalance = game.contractBalance + Number(transactionAmount);
   };
 
-  // const withdraw = async () => {
-  //   let tx = await game.contract.withdraw();
-  //   let receipt = await tx.wait(1);
-  //   console.log(receipt);
-  //
-  //   setMessage("Congrats! The funds have made it to your account.");
-  //   setShowMessage(true);
-  //   game.contractBalance = 0;
-  // };
+  const withdraw = async () => {
+    // let tx = await game.contract.withdraw();
+    // let receipt = await tx.wait(1);
+    //
+    // console.log(receipt);
+    // setMessage("Congrats! The funds have made it to your account.");
+    // setShowMessage(true);
+    // game.contractBalance = 0;
+  };
 
   return (
     <Container id="Interface" className="Interface py-5">
       <Row className="justify-content-center px-3 my-5">
+        {/* Interface Wrapper */}
         <Col md={10} lg={6} className="interface-container bg-white pb-4 px-0">
           <div className="rainbow-rounded-top px-5 py-2" />
           <Tabs
             user={user}
             game={game}
-            message={message}
-            setMessage={setMessage}
-            showMessage={showMessage}
-            setShowMessage={setShowMessage}
             currentTab={currentTab}
             setCurrentTab={setCurrentTab}
             transactionAmount={transactionAmount}
@@ -105,6 +102,7 @@ const Interface = ({
             transactionButton={transactionButton}
             setTransactionButton={setTransactionButton}
             sendTransaction={sendTransaction}
+            withdraw={withdraw}
           />
         </Col>
       </Row>

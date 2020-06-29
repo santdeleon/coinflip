@@ -3,18 +3,18 @@ import { object, string, func } from "prop-types";
 import { Button } from "react-bootstrap";
 
 const propTypes = {
+  tab: object.isRequired,
   currentTab: string.isRequired,
   setCurrentTab: func.isRequired,
-  tab: object.isRequired,
 };
 
 const defaultProps = {
+  tab: {},
   currentTab: "",
   setCurrentTab: () => {},
-  tab: {},
 };
 
-const Tab = ({ currentTab, setCurrentTab, tab }) => {
+const Tab = ({ tab, currentTab, setCurrentTab }) => {
   return (
     <Button
       key={tab.id}

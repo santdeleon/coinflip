@@ -1,5 +1,5 @@
 import React from "react";
-import { object, string, bool, func } from "prop-types";
+import { object, string, func } from "prop-types";
 import { Row, Col } from "react-bootstrap";
 
 import Tab from "./Tab";
@@ -8,10 +8,6 @@ import TabBody from "./TabBody";
 const propTypes = {
   user: object.isRequired,
   game: object.isRequired,
-  message: string.isRequired,
-  setMessage: func.isRequired,
-  showMessage: bool.isRequired,
-  setShowMessage: func.isRequired,
   currentTab: string.isRequired,
   setCurrentTab: func.isRequired,
   transactionAmount: string.isRequired,
@@ -19,15 +15,12 @@ const propTypes = {
   transactionButton: string.isRequired,
   setTransactionButton: func.isRequired,
   sendTransaction: func.isRequired,
+  withdraw: func.isRequired,
 };
 
 const defaultProps = {
   user: {},
   game: {},
-  message: "",
-  setMessage: () => {},
-  showMessage: false,
-  setShowMessage: () => {},
   currentTab: "",
   setCurrentTab: () => {},
   transactionAmount: "",
@@ -35,15 +28,12 @@ const defaultProps = {
   transactionButton: "",
   setTransactionButton: () => {},
   sendTransaction: () => {},
+  withdraw: () => {},
 };
 
 const Tabs = ({
   user,
   game,
-  message,
-  setMessage,
-  showMessage,
-  setShowMessage,
   currentTab,
   setCurrentTab,
   transactionAmount,
@@ -51,6 +41,7 @@ const Tabs = ({
   transactionButton,
   setTransactionButton,
   sendTransaction,
+  withdraw,
 }) => {
   return (
     <>
@@ -62,7 +53,7 @@ const Tabs = ({
             return null;
           } else {
             return (
-              <Col xs={3}>
+              <Col xs={3} key={tab.id}>
                 <Tab
                   currentTab={currentTab}
                   setCurrentTab={setCurrentTab}
@@ -76,10 +67,6 @@ const Tabs = ({
       <TabBody
         user={user}
         game={game}
-        message={message}
-        setMessage={setMessage}
-        showMessage={showMessage}
-        setShowMessage={setShowMessage}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         transactionAmount={transactionAmount}
@@ -87,6 +74,7 @@ const Tabs = ({
         transactionButton={transactionButton}
         setTransactionButton={setTransactionButton}
         sendTransaction={sendTransaction}
+        withdraw={withdraw}
       />
     </>
   );

@@ -14,6 +14,7 @@ const propTypes = {
   transactionButton: string.isRequired,
   setTransactionButton: func.isRequired,
   sendTransaction: func.isRequired,
+  withdraw: func.isRequired,
 };
 
 const defaultProps = {
@@ -25,6 +26,7 @@ const defaultProps = {
   transactionButton: "",
   setTransactionButton: () => {},
   sendTransaction: () => {},
+  withdraw: () => {},
 };
 
 const TabBody = ({
@@ -37,6 +39,7 @@ const TabBody = ({
   transactionButton,
   setTransactionButton,
   sendTransaction,
+  withdraw,
 }) => {
   const handleChange = (e) => setTransactionAmount(e.currentTarget.value);
 
@@ -191,7 +194,10 @@ const TabBody = ({
             </div>
           </Col>
           <Col className="mt-5">
-            <Button className="send-btn w-50 font-weight-bold">
+            <Button
+              className="send-btn w-50 font-weight-bold"
+              onClick={withdraw}
+            >
               Withdraw Funds
             </Button>
           </Col>
