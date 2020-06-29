@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# contract
+/src/contracts
+
 # testing
 /coverage
 
