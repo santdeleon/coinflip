@@ -16,6 +16,7 @@ const propTypes = {
   setTransactionButton: func.isRequired,
   sendTransaction: func.isRequired,
   withdraw: func.isRequired,
+  transactionResults: object.isRequired,
 };
 
 const defaultProps = {
@@ -29,6 +30,7 @@ const defaultProps = {
   setTransactionButton: () => {},
   sendTransaction: () => {},
   withdraw: () => {},
+  transactionResults: {},
 };
 
 const Tabs = ({
@@ -42,6 +44,7 @@ const Tabs = ({
   setTransactionButton,
   sendTransaction,
   withdraw,
+  transactionResults,
 }) => {
   return (
     <>
@@ -75,6 +78,7 @@ const Tabs = ({
         setTransactionButton={setTransactionButton}
         sendTransaction={sendTransaction}
         withdraw={withdraw}
+        transactionResults={transactionResults}
       />
     </>
   );

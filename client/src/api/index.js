@@ -5,10 +5,12 @@ import CoinFlipContract from "../contracts/CoinFlip.json";
 import getWeb3 from "../components/getWeb3";
 
 export default async () => {
+  // web3
   const web3 = await getWeb3();
   const provider = web3[0];
   const signer = web3[1];
-  const selectedAddress = await signer.getAddress();
+
+  // contract
   const network = await provider.getNetwork();
   const networkId = network.chainId.toString();
   const contract = new ethers.Contract(
@@ -19,6 +21,9 @@ export default async () => {
   const c = await contract.getContract();
   const owner = await contract.getContractOwner();
   const balance = parseFloat(ethers.utils.formatEther(c[1]));
+
+  // user
+  const selectedAddress = await signer.getAddress();
 
   const game = {
     // Contract
@@ -39,11 +44,6 @@ export default async () => {
   const user = {
     selectedAddress,
     isOwner: selectedAddress === owner ? true : false,
-
-    // TODO: Pull from blockchain on ethereum testnets
-    // Game History
-    // bets: [],
-    // funds: [],
   };
 
   return [user, game];

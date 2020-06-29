@@ -15,6 +15,7 @@ const propTypes = {
   setTransactionButton: func.isRequired,
   sendTransaction: func.isRequired,
   withdraw: func.isRequired,
+  transactionResults: object.isRequired,
 };
 
 const defaultProps = {
@@ -27,6 +28,7 @@ const defaultProps = {
   setTransactionButton: () => {},
   sendTransaction: () => {},
   withdraw: () => {},
+  transactionResults: {},
 };
 
 const TabBody = ({
@@ -40,6 +42,7 @@ const TabBody = ({
   setTransactionButton,
   sendTransaction,
   withdraw,
+  transactionResults,
 }) => {
   const handleChange = (e) => setTransactionAmount(e.currentTarget.value);
 
@@ -119,7 +122,11 @@ const TabBody = ({
             style={{ borderRadius: "20px" }}
           >
             <p className="mb-0">Game won</p>
-            <h5 className="muted-h5">N/A</h5>
+            <h5 className="muted-h5">
+              {transactionResults.won !== undefined
+                ? String(transactionResults.won)
+                : "Place a bet to see the results"}
+            </h5>
           </Col>
           <Col xs={10} className="mx-auto text-center">
             <FontAwesomeIcon className="text-muted" icon={faArrowDown} />
@@ -129,8 +136,12 @@ const TabBody = ({
             className="border my-4 mx-auto text-left pt-2"
             style={{ borderRadius: "20px" }}
           >
-            <p className="mb-0">How much did I Win/lose</p>
-            <h5 className="muted-h5">N/A</h5>
+            <p className="mb-0">How much did I Win/Lose</p>
+            <h5 className="muted-h5">
+              {transactionResults.amount !== undefined
+                ? transactionResults.amount + " ether"
+                : "Place a bet to see the results"}
+            </h5>
           </Col>
         </Row>
       )}

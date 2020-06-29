@@ -36,6 +36,7 @@ const Interface = ({
   const [currentTab, setCurrentTab] = useState("Play");
   const [transactionAmount, setTransactionAmount] = useState("0");
   const [transactionButton, setTransactionButton] = useState("Fund Contract");
+  const [transactionResults, setTransactionResults] = useState({});
 
   const sendTransaction = async (e) => {
     switch (true) {
@@ -65,7 +66,6 @@ const Interface = ({
     receipt = await tx.wait(1);
     sumEvent = receipt.events.pop();
 
-    console.log(sumEvent);
     setMessage(
       `Your transaction of ${parseFloat(
         transactionAmount
@@ -73,6 +73,15 @@ const Interface = ({
     );
     setShowMessage(true);
     setTransactionAmount("0");
+
+    sumEvent.event === "BetPlaced" &&
+      setTransactionResults({
+        won: sumEvent.args.betWon,
+        amount: sumEvent.args.betWon
+          ? transactionAmount * 2
+          : transactionAmount,
+      });
+
     game.contractBalance = game.contractBalance + Number(transactionAmount);
   };
 
@@ -103,6 +112,7 @@ const Interface = ({
             setTransactionButton={setTransactionButton}
             sendTransaction={sendTransaction}
             withdraw={withdraw}
+            transactionResults={transactionResults}
           />
         </Col>
       </Row>
