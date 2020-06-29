@@ -15,12 +15,21 @@ export default async () => {
   const balance = parseFloat(
     ethers.utils.formatEther(await contract.getBalance(address))
   );
-  console.log(balance);
+  const owner = await contract.getOwner();
 
   return {
     // Contract
     contract,
     contractAddress: contract.address,
     contractBalance: balance,
+    owner: owner[0],
+
+    // UI
+    tabs: [
+      { id: 0, name: "Play" },
+      { id: 1, name: "Results" },
+      { id: 2, name: "Rules" },
+      { id: 3, name: "Withdraw" },
+    ],
   };
 };

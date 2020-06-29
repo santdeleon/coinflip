@@ -10,16 +10,14 @@ export default async () => {
   const signerAddressBalance = ethers.utils.formatEther(
     await signer.getBalance()
   );
+  console.log(provider);
 
   return {
     // Credentials
-    provider: provider,
     accounts: accounts,
-    signer: signer,
     currentAddress: signerAddress,
-    addressBalance: signerAddressBalance,
-    isOwner: signerAddress === accounts[0] && true,
-    isUser: signerAddress !== accounts[0] && true,
+    // TODO: Verify if isOwner dynamincally
+    isOwner: true,
 
     // TODO: Pull from blockchain on ethereum testnets
     // Game History

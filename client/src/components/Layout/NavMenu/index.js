@@ -17,7 +17,7 @@ const defaultProps = {
 };
 
 const NavMenu = ({ user, game, githubIcon }) => (
-  <Navbar id="NavMenu" className="NavMenu align-items-center">
+  <Navbar id="NavMenu" className="NavMenu align-items-center pb-0">
     <Navbar.Brand href="/" className="font-weight-bold">
       <span role="img" className="mr-2" aria-label="Rainbow Emoji">
         🌈
@@ -26,7 +26,7 @@ const NavMenu = ({ user, game, githubIcon }) => (
     </Navbar.Brand>
 
     <Nav className="ml-auto align-items-center">
-      <p className="mb-0 mr-4 d-none d-md-flex">Contract balance: </p>
+      <p className="mb-0 mr-4 d-none d-md-flex">Contract balance:</p>
       <input
         id="contractBalance"
         name="contractBalance"

@@ -58,8 +58,6 @@ label:focus,
   box-shadow: none !important;
 }
 
-/* .bet-amount-input {} */
-
 .send-btn {
   border-radius: 20px;
   background-color: #fcdce8 !important;
@@ -74,4 +72,8 @@ label:focus,
   background-color: #f7a3c2 !important;
   border-color: #f7a3c2 !important;
   color: #000 !important;
+}
+
+.muted-h5 {
+  color: #c3c5cb;
 }
