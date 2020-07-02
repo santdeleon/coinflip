@@ -1,6 +1,6 @@
 {
   "name": "CoinFlip",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Decentralized betting application built on the Ethereum Network",
   "main": "truffle-config.js",
   "directories": {
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/santdeleon/coinflip#readme",
   "dependencies": {
-    "ethers": "^5.0.2",
     "truffle-assertions": "^0.9.2"
   }
 }
