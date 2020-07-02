@@ -29,7 +29,7 @@ const App = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="App">
+    <div className="App" data-testid="App">
       <div className="rainbow-top" />
       <Layout
         user={data.user}

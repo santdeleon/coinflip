@@ -1,30 +1,37 @@
 # CoinFlip.io
-- A decentralized gambling application built on the Ethereum Network.
-- Project phase 1 of the Ivan on Tech Academy program
 
-## To start
+> A decentralized gambling application built on the Ethereum Network.
+
+## To start working locally
+
+1. `git clone` this repo to your local environment
+2. `cd coinflip` into your new project directory
+3. `yarn` to install the required dependencies
+4. spin up an Ethereum node
+5. run `truffle migrate` to deploy the contracts
+6. `cd client` and run `yarn start` to spin up the App front-end
+7. You're good to go.
+
+## To start working on the Ropsten test network
+
 1. `git clone` this repo to your local environment
 2. `cd` into your new project directory
-3. `git checkout develop` to get the current working version of the app
-4. run `npm install` to install the required dependancies
-5. start up your local Ganache GUI
-6. run `truffle migrate` to deploy the contracts
-7. `cd client` and run `npm start` to spin up the React front end
-8. Have fun!
+3. `git checkout testing/ropsten` to use the version of the app using Oracles
+   to get off chain data
+4. `yarn` to install the required dependencies
+5. configure the `truffle-config.js` file to an Ethereum node
+6. run `truffle migrate --network ropsten` to deploy the contract on the Ropsten testnet (You can also use any of the Ethereum networks).
+7. `cd client` and run `yarn start` to spin up the React front end
 
-### Requirements
-This application was built with [React](https://reactjs.org/). If you don't have prior experience with React or JavaScript this application may be a bit hard to follow.
+### Technologies
 
-#### Prior Knowledge to know
-- HTML/CSS
-- JavaScript
-- Solidity
-- React
-- Truffle Suite
+- [React](https://reactjs.org/)
+- [Solidity](https://solidity.readthedocs.io/en/v0.6.10/)
+- [Truffle](https://www.trufflesuite.com/)
+- [Chai](https://www.chaijs.com/)
 
 ## Contributing
-This project is just for fun and educational purposes. If you'd like to play with it feel free to follow the *To start* section to get up and running. If you want to contribute to the origin repo just fork this repo and push up your changes to the `develop` branch.
 
-If this project helped you out feel free to contact me and tell me about it!
-
-**note: if you're looking for a pristine React app, this is not it. It is a bit rough and can use some major refactoring to be a clean app. Nonetheless, it is still a good learning tool :)
+If you'd like to contribute to the project `git clone` this repo and create a
+branch off of `master` for the simple version or `testing/ropsten` for the version
+using Oracles. Then create a pull request for peer review. Cheers!

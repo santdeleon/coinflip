@@ -22,7 +22,7 @@ const NavMenu = ({ user, game, githubIcon }) => (
       <span role="img" className="mr-2" aria-label="Rainbow Emoji">
         🌈
       </span>
-      Coinflip.io
+      Coinflip
     </Navbar.Brand>
 
     <Nav className="ml-auto align-items-center">
