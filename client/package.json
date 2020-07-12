@@ -24,7 +24,6 @@
     "react-dom": "16.11.0",
     "react-feather": "^2.0.3",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "3.2.0",
     "styled-components": "^5.1.0",
     "web3": "1.2.2",
@@ -33,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-environment-jsdom-sixteen": "^1.0.3"
   }
 }
