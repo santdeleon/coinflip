@@ -6,7 +6,7 @@
 .pnp.js
 
 # contract
-/src/contracts
+/client/src/contracts
 
 # testing
 /coverage
