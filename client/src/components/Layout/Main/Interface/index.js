@@ -95,7 +95,7 @@ const Interface = ({
     console.log(receipt);
     setMessage("Congrats! The funds have made it to your account.");
     setShowMessage(true);
-    user.isOwner ? (game.balance = 0) : (user.userBalance = 0);
+    user.isOwner ? (game.contractBalance = 0) : (user.userBalance = 0);
   };
 
   return (
