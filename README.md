@@ -2,17 +2,24 @@
 
 > A decentralized gambling application built on the Ethereum Network.
 
+<img src="https://img.shields.io/github/license/santdeleon/coinflip" />
+<img src="https://img.shields.io/github/package-json/v/santdeleon/coinflip" />
+<img src="https://img.shields.io/badge/-%2361dafb.svg?&style=for-the-badge&logo=react&logoColor=white" />
+
 ## To start working locally
 
 1. `git clone` this repo to your local environment
 2. `cd coinflip` into your new project directory
 3. `yarn` to install the required dependencies
-4. spin up an Ethereum node
-5. run `truffle migrate` to deploy the contracts
-6. `cd client` and run `yarn start` to spin up the App front-end
-7. You're good to go.
+4. configure the `truffle-config.js` file to an Ethereum node (preferably Ganache)
+5. spin up your Ethereum node
+6. run `truffle migrate` to deploy the contracts
+7. `cd client` and run `yarn start` to spin up the App front-end
+8. You're good to go.
 
 ## To start working on the Ropsten test network
+
+> This branch is out-of-date and in progress at the moment.
 
 1. `git clone` this repo to your local environment
 2. `cd` into your new project directory
@@ -29,9 +36,13 @@
 - [Solidity](https://solidity.readthedocs.io/en/v0.6.10/)
 - [Truffle](https://www.trufflesuite.com/)
 - [Chai](https://www.chaijs.com/)
+- [Mocha](https://mochajs.org/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [Ethersjs](https://docs.ethers.io/v5/)
 
 ## Contributing
 
-If you'd like to contribute to the project `git clone` this repo and create a
-branch off of `master` for the simple version or `testing/ropsten` for the version
-using Oracles. Then create a pull request for peer review. Cheers!
+If you'd like to contribute to the project `git clone` this repo at `master` and submit a pull request.
+
+Note: The `testing/ropsten` branch is currently being updated to [Ethersjs](https://docs.ethers.io/v5/) and is not currently working. If you'd like to contribute there: `git clone` from the `testing/ropsten` branch and submit a pull request.
