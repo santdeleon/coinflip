@@ -86,7 +86,6 @@ const Interface = ({
   };
 
   const withdraw = async () => {
-    console.log(game.contract.functions);
     let tx = user.isOwner
       ? await game.contract.withdrawContract()
       : await game.contract.withdraw();
