@@ -185,7 +185,7 @@ const TabBody = ({
         <Row className="mt-4 flex-column justify-content-center">
           <Col className="mb-4 mt-3">
             <h5 className="muted-h5">
-              Welcome back, admin. <br />
+              Welcome back, {user.isOwner ? "admin" : "user"}. <br />
               Ready to withdraw your funds?
             </h5>
           </Col>
@@ -193,7 +193,7 @@ const TabBody = ({
             <h2>
               <input
                 id="withdraw"
-                value={game.contractBalance}
+                value={user.isOwner ? game.contractBalance : user.userBalance}
                 className="border-0 text-center"
                 placeholder="0.0"
                 readOnly

@@ -24,6 +24,11 @@ export default async () => {
 
   // user
   const selectedAddress = await signer.getAddress();
+  const userBalance = parseFloat(
+    ethers.utils.formatEther(
+      await contract.getBalance({ from: selectedAddress })
+    )
+  );
 
   const game = {
     // Contract
@@ -44,6 +49,7 @@ export default async () => {
   const user = {
     selectedAddress,
     isOwner: selectedAddress === owner ? true : false,
+    userBalance,
   };
 
   return [user, game];

@@ -82,17 +82,20 @@ const Interface = ({
           : transactionAmount,
       });
 
-    game.contractBalance = game.contractBalance + Number(transactionAmount);
+    game.contractBalance = game.contractBalance + parseInt(transactionAmount);
   };
 
   const withdraw = async () => {
-    let tx = await game.contract.withdraw();
+    console.log(game.contract.functions);
+    let tx = user.isOwner
+      ? await game.contract.withdrawContract()
+      : await game.contract.withdraw();
     let receipt = await tx.wait(1);
 
     console.log(receipt);
     setMessage("Congrats! The funds have made it to your account.");
     setShowMessage(true);
-    game.contractBalance = 0;
+    user.isOwner ? (game.balance = 0) : (user.userBalance = 0);
   };
 
   return (

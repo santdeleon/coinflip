@@ -49,23 +49,15 @@ const Tabs = ({
   return (
     <>
       <Row className="mt-3 mb-3 justify-content-center">
-        {game.tabs.map((tab) => {
-          if (tab.name === "Withdraw" && !user.isOwner) {
-            return null;
-          } else if (tab.name === "Rules" && user.isOwner) {
-            return null;
-          } else {
-            return (
-              <Col xs={3} key={tab.id}>
-                <Tab
-                  currentTab={currentTab}
-                  setCurrentTab={setCurrentTab}
-                  tab={tab}
-                />
-              </Col>
-            );
-          }
-        })}
+        {game.tabs.map((tab) => (
+          <Col xs={2} key={tab.id}>
+            <Tab
+              currentTab={currentTab}
+              setCurrentTab={setCurrentTab}
+              tab={tab}
+            />
+          </Col>
+        ))}
       </Row>
       <TabBody
         user={user}
