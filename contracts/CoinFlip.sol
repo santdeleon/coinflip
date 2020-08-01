@@ -46,12 +46,16 @@ contract CoinFlip is Ownable, usingModifiers, usingPseudoRandomNumber {
     // you win
     if (rand == 1) {
       _betWon = true;
+      // increment user balance
       balances[msg.sender] = balances[msg.sender].add(msg.value.mul(2));
+      // decrement contract balance
+      balances[contractAddress] = balances[contractAddress].sub(msg.value.mul(2));
       bets.push(Bet(msg.value, _betWon));
       betToOwner[bets.length - 1] = msg.sender;
     //you lose
     } else {
       _betWon = false;
+      // increment contract balance
       balances[contractAddress] = balances[contractAddress].add(msg.value);
       bets.push(Bet(msg.value, _betWon));
       betToOwner[bets.length - 1] = msg.sender;
@@ -60,12 +64,19 @@ contract CoinFlip is Ownable, usingModifiers, usingPseudoRandomNumber {
     emit BetPlaced(msg.sender, msg.value, _betWon);
   }
 
-  function withdraw() public onlyOwner {
+  function withdraw() public {
+    require(balances[msg.sender] > 0, "There are no funds to withdraw");
+    uint withdrawal = balances[msg.sender];
+    balances[msg.sender] = 0;
+    msg.sender.transfer(withdrawal);
+  }
+
+  function withdrawContract() public onlyOwner {
     require(balances[contractAddress] > 0, "There are no funds to withdraw");
     uint withdrawal = balances[contractAddress];
     balances[contractAddress] = 0;
     msg.sender.transfer(withdrawal);
- }
+  }
 
   function getContract() public view returns (address, uint) {
     return (contractAddress, balances[contractAddress]);
