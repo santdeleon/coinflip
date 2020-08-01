@@ -2,8 +2,8 @@
 
 > A decentralized gambling application built on the Ethereum Network.
 
-<img src="https://img.shields.io/github/license/santdeleon/coinflip" />
-<img src="https://img.shields.io/github/package-json/v/santdeleon/coinflip" />
+[![License](https://img.shields.io/github/license/santdeleon/coinflip)]
+[![Version](https://img.shields.io/github/package-json/v/santdeleon/coinflip)]
 
 ## To start working locally
 
