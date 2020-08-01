@@ -4,7 +4,6 @@
 
 <img src="https://img.shields.io/github/license/santdeleon/coinflip" />
 <img src="https://img.shields.io/github/package-json/v/santdeleon/coinflip" />
-<img src="https://img.shields.io/badge/-%2361dafb.svg?&style=for-the-badge&logo=react&logoColor=white" />
 
 ## To start working locally
 
