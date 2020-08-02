@@ -19,16 +19,16 @@ const propTypes = {
 };
 
 const defaultProps = {
-  user: {},
-  game: {},
-  currentTab: "",
-  transactionAmount: "",
-  setTransactionAmount: () => {},
-  transactionButton: "",
-  setTransactionButton: () => {},
-  sendTransaction: () => {},
-  withdraw: () => {},
-  transactionResults: {},
+  user: null,
+  game: null,
+  currentTab: null,
+  transactionAmount: null,
+  setTransactionAmount: null,
+  transactionButton: null,
+  setTransactionButton: null,
+  sendTransaction: null,
+  withdraw: null,
+  transactionResults: null,
 };
 
 const TabBody = ({
@@ -46,7 +46,7 @@ const TabBody = ({
 }) => {
   const handleChange = (e) => setTransactionAmount(e.currentTarget.value);
 
-  const truncate = (string, desiredLength, separator) => {
+  const truncateString = (string, desiredLength, separator) => {
     if (string.length <= desiredLength) return string;
 
     separator = separator || "...";
@@ -89,7 +89,9 @@ const TabBody = ({
             style={{ borderRadius: "20px" }}
           >
             <p className="mb-0">Sender</p>
-            <h5 className="muted-h5">{truncate(user.selectedAddress, 32)}</h5>
+            <h5 className="muted-h5">
+              {truncateString(user.selectedAddress, 32)}
+            </h5>
           </Col>
           <Col>
             <Button

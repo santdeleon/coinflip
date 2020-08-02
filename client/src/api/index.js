@@ -12,6 +12,7 @@ export default async () => {
 
   // contract
   const network = await provider.getNetwork();
+  console.log(network);
   const networkId = network.chainId.toString();
   const contract = new ethers.Contract(
     CoinFlipContract.networks[networkId].address,
@@ -36,6 +37,7 @@ export default async () => {
     contractAddress: contract.address,
     contractBalance: balance,
     owner,
+    networkName: network.name.slice(0, 1).toUpperCase() + network.name.slice(1),
 
     // UI
     tabs: [

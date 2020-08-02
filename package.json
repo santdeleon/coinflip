@@ -20,7 +20,7 @@
     "url": "https://github.com/santdeleon/coinflip/issues"
   },
   "homepage": "https://github.com/santdeleon/coinflip#readme",
-  "dependencies": {
+  "devDependencies": {
     "truffle-assertions": "^0.9.2"
   }
 }

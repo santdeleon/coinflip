@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import api from "./api";
 
 import "./App.css";
 
-import Layout from "./components/Layout";
-import Loader from "./components/Loader";
+import AppConnected from "./components/AppConnected";
+import AppDisconnected from "./components/AppDisconnected";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = () => {
+    setIsLoading(true);
+
+    setTimeout(async () => {
       const response = await api();
       const user = response[0];
       const game = response[1];
 
       setData({ user, game });
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  if (isLoading) return <Loader />;
+    }, 2000);
+  };
 
   return (
     <div className="App" data-testid="App">
       <div className="rainbow-top" />
-      <Layout
-        user={data.user}
-        game={data.game}
-        message={message}
-        setMessage={setMessage}
-        showMessage={showMessage}
-        setShowMessage={setShowMessage}
-      />
+      {data ? (
+        <AppConnected
+          data={data}
+          message={message}
+          setMessage={setMessage}
+          showMessage={showMessage}
+          setShowMessage={setShowMessage}
+        />
+      ) : (
+        <AppDisconnected fetchData={fetchData} isLoading={isLoading} />
+      )}
     </div>
   );
 };

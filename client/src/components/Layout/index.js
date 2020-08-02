@@ -15,6 +15,9 @@ const propTypes = {
   setMessage: func.isRequired,
   showMessage: bool.isRequired,
   setShowMessage: func.isRequired,
+  showConnectBtn: bool.isRequired,
+  fetchData: func.isRequired,
+  isLoading: bool.isRequired,
 };
 
 const defaultProps = {
@@ -24,6 +27,9 @@ const defaultProps = {
   setMessage: () => {},
   showMessage: false,
   setShowMessage: () => {},
+  showConnectBtn: false,
+  fetchData: () => {},
+  isLoading: false,
 };
 
 const Layout = ({
@@ -33,6 +39,9 @@ const Layout = ({
   setMessage,
   showMessage,
   setShowMessage,
+  showConnectBtn,
+  fetchData,
+  isLoading,
 }) => (
   <>
     <Message
@@ -42,7 +51,14 @@ const Layout = ({
       setShowMessage={setShowMessage}
     />
 
-    <NavMenu user={user} game={game} githubIcon={GithubIcon} />
+    <NavMenu
+      user={user}
+      game={game}
+      githubIcon={GithubIcon}
+      showConnectBtn={showConnectBtn}
+      fetchData={fetchData}
+      isLoading={isLoading}
+    />
 
     <Main
       user={user}
@@ -57,6 +73,6 @@ const Layout = ({
   </>
 );
 
-Layout.defaultProps = propTypes;
+Layout.propTypes = propTypes;
 Layout.defaultProps = defaultProps;
 export default Layout;
