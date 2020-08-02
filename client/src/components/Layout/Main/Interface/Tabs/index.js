@@ -1,5 +1,5 @@
 import React from "react";
-import { object, string, func } from "prop-types";
+import { object, string, func, bool } from "prop-types";
 import { Row, Col } from "react-bootstrap";
 
 import Tab from "./Tab";
@@ -17,6 +17,8 @@ const propTypes = {
   sendTransaction: func.isRequired,
   withdraw: func.isRequired,
   transactionResults: object.isRequired,
+  isDisconnected: bool.isRequired,
+  setShowModal: func.isRequired,
 };
 
 const defaultProps = {
@@ -31,6 +33,8 @@ const defaultProps = {
   sendTransaction: () => {},
   withdraw: () => {},
   transactionResults: {},
+  isDisconnected: false,
+  setShowModal: () => {},
 };
 
 const Tabs = ({
@@ -45,6 +49,8 @@ const Tabs = ({
   sendTransaction,
   withdraw,
   transactionResults,
+  isDisconnected,
+  setShowModal,
 }) => {
   return (
     <>
@@ -71,6 +77,8 @@ const Tabs = ({
         sendTransaction={sendTransaction}
         withdraw={withdraw}
         transactionResults={transactionResults}
+        isDisconnected={isDisconnected}
+        setShowModal={setShowModal}
       />
     </>
   );

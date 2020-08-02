@@ -9,6 +9,8 @@ const propTypes = {
   setMessage: func.isRequired,
   showMessage: bool.isRequired,
   setShowMessage: func.isRequired,
+  isDisconnected: bool.isRequired,
+  setIsDisconnected: func.isRequired,
 };
 
 const defaultProps = {
@@ -17,6 +19,8 @@ const defaultProps = {
   setMessage: () => {},
   showMessage: false,
   setShowMessage: () => {},
+  isDisconnected: true,
+  setIsDisconnected: () => {},
 };
 
 const AppConnected = ({
@@ -25,6 +29,8 @@ const AppConnected = ({
   setMessage,
   showMessage,
   setShowMessage,
+  isDisconnected,
+  setIsDisconnected,
 }) => (
   <>
     <Layout
@@ -34,6 +40,8 @@ const AppConnected = ({
       setMessage={setMessage}
       showMessage={showMessage}
       setShowMessage={setShowMessage}
+      isDisconnected={isDisconnected}
+      setIsDisconnected={setIsDisconnected}
     />
   </>
 );

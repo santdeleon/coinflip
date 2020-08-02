@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { string, object, bool, func } from "prop-types";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWifi } from "@fortawesome/free-solid-svg-icons";
 
 import "./index.css";
-
-import ConnectWalletModal from "./ConnectWalletModal";
 
 const propTypes = {
   user: object.isRequired,
@@ -15,6 +13,7 @@ const propTypes = {
   showConnectBtn: bool.isRequired,
   fetchData: func.isRequired,
   isLoading: bool.isRequired,
+  setShowModal: func.isRequired,
 };
 
 const defaultProps = {
@@ -24,6 +23,7 @@ const defaultProps = {
   showConnectBtn: false,
   fetchData: () => {},
   isLoading: false,
+  setShowModal: () => {},
 };
 
 const NavMenu = ({
@@ -33,71 +33,60 @@ const NavMenu = ({
   showConnectBtn,
   fetchData,
   isLoading,
-}) => {
-  const [showModal, setShowModal] = useState(false);
-
-  return (
-    <Navbar id="NavMenu" className="NavMenu align-items-center pb-0">
-      <Navbar.Brand
-        href="/"
-        className="font-weight-bold d-flex align-items-center"
+  setShowModal,
+}) => (
+  <Navbar id="NavMenu" className="NavMenu align-items-center pb-0">
+    <Navbar.Brand
+      href="/"
+      className="font-weight-bold d-flex align-items-center"
+    >
+      <span role="img" className="mr-2" aria-label="Rainbow Emoji">
+        🌈
+      </span>
+      Coinflip
+      <p
+        className={`connected-network-logo ml-2 d-flex font-weight-bold align-items-center ${
+          showConnectBtn ? "red" : "green"
+        }`}
       >
-        <span role="img" className="mr-2" aria-label="Rainbow Emoji">
-          🌈
-        </span>
-        Coinflip
-        <p
-          className={`connected-network-logo ml-2 d-flex font-weight-bold align-items-center ${
-            showConnectBtn ? "red" : "green"
-          }`}
+        <FontAwesomeIcon icon={faWifi} className="mr-1"></FontAwesomeIcon>
+        {game.networkName}
+      </p>
+    </Navbar.Brand>
+
+    <Nav className="ml-auto align-items-center">
+      {showConnectBtn ? (
+        <Button
+          variant="link"
+          className="connect-to-wallet-btn text-decoration-none font-weight-bold red"
+          onClick={() => setShowModal(true)}
         >
-          <FontAwesomeIcon icon={faWifi} className="mr-1"></FontAwesomeIcon>
-          {game.networkName}
-        </p>
-      </Navbar.Brand>
-
-      <Nav className="ml-auto align-items-center">
-        {showConnectBtn ? (
-          <Button
-            variant="link"
-            className="connect-to-wallet-btn text-decoration-none font-weight-bold red"
-            onClick={() => setShowModal(true)}
-          >
-            Connect to a Wallet
-          </Button>
-        ) : (
-          <div className="d-flex align-items-center">
-            <p className="mb-0 mr-2 d-none d-md-flex">Contract balance:</p>
-            <input
-              id="contractBalance"
-              name="contractBalance"
-              className="contract-balance"
-              value={`${game.contractBalance} ether`}
-              readOnly
-            />
-          </div>
-        )}
-        <a
-          href="https://github.com/santdeleon/coinflip"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Github"
-          title="Github"
-        >
-          <img src={githubIcon} alt="Github" className="ml-3" />
-        </a>
-      </Nav>
-
-      <ConnectWalletModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        fetchData={fetchData}
-        isLoading={isLoading}
-      />
-    </Navbar>
-  );
-};
-
+          Connect to a Wallet
+        </Button>
+      ) : (
+        <div className="d-flex align-items-center">
+          <p className="mb-0 mr-2 d-none d-md-flex">Contract balance:</p>
+          <input
+            id="contractBalance"
+            name="contractBalance"
+            className="contract-balance"
+            value={`${game.contractBalance} ether`}
+            readOnly
+          />
+        </div>
+      )}
+      <a
+        href="https://github.com/santdeleon/coinflip"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Github"
+        title="Github"
+      >
+        <img src={githubIcon} alt="Github" className="ml-3" />
+      </a>
+    </Nav>
+  </Navbar>
+);
 NavMenu.propTypes = propTypes;
 NavMenu.defaultProps = defaultProps;
 export default NavMenu;

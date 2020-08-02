@@ -14,6 +14,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
+  const [isDisconnected, setIsDisconnected] = useState(true);
 
   const fetchData = () => {
     setIsLoading(true);
@@ -24,6 +25,7 @@ const App = () => {
 
       setData({ user, game });
     }, 2000);
+    setIsDisconnected(false);
   };
 
   return (
@@ -36,9 +38,15 @@ const App = () => {
           setMessage={setMessage}
           showMessage={showMessage}
           setShowMessage={setShowMessage}
+          isDisconnected={isDisconnected}
+          setIsDisconnected={setIsDisconnected}
         />
       ) : (
-        <AppDisconnected fetchData={fetchData} isLoading={isLoading} />
+        <AppDisconnected
+          fetchData={fetchData}
+          isLoading={isLoading}
+          isDisconnected={isDisconnected}
+        />
       )}
     </div>
   );

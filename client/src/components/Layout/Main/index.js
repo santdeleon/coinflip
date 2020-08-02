@@ -10,6 +10,8 @@ const propTypes = {
   setMessage: func.isRequired,
   showMessage: bool.isRequired,
   setShowMessage: func.isRequired,
+  isDisconnected: bool.isRequired,
+  setShowModal: func.isRequired,
 };
 
 const defaultProps = {
@@ -19,6 +21,8 @@ const defaultProps = {
   setMessage: () => {},
   showMessage: false,
   setShowMessage: () => {},
+  isDisconnected: true,
+  setShowModal: () => {},
 };
 
 const Main = ({
@@ -28,6 +32,8 @@ const Main = ({
   setMessage,
   showMessage,
   setShowMessage,
+  isDisconnected,
+  setShowModal,
 }) => (
   <>
     <Interface
@@ -37,6 +43,8 @@ const Main = ({
       setMessage={setMessage}
       showMessage={showMessage}
       setShowMessage={setShowMessage}
+      isDisconnected={isDisconnected}
+      setShowModal={setShowModal}
     />
   </>
 );

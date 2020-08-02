@@ -14,6 +14,8 @@ const propTypes = {
   setMessage: func.isRequired,
   showMessage: bool.isRequired,
   setShowMessage: func.isRequired,
+  isDisconnected: bool.isRequired,
+  setShowModal: func.isRequired,
 };
 
 const defaultProps = {
@@ -23,6 +25,8 @@ const defaultProps = {
   setMessage: () => {},
   showMessage: false,
   setShowMessage: () => {},
+  isDisconnected: true,
+  setShowModal: () => {},
 };
 
 const Interface = ({
@@ -32,10 +36,14 @@ const Interface = ({
   setMessage,
   showMessage,
   setShowMessage,
+  isDisconnected,
+  setShowModal,
 }) => {
   const [currentTab, setCurrentTab] = useState("Play");
   const [transactionAmount, setTransactionAmount] = useState("0");
-  const [transactionButton, setTransactionButton] = useState("Fund Contract");
+  const [transactionButton, setTransactionButton] = useState(
+    isDisconnected ? "Connect to a Wallet " : "Fund Contract"
+  );
   const [transactionResults, setTransactionResults] = useState({});
 
   const sendTransaction = async (e) => {
@@ -86,6 +94,19 @@ const Interface = ({
   };
 
   const withdraw = async () => {
+    switch (true) {
+      case game.contractBalance === 0:
+        setMessage("Sorry, you must have funds to withdraw.");
+        setShowMessage(true);
+        return;
+      case user.userBalance === 0:
+        setMessage("Sorry, you must have funds to withdraw.");
+        setShowMessage(true);
+        return;
+      default:
+        console.log("Initiating Transaction...");
+    }
+
     let tx = user.isOwner
       ? await game.contract.withdrawContract()
       : await game.contract.withdraw();
@@ -115,6 +136,8 @@ const Interface = ({
             sendTransaction={sendTransaction}
             withdraw={withdraw}
             transactionResults={transactionResults}
+            isDisconnected={isDisconnected}
+            setShowModal={setShowModal}
           />
         </Col>
       </Row>

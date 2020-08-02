@@ -1,5 +1,5 @@
 import React from "react";
-import { object, string, func } from "prop-types";
+import { object, string, func, bool } from "prop-types";
 import { Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
@@ -18,6 +18,8 @@ const propTypes = {
   sendTransaction: func.isRequired,
   withdraw: func.isRequired,
   transactionResults: object.isRequired,
+  isDisconnected: bool.isRequired,
+  setShowModal: func.isRequired,
 };
 
 const defaultProps = {
@@ -31,6 +33,8 @@ const defaultProps = {
   sendTransaction: null,
   withdraw: null,
   transactionResults: null,
+  isDisconnected: true,
+  setShowModal: () => {},
 };
 
 const TabBody = ({
@@ -45,6 +49,8 @@ const TabBody = ({
   sendTransaction,
   withdraw,
   transactionResults,
+  isDisconnected,
+  setShowModal,
 }) => {
   const handleChange = (e) => setTransactionAmount(e.currentTarget.value);
 
@@ -77,13 +83,14 @@ const TabBody = ({
           <Col>
             <Button
               id={transactionButton}
-              className="primary-btn w-50 font-weight-bold ml-5"
-              onClick={sendTransaction}
+              className={`primary-btn w-50 font-weight-bold ml-5`}
+              onClick={isDisconnected ? setShowModal : sendTransaction}
             >
               {transactionButton}
             </Button>
             <Button
               variant="transparent"
+              disabled={isDisconnected && true}
               onClick={() => {
                 transactionButton === "Fund Contract"
                   ? setTransactionButton("Place Bet")
@@ -178,9 +185,9 @@ const TabBody = ({
           <Col className="mt-5">
             <Button
               className="primary-btn w-50 font-weight-bold"
-              onClick={withdraw}
+              onClick={isDisconnected ? setShowModal : withdraw}
             >
-              Withdraw Funds
+              {isDisconnected ? "Connect to a Wallet" : "Withdraw Funds"}
             </Button>
           </Col>
         </Row>

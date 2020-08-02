@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { string, object, func, bool } from "prop-types";
 
 import NavMenu from "./NavMenu";
 import Main from "./Main";
 import Message from "./Message";
+import ConnectWalletModal from "./ConnectWalletModal";
 import Footer from "./Footer";
 
 import GithubIcon from "../../assets/img/github.svg";
@@ -18,6 +19,7 @@ const propTypes = {
   showConnectBtn: bool.isRequired,
   fetchData: func.isRequired,
   isLoading: bool.isRequired,
+  isDisconnected: bool.isRequired,
 };
 
 const defaultProps = {
@@ -30,6 +32,7 @@ const defaultProps = {
   showConnectBtn: false,
   fetchData: () => {},
   isLoading: false,
+  isDisconnected: true,
 };
 
 const Layout = ({
@@ -42,36 +45,52 @@ const Layout = ({
   showConnectBtn,
   fetchData,
   isLoading,
-}) => (
-  <>
-    <Message
-      message={message}
-      setMessage={setMessage}
-      showMessage={showMessage}
-      setShowMessage={setShowMessage}
-    />
+  isDisconnected,
+}) => {
+  const [showModal, setShowModal] = useState(false);
 
-    <NavMenu
-      user={user}
-      game={game}
-      githubIcon={GithubIcon}
-      showConnectBtn={showConnectBtn}
-      fetchData={fetchData}
-      isLoading={isLoading}
-    />
+  return (
+    <>
+      <Message
+        message={message}
+        setMessage={setMessage}
+        showMessage={showMessage}
+        setShowMessage={setShowMessage}
+      />
 
-    <Main
-      user={user}
-      game={game}
-      message={message}
-      setMessage={setMessage}
-      showMessage={showMessage}
-      setShowMessage={setShowMessage}
-    />
+      <NavMenu
+        user={user}
+        game={game}
+        githubIcon={GithubIcon}
+        showConnectBtn={showConnectBtn}
+        fetchData={fetchData}
+        isLoading={isLoading}
+        isDisconnected={isDisconnected}
+        setShowModal={setShowModal}
+      />
 
-    <Footer />
-  </>
-);
+      <Main
+        user={user}
+        game={game}
+        message={message}
+        setMessage={setMessage}
+        showMessage={showMessage}
+        setShowMessage={setShowMessage}
+        isDisconnected={isDisconnected}
+        setShowModal={setShowModal}
+      />
+
+      <ConnectWalletModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        fetchData={fetchData}
+        isLoading={isLoading}
+      />
+
+      <Footer />
+    </>
+  );
+};
 
 Layout.propTypes = propTypes;
 Layout.defaultProps = defaultProps;
