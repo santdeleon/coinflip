@@ -47,11 +47,9 @@ const NavMenu = ({
         </span>
         Coinflip
         <p
-          className="ml-2 d-flex font-weight-bold align-items-center"
-          style={{
-            color: showConnectBtn ? "#ff007a" : "#62e07b",
-            fontSize: "11px",
-          }}
+          className={`connected-network-logo ml-2 d-flex font-weight-bold align-items-center ${
+            showConnectBtn ? "red" : "green"
+          }`}
         >
           <FontAwesomeIcon icon={faWifi} className="mr-1"></FontAwesomeIcon>
           {game.networkName}
@@ -62,14 +60,13 @@ const NavMenu = ({
         {showConnectBtn ? (
           <Button
             variant="link"
-            className="text-decoration-none font-weight-bold"
-            style={{ color: "#ff007a", fontSize: "14px" }}
+            className="connect-to-wallet-btn text-decoration-none font-weight-bold red"
             onClick={() => setShowModal(true)}
           >
             Connect to a Wallet
           </Button>
         ) : (
-          <span className="d-flex align-items-center">
+          <div className="d-flex align-items-center">
             <p className="mb-0 mr-2 d-none d-md-flex">Contract balance:</p>
             <input
               id="contractBalance"
@@ -78,7 +75,7 @@ const NavMenu = ({
               value={`${game.contractBalance} ether`}
               readOnly
             />
-          </span>
+          </div>
         )}
         <a
           href="https://github.com/santdeleon/coinflip"

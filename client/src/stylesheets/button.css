@@ -1,0 +1,15 @@
+.primary-btn {
+  border-radius: 20px;
+  background-color: #fcdce8;
+  border-color: #fcdce8;
+  color: #ff007a;
+}
+
+.primary-btn:hover,
+.primary-btn:focus,
+.primary-btn:active {
+  border-radius: 20px !important;
+  background-color: #f7a3c2 !important;
+  border-color: #f7a3c2 !important;
+  color: #000 !important;
+}

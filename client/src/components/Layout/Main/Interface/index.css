@@ -5,20 +5,6 @@
   background-position: right;
 }
 
-.rainbow-rounded-top {
-  background: linear-gradient(
-    to right,
-    #f76f6f,
-    #fcfc83,
-    #fcca67,
-    #84ffaf,
-    #83e0f7,
-    #ca67e5,
-    #ff87e1
-  );
-  border-radius: 20px 20px 0 0;
-}
-
 .interface-container {
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.01) 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 4px 8px,
@@ -56,22 +42,6 @@ label:focus,
   outline: 0px !important;
   -webkit-appearance: none;
   box-shadow: none !important;
-}
-
-.send-btn {
-  border-radius: 20px;
-  background-color: #fcdce8 !important;
-  border-color: #fcdce8 !important;
-  color: #ff007a !important;
-}
-
-.send-btn:hover,
-.send-btn:focus,
-.send-btn:active {
-  border-radius: 20px;
-  background-color: #f7a3c2 !important;
-  border-color: #f7a3c2 !important;
-  color: #000 !important;
 }
 
 .muted-h5 {

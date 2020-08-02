@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import api from "./api";
 
 import "./App.css";
+import "./stylesheets/colors.css";
+import "./stylesheets/button.css";
 
 import AppConnected from "./components/AppConnected";
 import AppDisconnected from "./components/AppDisconnected";
@@ -15,7 +17,6 @@ const App = () => {
 
   const fetchData = () => {
     setIsLoading(true);
-
     setTimeout(async () => {
       const response = await api();
       const user = response[0];
@@ -26,7 +27,7 @@ const App = () => {
   };
 
   return (
-    <div className="App" data-testid="App">
+    <div id="App" className="App">
       <div className="rainbow-top" />
       {data ? (
         <AppConnected

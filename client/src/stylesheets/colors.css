@@ -1,0 +1,98 @@
+.rainbow-top {
+  background: linear-gradient(
+    to right,
+    #f76f6f,
+    #fcfc83,
+    #fcca67,
+    #84ffaf,
+    #83e0f7,
+    #ca67e5,
+    #ff87e1
+  );
+  padding: 5px;
+}
+
+.rainbow-rounded-top {
+  background: linear-gradient(
+    to right,
+    #f76f6f,
+    #fcfc83,
+    #fcca67,
+    #84ffaf,
+    #83e0f7,
+    #ca67e5,
+    #ff87e1
+  );
+  border-radius: 20px 20px 0 0;
+}
+
+::-webkit-scrollbar {
+  background-color: #ff87e1;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 10px;
+  background: linear-gradient(
+    to bottom,
+    #ff87e1,
+    #ca67e5,
+    #83e0f7,
+    #84ffaf,
+    #fcfc83,
+    #fcca67,
+    #f76f6f
+  );
+}
+
+::selection {
+  background: #84fbb8;
+}
+
+.red {
+  color: #ff007a;
+  background-color: transparent;
+}
+
+.red:hover {
+  color: #e01671;
+}
+
+.orange {
+  color: #fcca67;
+  background-color: transparent;
+}
+
+.orange:hover {
+  color: #e0af55;
+}
+
+.yellow {
+  color: #fcfc83;
+  background-color: transparent;
+}
+
+.yellow:hover {
+  color: #e8e863;
+  background-color: transparent;
+}
+
+.green {
+  color: #84fbb8;
+  background-color: transparent;
+}
+
+.green:hover {
+  color: #70d89d;
+  background-color: transparent;
+}
+
+.blue {
+  color: #83e0f7;
+  background-color: transparent;
+}
+
+.blue:hover {
+  color: #75c6d8;
+  background-color: transparent;
+}

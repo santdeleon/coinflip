@@ -18,7 +18,7 @@ const Tab = ({ tab, currentTab, setCurrentTab }) => {
   return (
     <Button
       key={tab.id}
-      className={`tab-button py-1 ${currentTab === tab.name && "active"} `}
+      className={`tab-button py-1 px-0 ${currentTab === tab.name && "active"} `}
       onClick={() => setCurrentTab(tab.name)}
     >
       <h5 className="mb-0 mt-2">{tab.name}</h5>

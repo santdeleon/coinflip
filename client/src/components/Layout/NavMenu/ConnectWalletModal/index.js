@@ -4,7 +4,7 @@ import { Row, Col, Modal, Button, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import wallets from "../wallets";
+import wallets from "./wallets";
 
 const propTypes = {
   fetchData: func.isRequired,
@@ -30,9 +30,8 @@ const ConnectWalletModal = ({
     <>
       <Modal
         show={showModal}
-        size="md"
-        aria-labelledby="Connect to a Wallet"
         centered
+        aria-labelledby="Connect to a Wallet"
         onHide={() => setShowModal(false)}
       >
         <Modal.Header className="d-flex align-items-center">

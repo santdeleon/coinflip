@@ -37,10 +37,9 @@ const Message = ({ message, setMessage, showMessage, setShowMessage }) => {
         <Col xs={2} className="d-flex justify-content-end">
           <XSquare
             role="button"
-            className="text-right remove-status-message-btn mr-5"
+            className="remove-status-message-btn text-right mr-5"
             onClick={() => setShowMessage(false)}
             size={28}
-            style={{ minWidth: "28px" }}
           />
         </Col>
       </Row>

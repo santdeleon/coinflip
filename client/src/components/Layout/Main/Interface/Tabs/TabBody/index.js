@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { faArrowDown, faMagic } from "@fortawesome/free-solid-svg-icons";
 
+import { truncateString } from "../../../../../utils/truncateString";
+
 const propTypes = {
   user: object.isRequired,
   game: object.isRequired,
@@ -46,23 +48,6 @@ const TabBody = ({
 }) => {
   const handleChange = (e) => setTransactionAmount(e.currentTarget.value);
 
-  const truncateString = (string, desiredLength, separator) => {
-    if (string.length <= desiredLength) return string;
-
-    separator = separator || "...";
-
-    const sepLen = separator.length,
-      charsToShow = desiredLength - sepLen,
-      frontChars = Math.ceil(charsToShow / 2),
-      backChars = Math.floor(charsToShow / 2);
-
-    return (
-      string.substr(0, frontChars) +
-      separator +
-      string.substr(string.length - backChars)
-    );
-  };
-
   return (
     <>
       {/* Play Tab */}
@@ -83,11 +68,7 @@ const TabBody = ({
               <h5 className="mb-0">Ethereum</h5>
             </div>
           </Col>
-          <Col
-            xs={10}
-            className="border my-5 mx-auto text-left pt-2"
-            style={{ borderRadius: "20px" }}
-          >
+          <Col xs={10} className="border my-5 mx-auto text-left pt-2 rounder">
             <p className="mb-0">Sender</p>
             <h5 className="muted-h5">
               {truncateString(user.selectedAddress, 32)}
@@ -96,7 +77,7 @@ const TabBody = ({
           <Col>
             <Button
               id={transactionButton}
-              className="send-btn w-50 font-weight-bold ml-5"
+              className="primary-btn w-50 font-weight-bold ml-5"
               onClick={sendTransaction}
             >
               {transactionButton}
@@ -114,15 +95,10 @@ const TabBody = ({
           </Col>
         </Row>
       )}
-
       {/* Results Tab */}
       {currentTab === "Results" && (
         <Row>
-          <Col
-            xs={10}
-            className="border my-4 mx-auto text-left pt-2"
-            style={{ borderRadius: "20px" }}
-          >
+          <Col xs={10} className="border my-4 mx-auto text-left pt-2 rounder">
             <p className="mb-0">Game won</p>
             <h5 className="muted-h5">
               {transactionResults.won !== undefined
@@ -133,11 +109,7 @@ const TabBody = ({
           <Col xs={10} className="mx-auto text-center">
             <FontAwesomeIcon className="text-muted" icon={faArrowDown} />
           </Col>
-          <Col
-            xs={10}
-            className="border my-4 mx-auto text-left pt-2"
-            style={{ borderRadius: "20px" }}
-          >
+          <Col xs={10} className="border my-4 mx-auto text-left pt-2 rounder">
             <p className="mb-0">How much did I Win/Lose</p>
             <h5 className="muted-h5">
               {transactionResults.amount !== undefined
@@ -147,14 +119,11 @@ const TabBody = ({
           </Col>
         </Row>
       )}
+
       {/* Content - Rules */}
       {currentTab === "Rules" && (
         <Row className="flex-column">
-          <Col
-            xs={10}
-            className="border my-4 mx-auto text-left pt-2"
-            style={{ borderRadius: "20px" }}
-          >
+          <Col xs={10} className="border my-4 mx-auto text-left pt-2 rounder">
             <ul className="p-0" style={{ listStyleType: "none" }}>
               <li className="rule mt-2">
                 There must be funds in the contract to play.
@@ -174,7 +143,7 @@ const TabBody = ({
           </Col>
           <Col className="mx-auto">
             <Button
-              className="send-btn w-50 font-weight-bold"
+              className="primary-btn w-50 font-weight-bold"
               onClick={() => setCurrentTab("Play")}
             >
               Got it
@@ -208,7 +177,7 @@ const TabBody = ({
           </Col>
           <Col className="mt-5">
             <Button
-              className="send-btn w-50 font-weight-bold"
+              className="primary-btn w-50 font-weight-bold"
               onClick={withdraw}
             >
               Withdraw Funds

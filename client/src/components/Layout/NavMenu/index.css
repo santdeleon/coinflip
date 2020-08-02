@@ -14,9 +14,10 @@
   padding-left: 10px;
 }
 
-/* Media Queries */
-@media only screen and (max-width: 768px) {
-  .github-icon {
-    display: none;
-  }
+.connected-network-logo {
+  font-size: 12px;
+}
+
+.connect-to-wallet-btn {
+  font-size: 0.9rem;
 }

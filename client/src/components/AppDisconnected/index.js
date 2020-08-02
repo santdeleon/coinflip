@@ -8,6 +8,11 @@ const propTypes = {
   isLoading: bool.isRequired,
 };
 
+const defaultProps = {
+  fetchData: func.isRequired,
+  isLoading: bool.isRequired,
+};
+
 const AppDisconnected = ({ fetchData, isLoading }) => (
   <>
     <Layout
@@ -40,4 +45,5 @@ const AppDisconnected = ({ fetchData, isLoading }) => (
 );
 
 AppDisconnected.propTypes = propTypes;
+AppDisconnected.defaultProps = defaultProps;
 export default AppDisconnected;

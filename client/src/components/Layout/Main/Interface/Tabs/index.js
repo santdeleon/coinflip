@@ -48,7 +48,7 @@ const Tabs = ({
 }) => {
   return (
     <>
-      <Row className="mt-3 mb-3 justify-content-center">
+      <Row className="mt-3 mb-3 justify-content-center" noGutters>
         {game.tabs.map((tab) => (
           <Col xs={2} key={tab.id}>
             <Tab

@@ -10,6 +10,10 @@
   z-index: 1000;
 }
 
+.remove-status-message-btn {
+  min-width: 28px;
+}
+
 .remove-status-message-btn:hover {
   color: white;
 }
