@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { faArrowDown, faMagic } from "@fortawesome/free-solid-svg-icons";
 
-import { truncateString } from "../../../../../utils/truncateString";
+import { truncateString } from "../../../../../../utils/truncateString";
 
 const propTypes = {
   user: object.isRequired,

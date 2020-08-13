@@ -50,7 +50,7 @@ const NavMenu = ({
         }`}
       >
         <FontAwesomeIcon icon={faWifi} className="mr-1"></FontAwesomeIcon>
-        {game.networkName}
+        {game.networkId === "5777" ? "Ganache" : game.networkName}
       </p>
     </Navbar.Brand>
 
