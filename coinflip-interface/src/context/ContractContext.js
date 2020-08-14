@@ -1,15 +1,23 @@
 import React, { useContext } from "react";
+import { Web3Provider } from "@ethersproject/providers";
 
-const initialState = {
-  contract: "",
-  contractAddress: "",
+import CoinFlipContract from "../contracts/CoinFlip.json";
+import { getContract } from "../utils/getContract";
+
+const contract = getContract(
+  CoinFlipContract.networks[5777].address,
+  CoinFlipContract.abi,
+  new Web3Provider(window.ethereum)
+);
+
+export const ContractContext = React.createContext({
+  contract,
+  contractAddress: contract.address,
   contractBalance: "",
-  isConnected: false,
-  setIsConnected: () => {},
-};
-
-const ContractContext = React.createContext(initialState);
+  setContractBalance: () => {},
+  userIsConnected: false,
+  setUserIsConnected: () => {},
+});
 
 export const ContractProvider = ContractContext.Provider;
-export const ContractConsumer = ContractContext.Consumer;
 export const useContract = () => useContext(ContractContext);

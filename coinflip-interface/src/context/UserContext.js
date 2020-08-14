@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 
-const initialState = {
-  provider: {},
-  signer: {},
+export const UserContext = React.createContext({
   network: "",
-  networkId: "",
-  networkName: "yes",
-  selectedAddress: "",
-  owner: "",
+  chainId: "",
+  setNetwork: () => {},
+  userAddress: "",
+  setUserAddress: () => {},
   isOwner: false,
+  setIsOwner: () => {},
   userBalance: "",
-};
-
-const UserContext = React.createContext(initialState);
+  setUserBalance: () => {},
+});
 
 export const UserProvider = UserContext.Provider;
-export const UserConsumer = UserContext.Consumer;
 export const useUser = () => useContext(UserContext);

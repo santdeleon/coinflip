@@ -1,31 +1,15 @@
 import React from "react";
-import { func, bool } from "prop-types";
 import { Row, Col, Modal, Button, Spinner } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { X } from "react-feather";
+
+// import { useContract } from "../../../context/ContractContext";
+import { useApplication } from "../../../context/ApplicationContext";
 
 import wallets from "./wallets";
 
-const propTypes = {
-  fetchData: func.isRequired,
-  showModal: bool.isRequired,
-  setShowModal: func.isRequired,
-  isLoading: bool.isRequired,
-};
+const ConnectWalletModal = () => {
+  const { isWalletConnecting, showModal, setShowModal } = useApplication();
 
-const defaultProps = {
-  fetchData: () => {},
-  showModal: false,
-  setShowModal: () => {},
-  isLoading: false,
-};
-
-const ConnectWalletModal = ({
-  fetchData,
-  showModal,
-  setShowModal,
-  isLoading,
-}) => {
   return (
     <>
       <Modal
@@ -36,7 +20,7 @@ const ConnectWalletModal = ({
       >
         <Modal.Header className="d-flex align-items-center">
           <h6 className="mb-0">
-            {isLoading ? "Connecting..." : "Connect to a Wallet"}
+            {isWalletConnecting ? "Connecting..." : "Connect to a Wallet"}
           </h6>
           <Button
             variant="transparent"
@@ -44,11 +28,17 @@ const ConnectWalletModal = ({
             className="p-0"
             onClick={() => setShowModal(false)}
           >
-            <FontAwesomeIcon icon={faTimes} />
+            <X size={20} />
           </Button>
         </Modal.Header>
         <Modal.Body className="bg-light rounded">
-          {!isLoading ? (
+          {isWalletConnecting ? (
+            <Row className="text-center">
+              <Col>
+                <Spinner animation="border" variant="dark" />
+              </Col>
+            </Row>
+          ) : (
             <Row className="justify-content-center">
               {wallets.map((wallet, idx) => (
                 <Col
@@ -62,11 +52,12 @@ const ConnectWalletModal = ({
                   style={{
                     pointerEvents: wallet.name !== "MetaMask" && "none",
                   }}
-                  onClick={fetchData}
+                  // TODO: Setup Click to connect to User Wallet
+                  // onClick={() => {}}
                 >
                   <p className="mr-auto mb-0 font-weight-bold">{wallet.name}</p>
                   <img
-                    src={wallet.src}
+                    src={wallet.img}
                     className="ml-auto"
                     alt={wallet.name}
                     height={25}
@@ -75,12 +66,6 @@ const ConnectWalletModal = ({
                 </Col>
               ))}
             </Row>
-          ) : (
-            <Row className="text-center">
-              <Col>
-                <Spinner animation="border" variant="dark" />
-              </Col>
-            </Row>
           )}
         </Modal.Body>
       </Modal>
@@ -88,6 +73,4 @@ const ConnectWalletModal = ({
   );
 };
 
-ConnectWalletModal.propTypes = propTypes;
-ConnectWalletModal.defaultProps = defaultProps;
 export default ConnectWalletModal;

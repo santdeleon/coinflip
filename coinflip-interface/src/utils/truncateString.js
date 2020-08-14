@@ -1,4 +1,5 @@
 export const truncateString = (string, desiredLength, separator) => {
+  if (!string) return null;
   if (string.length <= desiredLength) return string;
 
   separator = separator || "...";

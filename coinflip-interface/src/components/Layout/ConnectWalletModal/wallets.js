@@ -5,9 +5,9 @@ import Fortmatic from "../../../assets/img/fortmatic.png";
 import Portis from "../../../assets/img/portis.png";
 
 export default [
-  { name: "MetaMask", src: MetaMask },
-  { name: "Wallet Connect", src: WalletConnect },
-  { name: "Coinbase", src: Coinbase },
-  { name: "Fortmatic", src: Fortmatic },
-  { name: "Portis", src: Portis },
+  { name: "MetaMask", img: MetaMask },
+  { name: "Wallet Connect", img: WalletConnect },
+  { name: "Coinbase", img: Coinbase },
+  { name: "Fortmatic", img: Fortmatic },
+  { name: "Portis", img: Portis },
 ];

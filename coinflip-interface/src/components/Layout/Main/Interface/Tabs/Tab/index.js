@@ -1,20 +1,10 @@
 import React from "react";
-import { object, string, func } from "prop-types";
 import { Button } from "react-bootstrap";
 
-const propTypes = {
-  tab: object.isRequired,
-  currentTab: string.isRequired,
-  setCurrentTab: func.isRequired,
-};
+import { useApplication } from "../../../../../../context/ApplicationContext";
 
-const defaultProps = {
-  tab: {},
-  currentTab: "",
-  setCurrentTab: () => {},
-};
-
-const Tab = ({ tab, currentTab, setCurrentTab }) => {
+const Tab = ({ tab }) => {
+  const { currentTab, setCurrentTab } = useApplication();
   return (
     <Button
       key={tab.id}
@@ -26,6 +16,4 @@ const Tab = ({ tab, currentTab, setCurrentTab }) => {
   );
 };
 
-Tab.propTypes = propTypes;
-Tab.defaultProps = defaultProps;
 export default Tab;

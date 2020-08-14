@@ -1,48 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { Web3Provider } from "@ethersproject/providers";
-// import { useWeb3React } from "@web3-react/core";
+import { Web3ReactProvider } from "@web3-react/core";
 
 import "./App.css";
 import "./stylesheets/colors.css";
 import "./stylesheets/button.css";
 
-import { CoinFlipABI } from "./abis/coinflip";
-import { useContract } from "./hooks/useContract";
+import { ContractProvider } from "./context/ContractContext";
+import { UserProvider } from "./context/UserContext";
+import { ApplicationProvider } from "./context/ApplicationContext";
 
-// import AppConnected from "./components/AppConnected";
-// import AppDisconnected from "./components/AppDisconnected";
+import Layout from "./components/Layout";
 
 const App = () => {
-  // console.log(useWeb3React());
-  console.log(
-    useContract(
-      "0x62414f33705F90A4152D2b53C6145999FAA891fc",
-      CoinFlipABI,
-      new Web3Provider(window.ethereum)
-    )
+  const userState = {};
+
+  // contract state
+  const [contractBalance, setContractBalance] = useState("");
+  const [userIsConnected, setUserIsConnected] = useState(false);
+  const contractState = {
+    contractBalance,
+    setContractBalance,
+    userIsConnected,
+    setUserIsConnected,
+  };
+
+  // application state
+  const [isWalletConnecting, setIsWalletConnecting] = useState(false);
+  const [alert, setAlert] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [transactionAmount, setTransactionAmount] = useState("0");
+  const [transactionResults, setTransactionResults] = useState(null);
+  const [currentTab, setCurrentTab] = useState("Play");
+  const [transactionButtonText, setTransactionButtonText] = useState(
+    "Connect to a Wallet"
   );
 
+  const applicationState = {
+    isWalletConnecting,
+    setIsWalletConnecting,
+    alert,
+    setAlert,
+    showModal,
+    setShowModal,
+    transactionAmount,
+    setTransactionAmount,
+    transactionResults,
+    setTransactionResults,
+    currentTab,
+    setCurrentTab,
+    transactionButtonText,
+    setTransactionButtonText,
+  };
+
+  const getLibrary = (provider) => new Web3Provider(provider);
+
   return (
-    <div id="App" className="App">
-      <div className="rainbow-top" />
-      {/* {data ? (
-          <AppConnected
-            data={data}
-            message={message}
-            setMessage={setMessage}
-            showMessage={showMessage}
-            setShowMessage={setShowMessage}
-            isDisconnected={isDisconnected}
-            setIsDisconnected={setIsDisconnected}
-          />
-        ) : (
-          <AppDisconnected
-            fetchData={fetchData}
-            isLoading={isLoading}
-            isDisconnected={isDisconnected}
-          />
-        )} */}
-    </div>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <UserProvider value={userState}>
+        <ContractProvider value={contractState}>
+          <ApplicationProvider value={applicationState}>
+            <div id="App" className="App">
+              <div className="rainbow-top" />
+              <Layout />
+            </div>
+          </ApplicationProvider>
+        </ContractProvider>
+      </UserProvider>
+    </Web3ReactProvider>
   );
 };
 

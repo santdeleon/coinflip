@@ -1,89 +1,27 @@
 import React from "react";
-import { object, string, func, bool } from "prop-types";
 import { Row, Col } from "react-bootstrap";
 
 import Tab from "./Tab";
 import TabBody from "./TabBody";
 
-const propTypes = {
-  user: object.isRequired,
-  game: object.isRequired,
-  currentTab: string.isRequired,
-  setCurrentTab: func.isRequired,
-  transactionAmount: string.isRequired,
-  setTransactionAmount: func.isRequired,
-  transactionButton: string.isRequired,
-  setTransactionButton: func.isRequired,
-  sendTransaction: func.isRequired,
-  withdraw: func.isRequired,
-  transactionResults: object.isRequired,
-  isDisconnected: bool.isRequired,
-  setShowModal: func.isRequired,
-};
-
-const defaultProps = {
-  user: {},
-  game: {},
-  currentTab: "",
-  setCurrentTab: () => {},
-  transactionAmount: "",
-  setTransactionAmount: () => {},
-  transactionButton: "",
-  setTransactionButton: () => {},
-  sendTransaction: () => {},
-  withdraw: () => {},
-  transactionResults: {},
-  isDisconnected: false,
-  setShowModal: () => {},
-};
-
-const Tabs = ({
-  user,
-  game,
-  currentTab,
-  setCurrentTab,
-  transactionAmount,
-  setTransactionAmount,
-  transactionButton,
-  setTransactionButton,
-  sendTransaction,
-  withdraw,
-  transactionResults,
-  isDisconnected,
-  setShowModal,
-}) => {
+const Tabs = () => {
   return (
     <>
       <Row className="mt-3 mb-3 justify-content-center" noGutters>
-        {game.tabs.map((tab) => (
+        {[
+          { id: 0, name: "Play" },
+          { id: 1, name: "Results" },
+          { id: 2, name: "Rules" },
+          { id: 3, name: "Withdraw" },
+        ].map((tab) => (
           <Col xs={2} key={tab.id}>
-            <Tab
-              currentTab={currentTab}
-              setCurrentTab={setCurrentTab}
-              tab={tab}
-            />
+            <Tab tab={tab} />
           </Col>
         ))}
       </Row>
-      <TabBody
-        user={user}
-        game={game}
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-        transactionAmount={transactionAmount}
-        setTransactionAmount={setTransactionAmount}
-        transactionButton={transactionButton}
-        setTransactionButton={setTransactionButton}
-        sendTransaction={sendTransaction}
-        withdraw={withdraw}
-        transactionResults={transactionResults}
-        isDisconnected={isDisconnected}
-        setShowModal={setShowModal}
-      />
+      <TabBody />
     </>
   );
 };
 
-Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
 export default Tabs;
