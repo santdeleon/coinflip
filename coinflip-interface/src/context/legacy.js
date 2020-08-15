@@ -38,14 +38,6 @@ export default async () => {
     contractBalance: balance,
     owner,
     networkName: network.name.slice(0, 1).toUpperCase() + network.name.slice(1),
-
-    // UI
-    tabs: [
-      { id: 0, name: "Play" },
-      { id: 1, name: "Results" },
-      { id: 2, name: "Rules" },
-      { id: 3, name: "Withdraw" },
-    ],
   };
 
   const user = {

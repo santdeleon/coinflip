@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Web3Provider } from "@ethersproject/providers";
 
 import CoinFlipContract from "../contracts/CoinFlip.json";
+
 import { getContract } from "../utils/getContract";
 
 const contract = getContract(
@@ -11,12 +12,10 @@ const contract = getContract(
 );
 
 export const ContractContext = React.createContext({
-  contract,
+  contract: contract,
   contractAddress: contract.address,
   contractBalance: "",
   setContractBalance: () => {},
-  userIsConnected: false,
-  setUserIsConnected: () => {},
 });
 
 export const ContractProvider = ContractContext.Provider;

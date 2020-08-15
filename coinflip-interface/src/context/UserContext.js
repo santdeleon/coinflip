@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 
 export const UserContext = React.createContext({
+  currentAddress: "",
+  setCurrentAddress: () => {},
+  currentChainId: "",
+  setCurrentChainId: () => {},
   network: "",
-  chainId: "",
   setNetwork: () => {},
-  userAddress: "",
-  setUserAddress: () => {},
-  isOwner: false,
-  setIsOwner: () => {},
   userBalance: "",
   setUserBalance: () => {},
 });

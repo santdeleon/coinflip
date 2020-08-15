@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { Web3Provider } from "@ethersproject/providers";
-import { Web3ReactProvider } from "@web3-react/core";
+import React, { useState, useEffect } from "react";
+import { useWeb3React } from "@web3-react/core";
 
 import "./App.css";
 import "./stylesheets/colors.css";
-import "./stylesheets/button.css";
+import "./stylesheets/buttons.css";
 
 import { ContractProvider } from "./context/ContractContext";
 import { UserProvider } from "./context/UserContext";
@@ -12,17 +11,32 @@ import { ApplicationProvider } from "./context/ApplicationContext";
 
 import Layout from "./components/Layout";
 
+import { useEagerConnect } from "./hooks/useEagerConnect";
+import { useContract } from "./context/ContractContext";
+
 const App = () => {
-  const userState = {};
+  // user state
+  const [currentAddress, setCurrentAddress] = useState(null);
+  const [currentChainId, setCurrentChainId] = useState(null);
+  const [userBalance, setUserBalance] = useState(null);
+  const [network, setNetwork] = useState(null);
+  const userState = {
+    currentAddress,
+    setCurrentAddress,
+    currentChainId,
+    setCurrentChainId,
+    network,
+    setNetwork,
+    userBalance,
+    setUserBalance,
+  };
 
   // contract state
-  const [contractBalance, setContractBalance] = useState("");
-  const [userIsConnected, setUserIsConnected] = useState(false);
+  const { contract } = useContract();
+  const [contractBalance, setContractBalance] = useState("0");
   const contractState = {
     contractBalance,
     setContractBalance,
-    userIsConnected,
-    setUserIsConnected,
   };
 
   // application state
@@ -35,7 +49,6 @@ const App = () => {
   const [transactionButtonText, setTransactionButtonText] = useState(
     "Connect to a Wallet"
   );
-
   const applicationState = {
     isWalletConnecting,
     setIsWalletConnecting,
@@ -53,21 +66,38 @@ const App = () => {
     setTransactionButtonText,
   };
 
-  const getLibrary = (provider) => new Web3Provider(provider);
+  const triedEager = useEagerConnect();
+  const { active, account, chainId, library } = useWeb3React();
+
+  // if successfully connected to { injected } populate Contexts
+  useEffect(() => {
+    if (triedEager && active) {
+      const getBalance = async () => {
+        const balance = await contract.getBalance();
+        setContractBalance(balance);
+        setNetwork(
+          library.network.name === "unknown" ? "Ganache" : library.network.name
+        );
+      };
+
+      setCurrentAddress(account);
+      setCurrentChainId(chainId);
+
+      getBalance();
+    }
+  }, [triedEager, active, account, chainId, contract, library]);
 
   return (
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <UserProvider value={userState}>
-        <ContractProvider value={contractState}>
-          <ApplicationProvider value={applicationState}>
-            <div id="App" className="App">
-              <div className="rainbow-top" />
-              <Layout />
-            </div>
-          </ApplicationProvider>
-        </ContractProvider>
-      </UserProvider>
-    </Web3ReactProvider>
+    <UserProvider value={userState}>
+      <ContractProvider value={contractState}>
+        <ApplicationProvider value={applicationState}>
+          <div id="App" className="App">
+            <div className="rainbow-top" />
+            <Layout />
+          </div>
+        </ApplicationProvider>
+      </ContractProvider>
+    </UserProvider>
   );
 };
 
