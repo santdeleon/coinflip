@@ -1,4 +1,5 @@
 import React from "react";
+import { useWeb3React } from "@web3-react/core";
 import { parseEther } from "@ethersproject/units";
 import { Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +13,14 @@ import { useApplication } from "../../../../../../context/ApplicationContext";
 import { truncateString } from "../../../../../../utils/truncateString";
 
 const TabBody = () => {
-  const { userAddress, userBalance, setUserBalance, isOwner } = useUser();
+  const {
+    userIsOwner,
+    currentAddress,
+    userBalance,
+    setUserBalance,
+  } = useUser();
   const { contract, contractBalance, setContractBalance } = useContract();
   const {
-    isConnected,
     setShowModal,
     currentTab,
     transactionAmount,
@@ -27,26 +32,39 @@ const TabBody = () => {
     setAlert,
     setTransactionResults,
   } = useApplication();
-  const handleChange = (e) => setTransactionAmount(e.currentTarget.value);
+  const { active } = useWeb3React();
+
+  const handleChange = (e) => {
+    setTransactionAmount(e.currentTarget.value);
+  };
 
   const sendTransaction = async (e) => {
     switch (true) {
-      case transactionAmount.match(/[^0-9]/g):
+      case transactionAmount === "":
+        return;
+      // only allow numbers and float points allowed
+      case !new RegExp(/^\d*\.?\d+$/).test(transactionAmount):
         setAlert({
           title: "Woops!",
           text: "Only numbers are allowed",
         });
         return;
-      case transactionAmount === "0" || transactionAmount === 0:
+      case parseFloat(transactionAmount) === 0:
         setAlert({
           title: "Oh no!",
           text: "You have to send some ether to the contract",
         });
         return;
-      case parseInt(transactionAmount) > 5 || parseInt(transactionAmount) < 0:
+      case parseFloat(transactionAmount) < 0.01:
         setAlert({
-          title: "Dang!",
-          text: "You have to send more funds, but no more than 5 ether",
+          title: "Oh no!",
+          text: "You have to send at least 0.01 ether",
+        });
+        return;
+      case parseFloat(transactionAmount) > 5:
+        setAlert({
+          title: "Oh no!",
+          text: "You can't send more than 5 ether",
         });
         return;
       default:
@@ -79,18 +97,26 @@ const TabBody = () => {
           : transactionAmount,
       });
 
-    setContractBalance(parseInt(transactionAmount));
+    setContractBalance(
+      sumEvent.args.betWon
+        ? parseFloat(
+            parseFloat(contractBalance) - parseFloat(transactionAmount)
+          )
+        : parseFloat(
+            parseFloat(contractBalance) + parseFloat(transactionAmount)
+          )
+    );
   };
 
   const withdraw = async () => {
     switch (true) {
-      case contractBalance === 0:
+      case parseFloat(contractBalance) === 0:
         setAlert({
           title: "Oh no!",
-          text: "The contract doesn't have any funds at the moment",
+          text: "The contract doesn't have any funds",
         });
         return;
-      case userBalance === 0:
+      case parseFloat(userBalance) === 0:
         setAlert({
           title: "Woops!",
           text: "You have to have funds in order to withdraw",
@@ -100,7 +126,7 @@ const TabBody = () => {
         console.log("Initiating Transaction...");
     }
 
-    let tx = isOwner
+    let tx = userIsOwner
       ? await contract.withdrawContract()
       : await contract.withdraw();
     let receipt = await tx.wait(1);
@@ -110,7 +136,7 @@ const TabBody = () => {
       title: "Congratulations!",
       text: "The funds have made it to your account",
     });
-    isOwner ? setContractBalance(0) : setUserBalance(0);
+    userIsOwner ? setContractBalance(0) : setUserBalance(0);
   };
 
   return (
@@ -126,6 +152,7 @@ const TabBody = () => {
                 value={transactionAmount}
                 onChange={handleChange}
                 className="border-0 text-center"
+                placeholder="0"
               />
             </h2>
             <div className="d-flex justify-content-center align-items-center mt-3">
@@ -135,19 +162,19 @@ const TabBody = () => {
           </Col>
           <Col xs={10} className="border my-5 mx-auto text-left pt-2 rounder">
             <p className="mb-0">Sender</p>
-            <h5 className="muted-h5">{truncateString(userAddress, 32)}</h5>
+            <h5 className="muted-h5">{truncateString(currentAddress, 32)}</h5>
           </Col>
           <Col>
             <Button
               id={transactionButtonText}
               className={`primary-btn w-50 font-weight-bold ml-5`}
-              onClick={isConnected ? sendTransaction : setShowModal}
+              onClick={active ? sendTransaction : () => setShowModal(true)}
             >
               {transactionButtonText}
             </Button>
             <Button
               variant="transparent"
-              disabled={!isConnected}
+              disabled={!active}
               onClick={() => {
                 transactionButtonText === "Fund Contract"
                   ? setTransactionButtonText("Place Bet")
@@ -167,7 +194,7 @@ const TabBody = () => {
             <p className="mb-0">Game won</p>
             <h5 className="muted-h5">
               {transactionResults?.won !== undefined
-                ? String(transactionResults?.won)
+                ? String(transactionResults.won)
                 : "Place a bet to see the results"}
             </h5>
           </Col>
@@ -178,7 +205,7 @@ const TabBody = () => {
             <p className="mb-0">How much did I Win/Lose</p>
             <h5 className="muted-h5">
               {transactionResults?.amount !== undefined
-                ? transactionResults?.amount + " ether"
+                ? transactionResults.amount + " ether"
                 : "Place a bet to see the results"}
             </h5>
           </Col>
@@ -221,16 +248,22 @@ const TabBody = () => {
       {currentTab === "Withdraw" && (
         <Row className="mt-4 flex-column justify-content-center">
           <Col className="mb-4 mt-3">
-            <h5 className="muted-h5">
-              Welcome back, {isOwner ? "admin" : "user"}. <br />
-              Ready to withdraw your funds?
-            </h5>
+            {active ? (
+              <h5 className="muted-h5">
+                Welcome back, {userIsOwner ? "admin" : "user"}. <br />
+                Ready to withdraw your funds?
+              </h5>
+            ) : (
+              <h5 className="muted-h5">
+                Connect to a wallet to withdraw your funds
+              </h5>
+            )}
           </Col>
           <Col className="text-center">
             <h2>
               <input
                 id="withdraw"
-                value={isOwner ? contractBalance : userBalance}
+                value={userIsOwner ? contractBalance : userBalance}
                 className="border-0 text-center"
                 placeholder="0.0"
                 readOnly
@@ -244,9 +277,9 @@ const TabBody = () => {
           <Col className="mt-5">
             <Button
               className="primary-btn w-50 font-weight-bold"
-              onClick={isConnected ? withdraw : setShowModal}
+              onClick={active ? withdraw : () => setShowModal(true)}
             >
-              {isConnected ? "Withdraw Funds" : "Connect to a Wallet"}
+              {active ? "Withdraw Funds" : "Connect to a Wallet"}
             </Button>
           </Col>
         </Row>

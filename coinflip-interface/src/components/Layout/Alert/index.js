@@ -16,7 +16,7 @@ const Alert = () => {
     : { backgroundColor: "#52f292" };
 
   return (
-    <Card className={`alert p-0 border-0 m-0 ${alert && "fade-in"}`}>
+    <Card className={`alert p-0 m-0 ${alert && "fade-in"}`}>
       <Card.Header className="p-0 text-right" style={alertBgColor}>
         <Button
           variant=""

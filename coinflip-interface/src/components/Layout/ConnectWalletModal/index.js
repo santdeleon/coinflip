@@ -1,13 +1,15 @@
 import React from "react";
+import { useWeb3React } from "@web3-react/core";
 import { Row, Col, Modal, Button, Spinner } from "react-bootstrap";
 import { X } from "react-feather";
 
-// import { useContract } from "../../../context/ContractContext";
+import { injected } from "../../../connectors";
 import { useApplication } from "../../../context/ApplicationContext";
 
 import wallets from "./wallets";
 
 const ConnectWalletModal = () => {
+  const { activate } = useWeb3React();
   const { isWalletConnecting, showModal, setShowModal } = useApplication();
 
   return (
@@ -52,8 +54,8 @@ const ConnectWalletModal = () => {
                   style={{
                     pointerEvents: wallet.name !== "MetaMask" && "none",
                   }}
-                  // TODO: Setup Click to connect to User Wallet
-                  // onClick={() => {}}
+                  // TODO: Setup wallet support for all connector types
+                  onClick={() => activate(injected, undefined, true)}
                 >
                   <p className="mr-auto mb-0 font-weight-bold">{wallet.name}</p>
                   <img

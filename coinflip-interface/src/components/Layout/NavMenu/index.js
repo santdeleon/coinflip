@@ -14,7 +14,7 @@ import { useApplication } from "../../../context/ApplicationContext";
 
 const NavMenu = () => {
   const { active } = useWeb3React();
-  const { currentAddress, userBalance, network } = useUser();
+  const { network } = useUser();
   const { contractBalance } = useContract();
   const { setShowModal } = useApplication();
 
@@ -29,12 +29,12 @@ const NavMenu = () => {
         </span>
         Coinflip
         <p
-          className={`connected-network-logo ml-2 d-flex font-weight-bold align-items-center bg-dark border rounded py-1 px-2 ${
+          className={`connected-network-logo ml-2 d-flex font-weight-bold align-items-center border rounded py-1 px-2 ${
             active ? "green" : "red"
           }`}
           style={{ fontSize: "10px" }}
         >
-          <FontAwesomeIcon icon={faWifi} className="mr-1" />
+          <FontAwesomeIcon icon={faWifi} className={`${active && "mr-1"}`} />
           {active && network}
         </p>
       </Navbar.Brand>
@@ -60,11 +60,11 @@ const NavMenu = () => {
           </Button>
         )}
         <a
+          aria-label="Github"
+          title="Github"
           href="https://github.com/santdeleon/coinflip"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Github"
-          title="Github"
         >
           <img src={Github} alt="Github" className="ml-3" />
         </a>

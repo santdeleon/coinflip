@@ -9,6 +9,8 @@ export const UserContext = React.createContext({
   setNetwork: () => {},
   userBalance: "",
   setUserBalance: () => {},
+  userIsOwner: false,
+  setUserIsOwner: () => {},
 });
 
 export const UserProvider = UserContext.Provider;

@@ -8,12 +8,16 @@ import { getContract } from "../utils/getContract";
 const contract = getContract(
   CoinFlipContract.networks[5777].address,
   CoinFlipContract.abi,
-  new Web3Provider(window.ethereum)
+  new Web3Provider(window.ethereum).getSigner()
 );
 
 export const ContractContext = React.createContext({
   contract: contract,
+  setContract: () => {},
   contractAddress: contract.address,
+  setContractAddress: () => {},
+  contractOwner: "",
+  setContractOwner: () => {},
   contractBalance: "",
   setContractBalance: () => {},
 });
