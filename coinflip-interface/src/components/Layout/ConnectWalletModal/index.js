@@ -55,7 +55,11 @@ const ConnectWalletModal = () => {
                     pointerEvents: wallet.name !== "MetaMask" && "none",
                   }}
                   // TODO: Setup wallet support for all connector types
-                  onClick={() => activate(injected, undefined, true)}
+                  onClick={() =>
+                    activate(injected, undefined, true).then(
+                      setShowModal(false)
+                    )
+                  }
                 >
                   <p className="mr-auto mb-0 font-weight-bold">{wallet.name}</p>
                   <img
