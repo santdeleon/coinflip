@@ -5,6 +5,7 @@ import { useApplication } from "../../../../../../context/ApplicationContext";
 
 const Tab = ({ tab }) => {
   const { currentTab, setCurrentTab } = useApplication();
+
   return (
     <Button
       key={tab.id}

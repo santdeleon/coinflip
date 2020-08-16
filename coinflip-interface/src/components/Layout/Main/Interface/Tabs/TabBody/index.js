@@ -13,13 +13,14 @@ import { useApplication } from "../../../../../../context/ApplicationContext";
 import { truncateString } from "../../../../../../utils/truncateString";
 
 const TabBody = () => {
+  const { active, account } = useWeb3React();
+  const { userBalance, setUserBalance } = useUser();
   const {
-    userIsOwner,
-    currentAddress,
-    userBalance,
-    setUserBalance,
-  } = useUser();
-  const { contract, contractBalance, setContractBalance } = useContract();
+    contract,
+    contractOwner,
+    contractBalance,
+    setContractBalance,
+  } = useContract();
   const {
     setShowModal,
     currentTab,
@@ -32,9 +33,9 @@ const TabBody = () => {
     setAlert,
     setTransactionResults,
   } = useApplication();
-  const { active } = useWeb3React();
 
   const handleChange = (e) => {
+    e.preventDefault();
     setTransactionAmount(e.currentTarget.value);
   };
 
@@ -87,7 +88,7 @@ const TabBody = () => {
         transactionAmount
       )} ether has been accepted.`,
     });
-    setTransactionAmount("0");
+    setTransactionAmount(0);
 
     sumEvent.event === "BetPlaced" &&
       setTransactionResults({
@@ -110,13 +111,13 @@ const TabBody = () => {
 
   const withdraw = async () => {
     switch (true) {
-      case parseFloat(contractBalance) === 0:
+      case contractBalance === 0:
         setAlert({
           title: "Oh no!",
           text: "The contract doesn't have any funds",
         });
         return;
-      case parseFloat(userBalance) === 0:
+      case userBalance === 0:
         setAlert({
           title: "Woops!",
           text: "You have to have funds in order to withdraw",
@@ -126,9 +127,10 @@ const TabBody = () => {
         console.log("Initiating Transaction...");
     }
 
-    let tx = userIsOwner
-      ? await contract.withdrawContract()
-      : await contract.withdraw();
+    let tx =
+      account === contractOwner
+        ? await contract.withdrawContract()
+        : await contract.withdraw();
     let receipt = await tx.wait(1);
 
     console.log(receipt);
@@ -136,7 +138,7 @@ const TabBody = () => {
       title: "Congratulations!",
       text: "The funds have made it to your account",
     });
-    userIsOwner ? setContractBalance(0) : setUserBalance(0);
+    account === contractOwner ? setContractBalance(0) : setUserBalance(0);
   };
 
   return (
@@ -162,7 +164,7 @@ const TabBody = () => {
           </Col>
           <Col xs={10} className="border my-5 mx-auto text-left pt-2 rounder">
             <p className="mb-0">Sender</p>
-            <h5 className="muted-h5">{truncateString(currentAddress, 32)}</h5>
+            <h5 className="muted-h5">{truncateString(account, 32)}</h5>
           </Col>
           <Col>
             <Button
@@ -170,13 +172,13 @@ const TabBody = () => {
               className={`primary-btn w-50 font-weight-bold ml-5`}
               onClick={active ? sendTransaction : () => setShowModal(true)}
             >
-              {transactionButtonText}
+              {active ? transactionButtonText : "Connect to a Wallet"}
             </Button>
             <Button
               variant="transparent"
               disabled={!active}
               onClick={() => {
-                transactionButtonText === "Fund Contract"
+                transactionButtonText.match(/fund contract/i)
                   ? setTransactionButtonText("Place Bet")
                   : setTransactionButtonText("Fund Contract");
               }}
@@ -250,7 +252,8 @@ const TabBody = () => {
           <Col className="mb-4 mt-3">
             {active ? (
               <h5 className="muted-h5">
-                Welcome back, {userIsOwner ? "admin" : "user"}. <br />
+                Welcome back, {account === contractOwner ? "admin" : "user"}.{" "}
+                <br />
                 Ready to withdraw your funds?
               </h5>
             ) : (
@@ -263,7 +266,9 @@ const TabBody = () => {
             <h2>
               <input
                 id="withdraw"
-                value={userIsOwner ? contractBalance : userBalance}
+                value={
+                  account === contractOwner ? contractBalance : userBalance
+                }
                 className="border-0 text-center"
                 placeholder="0.0"
                 readOnly

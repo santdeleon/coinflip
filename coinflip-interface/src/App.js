@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
 import { formatEther } from "@ethersproject/units";
 
 import "./App.css";
 import "./stylesheets/colors.css";
 import "./stylesheets/buttons.css";
+
+import CoinFlipContract from "./contracts/CoinFlip.json";
 
 import { ContractProvider } from "./context/ContractContext";
 import { UserProvider } from "./context/UserContext";
@@ -13,31 +16,19 @@ import { ApplicationProvider } from "./context/ApplicationContext";
 import Layout from "./components/Layout";
 
 import { useEagerConnect } from "./hooks/useEagerConnect";
-import { useContract } from "./context/ContractContext";
+import { getContractWithSigner } from "./utils/getContract";
 
 const App = () => {
-  // user state
-  const [userIsOwner, setUserIsOwner] = useState(false);
-  const [currentAddress, setCurrentAddress] = useState(null);
-  const [currentChainId, setCurrentChainId] = useState(null);
-  const [userBalance, setUserBalance] = useState("0");
-  const [network, setNetwork] = useState(null);
-  const userState = {
-    userIsOwner,
-    setUserIsOwner,
-    currentAddress,
-    setCurrentAddress,
-    currentChainId,
-    setCurrentChainId,
-    network,
-    setNetwork,
-    userBalance,
-    setUserBalance,
-  };
+  const triedEager = useEagerConnect();
+  const { active, account, chainId, library, error } = useWeb3React();
 
   // contract state
-  const { contract } = useContract();
-  const [contractOwner, setContractOwner] = useState(null);
+  const contract = getContractWithSigner(
+    CoinFlipContract.networks[(chainId !== 1337 && chainId) || 5777].address,
+    CoinFlipContract.abi,
+    new Web3Provider(window.ethereum).getSigner()
+  );
+  const [contractOwner, setContractOwner] = useState("");
   const [contractBalance, setContractBalance] = useState("0");
   const contractState = {
     contract,
@@ -48,6 +39,10 @@ const App = () => {
     setContractBalance,
   };
 
+  // user state
+  const [userBalance, setUserBalance] = useState("0");
+  const userState = { userBalance, setUserBalance };
+
   // application state
   const [isWalletConnecting, setIsWalletConnecting] = useState(false);
   const [alert, setAlert] = useState(null);
@@ -56,7 +51,7 @@ const App = () => {
   const [transactionResults, setTransactionResults] = useState(null);
   const [currentTab, setCurrentTab] = useState("Play");
   const [transactionButtonText, setTransactionButtonText] = useState(
-    "Connect to a Wallet"
+    "Fund Contract"
   );
   const applicationState = {
     isWalletConnecting,
@@ -75,36 +70,24 @@ const App = () => {
     setTransactionButtonText,
   };
 
-  const triedEager = useEagerConnect();
-  const { active, account, chainId, library, error } = useWeb3React();
-
   // if successfully connected to { injected } populate Contexts
+  console.log(transactionButtonText);
   useEffect(() => {
     if (triedEager && active) {
-      // get contract owner
-      const getOwner = async () => {
-        const owner = await contract.getContractOwner();
-        setContractOwner(owner);
-        setUserIsOwner(owner === currentAddress ? true : false);
+      const getContractOwner = async () => {
+        setContractOwner(await contract.getContractOwner());
       };
 
-      // get contract balance
-      const getBalance = async () => {
+      const getContractBalance = async () => {
         let balance = await contract.getContract();
         balance = parseFloat(formatEther(balance[1]));
         setContractBalance(balance);
-        setNetwork(
-          library.network.name === "unknown" ? "Ganache" : library.network.name
-        );
       };
 
-      setCurrentAddress(account);
-      setCurrentChainId(chainId);
-      setTransactionButtonText("Fund Contract");
-      getOwner();
-      getBalance();
+      getContractOwner();
+      getContractBalance();
     }
-  }, [triedEager, active, account, chainId, contract, library, currentAddress]);
+  }, [triedEager, active, account, chainId, library, contract]);
 
   // TODO: Handle errors gracefully :(
   if (error) return <div>{error}</div>;

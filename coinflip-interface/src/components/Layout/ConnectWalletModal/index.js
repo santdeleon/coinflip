@@ -1,6 +1,6 @@
 import React from "react";
 import { useWeb3React } from "@web3-react/core";
-import { Row, Col, Modal, Button, Spinner } from "react-bootstrap";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import { X } from "react-feather";
 
 import { injected } from "../../../connectors";
@@ -34,45 +34,38 @@ const ConnectWalletModal = () => {
           </Button>
         </Modal.Header>
         <Modal.Body className="bg-light rounded">
-          {isWalletConnecting ? (
-            <Row className="text-center">
-              <Col>
-                <Spinner animation="border" variant="dark" />
+          <Row className="justify-content-center">
+            {wallets.map((wallet, idx) => (
+              <Col
+                key={idx}
+                as={Button}
+                xs={11}
+                variant={wallet.name === "MetaMask" ? "dark" : "transparent"}
+                className={`${
+                  wallet.name !== "MetaMask" && "disabled"
+                } d-flex my-2 py-3 px-3 border border-muted rounded`}
+                style={{
+                  pointerEvents: wallet.name !== "MetaMask" && "none",
+                }}
+                // TODO: Setup wallet support for all connector types
+                onClick={() => {
+                  activate(injected, undefined, true).then(() => {
+                    // refresh the page to keep UI up-to-date
+                    window.location.reload();
+                  });
+                }}
+              >
+                <p className="mr-auto mb-0 font-weight-bold">{wallet.name}</p>
+                <img
+                  src={wallet.img}
+                  className="ml-auto"
+                  alt={wallet.name}
+                  height={25}
+                  width={25}
+                />
               </Col>
-            </Row>
-          ) : (
-            <Row className="justify-content-center">
-              {wallets.map((wallet, idx) => (
-                <Col
-                  key={idx}
-                  as={Button}
-                  xs={11}
-                  variant={wallet.name === "MetaMask" ? "dark" : "transparent"}
-                  className={`${
-                    wallet.name !== "MetaMask" && "disabled"
-                  } d-flex my-2 py-3 px-3 border border-muted rounded`}
-                  style={{
-                    pointerEvents: wallet.name !== "MetaMask" && "none",
-                  }}
-                  // TODO: Setup wallet support for all connector types
-                  onClick={() =>
-                    activate(injected, undefined, true).then(
-                      setShowModal(false)
-                    )
-                  }
-                >
-                  <p className="mr-auto mb-0 font-weight-bold">{wallet.name}</p>
-                  <img
-                    src={wallet.img}
-                    className="ml-auto"
-                    alt={wallet.name}
-                    height={25}
-                    width={25}
-                  />
-                </Col>
-              ))}
-            </Row>
-          )}
+            ))}
+          </Row>
         </Modal.Body>
       </Modal>
     </>
