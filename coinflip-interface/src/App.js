@@ -71,6 +71,7 @@ const App = () => {
   };
 
   // if successfully connected to { injected } populate Contexts
+  // TODO: Reduce amount of re-renders happening from data fetching
   console.log(transactionButtonText);
   useEffect(() => {
     if (triedEager && active) {
