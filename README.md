@@ -1,4 +1,4 @@
-# CoinFlip
+# Coinflip
 
 > A decentralized gambling application built on the Ethereum Network.
 
