@@ -1,7 +1,7 @@
-const CoinFlip = artifacts.require('CoinFlip');
+const CoinFlip = artifacts.require("CoinFlip");
 // import passes from "truffle-assertions";
 
-contract('CoinFlip', async (accounts) => {
+contract("CoinFlip", async (accounts) => {
   const [owner, alice, bob] = accounts;
   let instance;
   // gasPrice and gasLimit are default values on the Ganache client
@@ -12,8 +12,8 @@ contract('CoinFlip', async (accounts) => {
     instance = await CoinFlip.new();
   });
 
-  xcontext('when deploying the contract', async () => {
-    it('should set the deployer of the contract as the owner of the contract', async () => {
+  xcontext("when deploying the contract", async () => {
+    it("should set the deployer of the contract as the owner of the contract", async () => {
       let ownerLookup = await instance.getOwner({ from: alice });
 
       passes(ownerLookup[0] === owner, truffleAssert.ErrorType.REVERT);
