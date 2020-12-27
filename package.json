@@ -1,7 +1,7 @@
 {
-  "name": "CoinFlip",
-  "version": "2.0.0",
-  "description": "A Decentralized betting application built on the Ethereum Network",
+  "name": "@santdeleon/coinflip",
+  "version": "2.1.0",
+  "description": "A decentralized gaming application built on Ethereum",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
@@ -13,14 +13,24 @@
     "type": "git",
     "url": "git+https://github.com/santdeleon/coinflip.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "santdeleon",
+    "ethereum",
+    "coinflip"
+  ],
+  "author": "Santiago Deleon",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/santdeleon/coinflip/issues"
   },
   "homepage": "https://github.com/santdeleon/coinflip#readme",
   "devDependencies": {
+    "@openzeppelin/contract-loader": "^0.6.2",
+    "@openzeppelin/contracts": "^3.3.0",
+    "@openzeppelin/contracts-ethereum-package": "^3.0.0",
+    "@openzeppelin/solidity-loader": "^1.5.1",
+    "@openzeppelin/test-helpers": "^0.5.10",
+    "openzeppelin-solidity": "^3.3.0",
     "truffle-assertions": "^0.9.2"
   }
 }

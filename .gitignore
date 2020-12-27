@@ -5,14 +5,13 @@
 /.pnp
 .pnp.js
 
-# contract
-/client/src/contracts
 
 # testing
 /coverage
 
 # production
 /build
+/build.zip
 
 # misc
 .DS_Store
