@@ -1,6 +1,6 @@
 {
-  "short_name": "CoinFlip",
-  "name": "CoinFlip",
+  "short_name": "@santdeleon/coinflip-interface",
+  "name": "@santdeleon/coinflip-interface",
   "icons": [
     {
       "src": "ghost-logo.png",

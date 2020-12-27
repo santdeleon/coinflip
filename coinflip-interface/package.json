@@ -5,8 +5,6 @@
   "author": "Santiago Deleon",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
     "@ethersproject/address": "5.0.0-beta.134",
     "@ethersproject/bignumber": "5.0.0-beta.138",
     "@ethersproject/constants": "5.0.0-beta.133",
@@ -36,19 +34,16 @@
     "@web3-react/walletlink-connector": "^6.0.9",
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
-    "commitizen": "^4.2.2",
-    "cz-conventional-changelog": "3.3.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-jest-dom": "^3.6.4",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^3.10.1",
-    "husky": "^4.3.6",
     "identity-obj-proxy": "^3.0.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-junit": "^12.0.0",
     "moment": "^2.29.1",
-    "prettier": "^2.0.5",
+    "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -65,18 +60,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:ci": "react-scripts test --ci --coverage --coverageDirectory=output/coverage/jest --reporters=default --reporters=jest-junit --testFailureExitCode=0 --silent"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./coinflip-interface/node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern '**/*.js'",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "jest-junit": {
     "outputDirectory": "./output/coverage/juint",
