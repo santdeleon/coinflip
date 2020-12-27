@@ -1,4 +1,4 @@
-import { Contract } from "@ethersproject/contracts";
+import { Contract } from '@ethersproject/contracts';
 
 // readonly
 export const getContract = (address, abi, provider) => {

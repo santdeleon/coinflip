@@ -1,9 +1,9 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
-import "./index.css";
+import './index.css';
 
-import Tabs from "./Tabs";
+import Tabs from './Tabs';
 
 const Interface = () => {
   return (

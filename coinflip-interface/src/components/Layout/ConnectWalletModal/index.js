@@ -1,12 +1,12 @@
-import React from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Row, Col, Modal, Button } from "react-bootstrap";
-import { X } from "react-feather";
+import React from 'react';
+import { useWeb3React } from '@web3-react/core';
+import { Row, Col, Modal, Button } from 'react-bootstrap';
+import { X } from 'react-feather';
 
-import { injected } from "../../../connectors";
-import { useApplication } from "../../../context/ApplicationContext";
+import { injected } from '../../../connectors';
+import { useApplication } from '../../../context/ApplicationContext';
 
-import wallets from "./wallets";
+import wallets from './wallets';
 
 const ConnectWalletModal = () => {
   const { activate } = useWeb3React();
@@ -21,9 +21,7 @@ const ConnectWalletModal = () => {
         onHide={() => setShowModal(false)}
       >
         <Modal.Header className="d-flex align-items-center">
-          <h6 className="mb-0">
-            {isWalletConnecting ? "Connecting..." : "Connect to a Wallet"}
-          </h6>
+          <h6 className="mb-0">{isWalletConnecting ? 'Connecting...' : 'Connect to a Wallet'}</h6>
           <Button
             variant="transparent"
             size="lg"
@@ -40,12 +38,12 @@ const ConnectWalletModal = () => {
                 key={idx}
                 as={Button}
                 xs={11}
-                variant={wallet.name === "MetaMask" ? "dark" : "transparent"}
+                variant={wallet.name === 'MetaMask' ? 'dark' : 'transparent'}
                 className={`${
-                  wallet.name !== "MetaMask" && "disabled"
+                  wallet.name !== 'MetaMask' && 'disabled'
                 } d-flex my-2 py-3 px-3 border border-muted rounded`}
                 style={{
-                  pointerEvents: wallet.name !== "MetaMask" && "none",
+                  pointerEvents: wallet.name !== 'MetaMask' && 'none',
                 }}
                 // TODO: Setup wallet support for all connector types
                 onClick={() => {

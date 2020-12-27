@@ -1,15 +1,15 @@
-import React from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWifi } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { useWeb3React } from '@web3-react/core';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWifi } from '@fortawesome/free-solid-svg-icons';
 
-import "./index.css";
+import './index.css';
 
-import Github from "../../../assets/img/github.svg";
+import Github from '../../../assets/img/github.svg';
 
-import { useContract } from "../../../context/ContractContext.js";
-import { useApplication } from "../../../context/ApplicationContext";
+import { useContract } from '../../../context/ContractContext.js';
+import { useApplication } from '../../../context/ApplicationContext';
 
 const NavMenu = () => {
   const { active, library } = useWeb3React();
@@ -17,27 +17,23 @@ const NavMenu = () => {
   const { setShowModal } = useApplication();
 
   const network =
-    library?.network?.name.slice(0, 1).toUpperCase() +
-    library?.network?.name.slice(1);
+    library?.network?.name.slice(0, 1).toUpperCase() + library?.network?.name.slice(1);
 
   return (
     <Navbar id="NavMenu" className="NavMenu align-items-center pb-0">
-      <Navbar.Brand
-        href="/"
-        className="font-weight-bold d-flex align-items-center"
-      >
+      <Navbar.Brand href="/" className="font-weight-bold d-flex align-items-center">
         <span role="img" className="mr-2" aria-label="Rainbow Emoji">
           🌈
         </span>
         Coinflip
         <p
           className={`connected-network-logo ml-2 d-flex font-weight-bold align-items-center bg-dark border rounded py-1 px-2 ${
-            active && network ? "green" : "red"
+            active && network ? 'green' : 'red'
           }`}
-          style={{ fontSize: "10px" }}
+          style={{ fontSize: '10px' }}
         >
           <FontAwesomeIcon icon={faWifi} className="mr-1" />
-          {(active && network) || "Not Connected"}
+          {(active && network) || 'Not Connected'}
         </p>
       </Navbar.Brand>
       <Nav className="ml-auto align-items-center">

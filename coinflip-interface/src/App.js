@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Web3Provider } from "@ethersproject/providers";
-import { useWeb3React } from "@web3-react/core";
-import { formatEther } from "@ethersproject/units";
+import React, { useState, useEffect } from 'react';
+import { Web3Provider } from '@ethersproject/providers';
+import { useWeb3React } from '@web3-react/core';
+import { formatEther } from '@ethersproject/units';
 
-import "./App.css";
-import "./stylesheets/colors.css";
-import "./stylesheets/buttons.css";
+import './App.css';
+import './stylesheets/colors.css';
+import './stylesheets/buttons.css';
 
-import CoinFlipContract from "./contracts/CoinFlip.json";
+import CoinFlipContract from './contracts/CoinFlip.json';
 
-import { ContractProvider } from "./context/ContractContext";
-import { UserProvider } from "./context/UserContext";
-import { ApplicationProvider } from "./context/ApplicationContext";
+import { ContractProvider } from './context/ContractContext';
+import { UserProvider } from './context/UserContext';
+import { ApplicationProvider } from './context/ApplicationContext';
 
-import Layout from "./components/Layout";
+import Layout from './components/Layout';
 
-import { useEagerConnect } from "./hooks/useEagerConnect";
-import { getContractWithSigner } from "./utils/getContract";
+import { useEagerConnect } from './hooks/useEagerConnect';
+import { getContractWithSigner } from './utils/getContract';
 
 const App = () => {
   const triedEager = useEagerConnect();
@@ -28,8 +28,8 @@ const App = () => {
     CoinFlipContract.abi,
     new Web3Provider(window.ethereum).getSigner()
   );
-  const [contractOwner, setContractOwner] = useState("");
-  const [contractBalance, setContractBalance] = useState("0");
+  const [contractOwner, setContractOwner] = useState('');
+  const [contractBalance, setContractBalance] = useState('0');
   const contractState = {
     contract,
     contractAddress: contract.address,
@@ -40,19 +40,17 @@ const App = () => {
   };
 
   // user state
-  const [userBalance, setUserBalance] = useState("0");
+  const [userBalance, setUserBalance] = useState('0');
   const userState = { userBalance, setUserBalance };
 
   // application state
   const [isWalletConnecting, setIsWalletConnecting] = useState(false);
   const [alert, setAlert] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [transactionAmount, setTransactionAmount] = useState("0");
+  const [transactionAmount, setTransactionAmount] = useState('0');
   const [transactionResults, setTransactionResults] = useState(null);
-  const [currentTab, setCurrentTab] = useState("Play");
-  const [transactionButtonText, setTransactionButtonText] = useState(
-    "Fund Contract"
-  );
+  const [currentTab, setCurrentTab] = useState('Play');
+  const [transactionButtonText, setTransactionButtonText] = useState('Fund Contract');
   const applicationState = {
     isWalletConnecting,
     setIsWalletConnecting,

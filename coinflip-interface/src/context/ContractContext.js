@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 export const ContractContext = React.createContext({
   contract: {},
-  contractAddress: "",
-  contractOwner: "",
+  contractAddress: '',
+  contractOwner: '',
   setContractOwner: () => {},
-  contractBalance: "",
+  contractBalance: '',
   setContractBalance: () => {},
 });
 

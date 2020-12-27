@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 export const ApplicationContext = React.createContext({
   isWalletConnecting: false,
@@ -7,13 +7,13 @@ export const ApplicationContext = React.createContext({
   setAlert: () => {},
   showModal: false,
   setShowModal: () => {},
-  transactionAmount: "",
+  transactionAmount: '',
   setTransactionAmount: () => {},
-  transactionButtonText: "",
+  transactionButtonText: '',
   setTransactionButton: () => {},
-  transactionResults: "",
+  transactionResults: '',
   setTransactionResults: () => {},
-  currentTab: "Play",
+  currentTab: 'Play',
   setCurrentTab: () => {},
 });
 

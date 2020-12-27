@@ -1,26 +1,21 @@
-import React from "react";
-import { useWeb3React } from "@web3-react/core";
-import { parseEther } from "@ethersproject/units";
-import { Row, Col, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEthereum } from "@fortawesome/free-brands-svg-icons";
-import { faArrowDown, faMagic } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { useWeb3React } from '@web3-react/core';
+import { parseEther } from '@ethersproject/units';
+import { Row, Col, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEthereum } from '@fortawesome/free-brands-svg-icons';
+import { faArrowDown, faMagic } from '@fortawesome/free-solid-svg-icons';
 
-import { useUser } from "../../../../../../context/UserContext.js";
-import { useContract } from "../../../../../../context/ContractContext.js";
-import { useApplication } from "../../../../../../context/ApplicationContext";
+import { useUser } from '../../../../../../context/UserContext.js';
+import { useContract } from '../../../../../../context/ContractContext.js';
+import { useApplication } from '../../../../../../context/ApplicationContext';
 
-import { truncateString } from "../../../../../../utils/truncateString";
+import { truncateString } from '../../../../../../utils/truncateString';
 
 const TabBody = () => {
   const { active, account } = useWeb3React();
   const { userBalance, setUserBalance } = useUser();
-  const {
-    contract,
-    contractOwner,
-    contractBalance,
-    setContractBalance,
-  } = useContract();
+  const { contract, contractOwner, contractBalance, setContractBalance } = useContract();
   const {
     setShowModal,
     currentTab,
@@ -41,41 +36,41 @@ const TabBody = () => {
 
   const sendTransaction = async (e) => {
     switch (true) {
-      case transactionAmount === "":
+      case transactionAmount === '':
         return;
       // only allow numbers and float points allowed
       case !new RegExp(/^\d*\.?\d+$/).test(transactionAmount):
         setAlert({
-          title: "Woops!",
-          text: "Only numbers are allowed",
+          title: 'Woops!',
+          text: 'Only numbers are allowed',
         });
         return;
       case parseFloat(transactionAmount) === 0:
         setAlert({
-          title: "Oh no!",
-          text: "You have to send some ether to the contract",
+          title: 'Oh no!',
+          text: 'You have to send some ether to the contract',
         });
         return;
       case parseFloat(transactionAmount) < 0.01:
         setAlert({
-          title: "Oh no!",
-          text: "You have to send at least 0.01 ether",
+          title: 'Oh no!',
+          text: 'You have to send at least 0.01 ether',
         });
         return;
       case parseFloat(transactionAmount) > 5:
         setAlert({
-          title: "Oh no!",
+          title: 'Oh no!',
           text: "You can't send more than 5 ether",
         });
         return;
       default:
-        console.log("Your transaction is being submitted...");
+        console.log('Your transaction is being submitted...');
     }
 
     let tx, receipt, sumEvent;
     const config = { value: parseEther(transactionAmount) };
 
-    e.currentTarget.id === "Fund Contract"
+    e.currentTarget.id === 'Fund Contract'
       ? (tx = await contract.fundContract(config))
       : (tx = await contract.bet(config));
 
@@ -83,29 +78,21 @@ const TabBody = () => {
     sumEvent = receipt.events.pop();
 
     setAlert({
-      title: "Good News!",
-      text: `Your transaction of ${parseFloat(
-        transactionAmount
-      )} ether has been accepted.`,
+      title: 'Good News!',
+      text: `Your transaction of ${parseFloat(transactionAmount)} ether has been accepted.`,
     });
     setTransactionAmount(0);
 
-    sumEvent.event === "BetPlaced" &&
+    sumEvent.event === 'BetPlaced' &&
       setTransactionResults({
         won: sumEvent.args.betWon,
-        amount: sumEvent.args.betWon
-          ? transactionAmount * 2
-          : transactionAmount,
+        amount: sumEvent.args.betWon ? transactionAmount * 2 : transactionAmount,
       });
 
     setContractBalance(
       sumEvent.args.betWon
-        ? parseFloat(
-            parseFloat(contractBalance) - parseFloat(transactionAmount)
-          )
-        : parseFloat(
-            parseFloat(contractBalance) + parseFloat(transactionAmount)
-          )
+        ? parseFloat(parseFloat(contractBalance) - parseFloat(transactionAmount))
+        : parseFloat(parseFloat(contractBalance) + parseFloat(transactionAmount))
     );
   };
 
@@ -113,30 +100,28 @@ const TabBody = () => {
     switch (true) {
       case contractBalance === 0:
         setAlert({
-          title: "Oh no!",
+          title: 'Oh no!',
           text: "The contract doesn't have any funds",
         });
         return;
       case userBalance === 0:
         setAlert({
-          title: "Woops!",
-          text: "You have to have funds in order to withdraw",
+          title: 'Woops!',
+          text: 'You have to have funds in order to withdraw',
         });
         return;
       default:
-        console.log("Initiating Transaction...");
+        console.log('Initiating Transaction...');
     }
 
     let tx =
-      account === contractOwner
-        ? await contract.withdrawContract()
-        : await contract.withdraw();
+      account === contractOwner ? await contract.withdrawContract() : await contract.withdraw();
     let receipt = await tx.wait(1);
 
     console.log(receipt);
     setAlert({
-      title: "Congratulations!",
-      text: "The funds have made it to your account",
+      title: 'Congratulations!',
+      text: 'The funds have made it to your account',
     });
     account === contractOwner ? setContractBalance(0) : setUserBalance(0);
   };
@@ -144,7 +129,7 @@ const TabBody = () => {
   return (
     <>
       {/* Play Tab */}
-      {currentTab === "Play" && (
+      {currentTab === 'Play' && (
         <Row className="mt-4 flex-column justify-content-center">
           <Col className="text-center">
             <h2>
@@ -172,15 +157,15 @@ const TabBody = () => {
               className={`primary-btn w-50 font-weight-bold ml-5`}
               onClick={active ? sendTransaction : () => setShowModal(true)}
             >
-              {active ? transactionButtonText : "Connect to a Wallet"}
+              {active ? transactionButtonText : 'Connect to a Wallet'}
             </Button>
             <Button
               variant="transparent"
               disabled={!active}
               onClick={() => {
                 transactionButtonText.match(/fund contract/i)
-                  ? setTransactionButtonText("Place Bet")
-                  : setTransactionButtonText("Fund Contract");
+                  ? setTransactionButtonText('Place Bet')
+                  : setTransactionButtonText('Fund Contract');
               }}
             >
               <FontAwesomeIcon icon={faMagic} />
@@ -190,14 +175,14 @@ const TabBody = () => {
       )}
 
       {/* Results Tab */}
-      {currentTab === "Results" && (
+      {currentTab === 'Results' && (
         <Row>
           <Col xs={10} className="border my-4 mx-auto text-left pt-2 rounder">
             <p className="mb-0">Game won</p>
             <h5 className="muted-h5">
               {transactionResults?.won !== undefined
                 ? String(transactionResults.won)
-                : "Place a bet to see the results"}
+                : 'Place a bet to see the results'}
             </h5>
           </Col>
           <Col xs={10} className="mx-auto text-center">
@@ -207,21 +192,19 @@ const TabBody = () => {
             <p className="mb-0">How much did I Win/Lose</p>
             <h5 className="muted-h5">
               {transactionResults?.amount !== undefined
-                ? transactionResults.amount + " ether"
-                : "Place a bet to see the results"}
+                ? transactionResults.amount + ' ether'
+                : 'Place a bet to see the results'}
             </h5>
           </Col>
         </Row>
       )}
 
       {/* Rules Tab */}
-      {currentTab === "Rules" && (
+      {currentTab === 'Rules' && (
         <Row className="flex-column">
           <Col xs={10} className="border my-4 mx-auto text-left pt-2 rounder">
-            <ul className="p-0" style={{ listStyleType: "none" }}>
-              <li className="rule mt-2">
-                There must be funds in the contract to play.
-              </li>
+            <ul className="p-0" style={{ listStyleType: 'none' }}>
+              <li className="rule mt-2">There must be funds in the contract to play.</li>
               <li className="rule mt-2">If you win you get double your bet.</li>
               <li className="rule mt-2">
                 You can't wager more ether than the contract balance has.
@@ -238,7 +221,7 @@ const TabBody = () => {
           <Col className="mx-auto">
             <Button
               className="primary-btn w-50 font-weight-bold"
-              onClick={() => setCurrentTab("Play")}
+              onClick={() => setCurrentTab('Play')}
             >
               Got it
             </Button>
@@ -247,28 +230,23 @@ const TabBody = () => {
       )}
 
       {/* Withdraw Tab */}
-      {currentTab === "Withdraw" && (
+      {currentTab === 'Withdraw' && (
         <Row className="mt-4 flex-column justify-content-center">
           <Col className="mb-4 mt-3">
             {active ? (
               <h5 className="muted-h5">
-                Welcome back, {account === contractOwner ? "admin" : "user"}.{" "}
-                <br />
+                Welcome back, {account === contractOwner ? 'admin' : 'user'}. <br />
                 Ready to withdraw your funds?
               </h5>
             ) : (
-              <h5 className="muted-h5">
-                Connect to a wallet to withdraw your funds
-              </h5>
+              <h5 className="muted-h5">Connect to a wallet to withdraw your funds</h5>
             )}
           </Col>
           <Col className="text-center">
             <h2>
               <input
                 id="withdraw"
-                value={
-                  account === contractOwner ? contractBalance : userBalance
-                }
+                value={account === contractOwner ? contractBalance : userBalance}
                 className="border-0 text-center"
                 placeholder="0.0"
                 readOnly
@@ -284,7 +262,7 @@ const TabBody = () => {
               className="primary-btn w-50 font-weight-bold"
               onClick={active ? withdraw : () => setShowModal(true)}
             >
-              {active ? "Withdraw Funds" : "Connect to a Wallet"}
+              {active ? 'Withdraw Funds' : 'Connect to a Wallet'}
             </Button>
           </Col>
         </Row>
