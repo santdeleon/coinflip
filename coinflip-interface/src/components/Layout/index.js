@@ -1,16 +1,16 @@
 import React from 'react';
 
 import NavMenu from './NavMenu';
-import Main from './Main';
-import Alert from './Alert';
-import ConnectWalletModal from './ConnectWalletModal';
+// import Main from './Main';
+// import Alert from './Alert';
+// import ConnectWalletModal from './ConnectWalletModal';
 
 const Layout = () => (
   <>
-    <Alert />
+    {/* <Alert /> */}
     <NavMenu />
-    <ConnectWalletModal />
-    <Main />
+    {/* <ConnectWalletModal />
+    <Main /> */}
   </>
 );
 

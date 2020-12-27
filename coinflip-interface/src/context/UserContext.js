@@ -1,9 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useState, createContext } from 'react';
+import { oneOfType, array, object } from 'prop-types';
 
-export const UserContext = React.createContext({
-  userBalance: '',
-  setUserBalance: () => {},
-});
+const propTypes = {
+  children: oneOfType([array, object]),
+};
 
-export const UserProvider = UserContext.Provider;
-export const useUser = () => useContext(UserContext);
+const UserContext = createContext();
+
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({
+    address: null,
+    balance: null,
+  });
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+UserProvider.propTypes = propTypes;
+export { UserProvider, UserContext };

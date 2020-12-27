@@ -312,9 +312,7 @@
   "ast": {
     "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/CoinFlip.sol",
     "exportedSymbols": {
-      "CoinFlip": [
-        347
-      ]
+      "CoinFlip": [347]
     },
     "id": 348,
     "nodeType": "SourceUnit",
@@ -365,15 +363,7 @@
       },
       {
         "id": 5,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".21",
-          "<",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".21", "<", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "121:32:0"
       },
@@ -434,21 +424,12 @@
             "src": "201:23:0"
           }
         ],
-        "contractDependencies": [
-          430,
-          646,
-          659
-        ],
+        "contractDependencies": [430, 646, 659],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
         "id": 347,
-        "linearizedBaseContracts": [
-          347,
-          659,
-          646,
-          430
-        ],
+        "linearizedBaseContracts": [347, 659, 646, 430],
         "name": "CoinFlip",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -1150,10 +1131,7 @@
                       "id": 62,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 677,
                       "src": "746:7:0",
                       "typeDescriptions": {
@@ -1855,10 +1833,7 @@
                       "id": 118,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 677,
                       "src": "1071:7:0",
                       "typeDescriptions": {
@@ -1885,9 +1860,7 @@
                   "src": "1071:40:0"
                 },
                 {
-                  "assignments": [
-                    128
-                  ],
+                  "assignments": [128],
                   "declarations": [
                     {
                       "constant": false,
@@ -1922,9 +1895,7 @@
                   "src": "1117:12:0"
                 },
                 {
-                  "assignments": [
-                    131
-                  ],
+                  "assignments": [131],
                   "declarations": [
                     {
                       "constant": false,
@@ -3711,10 +3682,7 @@
                       "id": 245,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 678,
                       "src": "1882:7:0",
                       "typeDescriptions": {
@@ -3741,9 +3709,7 @@
                   "src": "1882:67:0"
                 },
                 {
-                  "assignments": [
-                    256
-                  ],
+                  "assignments": [256],
                   "declarations": [
                     {
                       "constant": false,
@@ -4159,10 +4125,7 @@
                       "id": 283,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 678,
                       "src": "2120:7:0",
                       "typeDescriptions": {
@@ -4189,9 +4152,7 @@
                   "src": "2120:72:0"
                 },
                 {
-                  "assignments": [
-                    293
-                  ],
+                  "assignments": [293],
                   "declarations": [
                     {
                       "constant": false,
@@ -4850,9 +4811,7 @@
   "legacyAST": {
     "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/CoinFlip.sol",
     "exportedSymbols": {
-      "CoinFlip": [
-        347
-      ]
+      "CoinFlip": [347]
     },
     "id": 348,
     "nodeType": "SourceUnit",
@@ -4903,15 +4862,7 @@
       },
       {
         "id": 5,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".21",
-          "<",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".21", "<", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "121:32:0"
       },
@@ -4972,21 +4923,12 @@
             "src": "201:23:0"
           }
         ],
-        "contractDependencies": [
-          430,
-          646,
-          659
-        ],
+        "contractDependencies": [430, 646, 659],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
         "id": 347,
-        "linearizedBaseContracts": [
-          347,
-          659,
-          646,
-          430
-        ],
+        "linearizedBaseContracts": [347, 659, 646, 430],
         "name": "CoinFlip",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -5688,10 +5630,7 @@
                       "id": 62,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 677,
                       "src": "746:7:0",
                       "typeDescriptions": {
@@ -6393,10 +6332,7 @@
                       "id": 118,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 677,
                       "src": "1071:7:0",
                       "typeDescriptions": {
@@ -6423,9 +6359,7 @@
                   "src": "1071:40:0"
                 },
                 {
-                  "assignments": [
-                    128
-                  ],
+                  "assignments": [128],
                   "declarations": [
                     {
                       "constant": false,
@@ -6460,9 +6394,7 @@
                   "src": "1117:12:0"
                 },
                 {
-                  "assignments": [
-                    131
-                  ],
+                  "assignments": [131],
                   "declarations": [
                     {
                       "constant": false,
@@ -8249,10 +8181,7 @@
                       "id": 245,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 678,
                       "src": "1882:7:0",
                       "typeDescriptions": {
@@ -8279,9 +8208,7 @@
                   "src": "1882:67:0"
                 },
                 {
-                  "assignments": [
-                    256
-                  ],
+                  "assignments": [256],
                   "declarations": [
                     {
                       "constant": false,
@@ -8697,10 +8624,7 @@
                       "id": 283,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        677,
-                        678
-                      ],
+                      "overloadedDeclarations": [677, 678],
                       "referencedDeclaration": 678,
                       "src": "2120:7:0",
                       "typeDescriptions": {
@@ -8727,9 +8651,7 @@
                   "src": "2120:72:0"
                 },
                 {
-                  "assignments": [
-                    293
-                  ],
+                  "assignments": [293],
                   "declarations": [
                     {
                       "constant": false,
