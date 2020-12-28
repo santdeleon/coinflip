@@ -2,31 +2,37 @@ import React from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { Row, Col, Modal, Button } from 'react-bootstrap';
 import { X } from 'react-feather';
+import cx from 'classnames';
 
-import { injected } from '../../../connectors';
-import { useApplication } from '../../../context/ApplicationContext';
-
-import wallets from './wallets';
+import { injected } from '../connectors';
+import { useLayout } from '../hooks/useLayout';
+import wallets from '../utils/wallets';
 
 const ConnectWalletModal = () => {
   const { activate } = useWeb3React();
-  const { isWalletConnecting, showModal, setShowModal } = useApplication();
+  const {
+    isWalletConnecting,
+    showConnectWalletModal,
+    setShowConnectWalletModal,
+  } = useLayout();
 
   return (
     <>
       <Modal
-        show={showModal}
+        show={showConnectWalletModal}
+        aria-label="Connect to a Wallet"
+        onHide={() => setShowConnectWalletModal(false)}
         centered
-        aria-labelledby="Connect to a Wallet"
-        onHide={() => setShowModal(false)}
       >
         <Modal.Header className="d-flex align-items-center">
-          <h6 className="mb-0">{isWalletConnecting ? 'Connecting...' : 'Connect to a Wallet'}</h6>
+          <h6 className="mb-0">
+            {isWalletConnecting ? 'Connecting...' : 'Connect to a Wallet'}
+          </h6>
           <Button
             variant="transparent"
             size="lg"
             className="p-0"
-            onClick={() => setShowModal(false)}
+            onClick={() => setShowConnectWalletModal(false)}
           >
             <X size={20} />
           </Button>
@@ -39,9 +45,12 @@ const ConnectWalletModal = () => {
                 as={Button}
                 xs={11}
                 variant={wallet.name === 'MetaMask' ? 'dark' : 'transparent'}
-                className={`${
-                  wallet.name !== 'MetaMask' && 'disabled'
-                } d-flex my-2 py-3 px-3 border border-muted rounded`}
+                className={cx(
+                  'd-flex my-2 py-3 px-3 border border-muted rounded',
+                  {
+                    disabled: wallet.name !== 'MetaMask',
+                  },
+                )}
                 style={{
                   pointerEvents: wallet.name !== 'MetaMask' && 'none',
                 }}

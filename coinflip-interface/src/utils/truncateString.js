@@ -9,5 +9,9 @@ export const truncateString = (string, desiredLength, separator) => {
     frontChars = Math.ceil(charsToShow / 2),
     backChars = Math.floor(charsToShow / 2);
 
-  return string.substr(0, frontChars) + separator + string.substr(string.length - backChars);
+  return (
+    string.substr(0, frontChars) +
+    separator +
+    string.substr(string.length - backChars)
+  );
 };

@@ -1,25 +1,32 @@
-import { useState, useEffect, useRef } from 'react';
-import { useWeb3React as useWeb3ReactCore } from '@web3-react/core';
+import { useState, useEffect } from 'react';
+import { useWeb3React } from '@web3-react/core';
 
 import { injected } from '../connectors';
 
-export const useEagerConnect = () => {
-  let mounted = useRef(false);
+export function useEagerConnect() {
   const [tried, setTried] = useState(false);
-  const { activate, active } = useWeb3ReactCore(); // specifically using useWeb3ReactCore because of what this hook does
+  const { activate, active } = useWeb3React();
 
   useEffect(() => {
-    injected &&
-      activate(injected, undefined, true).catch(() => {
+    injected.isAuthorized().then((isAuthorized) => {
+      if (isAuthorized) {
+        console.log('useEagerConnect v1');
+        activate(injected, undefined, true).catch(() => {
+          setTried(true);
+        });
+      } else {
         setTried(true);
-      });
-  }, [activate]); // intentionally only running on mount (make sure it's only mounted once :))
+      }
+    });
+  }, []); // intentionally only running once on mount
 
   // if the connection worked, wait until we get confirmation to flip the flag
   useEffect(() => {
-    if (active && mounted.current) setTried(true);
-    return () => (mounted.current = false);
+    if (active) {
+      setTried(true);
+      console.log('useEagerConnect v2');
+    }
   }, [active]);
 
   return tried;
-};
+}
