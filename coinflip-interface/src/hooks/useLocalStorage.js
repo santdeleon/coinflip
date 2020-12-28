@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 
-export const useLocalStorage = (
+const useLocalStorage = (
   key,
   defaultValue = '',
   { serialize = JSON.stringify, deserialize = JSON.parse } = {},
@@ -33,3 +33,5 @@ export const useLocalStorage = (
 
   return [state, setState];
 };
+
+export default useLocalStorage;

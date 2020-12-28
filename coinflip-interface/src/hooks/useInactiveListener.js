@@ -7,7 +7,7 @@ import { injected } from '../connectors';
  * Use for network and injected - logs user in
  * and out after checking what network theyre on
  */
-export function useInactiveListener(suppress = false) {
+const useInactiveListener = (suppress = false) => {
   const { active, error, activate } = useWeb3React();
 
   useEffect(() => {
@@ -60,4 +60,6 @@ export function useInactiveListener(suppress = false) {
       };
     }
   }, [active, error, suppress, activate]);
-}
+};
+
+export default useInactiveListener;

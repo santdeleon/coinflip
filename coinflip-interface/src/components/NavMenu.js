@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
-import { useWallet } from 'use-wallet';
+import { formatEther } from '@ethersproject/units';
 
 import Emoji from './Emoji.js';
 
-import { truncateString } from '../utils/truncateString.js';
-import { useLayout } from '../hooks/useLayout';
+import { truncateString } from '../utils';
+import { useLayout } from '../hooks';
 
 const NavMenu = () => {
-  const { active } = useWeb3React();
-  const { setShowConnectWalletModal } = useLayout();
-  const { account, balance, status } = useWallet();
+  const { active, account, library } = useWeb3React();
+  const { layout, setLayout } = useLayout();
+  const [balance, setBalance] = useState(null);
+
+  useEffect(() => {
+    if (active) {
+      library
+        .getBalance(account)
+        .then((res) => setBalance(parseFloat(formatEther(res)).toFixed(2)));
+    }
+  }, [library, active, account]);
 
   return (
     <Navbar className="NavMenu align-items-center">
@@ -31,26 +39,22 @@ const NavMenu = () => {
               variant="light"
               className="text-decoration-none font-weight-bold mr-2"
             >
-              {/* {user.reedeemableBalance} ETH */}
-            </Button>
-            <Button
-              variant="light"
-              className="text-decoration-none font-weight-bold mr-2"
-            >
-              {/* {balance} ETH */}
+              {balance} ETH
             </Button>
             <Button
               variant="light"
               className="text-decoration-none font-weight-bold"
             >
-              {/* {truncateString(user.address, 15)} */}
+              {truncateString(account, 15)}
             </Button>
           </>
         ) : (
           <Button
             variant="link"
             className="NavMenu__Button--connect-wallet text-decoration-none font-weight-bold"
-            onClick={() => setShowConnectWalletModal(true)}
+            onClick={() =>
+              setLayout({ ...layout, showConnectWalletModal: true })
+            }
           >
             Connect to a Wallet
           </Button>

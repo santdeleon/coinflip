@@ -6,7 +6,7 @@ import {
 import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@web3-react/walletconnect-connector';
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from '@web3-react/frame-connector';
 
-export const getErrorMessage = (error) => {
+const getErrorMessage = (error) => {
   let errorMessage;
 
   switch (error) {
@@ -35,3 +35,5 @@ export const getErrorMessage = (error) => {
 
   return errorMessage;
 };
+
+export default getErrorMessage;

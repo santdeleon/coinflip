@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { truncateString } from '../utils/truncateString.js';
+import { truncateString } from '../utils';
 
 const Footer = () => (
   <Navbar as="footer" fixed="bottom">

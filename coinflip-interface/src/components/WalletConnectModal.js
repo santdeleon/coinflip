@@ -5,15 +5,29 @@ import { X } from 'react-feather';
 import cx from 'classnames';
 
 import { injected } from '../connectors';
-import { useLayout } from '../hooks/useLayout';
-import wallets from '../utils/wallets';
+import { useLayout } from '../hooks';
+
+import MetaMask from '../assets/img/metamask.png';
+import WalletConnect from '../assets/img/walletconnect.svg';
+import Coinbase from '../assets/img/coinbase.svg';
+import Fortmatic from '../assets/img/fortmatic.png';
+import Portis from '../assets/img/portis.png';
+
+const wallets = [
+  { name: 'MetaMask', img: MetaMask },
+  { name: 'Wallet Connect', img: WalletConnect },
+  { name: 'Coinbase', img: Coinbase },
+  { name: 'Fortmatic', img: Fortmatic },
+  { name: 'Portis', img: Portis },
+];
 
 const ConnectWalletModal = () => {
   const { activate } = useWeb3React();
   const {
-    isWalletConnecting,
+    layout,
+    setLayout,
     showConnectWalletModal,
-    setShowConnectWalletModal,
+    isWalletConnecting,
   } = useLayout();
 
   return (
@@ -21,7 +35,7 @@ const ConnectWalletModal = () => {
       <Modal
         show={showConnectWalletModal}
         aria-label="Connect to a Wallet"
-        onHide={() => setShowConnectWalletModal(false)}
+        onHide={() => setLayout({ ...layout, showConnectWalletModal: false })}
         centered
       >
         <Modal.Header className="d-flex align-items-center">
@@ -32,7 +46,9 @@ const ConnectWalletModal = () => {
             variant="transparent"
             size="lg"
             className="p-0"
-            onClick={() => setShowConnectWalletModal(false)}
+            onClick={() =>
+              setLayout({ ...layout, showConnectWalletModal: false })
+            }
           >
             <X size={20} />
           </Button>

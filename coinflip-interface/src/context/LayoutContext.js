@@ -10,12 +10,19 @@ const LayoutContext = createContext();
 const LayoutProvider = ({ children }) => {
   const [layout, setLayout] = useState({
     showConnectWalletModal: false,
-    setShowConnectWalletModal: () => {},
     isWalletConnecting: false,
   });
+  const { showConnectWalletModal, isWalletConnecting } = layout;
 
   return (
-    <LayoutContext.Provider value={{ layout, setLayout }}>
+    <LayoutContext.Provider
+      value={{
+        layout,
+        setLayout,
+        showConnectWalletModal,
+        isWalletConnecting,
+      }}
+    >
       {children}
     </LayoutContext.Provider>
   );

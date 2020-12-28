@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
 
-import { useEagerConnect } from '../hooks/useEagerConnect';
-import { useInactiveListener } from '../hooks/useInactiveListener';
+import { injected } from '../connectors';
+
+import { useEagerConnect, useInactiveListener } from '../hooks';
 
 const Web3ReactManager = ({ children }) => {
   const { active } = useWeb3React();
@@ -12,13 +13,13 @@ const Web3ReactManager = ({ children }) => {
     activate: activateNetwork,
   } = useWeb3React();
 
-  // try to eagerly connect to an injected provider, if it exists and has granted access already
+  // try to eagerly connect to injected provider if it exists and has granted access already
   const triedEager = useEagerConnect();
 
-  // after eagerly trying injected, if the network connect ever isn't active or in an error state, activate itd
+  // if network is ever not connected, attempt to eagerly connect again
   useEffect(() => {
     if (triedEager && !networkActive && !networkError && !active) {
-      activateNetwork();
+      activateNetwork(injected);
     }
   }, [triedEager, networkActive, networkError, activateNetwork, active]);
 
@@ -32,9 +33,7 @@ const Web3ReactManager = ({ children }) => {
       setShowLoader(true);
     }, 600);
 
-    return () => {
-      clearTimeout(timeout);
-    };
+    return () => clearTimeout(timeout);
   }, []);
 
   // on page load, do nothing until we've tried to connect to the injected connector

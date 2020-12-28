@@ -5,7 +5,7 @@ import {
 } from 'styled-components';
 import { oneOfType, array, object } from 'prop-types';
 
-import { useLocalStorage } from '../hooks/useLocalStorage.js';
+import { useLocalStorage } from '../hooks';
 
 const propTypes = {
   children: oneOfType([array, object]),

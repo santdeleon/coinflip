@@ -12,10 +12,8 @@ import App from './App';
 import { ThemeProvider } from './context/ThemeContext';
 import { LayoutProvider } from './context/LayoutContext';
 
-import { getLibrary } from './utils/getLibrary';
+import { getLibrary } from './utils';
 import * as serviceWorker from './serviceWorker';
-
-if (window.ethereum) window.ethereum.autoRefreshOnNetworkChange = false;
 
 ReactDOM.render(
   <React.StrictMode>

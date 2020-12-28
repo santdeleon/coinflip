@@ -1,6 +1,8 @@
-export const truncateString = (string, desiredLength, separator) => {
-  if (!string) return null;
-  if (string.length <= desiredLength) return string;
+const truncateString = (str, desiredLength, separator) => {
+  if (!str) return null;
+  if (str.length <= desiredLength) return str;
+
+  let newStr = str;
 
   separator = separator || '...';
 
@@ -10,8 +12,10 @@ export const truncateString = (string, desiredLength, separator) => {
     backChars = Math.floor(charsToShow / 2);
 
   return (
-    string.substr(0, frontChars) +
+    newStr.substr(0, frontChars) +
     separator +
-    string.substr(string.length - backChars)
+    newStr.substr(newStr.length - backChars)
   );
 };
+
+export default truncateString;
