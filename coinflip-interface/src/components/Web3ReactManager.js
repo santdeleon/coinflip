@@ -43,8 +43,8 @@ const Web3ReactManager = ({ children }) => {
   if (!active && networkError) return <div>unknown error</div>;
 
   // if neither context is active, spin
-  if (!active && !networkActive)
-    return showLoader ? <div>loading...</div> : null;
+  // if (!active && !networkActive)
+  //   return showLoader ? <div>loading...</div> : null;
 
   return children;
 };
