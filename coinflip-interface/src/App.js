@@ -9,7 +9,7 @@ import Web3ReactManager from './components/Web3ReactManager';
 import Header from './components/Header';
 import NavMenu from './components/NavMenu';
 import Footer from './components/Footer';
-import WalletConnectModal from './components/WalletConnectModal';
+import WalletModal from './components/WalletModal';
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
       <Container fluid>
         <Header />
         <NavMenu />
-        <WalletConnectModal />
+        <WalletModal />
         <Footer />
 
         {/* Here temporarily, should eventually wrap main app content */}

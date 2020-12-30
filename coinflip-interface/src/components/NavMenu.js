@@ -59,7 +59,7 @@ const NavMenu = () => {
             variant="link"
             className="NavMenu__Button--connect-wallet text-decoration-none font-weight-bold mr-2"
             onClick={() =>
-              setLayout({ ...layout, showConnectWalletModal: true })
+              setLayout({ ...layout, walletModal: { show: true } })
             }
           >
             Connect to a Wallet
