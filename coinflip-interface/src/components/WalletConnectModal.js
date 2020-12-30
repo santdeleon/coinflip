@@ -1,11 +1,11 @@
 import React from 'react';
-import { useWeb3React } from '@web3-react/core';
 import { Row, Col, Modal, Button } from 'react-bootstrap';
 import { X } from 'react-feather';
 import cx from 'classnames';
+import { useWeb3React } from '@web3-react/core';
 
-import { injected } from '../connectors';
 import { useLayout } from '../hooks';
+import { injected } from '../connectors';
 
 import MetaMask from '../assets/img/metamask.png';
 import WalletConnect from '../assets/img/walletconnect.svg';
@@ -36,6 +36,7 @@ const ConnectWalletModal = () => {
       aria-label="Connect to a Wallet"
       onHide={() => setLayout({ ...layout, showConnectWalletModal: false })}
       centered
+      animation={false}
     >
       <Modal.Header className="d-flex align-items-center">
         <h6 className="mb-0">
@@ -69,12 +70,9 @@ const ConnectWalletModal = () => {
               style={{
                 pointerEvents: wallet.name !== 'MetaMask' && 'none',
               }}
-              // TODO: Setup wallet support for all connector types
               onClick={() => {
-                activate(injected, undefined, true).then(() => {
-                  // refresh the page to keep UI up-to-date
-                  window.location.reload();
-                });
+                activate(injected, undefined, true);
+                setLayout({ ...layout, showConnectWalletModal: false });
               }}
             >
               <p className="mr-auto mb-0 font-weight-bold">{wallet.name}</p>

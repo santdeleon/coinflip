@@ -15,7 +15,7 @@ const NavMenu = () => {
   const [balance, setBalance] = useState(null);
 
   useEffect(() => {
-    if (active) {
+    if (active && account) {
       library
         .getBalance(account)
         .then((res) => setBalance(parseFloat(formatEther(res)).toFixed(2)));

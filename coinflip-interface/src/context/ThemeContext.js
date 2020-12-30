@@ -53,4 +53,4 @@ const ThemeProvider = ({ children }) => {
 };
 
 ThemeProvider.propTypes = propTypes;
-export { ThemeProvider, ThemeContext, GlobalStyles, LightTheme, DarkTheme };
+export { ThemeProvider, ThemeContext, GlobalStyles };

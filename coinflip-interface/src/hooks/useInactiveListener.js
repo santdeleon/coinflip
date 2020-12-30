@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useWeb3React as useWeb3ReactCore } from '@web3-react/core';
+import { useWeb3React } from '@web3-react/core';
 
 import { injected } from '../connectors';
 
@@ -8,28 +8,25 @@ import { injected } from '../connectors';
  * and out after checking what network they're on
  */
 const useInactiveListener = (suppress = false) => {
-  const { active, error, activate } = useWeb3ReactCore(); // specifically using useWeb3React because of what this hook does
+  const { active, error, activate } = useWeb3React();
 
   useEffect(() => {
     const { ethereum } = window;
 
     if (ethereum && ethereum.on && !active && !error && !suppress) {
       const handleChainChanged = () => {
-        // eat errors
         activate(injected, undefined, true).catch((error) => {
           console.error('Failed to activate after chain changed', error);
         });
+        window.location.reload();
       };
 
-      /**
-       * params accounts{String[]}
-       */
       const handleAccountsChanged = (accounts) => {
         if (accounts.length > 0) {
-          // eat errors
           activate(injected, undefined, true).catch((error) => {
             console.error('Failed to activate after accounts changed', error);
           });
+          window.location.reload();
         }
       };
 
@@ -43,7 +40,7 @@ const useInactiveListener = (suppress = false) => {
         }
       };
     }
-    return;
+    return undefined;
   }, [active, error, suppress, activate]);
 };
 

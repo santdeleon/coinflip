@@ -17,7 +17,7 @@ const useEagerConnect = () => {
         setTried(true);
       }
     });
-  }, []); // intentionally only running once on mount
+  }, [activate]); // intentionally only running once on mount
 
   // if the connection worked, wait until we get confirmation to flip the flag
   useEffect(() => {

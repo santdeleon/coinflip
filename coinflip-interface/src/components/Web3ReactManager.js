@@ -1,52 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
-
-import { injected } from '../connectors';
+import { oneOfType, array, object } from 'prop-types';
 
 import { useEagerConnect, useInactiveListener } from '../hooks';
+import { getErrorMessage } from '../utils';
+
+import Message from './Message';
+
+const propTypes = {
+  children: oneOfType([array, object]),
+};
 
 const Web3ReactManager = ({ children }) => {
-  const { active } = useWeb3React();
-  const {
-    active: networkActive,
-    error: networkError,
-    activate: activateNetwork,
-  } = useWeb3React();
-
-  // try to eagerly connect to injected provider if it exists and has granted access already
+  const { activate, active, error } = useWeb3React();
   const triedEager = useEagerConnect();
 
-  // if network is ever not connected, attempt to eagerly connect again
   useEffect(() => {
-    if (triedEager && !networkActive && !networkError && !active) {
-      activateNetwork(injected);
+    if (triedEager && !active && !error) {
+      console.log(
+        "Eager connection failed. It's probably because MetaMask is not authorized",
+      );
     }
-  }, [triedEager, networkActive, networkError, activateNetwork, active]);
+  }, [triedEager, active, error, activate]);
 
-  // when there's no account connected, react to logins (broadly speaking) on the injected provider, if it exists
+  // when account becomes inactive, try to login
   useInactiveListener(!triedEager);
-
-  // handle delayed loader state
-  const [showLoader, setShowLoader] = useState(false);
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowLoader(true);
-    }, 600);
-
-    return () => clearTimeout(timeout);
-  }, []);
 
   // on page load, do nothing until we've tried to connect to the injected connector
   if (!triedEager) return null;
 
-  // if the account context isn't active, and there's an error on the network context, it's an irrecoverable error
-  if (!active && networkError) return <div>unknown error</div>;
+  if (!active && error)
+    return (
+      <Message
+        message={getErrorMessage(error)}
+        isError={true}
+        showToast={true}
+      />
+    );
 
-  // if neither context is active, spin
-  // if (!active && !networkActive)
-  //   return showLoader ? <div>loading...</div> : null;
+  // connection successful
+  if (triedEager && active) return children;
 
-  return children;
+  // fallback -- connection unsuccessful and no errors, render nothing
+  return null;
 };
 
+Web3ReactManager.propTypes = propTypes;
 export default Web3ReactManager;
