@@ -5,13 +5,15 @@ import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
 
 import Emoji from './Emoji.js';
+import ToggleSwitch from './ToggleSwitch';
 
 import { truncateString } from '../utils';
-import { useLayout } from '../hooks';
+import { useLayout, useTheme } from '../hooks';
 
 const NavMenu = () => {
   const { active, account, library } = useWeb3React();
   const { layout, setLayout } = useLayout();
+  const { theme, toggleTheme } = useTheme();
   const [balance, setBalance] = useState(null);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const NavMenu = () => {
   }, [library, active, account]);
 
   return (
-    <Navbar className="NavMenu align-items-center">
+    <Navbar className="NavMenu align-items-center px-0">
       <Navbar.Brand
         as={Link}
         to="/"
@@ -43,7 +45,7 @@ const NavMenu = () => {
             </Button>
             <Button
               variant="light"
-              className="text-decoration-none font-weight-bold"
+              className="text-decoration-none font-weight-bold mr-3"
             >
               {truncateString(account, 15)}
             </Button>
@@ -51,7 +53,7 @@ const NavMenu = () => {
         ) : (
           <Button
             variant="link"
-            className="NavMenu__Button--connect-wallet text-decoration-none font-weight-bold"
+            className="NavMenu__Button--connect-wallet text-decoration-none font-weight-bold mr-2"
             onClick={() =>
               setLayout({ ...layout, showConnectWalletModal: true })
             }
@@ -59,6 +61,7 @@ const NavMenu = () => {
             Connect to a Wallet
           </Button>
         )}
+        <ToggleSwitch theme={theme} toggleTheme={toggleTheme} />
       </Nav>
     </Navbar>
   );
