@@ -3,6 +3,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
+import cx from 'classnames';
 
 import Emoji from './Emoji.js';
 import ToggleSwitch from './ToggleSwitch';
@@ -29,7 +30,10 @@ const NavMenu = () => {
       <Navbar.Brand
         as={Link}
         to="/"
-        className="font-weight-bold d-flex align-items-center"
+        className={cx('font-weight-bold d-flex align-items-center', {
+          'text-dark': theme === 'light',
+          'text-light': theme === 'dark',
+        })}
       >
         <Emoji ariaLabel="Rainbows Emoji" unicode="🌈" className="mr-2" />
         Coinflip
@@ -38,13 +42,13 @@ const NavMenu = () => {
         {active ? (
           <>
             <Button
-              variant="light"
+              variant={theme === 'light' ? 'light' : 'dark'}
               className="text-decoration-none font-weight-bold mr-2"
             >
               {balance} ETH
             </Button>
             <Button
-              variant="light"
+              variant={theme === 'light' ? 'light' : 'dark'}
               className="text-decoration-none font-weight-bold mr-3"
             >
               {truncateString(account, 15)}

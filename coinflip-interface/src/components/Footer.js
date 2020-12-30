@@ -19,7 +19,7 @@ const Footer = () => (
         rel="noopener noreferrer"
         className="mb-1 text-dark text-decoration-none"
       >
-        <small className="font-weight-bold">861d464</small>
+        <small className="font-weight-light text-secondary">861d464</small>
       </a>
     </Nav>
   </Navbar>
