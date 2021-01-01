@@ -37,7 +37,7 @@ const Button = ({
   const { theme } = useTheme();
 
   return (
-    <ButtonPink
+    <ButtonBlue
       id={id}
       type={type}
       theme={theme}
@@ -48,7 +48,7 @@ const Button = ({
       onClick={onClick}
     >
       {children}
-    </ButtonPink>
+    </ButtonBlue>
   );
 };
 Button.propTypes = propTypes;
@@ -108,28 +108,28 @@ const StyledButton = styled.button`
 //   }
 // `;
 
-const ButtonPink = styled(StyledButton)`
-  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
-  background-color: ${({ theme }) =>
-    theme === 'light' ? colors.$pink40 : colors.$pink40};
-  border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$pink60 : colors.$pink70};
-  box-shadow: ${({ theme }) =>
-    theme === 'light'
-      ? `0px 2px 0px ${colors.$pink60}`
-      : `0px 2px 0px ${colors.$pink70}`};
-  &:hover&:not(:disabled) {
-    color: ${({ theme }) =>
-      theme === 'light' ? colors.$white : colors.$gray10};
-    background-color: ${({ theme }) =>
-      theme === 'light' ? colors.$pink50 : colors.$pink50};
-    border-color: ${({ theme }) =>
-      theme === 'light' ? colors.$pink60 : colors.$pink70};
-  }
-  &:active {
-    box-shadow: 0px 0px 0px ${colors.$gray10};
-  }
-`;
+// const ButtonPink = styled(StyledButton)`
+//   color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+//   background-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$pink40 : colors.$pink40};
+//   border-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$pink60 : colors.$pink70};
+//   box-shadow: ${({ theme }) =>
+//     theme === 'light'
+//       ? `0px 2px 0px ${colors.$pink60}`
+//       : `0px 2px 0px ${colors.$pink70}`};
+//   &:hover&:not(:disabled) {
+//     color: ${({ theme }) =>
+//       theme === 'light' ? colors.$white : colors.$gray10};
+//     background-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$pink50 : colors.$pink50};
+//     border-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$pink60 : colors.$pink70};
+//   }
+//   &:active {
+//     box-shadow: 0px 0px 0px ${colors.$pink10};
+//   }
+// `;
 
 // const ButtonGreen = styled(StyledButton)`
 //   color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
@@ -153,3 +153,26 @@ const ButtonPink = styled(StyledButton)`
 //     box-shadow: 0px 0px 0px ${colors.$gray10};
 //   }
 // `;
+
+const ButtonBlue = styled(StyledButton)`
+  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.$blue40 : colors.$blue40};
+  border-color: ${({ theme }) =>
+    theme === 'light' ? colors.$blue60 : colors.$blue70};
+  box-shadow: ${({ theme }) =>
+    theme === 'light'
+      ? `0px 2px 0px ${colors.$blue60}`
+      : `0px 2px 0px ${colors.$blue70}`};
+  &:hover&:not(:disabled) {
+    color: ${({ theme }) =>
+      theme === 'light' ? colors.$white : colors.$gray10};
+    background-color: ${({ theme }) =>
+      theme === 'light' ? colors.$blue50 : colors.$blue50};
+    border-color: ${({ theme }) =>
+      theme === 'light' ? colors.$blue60 : colors.$blue70};
+  }
+  &:active {
+    box-shadow: 0px 0px 0px ${colors.$blue10};
+  }
+`;

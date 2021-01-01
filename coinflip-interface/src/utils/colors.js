@@ -23,3 +23,11 @@ export const $green40 = '#7AC70C';
 export const $green50 = '#73b70c';
 export const $green60 = '#619F09';
 export const $green70 = '#4a7a03';
+
+export const $blue10 = '#92f8fc';
+export const $blue20 = '#51e3e8';
+export const $blue30 = '#35d0d6';
+export const $blue40 = '#1fbcc1';
+export const $blue50 = '#01b5b5';
+export const $blue60 = '#16888c';
+export const $blue70 = '#11686b';
