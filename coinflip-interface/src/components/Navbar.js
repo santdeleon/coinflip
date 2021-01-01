@@ -8,7 +8,7 @@ import styled, { ThemeContext } from 'styled-components';
 
 import Emoji from './Emoji.js';
 import ToggleSwitch from './ToggleSwitch';
-import Button from './Button';
+import { ButtonPrimary, ButtonPink, ButtonGreen } from './Button';
 
 import { truncateString } from '../utils';
 import { useLayout, useTheme } from '../hooks';
@@ -106,18 +106,20 @@ const Navbar = () => {
       <StyledNav>
         {active ? (
           <>
-            <Button margin="0 10px 0 0" disabled>
+            <ButtonPrimary
+              id="Button__ButtonPrimary--ethereum-balance"
+              disabled
+            >
               {parseInt(balance) < 1 ? 0 : balance} ETH
-            </Button>
-            <Button margin="0 10px 0 0">{truncateString(account, 15)}</Button>
+            </ButtonPrimary>
+            <ButtonGreen id="Button__ButtonGreen--ethereum-selected-address">
+              {truncateString(account, 15)}
+            </ButtonGreen>
           </>
         ) : (
-          <>
-            <Button margin="0 10px 0 0" disabled>
-              Disabled
-            </Button>
-            <Button margin="0 10px 0 0">Connect to a Wallet</Button>
-          </>
+          <ButtonPink id="Button__ButtonPink--connect-to-wallet">
+            Connect to a Wallet
+          </ButtonPink>
         )}
         <ToggleSwitch />
       </StyledNav>
