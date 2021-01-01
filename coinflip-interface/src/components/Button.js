@@ -37,7 +37,7 @@ const Button = ({
   const { theme } = useTheme();
 
   return (
-    <ButtonBlue
+    <ButtonOrange
       id={id}
       type={type}
       theme={theme}
@@ -48,7 +48,7 @@ const Button = ({
       onClick={onClick}
     >
       {children}
-    </ButtonBlue>
+    </ButtonOrange>
   );
 };
 Button.propTypes = propTypes;
@@ -131,6 +131,29 @@ const StyledButton = styled.button`
 //   }
 // `;
 
+const ButtonOrange = styled(StyledButton)`
+  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.$orange40 : colors.$orange40};
+  border-color: ${({ theme }) =>
+    theme === 'light' ? colors.$orange60 : colors.$orange70};
+  box-shadow: ${({ theme }) =>
+    theme === 'light'
+      ? `0px 2px 0px ${colors.$orange60}`
+      : `0px 2px 0px ${colors.$orange70}`};
+  &:hover&:not(:disabled) {
+    color: ${({ theme }) =>
+      theme === 'light' ? colors.$white : colors.$gray10};
+    background-color: ${({ theme }) =>
+      theme === 'light' ? colors.$orange50 : colors.$orange50};
+    border-color: ${({ theme }) =>
+      theme === 'light' ? colors.$orange60 : colors.$orange70};
+  }
+  &:active {
+    box-shadow: 0px 0px 0px ${colors.$orange10};
+  }
+`;
+
 // const ButtonGreen = styled(StyledButton)`
 //   color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
 //   background-color: ${({ theme }) =>
@@ -154,25 +177,25 @@ const StyledButton = styled.button`
 //   }
 // `;
 
-const ButtonBlue = styled(StyledButton)`
-  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
-  background-color: ${({ theme }) =>
-    theme === 'light' ? colors.$blue40 : colors.$blue40};
-  border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$blue60 : colors.$blue70};
-  box-shadow: ${({ theme }) =>
-    theme === 'light'
-      ? `0px 2px 0px ${colors.$blue60}`
-      : `0px 2px 0px ${colors.$blue70}`};
-  &:hover&:not(:disabled) {
-    color: ${({ theme }) =>
-      theme === 'light' ? colors.$white : colors.$gray10};
-    background-color: ${({ theme }) =>
-      theme === 'light' ? colors.$blue50 : colors.$blue50};
-    border-color: ${({ theme }) =>
-      theme === 'light' ? colors.$blue60 : colors.$blue70};
-  }
-  &:active {
-    box-shadow: 0px 0px 0px ${colors.$blue10};
-  }
-`;
+// const ButtonBlue = styled(StyledButton)`
+//   color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+//   background-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$blue40 : colors.$blue40};
+//   border-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$blue60 : colors.$blue70};
+//   box-shadow: ${({ theme }) =>
+//     theme === 'light'
+//       ? `0px 2px 0px ${colors.$blue60}`
+//       : `0px 2px 0px ${colors.$blue70}`};
+//   &:hover&:not(:disabled) {
+//     color: ${({ theme }) =>
+//       theme === 'light' ? colors.$white : colors.$gray10};
+//     background-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$blue50 : colors.$blue50};
+//     border-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$blue60 : colors.$blue70};
+//   }
+//   &:active {
+//     box-shadow: 0px 0px 0px ${colors.$blue10};
+//   }
+// `;

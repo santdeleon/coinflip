@@ -16,6 +16,14 @@ export const $pink50 = '#ce568c';
 export const $pink60 = '#892a53';
 export const $pink70 = '#6b213f';
 
+export const $orange10 = '#ffd696';
+export const $orange20 = '#f7c67e';
+export const $orange30 = '#e8b261';
+export const $orange40 = '#f2a635';
+export const $orange50 = '#e89c33';
+export const $orange60 = '#bf7e1c';
+export const $orange70 = '#8c5d20';
+
 export const $green10 = '#cff990';
 export const $green20 = '#b4e56b';
 export const $green30 = '#a0cc5f';
