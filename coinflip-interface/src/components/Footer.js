@@ -9,7 +9,7 @@ const Footer = () => (
       <FontAwesomeIcon
         icon={faCircle}
         style={{ fontSize: '10px' }}
-        className="text-success mr-2"
+        className="text-success mr-1"
       />
       <a
         aria-label="Github"

@@ -1,4 +1,4 @@
-const truncateString = (str, desiredLength, separator) => {
+export const truncateString = (str, desiredLength, separator) => {
   if (!str) return null;
   if (str.length <= desiredLength) return str;
 
@@ -17,5 +17,3 @@ const truncateString = (str, desiredLength, separator) => {
     newStr.substr(newStr.length - backChars)
   );
 };
-
-export default truncateString;

@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 
 import { injected } from '../connectors';
 
-const useEagerConnect = () => {
+export const useEagerConnect = () => {
   const [tried, setTried] = useState(false);
   const { activate, active } = useWeb3React();
 
@@ -21,12 +21,8 @@ const useEagerConnect = () => {
 
   // if the connection worked, wait until we get confirmation to flip the flag
   useEffect(() => {
-    if (active) {
-      setTried(true);
-    }
+    if (active) setTried(true);
   }, [active]);
 
   return tried;
 };
-
-export default useEagerConnect;

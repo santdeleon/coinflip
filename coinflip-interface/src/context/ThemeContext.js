@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const LightTheme = {
-  color: '#000',
+  color: '#3d3b3b',
   background: '#fff',
 };
 

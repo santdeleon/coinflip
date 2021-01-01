@@ -8,7 +8,7 @@ const propTypes = {
 };
 
 const Emoji = ({ ariaLabel, unicode, className }) => (
-  <span role="img" aria-label={ariaLabel} className={className}>
+  <span role="img" alt={ariaLabel} aria-label={ariaLabel} className={className}>
     {unicode}
   </span>
 );

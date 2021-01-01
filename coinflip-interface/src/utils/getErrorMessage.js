@@ -6,7 +6,7 @@ import {
 import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@web3-react/walletconnect-connector';
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from '@web3-react/frame-connector';
 
-const getErrorMessage = (error) => {
+export const getErrorMessage = (error) => {
   let errorMessage;
 
   if (error instanceof NoEthereumProviderError) {
@@ -29,5 +29,3 @@ const getErrorMessage = (error) => {
 
   return errorMessage;
 };
-
-export default getErrorMessage;

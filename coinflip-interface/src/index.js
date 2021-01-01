@@ -12,21 +12,20 @@ import { ThemeProvider, GlobalStyles } from './context/ThemeContext';
 import { LayoutProvider } from './context/LayoutContext';
 
 import { getLibrary } from './utils';
+
 import * as serviceWorker from './serviceWorker';
 
 render(
-  <StrictMode>
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <ThemeProvider>
-        <GlobalStyles />
-        <HashRouter>
-          <LayoutProvider>
-            <App />
-          </LayoutProvider>
-        </HashRouter>
-      </ThemeProvider>
-    </Web3ReactProvider>
-  </StrictMode>,
+  <Web3ReactProvider getLibrary={getLibrary}>
+    <ThemeProvider>
+      <GlobalStyles />
+      <HashRouter>
+        <LayoutProvider>
+          <App />
+        </LayoutProvider>
+      </HashRouter>
+    </ThemeProvider>
+  </Web3ReactProvider>,
   document.getElementById('root'),
 );
 

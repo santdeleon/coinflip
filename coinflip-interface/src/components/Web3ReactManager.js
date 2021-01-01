@@ -17,9 +17,7 @@ const Web3ReactManager = ({ children }) => {
 
   useEffect(() => {
     if (triedEager && !active && !error) {
-      console.log(
-        "Eager connection failed. It's probably because MetaMask is not authorized",
-      );
+      return; // TODO: eventually this should try to establish connection to a network
     }
   }, [triedEager, active, error, activate]);
 

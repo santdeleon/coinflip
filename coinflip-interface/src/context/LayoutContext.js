@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { oneOfType, array, object } from 'prop-types';
+import { useWeb3React } from '@web3-react/core';
 
 const propTypes = {
   children: oneOfType([array, object]),
@@ -8,12 +9,19 @@ const propTypes = {
 const LayoutContext = createContext();
 
 const LayoutProvider = ({ children }) => {
+  const { active } = useWeb3React();
   const [layout, setLayout] = useState({
-    walletModal: {
-      show: false,
-      status: 'idle',
-      error: null,
-      type: null,
+    modals: {
+      wallet: {
+        show: false,
+        status: active ? 'connected' : 'not_connected',
+        error: null,
+        type: null,
+      },
+      account: {
+        show: false,
+        isAddressCopied: false,
+      },
     },
   });
 

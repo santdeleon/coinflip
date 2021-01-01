@@ -1,35 +1,31 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 
 import Web3ReactManager from './components/Web3ReactManager';
-import Header from './components/Header';
-import NavMenu from './components/NavMenu';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WalletModal from './components/WalletModal';
+import AccountModal from './components/AccountModal';
 
-const App = () => {
-  return (
-    <div className="App">
-      <Container fluid>
-        <Header />
-        <NavMenu />
-        <WalletModal />
-        <Footer />
+const App = () => (
+  <div className="App">
+    {/* <Container fluid>
+      <Navbar />
+      <WalletModal />
+      <AccountModal />
+      <Footer />
 
-        {/* Here temporarily, should eventually wrap main app content */}
-        <Web3ReactManager>
-          <small>
-            <FontAwesomeIcon icon={faCircle} className="text-success mr-1" />{' '}
-            <b>connected</b>
-          </small>
-        </Web3ReactManager>
-      </Container>
-    </div>
-  );
-};
+      <Web3ReactManager>
+        <small>connected</small>
+      </Web3ReactManager>
+    </Container> */}
+    <Navbar />
+    <Web3ReactManager>
+      <small>connected</small>
+    </Web3ReactManager>
+  </div>
+);
 
 export default App;
