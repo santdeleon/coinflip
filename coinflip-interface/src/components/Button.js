@@ -37,7 +37,7 @@ const Button = ({
   const { theme } = useTheme();
 
   return (
-    <ButtonGreen
+    <ButtonPink
       id={id}
       type={type}
       theme={theme}
@@ -48,7 +48,7 @@ const Button = ({
       onClick={onClick}
     >
       {children}
-    </ButtonGreen>
+    </ButtonPink>
   );
 };
 Button.propTypes = propTypes;
@@ -81,42 +81,75 @@ const StyledButton = styled.button`
   }
 `;
 
-const ButtonGreen = styled(StyledButton)`
-  color: ${colors.$green10};
-  background-color: ${colors.$green40};
-  border-color: ${colors.$green50};
-  box-shadow: 0px 2px 0px ${colors.$green50};
+// const ButtonSecondary = styled(StyledButton)`
+//   color: ${({ theme }) =>
+//     theme === 'light' ? colors.$gray50 : colors.$gray20};
+//   background-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$white : colors.$gray50};
+//   border-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$gray20 : colors.$black};
+//   box-shadow: ${({ theme }) =>
+//     theme === 'light'
+//       ? `0px 2px 0px ${colors.$gray20}`
+//       : `0px 2px 0px ${colors.$black}`};
+//   &:hover&:not(:disabled) {
+//     color: ${({ theme }) =>
+//       theme === 'light' ? colors.$gray60 : colors.$white};
+//     background-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$gray10 : colors.$gray60};
+//     border-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$gray20 : colors.$black};
+//   }
+//   &:active {
+//     box-shadow: ${({ theme }) =>
+//       theme === 'light'
+//         ? `0px 0px 0px ${colors.$gray20}`
+//         : `0px 0px 0px ${colors.$black}`};
+//   }
+// `;
+
+const ButtonPink = styled(StyledButton)`
+  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.$pink40 : colors.$pink40};
+  border-color: ${({ theme }) =>
+    theme === 'light' ? colors.$pink60 : colors.$pink70};
+  box-shadow: ${({ theme }) =>
+    theme === 'light'
+      ? `0px 2px 0px ${colors.$pink60}`
+      : `0px 2px 0px ${colors.$pink70}`};
   &:hover&:not(:disabled) {
-    color: ${colors.$white};
-    border-color: ${colors.$green50};
+    color: ${({ theme }) =>
+      theme === 'light' ? colors.$white : colors.$gray10};
+    background-color: ${({ theme }) =>
+      theme === 'light' ? colors.$pink50 : colors.$pink50};
+    border-color: ${({ theme }) =>
+      theme === 'light' ? colors.$pink60 : colors.$pink70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$secondary10};
+    box-shadow: 0px 0px 0px ${colors.$gray10};
   }
 `;
 
-const ButtonSecondary = styled(StyledButton)`
-  color: ${({ theme }) =>
-    theme === 'light' ? colors.$dark : colors.$secondary10};
-  background-color: ${({ theme }) =>
-    theme === 'light' ? colors.$white : colors.$dark};
-  border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$secondary10 : colors.$black};
-  box-shadow: ${({ theme }) =>
-    theme === 'light'
-      ? `0px 2px 0px ${colors.$secondary10}`
-      : `0px 2px 0px ${colors.$black}`};
-  &:hover&:not(:disabled) {
-    background-color: ${({ theme }) =>
-      theme === 'light' ? colors.$secondary10 : colors.$dark};
-    color: ${({ theme }) => (theme === 'light' ? colors.$dark : colors.$white)};
-    border-color: ${({ theme }) =>
-      theme === 'light' ? colors.$secondary20 : colors.$black};
-  }
-  &:active {
-    box-shadow: ${({ theme }) =>
-      theme === 'light'
-        ? `0px 0px 0px ${colors.$secondary10}`
-        : `0px 0px 0px ${colors.$black}`};
-  }
-`;
+// const ButtonGreen = styled(StyledButton)`
+//   color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+//   background-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$green40 : colors.$green50};
+//   border-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$green60 : colors.$green70};
+//   box-shadow: ${({ theme }) =>
+//     theme === 'light'
+//       ? `0px 2px 0px ${colors.$green60}`
+//       : `0px 2px 0px ${colors.$green70}`};
+//   &:hover&:not(:disabled) {
+//     color: ${({ theme }) =>
+//       theme === 'light' ? colors.$white : colors.$gray10};
+//     background-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$green50 : colors.$green60};
+//     border-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$green60 : colors.$green70};
+//   }
+//   &:active {
+//     box-shadow: 0px 0px 0px ${colors.$gray10};
+//   }
+// `;

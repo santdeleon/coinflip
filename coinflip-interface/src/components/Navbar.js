@@ -112,7 +112,12 @@ const Navbar = () => {
             <Button margin="0 10px 0 0">{truncateString(account, 15)}</Button>
           </>
         ) : (
-          <Button margin="0 10px 0 0">Connect to a Wallet</Button>
+          <>
+            <Button margin="0 10px 0 0" disabled>
+              Disabled
+            </Button>
+            <Button margin="0 10px 0 0">Connect to a Wallet</Button>
+          </>
         )}
         <ToggleSwitch />
       </StyledNav>
