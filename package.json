@@ -19,6 +19,7 @@
     "@openzeppelin/contracts-ethereum-package": "^3.0.0",
     "@openzeppelin/solidity-loader": "^1.5.1",
     "@openzeppelin/test-helpers": "^0.5.10",
+    "@truffle/hdwallet-provider": "^1.2.1",
     "openzeppelin-solidity": "^3.3.0",
     "truffle-assertions": "^0.9.2"
   },
