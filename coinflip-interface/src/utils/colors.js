@@ -29,8 +29,8 @@ export const $yellow20 = '#ffda56';
 export const $yellow30 = '#ffd747';
 export const $yellow40 = '#fcd02f';
 export const $yellow50 = '#f9c91b';
-export const $yellow60 = '#e5b509';
-export const $yellow70 = '#c69b00';
+export const $yellow60 = '#b79114';
+export const $yellow70 = '#5e4701';
 
 export const $green10 = '#cff990';
 export const $green20 = '#b4e56b';
@@ -47,3 +47,11 @@ export const $blue40 = '#1fbcc1';
 export const $blue50 = '#01b5b5';
 export const $blue60 = '#16888c';
 export const $blue70 = '#11686b';
+
+export const $purple10 = '#e4a3ff';
+export const $purple20 = '#d982ff';
+export const $purple30 = '#c574e8';
+export const $purple40 = '#ac61cc';
+export const $purple50 = '#a059bf';
+export const $purple60 = '#77418e';
+export const $purple70 = '#552e66';
