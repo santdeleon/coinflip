@@ -1,6 +1,11 @@
 export const $dark = '#222';
 export const $white = '#fff';
 export const $black = '#000';
+export const $green10 = '#cff990';
+export const $green20 = '#b4e56b';
+export const $green30 = '#a0cc5f';
+export const $green40 = '#7AC70C';
+export const $green50 = '#619F09';
 export const $secondary10 = '#e5e5e5';
 export const $secondary20 = '#cecece';
 export const $secondary30 = '#9d9d9d';

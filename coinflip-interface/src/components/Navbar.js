@@ -30,41 +30,22 @@ const Navbar = () => {
 
   // return (
   //   <RBSNavbar className="Navbar align-items-center px-0">
-  //     <RBSNavbar.Brand
-  //       as={Link}
-  //       to="/"
-  //       className={cx('font-weight-bold d-flex align-items-center', {
-  //         'text-dark': theme === 'light',
-  //         'text-light': theme === 'dark',
-  //       })}
-  //     >
-  //       <Emoji ariaLabel="Rainbows Emoji" unicode="🌈" className="mr-2" />
-  //       Coinflip
-  //     </RBSNavbar.Brand>
   //     <Nav className="ml-auto align-items-center">
   //       {active ? (
   //         <>
-  //           <Button
-  //             variant="transparent"
-  //             className={cx('text-decoration-none font-weight-bold', {
-  //               'text-dark': theme === 'light',
-  //               'text-light': theme === 'dark',
-  //             })}
-  //           >
-  //             {balance} ETH
-  //           </Button>
+  //
   //           <Button
   //             variant={theme === 'light' ? 'light' : 'dark'}
   //             className="text-decoration-none font-weight-bold mr-3"
-  //             onClick={() =>
-  //               setLayout({
-  //                 ...layout,
-  //                 modals: {
-  //                   ...layout.modals,
-  //                   account: { show: true },
-  //                 },
-  //               })
-  //             }
+  // onClick={() =>
+  //   setLayout({
+  //     ...layout,
+  //     modals: {
+  //       ...layout.modals,
+  //       account: { show: true },
+  //     },
+  //   })
+  // }
   //           >
   //             {truncateString(account, 15)}
   //           </Button>
@@ -123,7 +104,16 @@ const Navbar = () => {
         Coinflip
       </StyledNavbarBrand>
       <StyledNav>
-        <Button>Connect to a Wallet</Button>
+        {active ? (
+          <>
+            <Button margin="0 10px 0 0" disabled>
+              {parseInt(balance) < 1 ? 0 : balance} ETH
+            </Button>
+            <Button margin="0 10px 0 0">{truncateString(account, 15)}</Button>
+          </>
+        ) : (
+          <Button margin="0 10px 0 0">Connect to a Wallet</Button>
+        )}
         <ToggleSwitch />
       </StyledNav>
     </StyledNavbar>

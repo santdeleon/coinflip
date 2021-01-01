@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func, array, object, oneOfType } from 'prop-types';
+import { string, func, array, bool, object, oneOfType } from 'prop-types';
 import styled from 'styled-components';
 
 import * as colors from '../utils/colors';
@@ -12,6 +12,7 @@ const propTypes = {
   className: string,
   padding: string,
   margin: string,
+  disabled: bool,
   onClick: func,
   children: oneOfType([array, object]),
 };
@@ -20,6 +21,7 @@ const defaultProps = {
   type: 'button',
   padding: '4px 16px',
   margin: '0 15px 0 15px',
+  disabled: false,
 };
 
 const Button = ({
@@ -28,23 +30,25 @@ const Button = ({
   className,
   padding,
   margin,
+  disabled,
   onClick,
   children,
 }) => {
   const { theme } = useTheme();
 
   return (
-    <ButtonSecondary
+    <ButtonGreen
       id={id}
       type={type}
       theme={theme}
       className={className}
       padding={padding}
       margin={margin}
+      disabled={disabled}
       onClick={onClick}
     >
       {children}
-    </ButtonSecondary>
+    </ButtonGreen>
   );
 };
 Button.propTypes = propTypes;
@@ -72,6 +76,23 @@ const StyledButton = styled.button`
   &:focus {
     outline: 0;
   }
+  &:disabled {
+    opacity: 50%;
+  }
+`;
+
+const ButtonGreen = styled(StyledButton)`
+  color: ${colors.$green10};
+  background-color: ${colors.$green40};
+  border-color: ${colors.$green50};
+  box-shadow: 0px 2px 0px ${colors.$green50};
+  &:hover&:not(:disabled) {
+    color: ${colors.$white};
+    border-color: ${colors.$green50};
+  }
+  &:active {
+    box-shadow: 0px 0px 0px ${colors.$secondary10};
+  }
 `;
 
 const ButtonSecondary = styled(StyledButton)`
@@ -85,7 +106,7 @@ const ButtonSecondary = styled(StyledButton)`
     theme === 'light'
       ? `0px 2px 0px ${colors.$secondary10}`
       : `0px 2px 0px ${colors.$black}`};
-  &:hover {
+  &:hover&:not(:disabled) {
     background-color: ${({ theme }) =>
       theme === 'light' ? colors.$secondary10 : colors.$dark};
     color: ${({ theme }) => (theme === 'light' ? colors.$dark : colors.$white)};
