@@ -6,19 +6,20 @@ import {
 import { oneOfType, array, object } from 'prop-types';
 
 import { useLocalStorage } from '../hooks';
+import { colors } from '../utils';
 
 const propTypes = {
   children: oneOfType([array, object]),
 };
 
 const LightTheme = {
-  color: '#3d3b3b',
-  background: '#fff',
+  color: colors.$dark,
+  background: colors.$white,
 };
 
 const DarkTheme = {
-  color: '#fff',
-  background: '#222',
+  color: colors.$white,
+  background: colors.$dark,
 };
 
 const GlobalStyles = createGlobalStyle`

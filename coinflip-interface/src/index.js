@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import React from 'react'; // { StrictMode }
 import { render } from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import { Web3ReactProvider } from '@web3-react/core';

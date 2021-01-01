@@ -1,5 +1,6 @@
 export const $white = '#fff';
 export const $black = '#000';
+export const $dark = '#222';
 
 export const $gray10 = '#f7f7f7';
 export const $gray20 = '#e5e5e5';
@@ -7,6 +8,7 @@ export const $gray30 = '#cecece';
 export const $gray40 = '#9d9d9d';
 export const $gray50 = '#4f4e4e';
 export const $gray60 = '#474545';
+export const $gray70 = '#3d3b3b';
 
 export const $pink10 = '#ffaad2';
 export const $pink20 = '#f497c3';
