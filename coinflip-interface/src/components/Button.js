@@ -2,64 +2,16 @@ import React from 'react';
 import { string, func, array, bool, object, oneOfType } from 'prop-types';
 import styled from 'styled-components';
 
-import * as colors from '../utils/colors';
-
+import { colors } from '../utils';
 import { useTheme } from '../hooks';
 
-const propTypes = {
-  id: string.isRequired,
-  type: string.isRequired,
-  className: string,
-  padding: string,
-  margin: string,
-  disabled: bool,
-  onClick: func,
-  children: oneOfType([array, object, string]),
-};
-
-const defaultProps = {
-  type: 'button',
-  padding: '4px 16px',
-  margin: '0 10px 0 0',
-  disabled: false,
-};
-
-const Button = ({
-  id,
-  type,
-  className,
-  padding,
-  margin,
-  disabled,
-  onClick,
-  children,
-}) => {
-  const { theme } = useTheme();
-
-  return (
-    <button
-      id={id}
-      type={type}
-      theme={theme}
-      className={className}
-      padding={padding}
-      margin={margin}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
-
-const StyledButton = styled(Button)`
+// the base button style
+const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ padding }) => (padding ? padding : defaultProps.padding)};
-  margin: ${({ margin }) => (margin ? margin : defaultProps.margin)};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
   font-weight: 700;
   border-style: solid;
   border-radius: 10px;
@@ -247,3 +199,50 @@ export const ButtonPurple = styled(StyledButton)`
     box-shadow: 0px 0px 0px ${colors.$purple10};
   }
 `;
+
+const propTypes = {
+  variant: string.isRequired,
+  id: string.isRequired,
+  type: string.isRequired,
+  className: string,
+  padding: string,
+  margin: string,
+  disabled: bool,
+  onClick: func,
+  children: oneOfType([array, object, string]),
+};
+
+const defaultProps = {
+  variant: 'primary',
+  type: 'button',
+  padding: '4px 16px',
+  margin: '0 10px 0 0',
+  disabled: false,
+};
+
+const Button = ({ ...props }) => {
+  const { theme } = useTheme();
+
+  switch (props.variant) {
+    case 'primary':
+      return <ButtonPrimary {...props} theme={theme} />;
+    case 'pink':
+      return <ButtonPink {...props} theme={theme} />;
+    case 'orange':
+      return <ButtonOrange {...props} theme={theme} />;
+    case 'yellow':
+      return <ButtonYellow {...props} theme={theme} />;
+    case 'green':
+      return <ButtonGreen {...props} theme={theme} />;
+    case 'blue':
+      return <ButtonBlue {...props} theme={theme} />;
+    case 'purple':
+      return <ButtonPurple {...props} theme={theme} />;
+    default:
+      return <ButtonPrimary {...props} theme={theme} />;
+  }
+};
+
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
+export default Button;
