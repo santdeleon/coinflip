@@ -37,7 +37,7 @@ const Button = ({
   const { theme } = useTheme();
 
   return (
-    <ButtonOrange
+    <ButtonYellow
       id={id}
       type={type}
       theme={theme}
@@ -48,7 +48,7 @@ const Button = ({
       onClick={onClick}
     >
       {children}
-    </ButtonOrange>
+    </ButtonYellow>
   );
 };
 Button.propTypes = propTypes;
@@ -131,26 +131,49 @@ const StyledButton = styled.button`
 //   }
 // `;
 
-const ButtonOrange = styled(StyledButton)`
-  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+// const ButtonOrange = styled(StyledButton)`
+//   color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$gray10)};
+//   background-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$orange40 : colors.$orange40};
+//   border-color: ${({ theme }) =>
+//     theme === 'light' ? colors.$orange60 : colors.$orange70};
+//   box-shadow: ${({ theme }) =>
+//     theme === 'light'
+//       ? `0px 2px 0px ${colors.$orange60}`
+//       : `0px 2px 0px ${colors.$orange70}`};
+//   &:hover&:not(:disabled) {
+//     color: ${({ theme }) =>
+//       theme === 'light' ? colors.$white : colors.$gray10};
+//     background-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$orange50 : colors.$orange50};
+//     border-color: ${({ theme }) =>
+//       theme === 'light' ? colors.$orange60 : colors.$orange70};
+//   }
+//   &:active {
+//     box-shadow: 0px 0px 0px ${colors.$orange10};
+//   }
+// `;
+
+const ButtonYellow = styled(StyledButton)`
+  color: ${({ theme }) => (theme === 'light' ? colors.$white : colors.$white)};
   background-color: ${({ theme }) =>
-    theme === 'light' ? colors.$orange40 : colors.$orange40};
+    theme === 'light' ? colors.$yellow40 : colors.$yellow40};
   border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$orange60 : colors.$orange70};
+    theme === 'light' ? colors.$yellow60 : colors.$yellow70};
   box-shadow: ${({ theme }) =>
     theme === 'light'
-      ? `0px 2px 0px ${colors.$orange60}`
-      : `0px 2px 0px ${colors.$orange70}`};
+      ? `0px 2px 0px ${colors.$yellow60}`
+      : `0px 2px 0px ${colors.$yellow70}`};
   &:hover&:not(:disabled) {
     color: ${({ theme }) =>
-      theme === 'light' ? colors.$white : colors.$gray10};
+      theme === 'light' ? colors.$white : colors.$white};
     background-color: ${({ theme }) =>
-      theme === 'light' ? colors.$orange50 : colors.$orange50};
+      theme === 'light' ? colors.$yellow50 : colors.$yellow50};
     border-color: ${({ theme }) =>
-      theme === 'light' ? colors.$orange60 : colors.$orange70};
+      theme === 'light' ? colors.$yellow60 : colors.$yellow70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$orange10};
+    box-shadow: 0px 0px 0px ${colors.$yellow10};
   }
 `;
 
