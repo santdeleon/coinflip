@@ -4,7 +4,18 @@ import Emoji from './Emoji';
 import Footer from './Footer';
 import Header from './Header';
 import Message from './Message';
-import Modal from './Modal';
+import {
+  Modal,
+  ModalDialog,
+  ModalContent,
+  ModalScreenReaderText,
+  ModalDivider,
+  ModalHeader,
+  ModalCloseButton,
+  ModalTitle,
+  ModalBody,
+  ModalFooter,
+} from './Modal';
 import { Navbar, NavbarBrand, Nav } from './Navbar';
 import OverlayTrigger from './OverlayTrigger';
 import ToggleSwitch from './ToggleSwitch';
@@ -20,6 +31,15 @@ export {
   Header,
   Message,
   Modal,
+  ModalDialog,
+  ModalContent,
+  ModalScreenReaderText,
+  ModalDivider,
+  ModalHeader,
+  ModalCloseButton,
+  ModalTitle,
+  ModalBody,
+  ModalFooter,
   Navbar,
   NavbarBrand,
   Nav,

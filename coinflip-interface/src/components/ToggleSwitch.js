@@ -63,7 +63,7 @@ const ToggleSwitch = ({
       title={title}
       aria-label={title}
       aria-checked="false"
-      tabIndex="0"
+      tabindex="0"
       className={className}
       theme={theme}
       {...props}
