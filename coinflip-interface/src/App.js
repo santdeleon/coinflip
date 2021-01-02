@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Web3ReactManager,
-  NavMenu,
-  // Footer,
-  WalletModal,
   AccountModal,
+  // Footer,
+  Modal,
+  NavMenu,
+  WalletModal,
+  Web3ReactManager,
 } from './components';
 
 const App = () => (
@@ -12,7 +13,7 @@ const App = () => (
     <NavMenu />
     <WalletModal />
     <AccountModal />
-
+    <Modal />
     <Web3ReactManager>
       <small>connected</small>
     </Web3ReactManager>

@@ -3,6 +3,7 @@ import Button from './Button';
 import Emoji from './Emoji';
 import Footer from './Footer';
 import Message from './Message';
+import Modal from './Modal';
 import NavMenu, { Navbar, NavbarBrand, Nav } from './Navbar';
 import OverlayTrigger from './OverlayTrigger';
 import ToggleSwitch from './ToggleSwitch';
@@ -16,6 +17,7 @@ export {
   Emoji,
   Footer,
   Message,
+  Modal,
   NavMenu,
   Navbar,
   NavbarBrand,

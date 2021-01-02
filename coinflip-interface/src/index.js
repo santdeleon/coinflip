@@ -8,7 +8,7 @@ import { getLibrary } from './utils';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 render(
   <Web3ReactProvider getLibrary={getLibrary}>
