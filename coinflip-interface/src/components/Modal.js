@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import { colors } from '../utils';
+import { useTheme } from '../hooks';
 
 /*******************************************
       COMPONENT STYLINGS START HERE
@@ -219,34 +220,36 @@ ModalDialog.propTypes = { children: oneOfType([string, object, array]) };
 // Modal
 export const Modal = ({
   id,
-  theme,
   show,
   ariaDescribedBy,
   ariaLabel,
   children,
   ...props
-}) => (
-  <StyledModal
-    role="dialog"
-    tabindex={show ? '0' : '-1'}
-    id={id}
-    theme={theme}
-    show={show}
-    aria-hidden={!show}
-    aria-describedby={ariaDescribedBy}
-    aria-label={ariaLabel || null}
-    {...props}
-  >
-    {children}
-  </StyledModal>
-);
+}) => {
+  const { theme } = useTheme();
+
+  return (
+    <StyledModal
+      role="dialog"
+      tabindex={show ? '0' : '-1'}
+      id={id}
+      theme={theme}
+      show={show}
+      aria-hidden={!show}
+      aria-describedby={ariaDescribedBy}
+      aria-label={ariaLabel || null}
+      {...props}
+    >
+      {children}
+    </StyledModal>
+  );
+};
 
 Modal.propTypes = {
   id: string.isRequired,
-  theme: oneOfType([string, object]).isRequired,
   show: bool.isRequired,
   ariaDescribedBy: string,
   ariaLabel: string,
   children: oneOfType([string, object, array]),
 };
-Modal.defaultProps = { show: false, theme: 'light' };
+Modal.defaultProps = { show: false };

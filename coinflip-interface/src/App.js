@@ -15,23 +15,16 @@ import {
   WalletModal,
   Web3ReactManager,
 } from './components';
-import { useTheme } from './hooks';
 
 const App = () => {
   const [showModal, setShowModal] = useState(true);
-  const { theme } = useTheme(useTheme);
 
   return (
     <div className="App">
       <Header />
       <WalletModal />
       <AccountModal />
-      <Modal
-        id="Modal"
-        theme={theme}
-        show={showModal}
-        ariaDescribedBy="Modal__ModalTitle"
-      >
+      <Modal id="Modal" show={showModal} ariaDescribedBy="Modal__ModalTitle">
         <ModalDialog>
           <ModalContent id="yo">
             <ModalScreenReaderText id="Modal__ModalScreenReaderText">
