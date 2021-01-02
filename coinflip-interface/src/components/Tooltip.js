@@ -59,7 +59,7 @@ const StyledTooltip = styled.span`
   color: ${({ theme }) =>
     theme === 'light' ? colors.$gray60 : colors.$gray10};
   background-color: ${({ theme }) =>
-    theme === 'light' ? colors.$white : colors.$gray50};
+    theme === 'light' ? colors.$white : colors.$gray60};
   border-style: solid;
   border-radius: 10px;
   border-width: 2px;
@@ -106,13 +106,37 @@ const StyledTooltipBottom = styled(StyledTooltip)`
     border-color: ${({ theme }) =>
       theme === 'light'
         ? `transparent transparent ${colors.$white} transparent`
-        : `transparent transparent ${colors.$gray50} transparent`};
+        : `transparent transparent ${colors.$gray60} transparent`};
   }
 `;
 
 const StyledTooltipLeft = styled(StyledTooltip)`
-  top: -30px;
+  top: -35px;
   right: 9.5rem;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -13px;
+    bottom: 100%;
+    border: 13px solid transparent;
+    border-left-color: ${({ theme }) =>
+      theme === 'light' ? colors.$gray20 : colors.$black};
+  }
+  &:after {
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: ${({ theme }) =>
+      theme === 'light'
+        ? `transparent transparent transparent ${colors.$white}`
+        : `transparent transparent transparent ${colors.$gray60}`};
+  }
 `;
 
 const tooltipPropTypes = {

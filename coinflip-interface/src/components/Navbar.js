@@ -113,7 +113,7 @@ const NavMenu = () => {
           <>
             <OverlayTrigger
               overlay={
-                <Tooltip id="Tooltip--ether-balance" placement="bottom">
+                <Tooltip id="Tooltip--ether-balance" placement="left">
                   The current balance of your Ether holdings.
                 </Tooltip>
               }
