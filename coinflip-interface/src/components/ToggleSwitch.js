@@ -14,10 +14,6 @@ const StyledToggleThumb = styled.div`
   height: 28px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: ${({ theme }) =>
-    theme === 'light' ? '#343A40' : '#6e40c9'};
-  transform: ${({ theme }) =>
-    theme === 'light' ? 'translateX(-2px)' : 'translateX(18px)'};
   transition: transform 0.3s cubic-bezier(0.4, 0.03, 0, 1);
 `;
 
@@ -28,14 +24,21 @@ const StyledToggleTrack = styled.span`
   height: 20px;
   border-radius: 34px;
   outline: 0;
-  /**
-    * @dev: Eventually we could make the coloration for the switches dynamic and
-    * not specific to just the theme toggle. Currently this isn't neccesary.
-    */
-  border: 3px solid
-    ${({ theme }) => (theme === 'light' ? '#d1d5da' : '#3c1e70')};
-  background-color: ${({ theme }) =>
-    theme === 'light' ? 'transparent' : '#271052'};
+`;
+
+const StyledToggleSwitch = styled.div`
+  ${StyledToggleThumb} {
+    background-color: ${({ theme }) =>
+      theme === 'light' ? '#343A40' : '#6e40c9'};
+    transform: ${({ theme }) =>
+      theme === 'light' ? 'translateX(-2px)' : 'translateX(18px)'};
+  }
+  ${StyledToggleTrack} {
+    border: 3px solid
+      ${({ theme }) => (theme === 'light' ? '#d1d5da' : '#3c1e70')};
+    background-color: ${({ theme }) =>
+      theme === 'light' ? 'transparent' : '#271052'};
+  }
 `;
 
 const propTypes = {
@@ -57,21 +60,20 @@ const ToggleSwitch = ({
   const { theme } = useTheme();
 
   return (
-    <StyledToggleTrack
-      id={id}
-      role="checkbox"
-      title={title}
-      aria-label={title}
-      aria-checked="false"
-      tabindex="0"
-      className={className}
-      theme={theme}
-      {...props}
-    >
-      <StyledToggleThumb theme={theme} onClick={onClick}>
-        {children}
-      </StyledToggleThumb>
-    </StyledToggleTrack>
+    <StyledToggleSwitch id={id} theme={theme} {...props}>
+      <StyledToggleTrack>
+        <StyledToggleThumb
+          role="checkbox"
+          title={title}
+          aria-label={title}
+          aria-checked={theme === 'light' ? 'false' : 'true'}
+          className={className}
+          onClick={onClick}
+        >
+          {children}
+        </StyledToggleThumb>
+      </StyledToggleTrack>
+    </StyledToggleSwitch>
   );
 };
 
