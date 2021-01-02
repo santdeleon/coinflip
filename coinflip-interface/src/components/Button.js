@@ -10,18 +10,18 @@ const StyledButton = styled.button`
   justify-content: center;
   padding: ${({ padding }) => padding};
   margin: ${({ margin }) => margin};
+  cursor: pointer;
+  font-size: 1rem;
   font-weight: 700;
   border-style: solid;
   border-radius: 10px;
   border-width: 2px 2px 4px;
   transform: perspective(200px) translateY(0);
-  transition: all 0.25s;
+  transition: transform 0.25s;
   &:hover {
-    outline: 0;
-    transition: all 0.08s;
+    transition: all 0.08s ease-in-out;
   }
   &:active {
-    outline: 0;
     border-width: 2px 2px 2px;
     transform: perspective(200px) translateY(0.14rem);
   }
@@ -79,7 +79,7 @@ export const ButtonPink = styled(StyledButton)`
       theme === 'light' ? colors.$pink60 : colors.$pink70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$pink10};
+    box-shadow: 0px 0px 0px ${colors.$pink60};
   }
 `;
 
@@ -102,7 +102,7 @@ export const ButtonOrange = styled(StyledButton)`
       theme === 'light' ? colors.$orange60 : colors.$orange70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$orange10};
+    box-shadow: 0px 0px 0px ${colors.$orange60};
   }
 `;
 
@@ -125,7 +125,7 @@ export const ButtonYellow = styled(StyledButton)`
       theme === 'light' ? colors.$yellow60 : colors.$yellow70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$yellow10};
+    box-shadow: 0px 0px 0px ${colors.$yellow60};
   }
 `;
 
@@ -148,7 +148,7 @@ export const ButtonGreen = styled(StyledButton)`
       theme === 'light' ? colors.$green60 : colors.$green70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$gray10};
+    box-shadow: 0px 0px 0px ${colors.$gray60};
   }
 `;
 
@@ -171,7 +171,7 @@ export const ButtonBlue = styled(StyledButton)`
       theme === 'light' ? colors.$blue60 : colors.$blue70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$blue10};
+    box-shadow: 0px 0px 0px ${colors.$blue60};
   }
 `;
 
@@ -194,7 +194,7 @@ export const ButtonPurple = styled(StyledButton)`
       theme === 'light' ? colors.$purple60 : colors.$purple70};
   }
   &:active {
-    box-shadow: 0px 0px 0px ${colors.$purple10};
+    box-shadow: 0px 0px 0px ${colors.$purple60};
   }
 `;
 
@@ -213,7 +213,7 @@ const propTypes = {
 const defaultProps = {
   variant: 'primary',
   type: 'button',
-  padding: '4px 16px',
+  padding: '.45rem 16px',
   margin: '0 10px 0 0',
   disabled: false,
 };
