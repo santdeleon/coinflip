@@ -223,21 +223,21 @@ const Button = ({ ...props }) => {
 
   switch (props.variant) {
     case 'primary':
-      return <ButtonPrimary {...props} theme={theme} />;
+      return <ButtonPrimary theme={theme} {...props} />;
     case 'pink':
-      return <ButtonPink {...props} theme={theme} />;
+      return <ButtonPink theme={theme} {...props} />;
     case 'orange':
-      return <ButtonOrange {...props} theme={theme} />;
+      return <ButtonOrange theme={theme} {...props} />;
     case 'yellow':
-      return <ButtonYellow {...props} theme={theme} />;
+      return <ButtonYellow theme={theme} {...props} />;
     case 'green':
-      return <ButtonGreen {...props} theme={theme} />;
+      return <ButtonGreen theme={theme} {...props} />;
     case 'blue':
-      return <ButtonBlue {...props} theme={theme} />;
+      return <ButtonBlue theme={theme} {...props} />;
     case 'purple':
-      return <ButtonPurple {...props} theme={theme} />;
+      return <ButtonPurple theme={theme} {...props} />;
     default:
-      return <ButtonPrimary {...props} theme={theme} />;
+      return <ButtonPrimary theme={theme} {...props} />;
   }
 };
 

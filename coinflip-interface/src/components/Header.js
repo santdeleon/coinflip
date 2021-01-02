@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <Navbar id="Navbar" className="Navbar">
-      <NavbarBrand id="Navbar__NavbarBrand" to="/" theme={theme}>
+      <NavbarBrand id="Navbar__NavbarBrand" to="/">
         <Emoji unicode="🌈" ariaLabel="Rainbows Emoji" margin="0 0.3rem 0 0" />
         Coinflip
       </NavbarBrand>
