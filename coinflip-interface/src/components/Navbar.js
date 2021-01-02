@@ -8,6 +8,7 @@ import { string, oneOfType, array, object } from 'prop-types';
 import Emoji from './Emoji.js';
 import ToggleSwitch from './ToggleSwitch';
 import Button from './Button';
+import { OverlayTrigger, Tooltip } from './Tooltip';
 
 import { truncateString, colors } from '../utils';
 import { useLayout, useTheme } from '../hooks';
@@ -110,12 +111,20 @@ const NavMenu = () => {
       <StyledNav>
         {active ? (
           <>
-            <Button
-              variant="primary"
-              id="Button__ButtonPrimary--ethereum-balance"
+            <OverlayTrigger
+              overlay={
+                <Tooltip id="Tooltip--ether-balance" placement="bottom">
+                  The current balance of your Ether holdings.
+                </Tooltip>
+              }
             >
-              {parseInt(balance) < 1 ? 0 : balance} ETH
-            </Button>
+              <Button
+                variant="primary"
+                id="Button__ButtonPrimary--ethereum-balance"
+              >
+                {parseInt(balance) < 1 ? 0 : balance} ETH
+              </Button>
+            </OverlayTrigger>
             <Button
               variant="green"
               id="Button__ButtonGreen--ethereum-selected-address"

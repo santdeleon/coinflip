@@ -13,6 +13,7 @@ const App = () => (
     <NavMenu />
     <WalletModal />
     <AccountModal />
+
     <Web3ReactManager>
       <small>connected</small>
     </Web3ReactManager>
