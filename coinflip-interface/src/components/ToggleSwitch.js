@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { func, string, oneOfType, array, object } from 'prop-types';
 import { useTheme } from '../hooks';
-import Moon from '../assets/img/moon.svg';
 
 const StyledToggleThumb = styled.div`
   position: absolute;
@@ -31,23 +31,42 @@ const StyledToggleTrack = styled.span`
     theme === 'light' ? 'transparent' : '#271052'};
 `;
 
-const ToggleSwitch = () => {
-  const { theme, toggleTheme } = useTheme();
+const propTypes = {
+  id: string.isRequired,
+  className: string,
+  title: string.isRequired,
+  ariaLabel: string.isRequired,
+  onClick: func,
+  children: oneOfType([array, object, string]),
+};
+
+const ToggleSwitch = ({
+  id,
+  className,
+  title,
+  ariaLabel,
+  onClick,
+  children,
+}) => {
+  const { theme } = useTheme();
 
   return (
     <StyledToggleTrack
+      id={id}
       role="checkbox"
-      title={`Activate ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
-      aria-label={`Activate ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+      className={className}
+      title={title}
+      aria-label={ariaLabel}
       aria-checked="false"
       tabIndex="0"
       theme={theme}
     >
-      <StyledToggleThumb theme={theme} onClick={toggleTheme}>
-        <img src={Moon} alt="Moon" aria-label="Moon" className="w-100" />
+      <StyledToggleThumb theme={theme} onClick={onClick}>
+        {children}
       </StyledToggleThumb>
     </StyledToggleTrack>
   );
 };
 
+ToggleSwitch.propTypes = propTypes;
 export default ToggleSwitch;

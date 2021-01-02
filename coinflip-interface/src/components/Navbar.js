@@ -7,6 +7,7 @@ import { string, oneOfType, array, object } from 'prop-types';
 import { truncateString, colors } from '../utils';
 import { useLayout, useTheme } from '../hooks';
 import { Emoji, ToggleSwitch, Button, OverlayTrigger, Tooltip } from '.';
+import Moon from '../assets/img/moon.svg';
 
 // Navbar
 const StyledNavbar = styled.header`
@@ -86,7 +87,7 @@ Nav.propTypes = navPropTypes;
 const NavMenu = () => {
   const { active, account, library } = useWeb3React();
   const { layout, setLayout } = useLayout();
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [balance, setBalance] = useState(null);
 
   useEffect(() => {
@@ -153,7 +154,14 @@ const NavMenu = () => {
             Connect to a Wallet
           </Button>
         )}
-        <ToggleSwitch />
+        <ToggleSwitch
+          id="ToggleSwitch--theme"
+          title={`Activate ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+          ariaLabel={`Activate ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+          onClick={toggleTheme}
+        >
+          <img src={Moon} alt="Moon" aria-label="Moon" className="w-100" />
+        </ToggleSwitch>
       </StyledNav>
     </StyledNavbar>
   );
