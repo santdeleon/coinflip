@@ -9,10 +9,8 @@ import {
 import { X } from 'react-feather';
 import { useWeb3React } from '@web3-react/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
 import { useLayout, useTheme } from '../hooks';
 import { truncateString } from '../utils';
-
 import MetaMaskAvatar from '../assets/img/metamask-avatar.svg';
 
 const AccountModal = () => {

@@ -4,7 +4,6 @@ import {
   createGlobalStyle,
 } from 'styled-components';
 import { oneOfType, array, object } from 'prop-types';
-
 import { useLocalStorage } from '../hooks';
 import { colors } from '../utils';
 

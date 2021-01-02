@@ -1,11 +1,9 @@
 import React from 'react';
 import { string, func, array, bool, object, oneOfType } from 'prop-types';
 import styled from 'styled-components';
-
 import { colors } from '../utils';
 import { useTheme } from '../hooks';
 
-// the base button style
 const StyledButton = styled.button`
   display: flex;
   align-items: center;

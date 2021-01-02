@@ -4,14 +4,9 @@ import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
 import styled from 'styled-components';
 import { string, oneOfType, array, object } from 'prop-types';
-
-import Emoji from './Emoji.js';
-import ToggleSwitch from './ToggleSwitch';
-import Button from './Button';
-import { OverlayTrigger, Tooltip } from './Tooltip';
-
 import { truncateString, colors } from '../utils';
 import { useLayout, useTheme } from '../hooks';
+import { Emoji, ToggleSwitch, Button, OverlayTrigger, Tooltip } from '.';
 
 // Navbar
 const StyledNavbar = styled.header`

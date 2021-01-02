@@ -5,11 +5,9 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { X } from 'react-feather';
 import cx from 'classnames';
 import { useWeb3React } from '@web3-react/core';
-
 import { useLayout } from '../hooks';
 import { getErrorMessage } from '../utils';
 import { injected } from '../connectors';
-
 import MetaMask from '../assets/img/metamask.png';
 import WalletConnect from '../assets/img/walletconnect.svg';
 import Coinbase from '../assets/img/coinbase.svg';

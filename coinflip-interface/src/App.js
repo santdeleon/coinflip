@@ -1,12 +1,11 @@
 import React from 'react';
-
-import './App.css';
-
-import Web3ReactManager from './components/Web3ReactManager';
-import NavMenu from './components/Navbar';
-// import Footer from './components/Footer';
-import WalletModal from './components/WalletModal';
-import AccountModal from './components/AccountModal';
+import {
+  Web3ReactManager,
+  NavMenu,
+  // Footer,
+  WalletModal,
+  AccountModal,
+} from './components';
 
 const App = () => (
   <div className="App">

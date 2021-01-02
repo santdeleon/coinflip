@@ -1,53 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { string, array, object, oneOfType } from 'prop-types';
 import styled from 'styled-components';
-
 import { colors } from '../utils';
 import { useTheme } from '../hooks';
-
-// OverlayTrigger
-const StyledOverlayTrigger = styled.div`
-  position: relative;
-  display: flex;
-`;
-
-const overlayTriggerPropTypes = {
-  overlay: oneOfType([array, object, string]).isRequired,
-  delay: object,
-  children: oneOfType([array, object, string]),
-};
-
-const defaultOverlayTriggerProps = {
-  delay: { show: 250, hide: 400 },
-};
-
-export const OverlayTrigger = ({ overlay, delay, children }) => {
-  const [showOverlay, setShowOverlay] = useState(false);
-
-  return (
-    <>
-      <StyledOverlayTrigger
-        delay={delay}
-        onMouseEnter={() => setShowOverlay(true)}
-        onMouseLeave={() => setShowOverlay(false)}
-      >
-        {children}
-      </StyledOverlayTrigger>
-      {/* {showOverlay && overlay} */}
-      <StyledTooltipContainer>{overlay}</StyledTooltipContainer>
-    </>
-  );
-};
-
-OverlayTrigger.propTypes = overlayTriggerPropTypes;
-OverlayTrigger.defaultProps = defaultOverlayTriggerProps;
-// End OverlayTrigger
-
-// Tooltip
-const StyledTooltipContainer = styled.div`
-  position: relative;
-  display: inline-block;
-`;
 
 const StyledTooltip = styled.span`
   z-index: 1;
@@ -68,6 +23,7 @@ const StyledTooltip = styled.span`
   padding: 0.9rem 1rem;
 `;
 
+// TODO: Style the arrows for this tooltip
 const StyledTooltipTop = styled(StyledTooltip)`
   bottom: 100%;
   left: 50%;
@@ -89,7 +45,7 @@ const StyledTooltipRight = styled(StyledTooltip)`
     border: 13px solid transparent;
     border-right-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
-  }
+  };
   &:after {
     content: ' ';
     position: absolute;
@@ -163,6 +119,12 @@ const StyledTooltipLeft = styled(StyledTooltip)`
   }
 `;
 
+export const StyledTooltipContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  transition: display 0.3s cubic-bezier(0.4, 0.03, 0, 1);
+`;
+
 const tooltipPropTypes = {
   id: string,
   placement: string,
@@ -170,7 +132,7 @@ const tooltipPropTypes = {
   children: oneOfType([array, object, string]),
 };
 
-export const Tooltip = ({ id, placement, className, children, ...props }) => {
+const Tooltip = ({ id, placement, className, children, ...props }) => {
   const { theme } = useTheme();
 
   switch (placement) {
@@ -233,4 +195,4 @@ export const Tooltip = ({ id, placement, className, children, ...props }) => {
 };
 
 Tooltip.propTypes = tooltipPropTypes;
-// End Tooltip
+export default Tooltip;
