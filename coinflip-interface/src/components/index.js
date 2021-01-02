@@ -2,9 +2,10 @@ import AccountModal from './AccountModal';
 import Button from './Button';
 import Emoji from './Emoji';
 import Footer from './Footer';
+import Header from './Header';
 import Message from './Message';
 import Modal from './Modal';
-import NavMenu, { Navbar, NavbarBrand, Nav } from './Navbar';
+import { Navbar, NavbarBrand, Nav } from './Navbar';
 import OverlayTrigger from './OverlayTrigger';
 import ToggleSwitch from './ToggleSwitch';
 import Tooltip, { StyledTooltipContainer } from './Tooltip';
@@ -16,9 +17,9 @@ export {
   Button,
   Emoji,
   Footer,
+  Header,
   Message,
   Modal,
-  NavMenu,
   Navbar,
   NavbarBrand,
   Nav,

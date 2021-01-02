@@ -45,7 +45,7 @@ const StyledTooltipRight = styled(StyledTooltip)`
     border: 13px solid transparent;
     border-right-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
-  };
+  }
   &:after {
     content: ' ';
     position: absolute;
@@ -58,6 +58,7 @@ const StyledTooltipRight = styled(StyledTooltip)`
       theme === 'light'
         ? `transparent ${colors.$white} transparent transparent`
         : `transparent ${colors.$gray60} transparent transparent`};
+  }
 `;
 
 const StyledTooltipBottom = styled(StyledTooltip)`

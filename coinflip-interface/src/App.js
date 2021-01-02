@@ -3,14 +3,14 @@ import {
   AccountModal,
   // Footer,
   Modal,
-  NavMenu,
+  Header,
   WalletModal,
   Web3ReactManager,
 } from './components';
 
 const App = () => (
   <div className="App">
-    <NavMenu />
+    <Header />
     <WalletModal />
     <AccountModal />
     <Modal />
