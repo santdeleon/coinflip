@@ -27,6 +27,7 @@ const StyledToggleTrack = styled.span`
 `;
 
 const StyledToggleSwitch = styled.div`
+  display: flex;
   ${StyledToggleThumb} {
     background-color: ${({ theme }) =>
       theme === 'light' ? '#343A40' : '#6e40c9'};
