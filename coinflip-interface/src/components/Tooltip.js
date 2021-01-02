@@ -76,8 +76,32 @@ const StyledTooltipTop = styled(StyledTooltip)`
 `;
 
 const StyledTooltipRight = styled(StyledTooltip)`
-  top: -30px;
+  top: -35px;
   left: 105%;
+  margin-left: 10px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -13px;
+    bottom: 100%;
+    border: 13px solid transparent;
+    border-right-color: ${({ theme }) =>
+      theme === 'light' ? colors.$gray20 : colors.$black};
+  }
+  &:after {
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: ${({ theme }) =>
+      theme === 'light'
+        ? `transparent ${colors.$white} transparent transparent`
+        : `transparent ${colors.$gray60} transparent transparent`};
 `;
 
 const StyledTooltipBottom = styled(StyledTooltip)`
@@ -98,7 +122,7 @@ const StyledTooltipBottom = styled(StyledTooltip)`
   &:after {
     content: ' ';
     position: absolute;
-    top: -20px; /* At the bottom of the tooltip */
+    top: -20px;
     left: 50%;
     margin-left: -10px;
     border-width: 10px;
@@ -128,7 +152,7 @@ const StyledTooltipLeft = styled(StyledTooltip)`
     content: ' ';
     position: absolute;
     top: 50%;
-    left: 100%; /* To the right of the tooltip */
+    left: 100%;
     margin-top: -10px;
     border-width: 10px;
     border-style: solid;
