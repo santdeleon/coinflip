@@ -4,32 +4,44 @@ import styled from 'styled-components';
 import { colors } from '../utils';
 import { useTheme } from '../hooks';
 
-const StyledButton = styled.button`
+const Base = styled.button`
   display: flex;
   align-items: center;
-  justify-content: center;
+  cursor: pointer;
   padding: ${({ padding }) => padding};
   margin: ${({ margin }) => margin};
-  cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 2px 2px 4px;
-  transform: perspective(200px) translateY(0);
-  transition: transform 0.25s;
+  transition: all 0.25s;
   &:hover {
     transition: all 0.08s ease-in-out;
-  }
-  &:active {
-    border-width: 2px 2px 2px;
-    transform: perspective(200px) translateY(0.14rem);
   }
   &:focus {
     outline: 0;
   }
   &:disabled {
     opacity: 50%;
+    pointer-events: none;
+  }
+`;
+
+const ButtonTransparent = styled(Base)`
+  color: ${({ theme }) =>
+    theme === 'light' ? colors.$gray70 : colors.$gray10};
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+`;
+
+const StyledButton = styled(Base)`
+  justify-content: center;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 2px 2px 4px;
+  transform: perspective(200px) translateY(0);
+  &:active {
+    border-width: 2px 2px 2px;
+    transform: perspective(200px) translateY(0.14rem);
   }
 `;
 
@@ -213,8 +225,8 @@ const propTypes = {
 const defaultProps = {
   variant: 'primary',
   type: 'button',
-  padding: '.45rem 16px',
-  margin: '0 10px 0 0',
+  padding: '.5rem 1rem',
+  margin: '0',
   disabled: false,
 };
 
@@ -236,6 +248,8 @@ const Button = ({ ...props }) => {
       return <ButtonBlue theme={theme} {...props} />;
     case 'purple':
       return <ButtonPurple theme={theme} {...props} />;
+    case 'transparent':
+      return <ButtonTransparent theme={theme} {...props} />;
     default:
       return <ButtonPrimary theme={theme} {...props} />;
   }
