@@ -4,12 +4,15 @@ import styled from 'styled-components';
 
 const StyledRow = styled.div`
   display: flex;
-  align-items: center;
 `;
+
+const propTypes = {
+  children: oneOfType([string, object, array]),
+};
 
 const Row = ({ children, ...props }) => (
   <StyledRow {...props}>{children}</StyledRow>
 );
 
-Row.propTypes = { children: oneOfType([string, object, array]) };
+Row.propTypes = propTypes;
 export default Row;

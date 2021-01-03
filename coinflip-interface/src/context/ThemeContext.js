@@ -36,7 +36,7 @@ const ThemeProvider = ({ children }) => {
 
   const [theme, setTheme] = useLocalStorage(
     'theme',
-    prefersOSDarkTheme ? 'light' : 'dark',
+    prefersOSDarkTheme ? 'dark' : 'light',
   );
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');

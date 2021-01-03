@@ -4,6 +4,9 @@ import {
   AccountModal,
   WalletModal,
   Web3ReactManager,
+  Row,
+  Col,
+  Button,
 } from './components';
 
 const App = () => (
@@ -12,8 +15,11 @@ const App = () => (
     <WalletModal />
     <AccountModal />
 
+    {/* Currently a sandbox for creating, styling, and modifying new components */}
     <Web3ReactManager>
-      <small>connected</small>
+      <Row>
+        <Col></Col>
+      </Row>
     </Web3ReactManager>
   </div>
 );
