@@ -6,18 +6,16 @@ import {
   Web3ReactManager,
 } from './components';
 
-const App = () => {
-  return (
-    <div className="App">
-      <Header />
-      <WalletModal />
-      <AccountModal />
+const App = () => (
+  <div className="App">
+    <Header />
+    <WalletModal />
+    <AccountModal />
 
-      <Web3ReactManager>
-        <small>connected</small>
-      </Web3ReactManager>
-    </div>
-  );
-};
+    <Web3ReactManager>
+      <small>connected</small>
+    </Web3ReactManager>
+  </div>
+);
 
 export default App;
