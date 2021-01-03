@@ -1,7 +1,6 @@
 import React from 'react';
 import { oneOfType, string, object, array } from 'prop-types';
 import styled from 'styled-components';
-import { colors } from '../utils';
 
 const StyledRow = styled.div`
   display: flex;

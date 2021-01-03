@@ -23,7 +23,7 @@ const StyledNavbar = styled.header`
   display: flex;
   align-items: center;
   height: 3rem;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
 
   ${StyledNavbarBrand} {
     color: ${({ theme }) =>
@@ -44,14 +44,28 @@ Nav.propTypes = {
 };
 
 // NavbarBrand
-export const NavbarBrand = ({ id, to, className, children, ...props }) => (
-  <StyledNavbarBrand id={id} to={to} className={className} {...props}>
+export const NavbarBrand = ({
+  id,
+  to,
+  title,
+  className,
+  children,
+  ...props
+}) => (
+  <StyledNavbarBrand
+    id={id}
+    to={to}
+    title={title}
+    className={className}
+    {...props}
+  >
     {children}
   </StyledNavbarBrand>
 );
 NavbarBrand.propTypes = {
   id: string.isRequired,
   to: string.isRequired,
+  title: string.isRequired,
   className: string,
   children: oneOfType([array, object, string]),
 };

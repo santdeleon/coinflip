@@ -9,7 +9,6 @@ const StyledTooltip = styled.span`
   outline: 0;
   position: absolute;
   width: 13rem;
-  padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
   font-weight: 700;

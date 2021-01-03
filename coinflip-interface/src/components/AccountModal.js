@@ -6,7 +6,6 @@ import {
   faCopy,
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { X } from 'react-feather';
 import { useWeb3React } from '@web3-react/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useLayout, useTheme } from '../hooks';
@@ -64,9 +63,7 @@ const AccountModal = () => {
               },
             })
           }
-        >
-          <X size={22} />
-        </Button>
+        ></Button>
       </Modal.Header>
       <Modal.Body className="py-3 px-4">
         <Row className="px-2">

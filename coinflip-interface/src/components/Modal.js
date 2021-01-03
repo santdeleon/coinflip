@@ -10,13 +10,10 @@ import { useTheme } from '../hooks';
       COMPONENT STYLINGS START HERE
 ********************************************/
 const StyledModalFooter = styled.div`
-  padding: 1rem;
   border-radius: 0 0 6px 6px;
 `;
 
-const StyledModalBody = styled.div`
-  padding: 1rem;
-`;
+const StyledModalBody = styled.div``;
 
 const StyledModalDivider = styled.span`
   border-width: 1px;
@@ -26,6 +23,10 @@ const StyledModalDivider = styled.span`
 const StyledModalCloseButton = styled.span`
   font-size: 1.1rem;
   cursor: pointer;
+  transition: color 0.25s;
+  &:hover {
+    transition: color 0.08s ease-in-out;
+  }
 `;
 
 const StyledModalTitle = styled.h3`
@@ -49,7 +50,6 @@ const StyledModalContent = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  line-height: 22px;
   border-style: solid;
   border-width: 2px 2px 5px;
   border-radius: 10px;
@@ -57,10 +57,9 @@ const StyledModalContent = styled.div`
   animation-name: animatetop;
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.4, 1, 0.5, 1);
-  width: 100%;
-  max-width: 33rem;
+  width: 50vw;
   @media only screen and (max-width: 568px) {
-    max-width: 29rem;
+    width: 75vw;
   }
   @keyframes animatetop {
     from {

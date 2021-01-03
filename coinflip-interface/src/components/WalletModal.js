@@ -18,9 +18,18 @@ import {
   ModalCloseButton,
   ModalTitle,
   ModalBody,
-  P,
   Row,
 } from '.';
+
+const StyledModalContent = styled(ModalContent)`
+  width: 400px;
+
+  p {
+    font-size: 1.13rem;
+    margin: 0 0 0 1rem;
+    font-weight: 400;
+  }
+`;
 
 const StyledWalletModalRow = styled(Row)`
   justify-content: space-between;
@@ -40,7 +49,6 @@ const WalletModal = () => {
   const { active, activate } = useWeb3React();
   const { layout, setLayout } = useLayout();
   const { theme } = useTheme();
-  const { walletModal } = layout;
 
   const handlWalletModalClose = () =>
     setLayout({
@@ -66,11 +74,11 @@ const WalletModal = () => {
         setLayout({
           ...layout,
           walletModal: {
-            ...layout.walletModal,
             status: 'connected',
             connectedWalletName: 'metamask',
           },
         });
+        console.log('got here');
       })
       .catch((err) => {
         setLayout({
@@ -81,17 +89,18 @@ const WalletModal = () => {
             error: getErrorMessage(err),
           },
         });
+        console.log('woops');
       });
   };
 
   return (
     <Modal
       id="Modal--wallet-modal"
-      show={walletModal.show}
+      show={layout.walletModal.show}
       ariaDescribedBy="Modal__ModalTitle--connect-to-a-wallet"
     >
       <ModalDialog>
-        <ModalContent id="Modal__ModalContent--connect-to-a-wallet">
+        <StyledModalContent id="Modal__ModalContent--connect-to-a-wallet">
           <ModalScreenReaderText id="Modal__ModalScreenReaderText">
             This is a dialog window which overlays the main content of the page.
             The modal begins with a heading 3 called &quot;Connect to a
@@ -105,9 +114,9 @@ const WalletModal = () => {
             </ModalTitle>
             <ModalCloseButton onClick={handlWalletModalClose} />
           </ModalHeader>
-          {/* <ModalDivider /> */}
+          <ModalDivider />
           <ModalBody>
-            {!walletModal.error &&
+            {!layout.walletModal.error &&
               wallets.map((wallet) => (
                 <StyledWalletModalRow
                   key={wallet.id}
@@ -117,11 +126,11 @@ const WalletModal = () => {
                   theme={theme}
                   disabled={wallet.name !== 'metamask'}
                   isConnected={
-                    walletModal.status === 'connected' &&
-                    walletModal.connectedWalletName === wallet.name
+                    layout.walletModal.status === 'connected' &&
+                    layout.walletModal.connectedWalletName === wallet.name
                   }
                   onClick={() => {
-                    walletModal.status === 'not_connected' &&
+                    layout.walletModal.status === 'not_connected' &&
                       handleWalletConnect(wallet.name);
                   }}
                 >
@@ -133,22 +142,31 @@ const WalletModal = () => {
                       height={28}
                       width={28}
                     />
-
-                    <P margin="0 0 0 10px">{wallet.nameFormal}</P>
+                    <p>{wallet.nameFormal}</p>
                   </Col>
                   <Col>
-                    {walletModal.status === 'connected' &&
-                      walletModal.connectedWalletName === wallet.name && (
-                        <FontAwesomeIcon
-                          icon={faCircle}
-                          style={{ color: colors.$green50 }}
-                        />
-                      )}
+                    <FontAwesomeIcon
+                      icon={faCircle}
+                      style={{
+                        color:
+                          layout.walletModal.status === 'connected' &&
+                          layout.walletModal.connectedWalletName === wallet.name
+                            ? colors.$green50
+                            : colors.$pink20,
+                      }}
+                    />
                   </Col>
                 </StyledWalletModalRow>
               ))}
+            {layout.walletModal.error && (
+              <Row>
+                <Col>
+                  <p>{layout.walletModal.error}</p>
+                </Col>
+              </Row>
+            )}
           </ModalBody>
-        </ModalContent>
+        </StyledModalContent>
       </ModalDialog>
     </Modal>
   );

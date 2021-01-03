@@ -15,7 +15,7 @@ const propTypes = {
   className: string,
 };
 
-const Emoji = ({
+export const Emoji = ({
   ariaLabel,
   unicode,
   margin,

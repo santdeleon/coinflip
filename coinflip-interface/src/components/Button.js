@@ -36,7 +36,7 @@ const ButtonTransparent = styled(Base)`
 const StyledButton = styled(Base)`
   justify-content: center;
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 5px;
   border-width: 2px 2px 4px;
   transform: perspective(200px) translateY(0);
   &:active {

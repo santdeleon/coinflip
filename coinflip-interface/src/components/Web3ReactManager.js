@@ -3,7 +3,6 @@ import { useWeb3React } from '@web3-react/core';
 import { oneOfType, array, object } from 'prop-types';
 import { useEagerConnect, useInactiveListener } from '../hooks';
 import { getErrorMessage } from '../utils';
-import Message from './Message';
 
 const propTypes = {
   children: oneOfType([array, object]),
@@ -25,14 +24,10 @@ const Web3ReactManager = ({ children }) => {
   // on page load, do nothing until we've tried to connect to the injected connector
   if (!triedEager) return null;
 
-  if (!active && error)
-    return (
-      <Message
-        message={getErrorMessage(error)}
-        isError={true}
-        showToast={true}
-      />
-    );
+  if (!active && error) {
+    console.log(getErrorMessage(error));
+    return <p>{getErrorMessage(error)}</p>;
+  }
 
   // connection successful
   if (triedEager && active) return children;

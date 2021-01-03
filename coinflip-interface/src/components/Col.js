@@ -1,7 +1,6 @@
 import React from 'react';
-import { oneOfType, string, object, array } from 'prop-types';
+import { oneOfType, string, object, array, func, bool } from 'prop-types';
 import styled from 'styled-components';
-import { colors } from '../utils';
 
 const StyledCol = styled.div`
   display: flex;
@@ -13,5 +12,5 @@ const Col = ({ children, ...props }) => (
   <StyledCol {...props}>{children}</StyledCol>
 );
 
-Col.propTypes = { children: oneOfType([string, object, array]) };
+Col.propTypes = { children: oneOfType([string, object, array, func, bool]) };
 export default Col;

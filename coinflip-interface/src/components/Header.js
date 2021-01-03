@@ -12,8 +12,11 @@ import {
   Button,
   OverlayTrigger,
   Tooltip,
+  Row,
+  Col,
 } from '.';
 import Moon from '../assets/img/moon.svg';
+import EtherDiamond from '../assets/gif/ether-diamond.gif';
 
 const Header = () => {
   const { active, account, library } = useWeb3React();
@@ -31,7 +34,7 @@ const Header = () => {
 
   return (
     <Navbar id="Navbar" className="Navbar">
-      <NavbarBrand id="Navbar__NavbarBrand" to="/">
+      <NavbarBrand id="Navbar__NavbarBrand" to="/" title="Home">
         <Emoji unicode="🌈" ariaLabel="Rainbows Emoji" margin="0 0.3rem 0 0" />
         Coinflip
       </NavbarBrand>
@@ -40,28 +43,40 @@ const Header = () => {
           <>
             <OverlayTrigger
               overlay={
-                <Tooltip id="Tooltip--ether-balance" placement="bottom">
-                  The current balance of your Ether holdings.
+                <Tooltip id="Navbar__Tooltip--ether-balance" placement="bottom">
+                  <Row>
+                    <Col style={{ padding: '0' }}>
+                      <img
+                        src={EtherDiamond}
+                        alt="Pink Ethereum Diamond"
+                        width={60}
+                        height={50}
+                      />
+                    </Col>
+                    <Col style={{ textAlign: 'center', padding: '0' }}>
+                      <h1 style={{ marginLeft: '10px' }}>Ether</h1>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      The currency used to transact on the Ethereum Network
+                    </Col>
+                  </Row>
                 </Tooltip>
               }
             >
-              <Button
-                variant="primary"
-                id="Button__ButtonPrimary--ethereum-balance"
-              >
+              <Button variant="primary" id="Navbar__Button--ether-balance">
                 {parseInt(balance) < 1 ? 0 : balance} ETH
               </Button>
             </OverlayTrigger>
             <Button
               variant="green"
-              id="Button__ButtonGreen--ethereum-selected-address"
+              id="Navbar__Button--selected-ethereum-address"
+              margin="0 15px"
               onClick={() =>
                 setLayout({
                   ...layout,
-                  modals: {
-                    ...layout.modals,
-                    account: { show: true },
-                  },
+                  accountModal: { ...layout.accountModal, show: true },
                 })
               }
             >
@@ -71,14 +86,12 @@ const Header = () => {
         ) : (
           <Button
             variant="pink"
-            id="Button__ButtonPink--connect-to-wallet"
+            id="Navbar__Button--connect-to-wallet"
+            margin="0 15px"
             onClick={() =>
               setLayout({
                 ...layout,
-                modals: {
-                  ...layout.modals,
-                  wallet: { show: true },
-                },
+                walletModal: { ...layout.walletModal, show: true },
               })
             }
           >
