@@ -6,8 +6,10 @@ import { useTheme } from '../hooks';
 
 const StyledTooltip = styled.span`
   z-index: 1;
+  outline: 0;
   position: absolute;
   width: 13rem;
+  padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
   font-weight: 700;
@@ -15,12 +17,9 @@ const StyledTooltip = styled.span`
     theme === 'light' ? colors.$gray60 : colors.$gray10};
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.$white : colors.$gray60};
-  border-style: solid;
+  border: 2px solid
+    ${({ theme }) => (theme === 'light' ? colors.$gray20 : colors.$black)};
   border-radius: 10px;
-  border-width: 2px;
-  border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$gray20 : colors.$black};
-  padding: 0.9rem 1rem;
 `;
 
 // TODO: Style the arrows for this tooltip
@@ -33,8 +32,8 @@ const StyledTooltipTop = styled(StyledTooltip)`
 
 const StyledTooltipRight = styled(StyledTooltip)`
   top: -35px;
-  left: 105%;
-  margin-left: 10px;
+  left: 100%;
+  margin-left: 1.4rem;
   &:before {
     content: '';
     position: absolute;
@@ -64,14 +63,14 @@ const StyledTooltipRight = styled(StyledTooltip)`
 const StyledTooltipBottom = styled(StyledTooltip)`
   top: 100%;
   z-index: 2;
-  margin-top: 2.2rem;
-  margin-left: -11rem;
+  margin-top: 2.3rem;
+  margin-left: -180px;
   &:before {
     content: '';
     position: absolute;
+    bottom: 100%;
     left: 50%;
     margin-left: -13px;
-    bottom: 100%;
     border: 13px solid transparent;
     border-bottom-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
@@ -79,7 +78,7 @@ const StyledTooltipBottom = styled(StyledTooltip)`
   &:after {
     content: ' ';
     position: absolute;
-    top: -20px;
+    bottom: 100%;
     left: 50%;
     margin-left: -10px;
     border-width: 10px;
@@ -93,7 +92,7 @@ const StyledTooltipBottom = styled(StyledTooltip)`
 
 const StyledTooltipLeft = styled(StyledTooltip)`
   top: -35px;
-  right: 9.5rem;
+  right: 9rem;
   &:before {
     content: '';
     position: absolute;
@@ -128,7 +127,7 @@ export const StyledTooltipContainer = styled.div`
 
 const tooltipPropTypes = {
   id: string,
-  placement: string,
+  placement: string.isRequired,
   className: string,
   children: oneOfType([array, object, string]),
 };
@@ -140,10 +139,10 @@ const Tooltip = ({ id, placement, className, children, ...props }) => {
     case 'top':
       return (
         <StyledTooltipTop
-          {...props}
           theme={theme}
-          tabIndex="-1"
+          tabindex="-1"
           aria-label="Tooltip Top"
+          {...props}
         >
           {children}
         </StyledTooltipTop>
@@ -151,10 +150,10 @@ const Tooltip = ({ id, placement, className, children, ...props }) => {
     case 'right':
       return (
         <StyledTooltipRight
-          {...props}
           theme={theme}
-          tabIndex="-1"
+          tabindex="-1"
           aria-label="Tooltip Right"
+          {...props}
         >
           {children}
         </StyledTooltipRight>
@@ -162,10 +161,10 @@ const Tooltip = ({ id, placement, className, children, ...props }) => {
     case 'bottom':
       return (
         <StyledTooltipBottom
-          {...props}
           theme={theme}
-          tabIndex="-1"
+          tabindex="-1"
           aria-label="Tooltip Bottom"
+          {...props}
         >
           {children}
         </StyledTooltipBottom>
@@ -173,10 +172,10 @@ const Tooltip = ({ id, placement, className, children, ...props }) => {
     case 'left':
       return (
         <StyledTooltipLeft
-          {...props}
           theme={theme}
-          tabIndex="-1"
+          tabindex="-1"
           aria-label="Tooltip Left"
+          {...props}
         >
           {children}
         </StyledTooltipLeft>
@@ -184,10 +183,10 @@ const Tooltip = ({ id, placement, className, children, ...props }) => {
     default:
       return (
         <StyledTooltipBottom
-          {...props}
           theme={theme}
-          tabIndex="-1"
+          tabindex="-1"
           aria-label="Tooltip Bottom"
+          {...props}
         >
           {children}
         </StyledTooltipBottom>

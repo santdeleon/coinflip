@@ -15,7 +15,7 @@ const LayoutProvider = ({ children }) => {
       show: false,
       status: active ? 'connected' : 'not_connected',
       error: null,
-      type: null,
+      connectedWalletName: null,
     },
     accountModal: {
       show: false,

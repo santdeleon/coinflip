@@ -1,53 +1,63 @@
 import React from 'react';
-import { Row, Col, Modal, Button, Alert, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { X } from 'react-feather';
-import cx from 'classnames';
 import { useWeb3React } from '@web3-react/core';
-import { useLayout } from '../hooks';
-import { getErrorMessage } from '../utils';
+import styled from 'styled-components';
+import { useLayout, useTheme } from '../hooks';
+import { getErrorMessage, colors, wallets } from '../utils';
 import { injected } from '../connectors';
-import MetaMask from '../assets/img/metamask.png';
-import WalletConnect from '../assets/img/walletconnect.svg';
-import Coinbase from '../assets/img/coinbase.svg';
-import Fortmatic from '../assets/img/fortmatic.png';
-import Portis from '../assets/img/portis.png';
+import {
+  Button,
+  Col,
+  Modal,
+  ModalDialog,
+  ModalContent,
+  ModalScreenReaderText,
+  ModalDivider,
+  ModalHeader,
+  ModalCloseButton,
+  ModalTitle,
+  ModalBody,
+  P,
+  Row,
+} from '.';
 
-const wallets = [
-  { id: 0, name: 'MetaMask', img: MetaMask },
-  { id: 1, name: 'Wallet Connect', img: WalletConnect },
-  { id: 2, name: 'Coinbase', img: Coinbase },
-  { id: 3, name: 'Fortmatic', img: Fortmatic },
-  { id: 4, name: 'Portis', img: Portis },
-];
+const StyledWalletModalRow = styled(Row)`
+  justify-content: space-between;
+  width: 100%;
+  background-color: ${({ isConnected, theme }) => {
+    if (isConnected) {
+      return theme === 'light' ? colors.$gray10 : colors.$gray70;
+    }
+  }};
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme === 'light' ? colors.$gray10 : colors.$gray70};
+  }
+`;
 
 const WalletModal = () => {
-  const { activate } = useWeb3React();
+  const { active, activate } = useWeb3React();
   const { layout, setLayout } = useLayout();
+  const { theme } = useTheme();
+  const { walletModal } = layout;
 
   const handlWalletModalClose = () =>
     setLayout({
       ...layout,
-      modals: {
-        ...layout.modals,
-        wallet: {
-          ...layout.modals.wallet,
-          show: false,
-        },
+      walletModal: {
+        ...layout.walletModal,
+        show: false,
       },
     });
 
   const handleWalletConnect = (walletType) => {
     setLayout({
       ...layout,
-      modals: {
-        ...layout.modals,
-        wallet: {
-          ...layout.modals.wallet,
-          status: 'connecting',
-          type: walletType,
-        },
+      walletModal: {
+        ...layout.walletModal,
+        status: 'connecting',
+        connectedWalletName: walletType,
       },
     });
 
@@ -55,26 +65,20 @@ const WalletModal = () => {
       .then(() => {
         setLayout({
           ...layout,
-          modals: {
-            ...layout.modals,
-            wallet: {
-              ...layout.modals.wallet,
-              status: 'connected',
-              type: 'metamask',
-            },
+          walletModal: {
+            ...layout.walletModal,
+            status: 'connected',
+            connectedWalletName: 'metamask',
           },
         });
       })
       .catch((err) => {
         setLayout({
           ...layout,
-          modals: {
-            ...layout.modals,
-            wallet: {
-              ...layout.modals.wallet,
-              status: 'not_connected',
-              error: getErrorMessage(err),
-            },
+          walletModal: {
+            ...layout.walletModal,
+            status: 'not_connected',
+            error: getErrorMessage(err),
           },
         });
       });
@@ -82,68 +86,70 @@ const WalletModal = () => {
 
   return (
     <Modal
-      centered
-      show={layout.modals.wallet.show}
-      aria-label="Connect to a Wallet"
-      onHide={handlWalletModalClose}
+      id="Modal--wallet-modal"
+      show={walletModal.show}
+      ariaDescribedBy="Modal__ModalTitle--connect-to-a-wallet"
     >
-      <Modal.Header className="d-flex align-items-center">
-        <h6 className="mb-0 text-dark">Connect to a Wallet</h6>
-        <Button
-          variant="transparent"
-          size="lg"
-          className="p-0"
-          onClick={handlWalletModalClose}
-        >
-          <X size={20} />
-        </Button>
-      </Modal.Header>
-      <Modal.Body className="bg-light rounded">
-        {!layout.modals.wallet.error && (
-          <Row className="justify-content-center">
-            {wallets.map(({ id, name, img }) => (
-              <Col
-                key={id}
-                as={Button}
-                xs={11}
-                variant={name === 'MetaMask' ? 'dark' : 'transparent'}
-                className={cx(
-                  'd-flex my-2 py-3 px-3 border border-muted rounded align-items-center',
-                  {
-                    disabled:
-                      name !== 'MetaMask' ||
-                      layout.modals.wallet.status === 'connected',
-                  },
-                )}
-                style={{ pointerEvents: name !== 'MetaMask' && 'none' }}
-                onClick={() => handleWalletConnect(name)}
-              >
-                {layout.modals.wallet.status === 'connected' &&
-                  layout.modals.wallet.type === name && (
-                    <FontAwesomeIcon icon={faCircle} className="text-success" />
-                  )}
-                <p className="mr-auto mb-0 font-weight-bold">{name}</p>
-                {layout.modals.wallet.status === 'connecting' &&
-                  layout.modals.wallet.type === name && (
-                    <Spinner animation="border" size="sm" />
-                  )}
-                <img
-                  src={img}
-                  className="ml-auto"
-                  alt={name}
-                  height={25}
-                  width={25}
-                />
-              </Col>
-            ))}
-          </Row>
-        )}
-        {layout.modals.wallet.error && (
-          <Alert variant="danger" className="text-center my-2">
-            {layout.modals.wallet.error}
-          </Alert>
-        )}
-      </Modal.Body>
+      <ModalDialog>
+        <ModalContent id="Modal__ModalContent--connect-to-a-wallet">
+          <ModalScreenReaderText id="Modal__ModalScreenReaderText">
+            This is a dialog window which overlays the main content of the page.
+            The modal begins with a heading 3 called &quot;Connect to a
+            Wallet&quot;. Pressing the Modal Close Button at the top right hand
+            side of the modal will close the modal and bring you back to where
+            you were on the page.
+          </ModalScreenReaderText>
+          <ModalHeader>
+            <ModalTitle id="Modal__ModalTitle--connect-to-a-wallet">
+              {active ? 'Connected' : 'Connect to a Wallet'}
+            </ModalTitle>
+            <ModalCloseButton onClick={handlWalletModalClose} />
+          </ModalHeader>
+          {/* <ModalDivider /> */}
+          <ModalBody>
+            {!walletModal.error &&
+              wallets.map((wallet) => (
+                <StyledWalletModalRow
+                  key={wallet.id}
+                  as={Button}
+                  variant="transparent"
+                  id="WalletModal__StyledWalletModalRow--wallet-selection-button"
+                  theme={theme}
+                  disabled={wallet.name !== 'metamask'}
+                  isConnected={
+                    walletModal.status === 'connected' &&
+                    walletModal.connectedWalletName === wallet.name
+                  }
+                  onClick={() => {
+                    walletModal.status === 'not_connected' &&
+                      handleWalletConnect(wallet.name);
+                  }}
+                >
+                  <Col>
+                    <img
+                      src={wallet.img}
+                      alt={wallet.nameFormal}
+                      aria-label={wallet.nameFormal}
+                      height={28}
+                      width={28}
+                    />
+
+                    <P margin="0 0 0 10px">{wallet.nameFormal}</P>
+                  </Col>
+                  <Col>
+                    {walletModal.status === 'connected' &&
+                      walletModal.connectedWalletName === wallet.name && (
+                        <FontAwesomeIcon
+                          icon={faCircle}
+                          style={{ color: colors.$green50 }}
+                        />
+                      )}
+                  </Col>
+                </StyledWalletModalRow>
+              ))}
+          </ModalBody>
+        </ModalContent>
+      </ModalDialog>
     </Modal>
   );
 };
