@@ -11,17 +11,15 @@ const LayoutContext = createContext();
 const LayoutProvider = ({ children }) => {
   const { active } = useWeb3React();
   const [layout, setLayout] = useState({
-    modals: {
-      wallet: {
-        show: false,
-        status: active ? 'connected' : 'not_connected',
-        error: null,
-        type: null,
-      },
-      account: {
-        show: false,
-        isAddressCopied: false,
-      },
+    walletModal: {
+      show: false,
+      status: active ? 'connected' : 'not_connected',
+      error: null,
+      type: null,
+    },
+    accountModal: {
+      show: false,
+      isAddressCopied: false,
     },
   });
 
