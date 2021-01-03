@@ -15,10 +15,18 @@ const App = () => (
     <WalletModal />
     <AccountModal />
 
-    {/* Currently a sandbox for creating, styling, and modifying new components */}
     <Web3ReactManager>
       <Row>
-        <Col></Col>
+        <Col>
+          <Button variant="pink">Hello Button</Button>
+          <Button variant="orange">Hello Button</Button>
+          <Button variant="yellow">Hello Button</Button>
+          <Button variant="green">Hello Button</Button>
+          <Button variant="blue">Hello Button</Button>
+          <Button variant="purple">Hello Button</Button>
+          <Button variant="light">Hello Button</Button>
+          <Button variant="dark">Hello Button</Button>
+        </Col>
       </Row>
     </Web3ReactManager>
   </div>

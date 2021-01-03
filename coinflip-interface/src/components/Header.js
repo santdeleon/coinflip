@@ -80,7 +80,7 @@ const Header = () => {
                 </Tooltip>
               }
             >
-              <Button variant="primary" id="Navbar__Button--ether-balance">
+              <Button variant="dark" id="Navbar__Button--ether-balance">
                 {balance} ETH
               </Button>
             </OverlayTrigger>
