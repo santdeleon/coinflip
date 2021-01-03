@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { oneOfType, array, object } from 'prop-types';
 import { useWeb3React } from '@web3-react/core';
 
@@ -13,7 +13,7 @@ const LayoutProvider = ({ children }) => {
   const [layout, setLayout] = useState({
     walletModal: {
       show: false,
-      status: active ? 'connected' : 'not_connected',
+      status: 'not_connected',
       error: null,
       connectedWalletName: null,
     },
@@ -22,6 +22,17 @@ const LayoutProvider = ({ children }) => {
       isAddressCopied: false,
     },
   });
+
+  useEffect(() => {
+    setLayout({
+      ...layout,
+      walletModal: {
+        ...layout.walletModal,
+        connectedWalletName: 'metamask',
+        status: active ? 'connected' : 'not_connected',
+      },
+    });
+  }, [active]);
 
   return (
     <LayoutContext.Provider value={{ layout, setLayout }}>

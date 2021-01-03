@@ -211,7 +211,7 @@ export const ButtonPurple = styled(StyledButton)`
 `;
 
 const propTypes = {
-  variant: string.isRequired,
+  variant: oneOfType([string, object, bool]).isRequired,
   id: string.isRequired,
   type: string.isRequired,
   className: string,
@@ -219,7 +219,7 @@ const propTypes = {
   margin: string,
   disabled: bool,
   onClick: func,
-  children: oneOfType([array, object, string]),
+  children: oneOfType([object, string, func]),
 };
 
 const defaultProps = {

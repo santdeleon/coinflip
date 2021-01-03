@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row, Col, Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
@@ -9,85 +8,82 @@ import {
 import { useWeb3React } from '@web3-react/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useLayout, useTheme } from '../hooks';
-import { truncateString } from '../utils';
+import { truncateString, colors } from '../utils';
 import MetaMaskAvatar from '../assets/img/metamask-avatar.svg';
+import {
+  Button,
+  Col,
+  Modal,
+  ModalDialog,
+  ModalContent,
+  ModalScreenReaderText,
+  ModalDivider,
+  ModalHeader,
+  ModalCloseButton,
+  ModalTitle,
+  ModalBody,
+  Row,
+} from '.';
 
 const AccountModal = () => {
   const { account } = useWeb3React();
-  const { theme } = useTheme();
   const { layout, setLayout } = useLayout();
+
+  const handleAccountModalClose = () =>
+    setLayout({
+      ...layout,
+      accountModal: { ...layout.accountModal, show: false },
+    });
 
   const handleCopyToClipboard = () => {
     setLayout({
       ...layout,
-      modals: {
-        account: { ...account, isTextCopied: true },
-      },
+      accountModal: { ...layout.accountModal, isAddressCopied: true },
     });
+    console.log(layout);
 
     setTimeout(() => {
       setLayout({
         ...layout,
-        modals: {
-          account: { ...account, isTextCopied: false },
-        },
+        accountModal: { ...layout.accountModal, isAddressCopied: false },
       });
     }, [800]);
   };
 
   return (
     <Modal
-      centered
-      show={layout.modals.account.show}
-      aria-label="Account"
-      onHide={() =>
-        setLayout({
-          ...layout,
-          modals: {
-            account: { show: false },
-          },
-        })
-      }
+      id="Modal--account-modal"
+      show={layout.accountModal.show}
+      ariaDescribedBy="Modal__ModalTitle--account"
     >
-      <Modal.Header className="d-flex align-items-center text-dark">
-        Account
-        <Button
-          variant="transparent"
-          size="lg"
-          className="p-0"
-          onClick={() =>
-            setLayout({
-              ...layout,
-              modals: {
-                account: { show: false },
-              },
-            })
-          }
-        ></Button>
-      </Modal.Header>
-      <Modal.Body className="py-3 px-4">
-        <Row className="px-2">
-          <Col className="border rounded py-2">
-            <Row noGutters>
-              <Col className="d-flex align-items-center">
-                <small className="text-muted">Connected with MetaMask</small>
+      <ModalDialog>
+        <ModalContent id="Modal__ModalContent--account">
+          <ModalScreenReaderText id="Modal__ModalScreenReaderText">
+            This is a dialog window which overlays the main content of the page.
+            The modal begins with a heading 3 called &quot;Account&quot;.
+            Pressing the Modal Close Button at the top right hand side of the
+            modal will close the modal and bring you back to where you were on
+            the page.
+          </ModalScreenReaderText>
+          <ModalHeader>
+            <ModalTitle id="Modal__ModalTitle--account">Account</ModalTitle>
+            <ModalCloseButton onClick={handleAccountModalClose} />
+          </ModalHeader>
+          <ModalDivider />
+          <ModalBody>
+            {/* Change Wallet Type */}
+            <Row>
+              <Col>
+                <small>Connected with MetaMask</small>
               </Col>
-              <Col className="d-flex justify-content-end">
+              <Col>
                 <Button
-                  variant=""
-                  className="rounded text-danger p-0"
+                  variant="purple"
                   onClick={() => {
                     setLayout({
                       ...layout,
-
-                      modals: {
-                        wallet: { show: true },
-                        account: {
-                          ...account,
-                          show: false,
-                          animation: false,
-                        },
-                      },
+                      walletModal: { ...layout.walletModal, show: true },
+                      accountModal: { ...layout.accountModal, show: false },
                     });
                   }}
                 >
@@ -95,26 +91,22 @@ const AccountModal = () => {
                 </Button>
               </Col>
             </Row>
-            <Row className="pt-3 pb-1">
-              <Col className="d-flex align-items-center">
+            {/* Currently Selected Address */}
+            <Row>
+              <Col>
                 <img
                   src={MetaMaskAvatar}
                   alt="MetaMask Avatar"
                   aria-label="MetaMask Avatar"
-                  className="rounded-circle"
-                />{' '}
-                <p className="lead mb-0 ml-1 font-weight-bold">
-                  {truncateString(account, 15)}
-                </p>
+                />
+                <p>{truncateString(account, 15)}</p>
               </Col>
             </Row>
+            {/* Copy Address/Show on Etherscan */}
             <Row>
-              <Col className="d-flex">
-                {layout.modals.account.isAddressCopied ? (
-                  <Button
-                    variant="link"
-                    className="text-secondary text-decoration-none mr-4 p-0"
-                  >
+              <Col>
+                {layout.accountModal.isAddressCopied ? (
+                  <Button variant="green">
                     <small>
                       <FontAwesomeIcon icon={faCheckCircle} /> Copied
                     </small>
@@ -124,10 +116,7 @@ const AccountModal = () => {
                     text={account}
                     onCopy={handleCopyToClipboard}
                   >
-                    <Button
-                      variant="link"
-                      className="text-secondary text-decoration-none mr-4 p-0"
-                    >
+                    <Button variant="primary">
                       <small>
                         <FontAwesomeIcon icon={faCopy} /> Copy Address
                       </small>
@@ -135,7 +124,7 @@ const AccountModal = () => {
                   </CopyToClipboard>
                 )}
 
-                <Button variant="link" className="text-secondary p-0">
+                <Button variant="blue">
                   <small>
                     <FontAwesomeIcon icon={faExternalLinkAlt} /> View on
                     Etherscan
@@ -143,9 +132,9 @@ const AccountModal = () => {
                 </Button>
               </Col>
             </Row>
-          </Col>
-        </Row>
-      </Modal.Body>
+          </ModalBody>
+        </ModalContent>
+      </ModalDialog>
     </Modal>
   );
 };

@@ -20,9 +20,9 @@ import EtherDiamond from '../assets/gif/ether-diamond.gif';
 
 const Header = () => {
   const { active, account, library } = useWeb3React();
-  const { layout, setLayout } = useLayout();
   const { theme, toggleTheme } = useTheme();
-  const [balance, setBalance] = useState(null);
+  const { layout, setLayout } = useLayout();
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     if (active && account) {
@@ -39,7 +39,22 @@ const Header = () => {
         Coinflip
       </NavbarBrand>
       <Nav>
-        {active ? (
+        {!active && (
+          <Button
+            variant="pink"
+            id="Navbar__Button--connect-to-wallet"
+            margin="0 15px"
+            onClick={() =>
+              setLayout({
+                ...layout,
+                walletModal: { ...layout.walletModal, show: true },
+              })
+            }
+          >
+            Connect to a Wallet
+          </Button>
+        )}
+        {active && (
           <>
             <OverlayTrigger
               overlay={
@@ -66,37 +81,24 @@ const Header = () => {
               }
             >
               <Button variant="primary" id="Navbar__Button--ether-balance">
-                {parseInt(balance) < 1 ? 0 : balance} ETH
+                {balance} ETH
               </Button>
             </OverlayTrigger>
             <Button
               variant="green"
               id="Navbar__Button--selected-ethereum-address"
               margin="0 15px"
-              onClick={() =>
+              onClick={() => {
                 setLayout({
                   ...layout,
+                  walletModal: { ...layout.walletModal },
                   accountModal: { ...layout.accountModal, show: true },
-                })
-              }
+                });
+              }}
             >
               {truncateString(account, 15)}
             </Button>
           </>
-        ) : (
-          <Button
-            variant="pink"
-            id="Navbar__Button--connect-to-wallet"
-            margin="0 15px"
-            onClick={() =>
-              setLayout({
-                ...layout,
-                walletModal: { ...layout.walletModal, show: true },
-              })
-            }
-          >
-            Connect to a Wallet
-          </Button>
         )}
         <ToggleSwitch
           id="ToggleSwitch--theme"

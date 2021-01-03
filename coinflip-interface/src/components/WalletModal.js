@@ -50,13 +50,10 @@ const WalletModal = () => {
   const { layout, setLayout } = useLayout();
   const { theme } = useTheme();
 
-  const handlWalletModalClose = () =>
+  const handleWalletModalClose = () =>
     setLayout({
       ...layout,
-      walletModal: {
-        ...layout.walletModal,
-        show: false,
-      },
+      walletModal: { ...layout.walletModal, show: false },
     });
 
   const handleWalletConnect = (walletType) => {
@@ -74,11 +71,11 @@ const WalletModal = () => {
         setLayout({
           ...layout,
           walletModal: {
+            ...layout.walletModal,
             status: 'connected',
             connectedWalletName: 'metamask',
           },
         });
-        console.log('got here');
       })
       .catch((err) => {
         setLayout({
@@ -89,8 +86,25 @@ const WalletModal = () => {
             error: getErrorMessage(err),
           },
         });
-        console.log('woops');
       });
+  };
+
+  const getConnectionStatusIconColor = (walletName) => {
+    let color = colors.$pink20;
+
+    if (
+      layout.walletModal.status === 'connected' &&
+      layout.walletModal.connectedWalletName === walletName
+    ) {
+      color = colors.$green60;
+    } else if (
+      layout.walletModal.status === 'connecting' &&
+      layout.walletModal.connectedWalletName === walletName
+    ) {
+      color = colors.$yellow40;
+    }
+
+    return color;
   };
 
   return (
@@ -112,7 +126,7 @@ const WalletModal = () => {
             <ModalTitle id="Modal__ModalTitle--connect-to-a-wallet">
               {active ? 'Connected' : 'Connect to a Wallet'}
             </ModalTitle>
-            <ModalCloseButton onClick={handlWalletModalClose} />
+            <ModalCloseButton onClick={handleWalletModalClose} />
           </ModalHeader>
           <ModalDivider />
           <ModalBody>
@@ -129,10 +143,11 @@ const WalletModal = () => {
                     layout.walletModal.status === 'connected' &&
                     layout.walletModal.connectedWalletName === wallet.name
                   }
-                  onClick={() => {
-                    layout.walletModal.status === 'not_connected' &&
-                      handleWalletConnect(wallet.name);
-                  }}
+                  onClick={() =>
+                    layout.walletModal.status === 'not_connected'
+                      ? handleWalletConnect(wallet.name)
+                      : null
+                  }
                 >
                   <Col>
                     <img
@@ -148,11 +163,7 @@ const WalletModal = () => {
                     <FontAwesomeIcon
                       icon={faCircle}
                       style={{
-                        color:
-                          layout.walletModal.status === 'connected' &&
-                          layout.walletModal.connectedWalletName === wallet.name
-                            ? colors.$green50
-                            : colors.$pink20,
+                        color: getConnectionStatusIconColor(wallet.name),
                       }}
                     />
                   </Col>

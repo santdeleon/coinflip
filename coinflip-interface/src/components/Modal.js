@@ -57,9 +57,9 @@ const StyledModalContent = styled.div`
   animation-name: animatetop;
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.4, 1, 0.5, 1);
-  width: 50vw;
+  width: 500px;
   @media only screen and (max-width: 568px) {
-    width: 75vw;
+    width: 400px;
   }
   @keyframes animatetop {
     from {
@@ -105,7 +105,7 @@ const StyledModal = styled.div`
   overflow: hidden;
   display: ${({ show }) => (show === true ? 'flex' : 'none')};
   background-color: ${({ theme }) =>
-    theme === 'light' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(200, 200, 200, 0.1)'};
+    theme === 'light' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(150, 150, 150, 0.1)'};
 
   /* Style all Modal children based on theme prop provided to Modal */
   ${StyledModalContent} {
@@ -226,6 +226,8 @@ export const Modal = ({
   ...props
 }) => {
   const { theme } = useTheme();
+
+  if (!show) return null;
 
   return (
     <StyledModal
