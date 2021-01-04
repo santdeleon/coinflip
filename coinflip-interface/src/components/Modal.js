@@ -15,7 +15,7 @@ const StyledModalFooter = styled.div`
 
 const StyledModalBody = styled.div``;
 
-export const ModalDivider = styled.span`
+export const ModalDivider = styled.div`
   border-width: 1px;
   border-style: solid;
 `;

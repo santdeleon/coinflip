@@ -39,7 +39,6 @@ const AccountModal = () => {
       ...layout,
       accountModal: { ...layout.accountModal, isAddressCopied: true },
     });
-    console.log(layout);
 
     setTimeout(() => {
       setLayout({
@@ -68,6 +67,7 @@ const AccountModal = () => {
               <Col className="d-flex align-items-center justify-content-between w-100">
                 <small>Connected with MetaMask</small>
                 <Button
+                  id="Modal__Button--change-connected-wallet"
                   variant="red"
                   onClick={() => {
                     setLayout({
@@ -97,7 +97,11 @@ const AccountModal = () => {
             <Row>
               <Col>
                 {layout.accountModal.isAddressCopied ? (
-                  <Button variant="green" className="w-50">
+                  <Button
+                    id="Modal__Button--address-copied"
+                    variant="green"
+                    className="w-50"
+                  >
                     <small>
                       <FontAwesomeIcon icon={faCheckCircle} /> Copied
                     </small>
@@ -107,14 +111,23 @@ const AccountModal = () => {
                     text={account}
                     onCopy={handleCopyToClipboard}
                   >
-                    <Button variant="primary" className="w-50">
+                    <Button
+                      id="Modal__Button--copy-address"
+                      variant="primary"
+                      className="w-50"
+                    >
                       <small>
                         <FontAwesomeIcon icon={faCopy} /> Copy Address
                       </small>
                     </Button>
                   </CopyToClipboard>
                 )}
-                <Button variant="transparent" className="w-50" disabled>
+                <Button
+                  id="Modal__Button--view-address-on-etherscan"
+                  variant="transparent"
+                  className="w-50"
+                  disabled
+                >
                   <small>
                     <FontAwesomeIcon icon={faExternalLinkAlt} /> View on
                     Etherscan

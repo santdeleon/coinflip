@@ -146,8 +146,8 @@ const WalletModal = () => {
                       className="m-0 ml-3"
                       style={{
                         fontFamily: 'Inter',
-                        fontWeight: '400',
-                        fontSize: '1.1rem',
+                        fontWeight: '500',
+                        fontSize: '1rem',
                       }}
                     >
                       {wallet.nameFormal}
