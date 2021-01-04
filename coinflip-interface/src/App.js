@@ -3,6 +3,7 @@ import {
   Header,
   AccountModal,
   WalletModal,
+  // Main,
   Web3ReactManager,
 } from './components';
 
@@ -11,7 +12,7 @@ const App = () => (
     <Header />
     <WalletModal />
     <AccountModal />
-    <Web3ReactManager>connected</Web3ReactManager>
+    <Web3ReactManager>{/* <Main /> */} yo</Web3ReactManager>
   </div>
 );
 

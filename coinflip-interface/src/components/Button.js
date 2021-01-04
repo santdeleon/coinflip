@@ -14,32 +14,25 @@ const ButtonBase = styled.button`
   background-color: transparent;
   padding: ${({ padding }) => (padding ? padding : '0.375rem 0.75rem')};
   border-style: solid;
-  border-radius: 0.45rem;
+  border-radius: 0.65rem;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   line-height: 1.5;
   white-space: nowrap;
-  border-width: 2px 2px 4px;
+  border-width: 2px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
   transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out,
     border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
-  transform: perspective(200px) translateY(0);
-  &:hover {
-    transition: all 0.04s ease-in;
-  }
   &:focus {
     outline: 0;
+    box-shadow: 0 0 4pt transparent;
   }
   &:disabled {
     opacity: 50%;
     pointer-events: none;
-  }
-  &:active {
-    border-width: 2px 2px 2px;
-    transform: perspective(200px) translateY(0.14rem);
   }
 `;
 
@@ -50,6 +43,9 @@ export const ButtonRed = styled(ButtonBase)`
   &:hover {
     background-color: ${colors.$red60};
   }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$red60};
+  }
 `;
 
 export const ButtonOrange = styled(ButtonBase)`
@@ -58,6 +54,9 @@ export const ButtonOrange = styled(ButtonBase)`
     theme === 'light' ? colors.$orange70 : colors.$black};
   &:hover {
     background-color: ${colors.$orange60};
+  }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$orange60};
   }
 `;
 
@@ -68,6 +67,9 @@ export const ButtonYellow = styled(ButtonBase)`
   &:hover {
     background-color: ${colors.$yellow60};
   }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$yellow60};
+  }
 `;
 
 export const ButtonGreen = styled(ButtonBase)`
@@ -76,6 +78,9 @@ export const ButtonGreen = styled(ButtonBase)`
     theme === 'light' ? colors.$green70 : colors.$black};
   &:hover {
     background-color: ${colors.$green60};
+  }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$green60};
   }
 `;
 
@@ -86,6 +91,9 @@ export const ButtonBlue = styled(ButtonBase)`
   &:hover {
     background-color: ${colors.$blue60};
   }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$blue60};
+  }
 `;
 
 export const ButtonPurple = styled(ButtonBase)`
@@ -95,6 +103,9 @@ export const ButtonPurple = styled(ButtonBase)`
   &:hover {
     background-color: ${colors.$purple60};
   }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$purple60};
+  }
 `;
 
 export const ButtonPink = styled(ButtonBase)`
@@ -103,6 +114,9 @@ export const ButtonPink = styled(ButtonBase)`
     theme === 'light' ? colors.$pink70 : colors.$black};
   &:hover {
     background-color: ${colors.$pink60};
+  }
+  &:focus {
+    box-shadow: 0 0 4pt ${colors.$pink60};
   }
 `;
 
@@ -115,6 +129,12 @@ export const ButtonLight = styled(ButtonBase)`
     color: ${colors.$dark};
     background-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray10 : colors.$gray10};
+  }
+  &:focus {
+    box-shadow: ${({ theme }) =>
+      theme === 'light'
+        ? `0 0 4pt ${colors.$gray20}`
+        : `0 0 4pt ${colors.$gray20}`};
   }
 `;
 

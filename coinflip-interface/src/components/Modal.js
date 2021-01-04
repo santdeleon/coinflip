@@ -29,7 +29,7 @@ const StyledModalCloseButton = styled.span`
   }
 `;
 
-const StyledModalTitle = styled.h3`
+const StyledModalTitle = styled.h5`
   margin: 0;
   font-weight: 600;
 `;
@@ -203,7 +203,7 @@ ModalHeader.propTypes = {
 const ModalScreenReaderText = ({ title }) => (
   <StyledModalScreenReaderText>
     This is a dialog window which overlays the main content of the page. The
-    modal begins with a heading 3 called &quot;{title}&quot;. Pressing the Modal
+    modal begins with a heading 5 called &quot;{title}&quot;. Pressing the Modal
     Close Button at the top right hand side of the modal will close the modal
     and bring you back to where you were on the page.
   </StyledModalScreenReaderText>

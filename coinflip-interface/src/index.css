@@ -3,13 +3,13 @@ body,
 .App,
 #root {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -21,75 +21,16 @@ code {
     monospace;
 }
 
-/* Inter Font */
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-Thin.ttf');
-  src: url('./assets/font/Inter-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-ExtraLight.ttf');
-  src: url('./assets/font/Inter-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-Light.ttf');
-  src: url('./assets/font/Inter-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-Regular.ttf');
-  src: url('./assets/font/Inter-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-Medium.ttf');
-  src: url('./assets/font/Inter-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-SemiBold.ttf');
-  src: url('./assets/font/Inter-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-Bold.ttf');
-  src: url('./assets/font/Inter-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-ExtraBold.ttf');
-  src: url('./assets/font/Inter-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/font/Inter-Black.ttf');
-  src: url('./assets/font/Inter-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
+.App--rainbow-border-top {
+  background: linear-gradient(
+    to right,
+    #f76f6f,
+    #fcfc83,
+    #fcca67,
+    #84ffaf,
+    #83e0f7,
+    #ca67e5,
+    #ff87e1
+  );
+  padding: 1px;
 }

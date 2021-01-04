@@ -25,11 +25,6 @@ const StyledModalContent = styled(ModalContent)`
 `;
 
 const StyledWalletModalRow = styled(Row)`
-  background-color: ${({ isConnected, theme }) => {
-    if (isConnected) {
-      return theme === 'light' ? colors.$gray10 : colors.$gray70;
-    }
-  }};
   &:hover {
     background-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray10 : colors.$gray70};
@@ -125,15 +120,12 @@ const WalletModal = () => {
                   className="d-flex align-items-center justify-content-between w-100 p-0"
                   theme={theme}
                   disabled={wallet.name !== 'metamask'}
-                  isConnected={
-                    layout.walletModal.status === 'connected' &&
-                    layout.walletModal.connectedWalletName === wallet.name
-                  }
                   onClick={() =>
                     layout.walletModal.status !== 'connected'
                       ? handleWalletConnect(wallet.name)
                       : null
                   }
+                  style={{ borderRadius: '0' }}
                 >
                   <Col className="d-flex align-items-center">
                     <img
@@ -143,16 +135,9 @@ const WalletModal = () => {
                       height={28}
                       width={28}
                     />
-                    <h3
-                      className="m-0 ml-3"
-                      style={{
-                        fontFamily: 'Inter',
-                        fontWeight: '500',
-                        fontSize: '1rem',
-                      }}
-                    >
+                    <h6 className="m-0 ml-3 font-weight-normal">
                       {wallet.nameFormal}
-                    </h3>
+                    </h6>
                   </Col>
                   <Col>
                     <FontAwesomeIcon

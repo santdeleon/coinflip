@@ -20,8 +20,8 @@ const StyledToggleThumb = styled.div`
 const StyledToggleTrack = styled.span`
   position: relative;
   display: inline-block;
-  width: 38px;
-  height: 20px;
+  width: 42px;
+  height: 24px;
   border-radius: 34px;
   outline: 0;
 `;

@@ -35,7 +35,7 @@ const StyledTooltip = styled.span`
 `;
 
 const StyledTooltipTop = styled(StyledTooltip)`
-  bottom: 145%;
+  bottom: 130%;
   left: 50%;
   margin-left: -10rem;
   &:before {
@@ -65,7 +65,7 @@ const StyledTooltipTop = styled(StyledTooltip)`
 
 const StyledTooltipRight = styled(StyledTooltip)`
   top: -5px;
-  left: 115%;
+  left: 105%;
   &:before {
     content: '';
     position: absolute;
@@ -93,7 +93,7 @@ const StyledTooltipRight = styled(StyledTooltip)`
 `;
 
 const StyledTooltipBottom = styled(StyledTooltip)`
-  top: 145%;
+  top: 130%;
   left: 50%;
   margin-left: -10rem;
   &:before {
@@ -123,7 +123,7 @@ const StyledTooltipBottom = styled(StyledTooltip)`
 
 const StyledTooltipLeft = styled(StyledTooltip)`
   top: -5px;
-  right: 115%;
+  right: 105%;
   &:before {
     content: '';
     position: absolute;

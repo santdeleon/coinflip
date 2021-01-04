@@ -21,6 +21,7 @@ const StyledNavbarBrand = styled(Link)`
 
 const StyledNavbar = styled.header`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   height: 3rem;
   padding: 0.5rem 1rem;
