@@ -18,14 +18,39 @@ const App = () => (
     <Web3ReactManager>
       <Row>
         <Col>
-          <Button variant="pink">Hello Button</Button>
-          <Button variant="orange">Hello Button</Button>
-          <Button variant="yellow">Hello Button</Button>
-          <Button variant="green">Hello Button</Button>
-          <Button variant="blue">Hello Button</Button>
-          <Button variant="purple">Hello Button</Button>
-          <Button variant="light">Hello Button</Button>
-          <Button variant="dark">Hello Button</Button>
+          <Button variant="red" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="orange" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="yellow" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="green" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="blue" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="purple" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="pink" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="light" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="dark" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="transparent" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
+          <Button variant="link" style={{ margin: '5px 5px 0 0' }}>
+            Hello Button
+          </Button>
         </Col>
       </Row>
     </Web3ReactManager>
