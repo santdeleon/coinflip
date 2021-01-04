@@ -58,6 +58,8 @@ const StyledModalContent = styled.div`
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.4, 1, 0.5, 1);
   width: 500px;
+  min-height: 100%;
+  transform: perspective(200px) translateY(0);
   @media only screen and (max-width: 568px) {
     width: 400px;
   }

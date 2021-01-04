@@ -45,6 +45,7 @@ const Header = () => {
           <Button
             variant="pink"
             id="Navbar__Button--connect-to-wallet"
+            className="mr-3"
             onClick={() =>
               setLayout({
                 ...layout,

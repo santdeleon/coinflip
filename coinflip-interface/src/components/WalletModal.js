@@ -22,17 +22,9 @@ import {
 
 const StyledModalContent = styled(ModalContent)`
   width: 400px;
-
-  p {
-    font-size: 1.13rem;
-    margin: 0 0 0 1rem;
-    font-weight: 400;
-  }
 `;
 
 const StyledWalletModalRow = styled(Row)`
-  justify-content: space-between;
-  width: 100%;
   background-color: ${({ isConnected, theme }) => {
     if (isConnected) {
       return theme === 'light' ? colors.$gray10 : colors.$gray70;
@@ -129,6 +121,7 @@ const WalletModal = () => {
                   as={Button}
                   variant="transparent"
                   id="WalletModal__StyledWalletModalRow--wallet-selection-button"
+                  className="d-flex align-items-center justify-content-between w-100 p-0"
                   theme={theme}
                   disabled={wallet.name !== 'metamask'}
                   isConnected={
@@ -136,12 +129,12 @@ const WalletModal = () => {
                     layout.walletModal.connectedWalletName === wallet.name
                   }
                   onClick={() =>
-                    layout.walletModal.status === 'not_connected'
+                    layout.walletModal.status !== 'connected'
                       ? handleWalletConnect(wallet.name)
                       : null
                   }
                 >
-                  <Col>
+                  <Col className="d-flex align-items-center">
                     <img
                       src={wallet.img}
                       alt={wallet.nameFormal}
@@ -149,7 +142,16 @@ const WalletModal = () => {
                       height={28}
                       width={28}
                     />
-                    <p>{wallet.nameFormal}</p>
+                    <h3
+                      className="m-0 ml-3"
+                      style={{
+                        fontFamily: 'Inter',
+                        fontWeight: '400',
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      {wallet.nameFormal}
+                    </h3>
                   </Col>
                   <Col>
                     <FontAwesomeIcon
@@ -163,8 +165,10 @@ const WalletModal = () => {
               ))}
             {layout.walletModal.error && (
               <Row>
-                <Col>
-                  <p>{layout.walletModal.error}</p>
+                <Col className="w-100 p-5">
+                  <p className="mb-0 text-center w-100">
+                    {layout.walletModal.error}
+                  </p>
                 </Col>
               </Row>
             )}

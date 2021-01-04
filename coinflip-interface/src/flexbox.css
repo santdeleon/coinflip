@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.h1,
+/* .h1,
 h1 {
   font-size: calc(1.375rem + 1.5vw);
 }
@@ -33,21 +33,21 @@ h3 {
 .h4,
 h4 {
   font-size: calc(1.275rem + 0.3vw);
-}
-@media (min-width: 1200px) {
+} */
+/* @media (min-width: 1200px) {
   .h4,
   h4 {
     font-size: 1.5rem;
   }
-}
-.h5,
+} */
+/* .h5,
 h5 {
   font-size: 1.25rem;
 }
 .h6,
 h6 {
   font-size: 1rem;
-}
+} */
 p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -145,10 +145,7 @@ ul ul {
   max-width: 100%;
   height: auto;
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 .row > * {
   flex-shrink: 0;
   width: 100%;
@@ -443,75 +440,6 @@ ul ul {
   clear: both;
   content: '';
 }
-.link-primary {
-  color: #474545;
-}
-.link-primary:focus,
-.link-primary:hover {
-  color: #0a58ca;
-}
-.link-green {
-  color: #7ac70c;
-}
-.link-green:focus,
-.link-green:hover {
-  color: #146c43;
-}
-.link-blue {
-  color: #1fbcc1;
-}
-.link-blue:focus,
-.link-blue:hover {
-  color: #3dd5f3;
-}
-.link-yellow {
-  color: #fcd02f;
-}
-.link-yellow:focus,
-.link-yellow:hover {
-  color: #f9c91b;
-}
-.link-pink {
-  color: #ed82b4;
-}
-.link-pink:focus,
-.link-pink:hover {
-  color: #b02a37;
-}
-.link-light {
-  color: #f7f7f7;
-}
-.link-light:focus,
-.link-light:hover {
-  color: #f9fafb;
-}
-.link-dark {
-  color: #212529;
-}
-.link-dark:focus,
-.link-dark:hover {
-  color: #1a1e21;
-}
-.fixed-top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-}
-.fixed-bottom {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1030;
-}
-.sticky-top {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1020;
-}
 .text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -535,10 +463,10 @@ ul ul {
 .align-text-top {
   vertical-align: text-top !important;
 }
-.float-start {
+.float-left {
   float: left !important;
 }
-.float-end {
+.float-right {
   float: right !important;
 }
 .float-none {
@@ -1302,18 +1230,6 @@ ul ul {
 }
 .text-reset {
   color: inherit !important;
-}
-.lh-1 {
-  line-height: 1 !important;
-}
-.lh-sm {
-  line-height: 1.25 !important;
-}
-.lh-base {
-  line-height: 1.5 !important;
-}
-.lh-lg {
-  line-height: 2 !important;
 }
 .bg-primary {
   background-color: #6c757d !important;
