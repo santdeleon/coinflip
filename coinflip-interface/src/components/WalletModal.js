@@ -63,6 +63,7 @@ const WalletModal = () => {
           ...layout,
           walletModal: {
             ...layout.walletModal,
+            show: false,
             status: 'connected',
             connectedWalletName: 'metamask',
           },

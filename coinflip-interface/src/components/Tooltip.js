@@ -14,7 +14,7 @@ const StyledTooltip = styled.span`
   position: absolute;
   z-index: 1;
   outline: 0;
-  width: 15rem;
+  width: 20rem;
   text-align: center;
   font-size: 0.9rem;
   font-weight: 700;
@@ -37,7 +37,7 @@ const StyledTooltip = styled.span`
 const StyledTooltipTop = styled(StyledTooltip)`
   bottom: 145%;
   left: 50%;
-  margin-left: -7.5rem;
+  margin-left: -10rem;
   &:before {
     content: '';
     position: absolute;
@@ -95,7 +95,7 @@ const StyledTooltipRight = styled(StyledTooltip)`
 const StyledTooltipBottom = styled(StyledTooltip)`
   top: 145%;
   left: 50%;
-  margin-left: -7.5rem;
+  margin-left: -10rem;
   &:before {
     content: '';
     position: absolute;

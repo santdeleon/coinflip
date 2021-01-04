@@ -13,7 +13,6 @@ import {
   Button,
   OverlayTrigger,
   Tooltip,
-  TooltipDivider,
   Row,
   Col,
 } from '.';
@@ -60,27 +59,23 @@ const Header = () => {
           <>
             <OverlayTrigger
               overlay={
-                <Tooltip id="Navbar__Tooltip--ether-balance" placement="bottom">
-                  <Row>
-                    <Col className="d-flex align-items-center w-100 pl-1">
+                <Tooltip
+                  id="Navbar__Tooltip--ether-balance"
+                  placement="bottom"
+                  className="py-4"
+                >
+                  <Row className="align-items-center">
+                    <Col className="p-0 w-25">
                       <img
                         src={EtherDiamond}
                         alt="Pink Ethereum Diamond"
-                        width={60}
-                        height={50}
+                        width={90}
+                        height={70}
                       />
-                      <h2 className="m-0 ml-4 text-center">Ether</h2>
                     </Col>
-                  </Row>
-                  <TooltipDivider />
-                  <Row>
-                    <Col
-                      className={cx('d-flex py-3 px-3 rounded-bottom', {
-                        'bg-light': theme === 'light',
-                        'bg-dark': theme === 'dark',
-                      })}
-                    >
-                      <p className="mb-0">
+                    <Col className="col p-0 pl-3">
+                      <h2 className="m-0 mb-2 text-left">Ether</h2>
+                      <p className="mb-0 text-left">
                         The digital currency used to transact on the Ethereum
                         Network.
                       </p>
@@ -94,7 +89,7 @@ const Header = () => {
                 id="Navbar__Button--ether-balance"
                 className="pe-none"
               >
-                {balance} ETH
+                {balance < 0.0001 ? 0 : balance} ETH
               </Button>
             </OverlayTrigger>
             <Button

@@ -28,6 +28,7 @@ const LayoutProvider = ({ children }) => {
       ...layout,
       walletModal: {
         ...layout.walletModal,
+        show: false,
         connectedWalletName: 'metamask',
         status: active ? 'connected' : 'not_connected',
       },
