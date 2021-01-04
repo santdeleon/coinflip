@@ -7,8 +7,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useWeb3React } from '@web3-react/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useLayout, useTheme } from '../hooks';
-import { truncateString, colors } from '../utils';
+import { useLayout } from '../hooks';
+import { truncateString } from '../utils';
 import MetaMaskAvatar from '../assets/img/metamask-avatar.svg';
 import {
   Button,
@@ -65,12 +65,10 @@ const AccountModal = () => {
           <ModalBody>
             {/* Change Wallet Type */}
             <Row>
-              <Col>
+              <Col className="d-flex align-items-center justify-content-between w-100">
                 <small>Connected with MetaMask</small>
-              </Col>
-              <Col>
                 <Button
-                  variant="purple"
+                  variant="red"
                   onClick={() => {
                     setLayout({
                       ...layout,
@@ -85,20 +83,21 @@ const AccountModal = () => {
             </Row>
             {/* Currently Selected Address */}
             <Row>
-              <Col>
+              <Col className="d-flex align-items-center w-100">
                 <img
                   src={MetaMaskAvatar}
                   alt="MetaMask Avatar"
                   aria-label="MetaMask Avatar"
+                  className="rounded-circle"
                 />
-                <p>{truncateString(account, 15)}</p>
+                <h2 className="m-0 ml-2">{truncateString(account, 15)}</h2>
               </Col>
             </Row>
             {/* Copy Address/Show on Etherscan */}
             <Row>
               <Col>
                 {layout.accountModal.isAddressCopied ? (
-                  <Button variant="green">
+                  <Button variant="green" className="w-50">
                     <small>
                       <FontAwesomeIcon icon={faCheckCircle} /> Copied
                     </small>
@@ -108,15 +107,14 @@ const AccountModal = () => {
                     text={account}
                     onCopy={handleCopyToClipboard}
                   >
-                    <Button variant="primary">
+                    <Button variant="primary" className="w-50">
                       <small>
                         <FontAwesomeIcon icon={faCopy} /> Copy Address
                       </small>
                     </Button>
                   </CopyToClipboard>
                 )}
-
-                <Button variant="blue">
+                <Button variant="transparent" className="w-50" disabled>
                   <small>
                     <FontAwesomeIcon icon={faExternalLinkAlt} /> View on
                     Etherscan

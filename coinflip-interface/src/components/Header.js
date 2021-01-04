@@ -69,7 +69,7 @@ const Header = () => {
                         width={60}
                         height={50}
                       />
-                      <h3 className="m-0 ml-4 text-center">Ether</h3>
+                      <h2 className="m-0 ml-4 text-center">Ether</h2>
                     </Col>
                   </Row>
                   <TooltipDivider />
