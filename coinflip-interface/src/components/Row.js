@@ -1,5 +1,5 @@
 import React from 'react';
-import { oneOfType, string, object, array } from 'prop-types';
+import { oneOfType, string, object, array, func } from 'prop-types';
 import styled from 'styled-components';
 
 const StyledRow = styled.div`
@@ -7,12 +7,10 @@ const StyledRow = styled.div`
 `;
 
 const propTypes = {
-  children: oneOfType([string, object, array]),
+  children: oneOfType([string, object, array, func]),
 };
 
-const Row = ({ children, ...props }) => (
-  <StyledRow {...props}>{children}</StyledRow>
-);
+const Row = ({ children }) => <StyledRow>{children}</StyledRow>;
 
 Row.propTypes = propTypes;
 export default Row;

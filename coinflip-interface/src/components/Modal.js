@@ -107,7 +107,11 @@ const StyledModal = styled.div`
   background-color: ${({ theme }) =>
     theme === 'light' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(150, 150, 150, 0.1)'};
 
-  /* Style all Modal children based on theme prop provided to Modal */
+  /**
+    * Style all Modal children based on theme prop provided to Modal. This
+    * allows us to only have to pass one theme prop to the base Modal instead of
+    * to every component within the modal
+    */
   ${StyledModalContent} {
     color: ${({ theme }) =>
       theme === 'light' ? colors.$gray50 : colors.$gray20};
@@ -151,22 +155,22 @@ const StyledModal = styled.div`
       COMPONENT EXPORTS START HERE
 ********************************************/
 // ModalFooter
-export const ModalFooter = ({ children, ...props }) => (
-  <StyledModalFooter {...props}>{children}</StyledModalFooter>
+export const ModalFooter = ({ children }) => (
+  <StyledModalFooter>{children}</StyledModalFooter>
 );
-ModalFooter.propTypes = { children: oneOfType([string, object, array]) };
+ModalFooter.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalBody
-export const ModalBody = ({ children, ...props }) => (
-  <StyledModalBody {...props}>{children}</StyledModalBody>
+export const ModalBody = ({ children }) => (
+  <StyledModalBody>{children}</StyledModalBody>
 );
-ModalBody.propTypes = { children: oneOfType([string, object, array]) };
+ModalBody.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalDivider
-export const ModalDivider = ({ ...props }) => <StyledModalDivider {...props} />;
+export const ModalDivider = () => <StyledModalDivider />;
 
 // ModalCloseButton
-export const ModalCloseButton = ({ onClick, ...props }) => (
+export const ModalCloseButton = ({ onClick }) => (
   <StyledModalCloseButton
     role="button"
     type="button"
@@ -174,57 +178,53 @@ export const ModalCloseButton = ({ onClick, ...props }) => (
     icon={faTimes}
     aria-label="Close"
     onClick={onClick}
-    {...props}
   />
 );
 ModalCloseButton.propTypes = { onClick: func.isRequired };
 
 // ModalTitle
-export const ModalTitle = ({ children, ...props }) => (
-  <StyledModalTitle {...props}>{children}</StyledModalTitle>
+export const ModalTitle = ({ children }) => (
+  <StyledModalTitle>{children}</StyledModalTitle>
 );
-ModalTitle.propTypes = { children: oneOfType([string, object, array]) };
+ModalTitle.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalHeader
-export const ModalHeader = ({ children, ...props }) => (
-  <StyledModalHeader {...props}>{children}</StyledModalHeader>
-);
-ModalHeader.propTypes = { children: oneOfType([string, object, array]) };
-
-// ModalScreenReaderText
-export const ModalScreenReaderText = ({ id, children, ...props }) => (
-  <StyledModalScreenReaderText id={id} {...props}>
+export const ModalHeader = ({ title, children }) => (
+  <StyledModalHeader>
+    <ModalScreenReaderText title={title} />
     {children}
-  </StyledModalScreenReaderText>
+  </StyledModalHeader>
 );
-ModalScreenReaderText.propTypes = {
-  id: string.isRequired,
-  children: oneOfType([string, object, array]),
+ModalHeader.propTypes = {
+  title: string.isRequired,
+  children: oneOfType([string, object, array, func]),
 };
 
-// ModalContent
-export const ModalContent = ({ children, ...props }) => (
-  <StyledModalContent {...props}>{children}</StyledModalContent>
+// ModalScreenReaderText
+const ModalScreenReaderText = ({ title }) => (
+  <StyledModalScreenReaderText>
+    This is a dialog window which overlays the main content of the page. The
+    modal begins with a heading 3 called &quot;{title}&quot;. Pressing the Modal
+    Close Button at the top right hand side of the modal will close the modal
+    and bring you back to where you were on the page.
+  </StyledModalScreenReaderText>
 );
-ModalContent.propTypes = { children: oneOfType([string, object, array]) };
+ModalScreenReaderText.propTypes = { title: string.isRequired };
+
+// ModalContent
+export const ModalContent = ({ children }) => (
+  <StyledModalContent>{children}</StyledModalContent>
+);
+ModalContent.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalDialog
-export const ModalDialog = ({ children, ...props }) => (
-  <div role="document" {...props}>
-    {children}
-  </div>
+export const ModalDialog = ({ children }) => (
+  <div role="document">{children}</div>
 );
-ModalDialog.propTypes = { children: oneOfType([string, object, array]) };
+ModalDialog.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // Modal
-export const Modal = ({
-  id,
-  show,
-  ariaDescribedBy,
-  ariaLabel,
-  children,
-  ...props
-}) => {
+export const Modal = ({ id, show, ariaDescribedBy, ariaLabel, children }) => {
   const { theme } = useTheme();
 
   if (!show) return null;
@@ -239,7 +239,6 @@ export const Modal = ({
       aria-hidden={!show}
       aria-describedby={ariaDescribedBy}
       aria-label={ariaLabel || null}
-      {...props}
     >
       {children}
     </StyledModal>
@@ -251,6 +250,6 @@ Modal.propTypes = {
   show: bool.isRequired,
   ariaDescribedBy: string,
   ariaLabel: string,
-  children: oneOfType([string, object, array]),
+  children: oneOfType([string, object, array, func]),
 };
 Modal.defaultProps = { show: false };

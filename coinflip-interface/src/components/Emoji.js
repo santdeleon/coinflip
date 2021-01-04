@@ -15,14 +15,7 @@ const propTypes = {
   className: string,
 };
 
-export const Emoji = ({
-  ariaLabel,
-  unicode,
-  margin,
-  padding,
-  className,
-  ...props
-}) => (
+export const Emoji = ({ ariaLabel, unicode, margin, padding, className }) => (
   <StyledEmoji
     role="img"
     alt={ariaLabel}
@@ -30,7 +23,6 @@ export const Emoji = ({
     margin={margin}
     padding={padding}
     className={className}
-    {...props}
   >
     {unicode}
   </StyledEmoji>

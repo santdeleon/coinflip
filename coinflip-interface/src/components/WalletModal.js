@@ -12,7 +12,6 @@ import {
   Modal,
   ModalDialog,
   ModalContent,
-  ModalScreenReaderText,
   ModalDivider,
   ModalHeader,
   ModalCloseButton,
@@ -115,14 +114,7 @@ const WalletModal = () => {
     >
       <ModalDialog>
         <StyledModalContent id="Modal__ModalContent--connect-to-a-wallet">
-          <ModalScreenReaderText id="Modal__ModalScreenReaderText">
-            This is a dialog window which overlays the main content of the page.
-            The modal begins with a heading 3 called &quot;Connect to a
-            Wallet&quot;. Pressing the Modal Close Button at the top right hand
-            side of the modal will close the modal and bring you back to where
-            you were on the page.
-          </ModalScreenReaderText>
-          <ModalHeader>
+          <ModalHeader title="Connect to a Wallet">
             <ModalTitle id="Modal__ModalTitle--connect-to-a-wallet">
               {active ? 'Connected' : 'Connect to a Wallet'}
             </ModalTitle>

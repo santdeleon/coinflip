@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { oneOfType, array, object } from 'prop-types';
+import { oneOfType, array, object, string, func } from 'prop-types';
 import { useEagerConnect, useInactiveListener } from '../hooks';
 import { getErrorMessage } from '../utils';
 
 const propTypes = {
-  children: oneOfType([array, object]),
+  children: oneOfType([array, object, string, func]),
 };
 
 const Web3ReactManager = ({ children }) => {

@@ -50,18 +50,11 @@ const propTypes = {
   children: oneOfType([array, object, string]),
 };
 
-const ToggleSwitch = ({
-  id,
-  title,
-  className,
-  onClick,
-  children,
-  ...props
-}) => {
+const ToggleSwitch = ({ id, title, className, onClick, children }) => {
   const { theme } = useTheme();
 
   return (
-    <StyledToggleSwitch id={id} theme={theme} {...props}>
+    <StyledToggleSwitch id={id} theme={theme}>
       <StyledToggleTrack>
         <StyledToggleThumb
           role="checkbox"

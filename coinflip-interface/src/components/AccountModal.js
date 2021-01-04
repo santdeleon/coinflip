@@ -16,7 +16,6 @@ import {
   Modal,
   ModalDialog,
   ModalContent,
-  ModalScreenReaderText,
   ModalDivider,
   ModalHeader,
   ModalCloseButton,
@@ -58,14 +57,7 @@ const AccountModal = () => {
     >
       <ModalDialog>
         <ModalContent id="Modal__ModalContent--account">
-          <ModalScreenReaderText id="Modal__ModalScreenReaderText">
-            This is a dialog window which overlays the main content of the page.
-            The modal begins with a heading 3 called &quot;Account&quot;.
-            Pressing the Modal Close Button at the top right hand side of the
-            modal will close the modal and bring you back to where you were on
-            the page.
-          </ModalScreenReaderText>
-          <ModalHeader>
+          <ModalHeader title="Account">
             <ModalTitle id="Modal__ModalTitle--account">Account</ModalTitle>
             <ModalCloseButton onClick={handleAccountModalClose} />
           </ModalHeader>
