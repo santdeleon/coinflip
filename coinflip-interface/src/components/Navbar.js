@@ -57,11 +57,11 @@ NavbarBrand.propTypes = {
   children: oneOfType([array, object, string, func]),
 };
 
-export const Navbar = ({ id, className, children }) => {
+export const Navbar = ({ id, className, children, ...props }) => {
   const { theme } = useTheme();
 
   return (
-    <StyledNavbar id={id} className={className} theme={theme}>
+    <StyledNavbar id={id} className={className} theme={theme} {...props}>
       {children}
     </StyledNavbar>
   );

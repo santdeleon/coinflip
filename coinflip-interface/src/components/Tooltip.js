@@ -4,13 +4,17 @@ import styled from 'styled-components';
 import { colors } from '../utils';
 import { useTheme } from '../hooks';
 
+export const TooltipDivider = styled.div`
+  border-width: 1px;
+  border-style: solid;
+`;
+
 const StyledTooltip = styled.span`
   visibility: hidden;
   position: absolute;
   z-index: 1;
   outline: 0;
   width: 15rem;
-  padding: 1rem 0;
   text-align: center;
   font-size: 0.9rem;
   font-weight: 700;
@@ -23,6 +27,10 @@ const StyledTooltip = styled.span`
   border-radius: 10px;
   &:hover {
     visibility: visible;
+  }
+  ${TooltipDivider} {
+    border-color: ${({ theme }) =>
+      theme === 'light' ? colors.$gray10 : colors.$gray70};
   }
 `;
 
@@ -56,7 +64,7 @@ const StyledTooltipTop = styled(StyledTooltip)`
 `;
 
 const StyledTooltipRight = styled(StyledTooltip)`
-  top: -50%;
+  top: -5px;
   left: 115%;
   &:before {
     content: '';
@@ -114,7 +122,7 @@ const StyledTooltipBottom = styled(StyledTooltip)`
 `;
 
 const StyledTooltipLeft = styled(StyledTooltip)`
-  top: -50%;
+  top: -5px;
   right: 115%;
   &:before {
     content: '';
@@ -142,7 +150,7 @@ const StyledTooltipLeft = styled(StyledTooltip)`
   }
 `;
 
-export const Tooltip = ({ id, placement, className, children }) => {
+export const Tooltip = ({ id, placement, className, children, ...props }) => {
   const { theme } = useTheme();
 
   switch (placement) {
@@ -154,6 +162,7 @@ export const Tooltip = ({ id, placement, className, children }) => {
           theme={theme}
           tabindex="-1"
           aria-label="Tooltip Top"
+          {...props}
         >
           {children}
         </StyledTooltipTop>
@@ -166,6 +175,7 @@ export const Tooltip = ({ id, placement, className, children }) => {
           theme={theme}
           tabindex="-1"
           aria-label="Tooltip Right"
+          {...props}
         >
           {children}
         </StyledTooltipRight>
@@ -178,6 +188,7 @@ export const Tooltip = ({ id, placement, className, children }) => {
           theme={theme}
           tabindex="-1"
           aria-label="Tooltip Bottom"
+          {...props}
         >
           {children}
         </StyledTooltipBottom>
@@ -190,6 +201,7 @@ export const Tooltip = ({ id, placement, className, children }) => {
           theme={theme}
           tabindex="-1"
           aria-label="Tooltip Left"
+          {...props}
         >
           {children}
         </StyledTooltipLeft>
@@ -202,6 +214,7 @@ export const Tooltip = ({ id, placement, className, children }) => {
           theme={theme}
           tabindex="-1"
           aria-label="Tooltip Bottom"
+          {...props}
         >
           {children}
         </StyledTooltipBottom>
@@ -226,8 +239,8 @@ const StyledOverlayTrigger = styled.div`
   }
 `;
 
-export const OverlayTrigger = ({ overlay, children }) => (
-  <StyledOverlayTrigger>
+export const OverlayTrigger = ({ overlay, children, ...props }) => (
+  <StyledOverlayTrigger {...props}>
     {overlay}
     {children}
   </StyledOverlayTrigger>

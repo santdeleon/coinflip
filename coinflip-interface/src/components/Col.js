@@ -10,7 +10,9 @@ const propTypes = {
   children: oneOfType([string, object, array, func]),
 };
 
-const Col = ({ children }) => <StyledCol>{children}</StyledCol>;
+const Col = ({ children, ...props }) => (
+  <StyledCol {...props}>{children}</StyledCol>
+);
 
 Col.propTypes = propTypes;
 export default Col;

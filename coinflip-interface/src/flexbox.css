@@ -1255,10 +1255,10 @@ ul ul {
 .text-capitalize {
   text-transform: capitalize !important;
 }
-.text-start {
+.text-left {
   text-align: left !important;
 }
-.text-end {
+.text-right {
   text-align: right !important;
 }
 .text-center {
@@ -1334,7 +1334,7 @@ ul ul {
   background-color: #f7f7f7 !important;
 }
 .bg-dark {
-  background-color: #212529 !important;
+  background-color: #3d3b3b !important;
 }
 .bg-white {
   background-color: #fff !important;
@@ -1376,10 +1376,10 @@ ul ul {
   -moz-user-select: none !important;
   user-select: none !important;
 }
-.pr-none {
+.pe-none {
   pointer-events: none !important;
 }
-.pr-auto {
+.pe-auto {
   pointer-events: auto !important;
 }
 .rounded {
@@ -1404,20 +1404,20 @@ ul ul {
   border-radius: 50rem !important;
 }
 .rounded-top {
-  border-top-left-radius: 0.25rem !important;
-  border-top-right-radius: 0.25rem !important;
+  border-top-left-radius: 0.5rem !important;
+  border-top-right-radius: 0.5rem !important;
 }
 .rounded-end {
-  border-top-right-radius: 0.25rem !important;
-  border-bottom-right-radius: 0.25rem !important;
+  border-top-right-radius: 0.5rem !important;
+  border-bottom-right-radius: 0.5rem !important;
 }
 .rounded-bottom {
-  border-bottom-right-radius: 0.25rem !important;
-  border-bottom-left-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.5rem !important;
+  border-bottom-left-radius: 0.5rem !important;
 }
 .rounded-start {
-  border-bottom-left-radius: 0.25rem !important;
-  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.5rem !important;
+  border-top-left-radius: 0.5rem !important;
 }
 
 @media (min-width: 576px) {

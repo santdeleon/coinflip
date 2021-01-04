@@ -176,6 +176,7 @@ const Button = ({
   disabled,
   onClick,
   children,
+  ...props
 }) => {
   const { theme } = useTheme();
 
@@ -190,6 +191,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonRed>
@@ -204,6 +206,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonOrange>
@@ -218,6 +221,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonYellow>
@@ -232,6 +236,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonGreen>
@@ -246,6 +251,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonBlue>
@@ -260,6 +266,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonPurple>
@@ -274,6 +281,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonPink>
@@ -288,6 +296,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonLight>
@@ -302,6 +311,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonDark>
@@ -316,6 +326,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonTransparent>
@@ -330,6 +341,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonLink>
@@ -344,6 +356,7 @@ const Button = ({
           padding={padding}
           disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           {children}
         </ButtonLight>

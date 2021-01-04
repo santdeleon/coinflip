@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
+import cx from 'classnames';
 import { truncateString } from '../utils';
 import { useLayout, useTheme } from '../hooks';
 import {
@@ -12,6 +13,7 @@ import {
   Button,
   OverlayTrigger,
   Tooltip,
+  TooltipDivider,
   Row,
   Col,
 } from '.';
@@ -43,7 +45,6 @@ const Header = () => {
           <Button
             variant="pink"
             id="Navbar__Button--connect-to-wallet"
-            margin="0 15px"
             onClick={() =>
               setLayout({
                 ...layout,
@@ -60,34 +61,45 @@ const Header = () => {
               overlay={
                 <Tooltip id="Navbar__Tooltip--ether-balance" placement="bottom">
                   <Row>
-                    <Col style={{ padding: '0' }}>
+                    <Col className="d-flex align-items-center w-100 pl-1">
                       <img
                         src={EtherDiamond}
                         alt="Pink Ethereum Diamond"
                         width={60}
                         height={50}
                       />
-                    </Col>
-                    <Col style={{ textAlign: 'center', padding: '0' }}>
-                      <h1 style={{ marginLeft: '10px' }}>Ether</h1>
+                      <h3 className="m-0 ml-4 text-center">Ether</h3>
                     </Col>
                   </Row>
+                  <TooltipDivider />
                   <Row>
-                    <Col>
-                      The currency used to transact on the Ethereum Network
+                    <Col
+                      className={cx('d-flex py-3 px-3 rounded-bottom', {
+                        'bg-light': theme === 'light',
+                        'bg-dark': theme === 'dark',
+                      })}
+                    >
+                      <p className="mb-0">
+                        The digital currency used to transact on the Ethereum
+                        Network.
+                      </p>
                     </Col>
                   </Row>
                 </Tooltip>
               }
             >
-              <Button variant="dark" id="Navbar__Button--ether-balance">
+              <Button
+                variant={theme}
+                id="Navbar__Button--ether-balance"
+                className="pe-none"
+              >
                 {balance} ETH
               </Button>
             </OverlayTrigger>
             <Button
-              variant="green"
+              variant="purple"
               id="Navbar__Button--selected-ethereum-address"
-              margin="0 15px"
+              className="mx-2"
               onClick={() => {
                 setLayout({
                   ...layout,

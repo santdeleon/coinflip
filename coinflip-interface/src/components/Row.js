@@ -10,7 +10,9 @@ const propTypes = {
   children: oneOfType([string, object, array, func]),
 };
 
-const Row = ({ children }) => <StyledRow>{children}</StyledRow>;
+const Row = ({ children, ...props }) => (
+  <StyledRow {...props}>{children}</StyledRow>
+);
 
 Row.propTypes = propTypes;
 export default Row;

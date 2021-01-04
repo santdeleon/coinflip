@@ -15,7 +15,7 @@ const StyledModalFooter = styled.div`
 
 const StyledModalBody = styled.div``;
 
-const StyledModalDivider = styled.span`
+export const ModalDivider = styled.span`
   border-width: 1px;
   border-style: solid;
 `;
@@ -145,7 +145,7 @@ const StyledModal = styled.div`
     }
   }
 
-  ${StyledModalDivider} {
+  ${ModalDivider} {
     border-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray10 : colors.$gray70};
   }
@@ -155,19 +155,16 @@ const StyledModal = styled.div`
       COMPONENT EXPORTS START HERE
 ********************************************/
 // ModalFooter
-export const ModalFooter = ({ children }) => (
-  <StyledModalFooter>{children}</StyledModalFooter>
+export const ModalFooter = ({ children, ...props }) => (
+  <StyledModalFooter {...props}>{children}</StyledModalFooter>
 );
 ModalFooter.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalBody
-export const ModalBody = ({ children }) => (
-  <StyledModalBody>{children}</StyledModalBody>
+export const ModalBody = ({ children, ...props }) => (
+  <StyledModalBody {...props}>{children}</StyledModalBody>
 );
 ModalBody.propTypes = { children: oneOfType([string, object, array, func]) };
-
-// ModalDivider
-export const ModalDivider = () => <StyledModalDivider />;
 
 // ModalCloseButton
 export const ModalCloseButton = ({ onClick }) => (
@@ -183,13 +180,13 @@ export const ModalCloseButton = ({ onClick }) => (
 ModalCloseButton.propTypes = { onClick: func.isRequired };
 
 // ModalTitle
-export const ModalTitle = ({ children }) => (
-  <StyledModalTitle>{children}</StyledModalTitle>
+export const ModalTitle = ({ children, ...props }) => (
+  <StyledModalTitle {...props}>{children}</StyledModalTitle>
 );
 ModalTitle.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalHeader
-export const ModalHeader = ({ title, children }) => (
+export const ModalHeader = ({ title, children, ...props }) => (
   <StyledModalHeader>
     <ModalScreenReaderText title={title} />
     {children}
@@ -212,19 +209,28 @@ const ModalScreenReaderText = ({ title }) => (
 ModalScreenReaderText.propTypes = { title: string.isRequired };
 
 // ModalContent
-export const ModalContent = ({ children }) => (
-  <StyledModalContent>{children}</StyledModalContent>
+export const ModalContent = ({ children, ...props }) => (
+  <StyledModalContent {...props}>{children}</StyledModalContent>
 );
 ModalContent.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // ModalDialog
-export const ModalDialog = ({ children }) => (
-  <div role="document">{children}</div>
+export const ModalDialog = ({ children, ...props }) => (
+  <div role="document" {...props}>
+    {children}
+  </div>
 );
 ModalDialog.propTypes = { children: oneOfType([string, object, array, func]) };
 
 // Modal
-export const Modal = ({ id, show, ariaDescribedBy, ariaLabel, children }) => {
+export const Modal = ({
+  id,
+  show,
+  ariaDescribedBy,
+  ariaLabel,
+  children,
+  ...props
+}) => {
   const { theme } = useTheme();
 
   if (!show) return null;
@@ -239,6 +245,7 @@ export const Modal = ({ id, show, ariaDescribedBy, ariaLabel, children }) => {
       aria-hidden={!show}
       aria-describedby={ariaDescribedBy}
       aria-label={ariaLabel || null}
+      {...props}
     >
       {children}
     </StyledModal>

@@ -18,7 +18,7 @@ import {
 import { Navbar, NavbarBrand, Nav } from './Navbar';
 import Row from './Row';
 import ToggleSwitch from './ToggleSwitch';
-import { Tooltip, OverlayTrigger } from './Tooltip';
+import { Tooltip, OverlayTrigger, TooltipDivider } from './Tooltip';
 import WalletModal from './WalletModal';
 import Web3ReactManager from './Web3ReactManager';
 
@@ -45,6 +45,7 @@ export {
   Row,
   ToggleSwitch,
   Tooltip,
+  TooltipDivider,
   WalletModal,
   Web3ReactManager,
 };
