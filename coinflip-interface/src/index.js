@@ -7,8 +7,8 @@ import { LayoutProvider } from './context/LayoutContext';
 import { getLibrary } from './utils';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import './index.css';
 import './flexbox.css';
+import './index.css';
 
 render(
   <StrictMode>

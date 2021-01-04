@@ -176,80 +176,175 @@ const Button = ({
   disabled,
   onClick,
   children,
-  ...props
 }) => {
   const { theme } = useTheme();
 
   switch (variant) {
     case 'red':
       return (
-        <ButtonRed theme={theme} {...props}>
+        <ButtonRed
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonRed>
       );
     case 'orange':
       return (
-        <ButtonOrange theme={theme} {...props}>
+        <ButtonOrange
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonOrange>
       );
     case 'yellow':
       return (
-        <ButtonYellow theme={theme} {...props}>
+        <ButtonYellow
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonYellow>
       );
     case 'green':
       return (
-        <ButtonGreen theme={theme} {...props}>
+        <ButtonGreen
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonGreen>
       );
     case 'blue':
       return (
-        <ButtonBlue theme={theme} {...props}>
+        <ButtonBlue
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonBlue>
       );
     case 'purple':
       return (
-        <ButtonPurple theme={theme} {...props}>
+        <ButtonPurple
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonPurple>
       );
     case 'pink':
       return (
-        <ButtonPink theme={theme} {...props}>
+        <ButtonPink
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonPink>
       );
     case 'light':
       return (
-        <ButtonLight theme={theme} {...props}>
+        <ButtonLight
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonLight>
       );
     case 'dark':
       return (
-        <ButtonDark theme={theme} {...props}>
+        <ButtonDark
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonDark>
       );
     case 'transparent':
       return (
-        <ButtonTransparent theme={theme} {...props}>
+        <ButtonTransparent
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonTransparent>
       );
     case 'link':
       return (
-        <ButtonLink theme={theme} {...props}>
+        <ButtonLink
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonLink>
       );
     default:
       return (
-        <ButtonLight theme={theme} {...props}>
+        <ButtonLight
+          theme={theme}
+          id={id}
+          type={type}
+          className={className}
+          padding={padding}
+          disabled={disabled}
+          onClick={onClick}
+        >
           {children}
         </ButtonLight>
       );
