@@ -17,10 +17,9 @@ import {
   ModalFooter,
 } from './Modal';
 import { Navbar, NavbarBrand, Nav } from './Navbar';
-import OverlayTrigger from './OverlayTrigger';
 import Row from './Row';
 import ToggleSwitch from './ToggleSwitch';
-import Tooltip, { StyledTooltipContainer } from './Tooltip';
+import { Tooltip, OverlayTrigger } from './Tooltip';
 import WalletModal from './WalletModal';
 import Web3ReactManager from './Web3ReactManager';
 
@@ -46,7 +45,6 @@ export {
   Nav,
   OverlayTrigger,
   Row,
-  StyledTooltipContainer,
   ToggleSwitch,
   Tooltip,
   WalletModal,
