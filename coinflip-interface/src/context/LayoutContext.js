@@ -24,9 +24,7 @@ const LayoutProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log('checker');
     if (active) {
-      console.log('active');
       setLayout({
         walletModal: {
           connectedWalletName: 'metamask',

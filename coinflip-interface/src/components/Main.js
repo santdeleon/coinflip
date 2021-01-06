@@ -37,7 +37,6 @@ const Main = () => {
 
   useEffect(() => {
     if (contract) {
-      console.log(contract);
       // fetch contract balance
       contract
         .balances(contract.address)
@@ -58,13 +57,13 @@ const Main = () => {
     if (
       query.length === 0 ||
       query === '0' ||
-      parseFloat(query) > contractBalance / 2
+      parseInt(query) > contractBalance / 2
     ) {
       setForm({ ...form, canSubmit: false });
     }
 
     const input = validateInput(query);
-    if (input) setForm({ ...form, inputError: input });
+    if (input) setForm({ ...form, canSubmit: false, inputError: input });
   };
 
   const validateInput = (inputValue) => {
@@ -72,14 +71,13 @@ const Main = () => {
 
     switch (true) {
       case parseInt(inputValue) > 5:
-        errorMessage = 'The limit for transactions is 5 ether';
+        errorMessage = 'The limit for a transaction is 5 ether';
         break;
       case inputValue === '0':
         errorMessage = 'You have to send more ether than that';
         break;
       case parseInt(inputValue) > contractBalance / 2:
-        errorMessage =
-          'The contract must have at least twice as much ether as your sending it';
+        errorMessage = "Can't send more than twice the contract balance";
         break;
       default:
         break;
@@ -95,10 +93,7 @@ const Main = () => {
           <StyledInterface className="mx-auto" theme={theme}>
             {/* Header */}
             <Row className="py-3">
-              <Col>
-                <h5 className="mb-0">Play Game</h5>
-              </Col>
-              <Col className="d-flex flex-column justify-content-end">
+              <Col className="d-flex align-items-center justify-content-between">
                 <small className="text-right text-muted">
                   Contract Balance:{' '}
                   {contractBalance
@@ -108,13 +103,6 @@ const Main = () => {
                     : null}{' '}
                   ETH
                 </small>
-                <Button
-                  id="Main__Button--fund-contract"
-                  variant="transparent"
-                  className="p-0 m-0 text-right"
-                >
-                  <small>No funds? Fund the contract.</small>
-                </Button>
               </Col>
             </Row>
             <div className="App--rainbow-border rounded" />
@@ -140,17 +128,23 @@ const Main = () => {
                       )}
                     />
                   </h1>
-                  {form.inputError && (
-                    <small className="text-danger">{form.inputError}</small>
-                  )}
                 </div>
               </Col>
             </Row>
+            {form.inputError && (
+              <Row className="justify-content-center w-100 mx-auto mt-2">
+                <Col className="d-flex justify-content-center">
+                  <small className="text-danger text-left">
+                    {form.inputError}
+                  </small>
+                </Col>
+              </Row>
+            )}
             <Row className="my-5" noGutters>
               <Col className="d-flex justify-content-center">
                 <Button
                   id="Button--play"
-                  variant="green"
+                  variant="pink"
                   className="mx-2 w-25"
                   onClick={() => sendTransaction('bet')}
                   disabled={!form.canSubmit || transaction.amount === '0'}
@@ -159,7 +153,7 @@ const Main = () => {
                 </Button>
                 <Button
                   id="Button--reset"
-                  variant="pink"
+                  variant="dark"
                   className="mx-2 w-25"
                   onClick={() => {
                     setTransaction({ amount: '0' });
@@ -172,7 +166,7 @@ const Main = () => {
             </Row>
             {transaction.status === 'pending' && (
               <Row
-                className={cx('border-top py-4', {
+                className={cx('border-top rounded py-4', {
                   'bg-light border-light': theme === 'light',
                   'bg-dark border-dark': theme === 'dark',
                 })}

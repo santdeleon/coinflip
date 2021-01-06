@@ -31,23 +31,37 @@ const Header = () => {
   const { sendTransaction } = useTransaction();
   const { theme, toggleTheme } = useTheme();
   const { layout, setLayout } = useLayout();
+  const [contractOwner, setContractOwner] = useState(null);
+  const [contractBalance, setContractBalance] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [availableFunds, setAvailableFunds] = useState(null);
 
   useEffect(() => {
     if (active && account) {
+      // get user's balance
       library
         .getBalance(account)
         .then((res) => setUserBalance(parseFloat(formatEther(res)).toFixed(3)));
 
+      // get users's available winnings
       if (contract) {
         contract
           .balances(account)
           .then((funds) => setAvailableFunds(formatEther(funds)))
           .catch((err) => console.error(err));
+
+        // get contract owner and contract balance
+        contract
+          .balances(contract.address)
+          .then((funds) => setContractBalance(formatEther(funds)))
+          .catch((err) => console.error(err));
+        contract
+          .getContractOwner()
+          .then((owner) => setContractOwner(owner))
+          .catch((err) => console.error(err));
       }
     }
-  }, [library, active, account, contract]);
+  }, [library, active, account, contract, contractOwner]);
 
   return (
     <Navbar id="Navbar" className="Navbar">
@@ -58,7 +72,31 @@ const Header = () => {
       <Nav>
         {active && (
           <>
-            <div className="d-none d-md-flex">
+            <div className="d-none d-lg-flex">
+              {/* Owner Withdraw */}
+              {contractOwner &&
+                contractOwner === account &&
+                contractBalance > 0.0 && (
+                  <Button
+                    id="Button--owner-withdraw"
+                    variant="transparent"
+                    className="mr-3"
+                    onClick={() => sendTransaction('owner_withdraw')}
+                  >
+                    Withdraw from Contract
+                  </Button>
+                )}
+              {/* Fund Contract */}
+              {contractBalance <= 0 && (
+                <Button
+                  id="Button--fund"
+                  variant="transparent"
+                  className="mr-3"
+                  onClick={() => sendTransaction('fund')}
+                >
+                  Fund Contract
+                </Button>
+              )}
               {/* User Earnings Tooltip */}
               <OverlayTrigger
                 overlay={

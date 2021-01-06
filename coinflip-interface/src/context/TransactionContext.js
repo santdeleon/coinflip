@@ -19,7 +19,8 @@ const TransactionProvider = ({ children }) => {
   const sendTransaction = useCallback(
     async (action) => {
       if (action) {
-        const txValue = transaction.amount;
+        // if the action is to fund the contract, default the txValue to 2 ether
+        const txValue = action !== 'fund' ? transaction.amount : '2';
         setTransaction({ status: 'pending' });
 
         let tx, config; // let receipt, sumEvent;
@@ -56,6 +57,7 @@ const TransactionProvider = ({ children }) => {
           (data) => {
             console.log(data);
             setTransaction({ amount: '0', status: 'resolved', error: null });
+            window.location.reload();
           },
           (err) => {
             console.log(err);
