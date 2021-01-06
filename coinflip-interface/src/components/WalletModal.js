@@ -3,7 +3,6 @@ import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { useWeb3React } from '@web3-react/core';
-import styled from 'styled-components';
 import cx from 'classnames';
 
 import {

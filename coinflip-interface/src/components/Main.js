@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEthereum } from '@fortawesome/free-brands-svg-icons';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import cx from 'classnames';
 import styled from 'styled-components';
 import { useWeb3React } from '@web3-react/core';
-import { formatEther, parseEther } from '@ethersproject/units';
+import { formatEther } from '@ethersproject/units';
 
 import { Button } from '.';
 
