@@ -109,14 +109,18 @@ export const ButtonPurple = styled(ButtonBase)`
 `;
 
 export const ButtonPink = styled(ButtonBase)`
-  background-color: ${colors.$pink50};
-  border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$pink70 : colors.$black};
+  color: ${({ theme }) => (theme === 'light' ? '#ff007a' : '#f5d3e1')};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? '#fdeaf1' : '#e6006e'};
+  border-color: transparent;
   &:hover {
-    background-color: ${colors.$pink60};
+    color: ${({ theme }) => (theme === 'light' ? '#e6006e' : colors.$gray10)};
+    /* background-color: #fcdce8; */
+    border-color: ${({ theme }) => (theme === 'light' ? '#f5d3e1' : '#ff007a')};
   }
   &:focus {
-    box-shadow: 0 0 4pt ${colors.$pink60};
+    box-shadow: ${({ theme }) =>
+      theme === 'light' ? '0 0 4pt #fcdce8' : '0 0 4pt #e6006e'};
   }
 `;
 

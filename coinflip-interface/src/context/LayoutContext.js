@@ -24,15 +24,31 @@ const LayoutProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    setLayout({
-      ...layout,
-      walletModal: {
-        ...layout.walletModal,
-        show: false,
-        connectedWalletName: 'metamask',
-        status: active ? 'connected' : 'not_connected',
-      },
-    });
+    console.log('checker');
+    if (active) {
+      console.log('active');
+      setLayout({
+        walletModal: {
+          connectedWalletName: 'metamask',
+          status: 'connected',
+        },
+        accountModal: {
+          show: false,
+        },
+      });
+    }
+
+    if (!active) {
+      setLayout({
+        walletModal: {
+          show: false,
+          status: 'not_connected',
+        },
+        accountModal: {
+          show: false,
+        },
+      });
+    }
   }, [active]);
 
   return (
