@@ -88,11 +88,8 @@ const Header = () => {
                       </Col>
                     </Row>
                     <Row
-                      className={cx('p-3', {
-                        'bg-light': theme === 'light',
-                      })}
+                      className="p-3"
                       style={{
-                        backgroundColor: colors.$gray70,
                         borderRadius: '0 0 8px 8px',
                       }}
                       noGutters

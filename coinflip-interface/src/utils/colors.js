@@ -9,6 +9,7 @@ export const $gray40 = '#9d9d9d';
 export const $gray50 = '#4f4e4e';
 export const $gray60 = '#474545';
 export const $gray70 = '#3d3b3b';
+export const $gray80 = '#2d2c2c';
 
 export const $red10 = '#fcd4d4';
 export const $red20 = '#fcbdbd';

@@ -4,7 +4,9 @@ import {
   createGlobalStyle,
 } from 'styled-components';
 import { oneOfType, array, object } from 'prop-types';
+
 import { useLocalStorage } from '../hooks';
+
 import { colors } from '../utils';
 
 const propTypes = {
@@ -13,7 +15,7 @@ const propTypes = {
 
 const LightTheme = {
   color: colors.$dark,
-  background: colors.$white,
+  background: '#F7F8FA',
 };
 
 const DarkTheme = {

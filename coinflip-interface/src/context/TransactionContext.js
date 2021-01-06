@@ -1,7 +1,8 @@
 import React, { useState, createContext, useCallback } from 'react';
-import { oneOfType, array, object, func } from 'prop-types';
 import { useWeb3React } from '@web3-react/core';
 import { parseEther } from '@ethersproject/units';
+import { oneOfType, array, object, func } from 'prop-types';
+
 import { useContract } from '../hooks';
 
 const TransactionContext = createContext();

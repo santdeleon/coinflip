@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { string, oneOfType, array, object, func } from 'prop-types';
+
 import { colors } from '../utils';
+
 import { useTheme } from '../hooks';
 
 const StyledNav = styled.nav`

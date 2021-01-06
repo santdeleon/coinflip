@@ -3,8 +3,10 @@ import { oneOfType, string, func, object, array, bool } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import { colors } from '../utils';
+
 import { useTheme } from '../hooks';
+
+import { colors } from '../utils';
 
 /*******************************************
       COMPONENT STYLINGS START HERE
@@ -48,12 +50,12 @@ const StyledModalContent = styled.div`
   position: relative;
   border-style: solid;
   border-width: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
   animation-name: animatetop;
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.4, 1, 0.5, 1);
-  width: 500px;
+  width: 450px;
   min-height: 100%;
   transform: perspective(200px) translateY(0);
   @media only screen and (max-width: 568px) {

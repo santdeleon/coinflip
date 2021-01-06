@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext, useCallback } from 'react';
 import { oneOfType, array, object, func } from 'prop-types';
 import { useWeb3React } from '@web3-react/core';
+
 import { getContract } from '../utils';
 
 import COINFLIP_CONTRACT from '../contracts/CoinFlip.json';

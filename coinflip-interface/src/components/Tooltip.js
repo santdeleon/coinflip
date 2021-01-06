@@ -1,7 +1,9 @@
 import React from 'react';
 import { string, array, object, oneOfType, func } from 'prop-types';
 import styled from 'styled-components';
+
 import { colors } from '../utils';
+
 import { useTheme } from '../hooks';
 
 export const TooltipDivider = styled.div`
