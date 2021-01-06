@@ -87,16 +87,14 @@ const Header = () => {
                   </Button>
                 )}
               {/* Fund Contract */}
-              {contractBalance <= 0 && (
-                <Button
-                  id="Button--fund"
-                  variant="transparent"
-                  className="mr-3"
-                  onClick={() => sendTransaction('fund')}
-                >
-                  Fund Contract
-                </Button>
-              )}
+              <Button
+                id="Button--fund"
+                variant="transparent"
+                className="mr-3"
+                onClick={() => sendTransaction('fund')}
+              >
+                Fund Contract
+              </Button>
               {/* User Earnings Tooltip */}
               <OverlayTrigger
                 overlay={
