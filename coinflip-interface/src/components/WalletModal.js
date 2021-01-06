@@ -1,14 +1,13 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { useWeb3React } from '@web3-react/core';
 import styled from 'styled-components';
-import { useLayout, useTheme } from '../hooks';
-import { getErrorMessage, colors, wallets } from '../utils';
-import { injected } from '../connectors';
+import cx from 'classnames';
+
 import {
   Button,
-  Col,
   Modal,
   ModalDialog,
   ModalContent,
@@ -17,22 +16,28 @@ import {
   ModalCloseButton,
   ModalTitle,
   ModalBody,
-  Row,
 } from '.';
 
-const StyledModalContent = styled(ModalContent)`
-  width: 400px;
-`;
+import { useLayout, useTheme } from '../hooks';
+
+import { getErrorMessage, colors, wallets } from '../utils';
+
+import { injected } from '../connectors';
 
 const StyledWalletModalRow = styled(Row)`
+  border-radius: 0;
   &:hover {
     background-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray10 : colors.$gray70};
   }
 `;
 
+const StyledModalContent = styled(ModalContent)`
+  width: 350px;
+`;
+
 const WalletModal = () => {
-  const { active, activate } = useWeb3React();
+  const { activate } = useWeb3React();
   const { layout, setLayout } = useLayout();
   const { theme } = useTheme();
 
@@ -104,7 +109,7 @@ const WalletModal = () => {
         <StyledModalContent id="Modal__ModalContent--connect-to-a-wallet">
           <ModalHeader title="Connect to a Wallet">
             <ModalTitle id="Modal__ModalTitle--connect-to-a-wallet">
-              {active ? 'Connected' : 'Connect to a Wallet'}
+              Connect to a Wallet
             </ModalTitle>
             <ModalCloseButton onClick={handleWalletModalClose} />
           </ModalHeader>
@@ -117,7 +122,7 @@ const WalletModal = () => {
                   as={Button}
                   variant="transparent"
                   id="WalletModal__StyledWalletModalRow--wallet-selection-button"
-                  className="d-flex align-items-center justify-content-between w-100 p-0"
+                  className="d-flex py-3 w-100"
                   theme={theme}
                   disabled={wallet.name !== 'metamask'}
                   onClick={() =>
@@ -125,21 +130,28 @@ const WalletModal = () => {
                       ? handleWalletConnect(wallet.name)
                       : null
                   }
-                  style={{ borderRadius: '0' }}
                 >
-                  <Col className="d-flex align-items-center">
-                    <img
-                      src={wallet.img}
-                      alt={wallet.nameFormal}
-                      aria-label={wallet.nameFormal}
-                      height={28}
-                      width={28}
-                    />
-                    <h6 className="m-0 ml-3 font-weight-normal">
-                      {wallet.nameFormal}
-                    </h6>
-                  </Col>
-                  <Col>
+                  <Col
+                    xs={12}
+                    className="d-flex align-items-center justify-content-between"
+                  >
+                    <div className="d-flex align-items-center">
+                      <img
+                        src={wallet.img}
+                        alt={wallet.nameFormal}
+                        aria-label={wallet.nameFormal}
+                        height={30}
+                        width={30}
+                      />
+                      <h6
+                        className={cx('mb-0 ml-3 font-weight-normal', {
+                          'text-dark': theme === 'light',
+                          'text-light': theme === 'dark',
+                        })}
+                      >
+                        {wallet.nameFormal}
+                      </h6>
+                    </div>
                     <FontAwesomeIcon
                       icon={faCircle}
                       style={{

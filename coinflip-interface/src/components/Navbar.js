@@ -15,7 +15,7 @@ const StyledNavbarBrand = styled(Link)`
   align-items: center;
   margin-right: auto;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none !important;
 `;
 
@@ -71,5 +71,5 @@ export const Navbar = ({ id, className, children, ...props }) => {
 Navbar.propTypes = {
   id: string,
   className: string,
-  children: oneOfType([array, object, string]),
+  children: oneOfType([array, object, string, func]),
 };

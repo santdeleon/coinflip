@@ -62,8 +62,8 @@ export const $pink10 = '#ffaad2';
 export const $pink20 = '#f497c3';
 export const $pink30 = '#ed82b4';
 export const $pink40 = '#db74a4';
-export const $pink50 = '#e05c99';
-export const $pink60 = '#d35890';
+export const $pink50 = '#f481ad';
+export const $pink60 = '#f95c96';
 export const $pink70 = '#a53564';
 
 export const $link = '#0d6efd';

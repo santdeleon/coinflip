@@ -22,7 +22,7 @@ const StyledTooltip = styled.span`
     theme === 'light' ? colors.$gray60 : colors.$gray10};
   background-color: ${({ theme }) =>
     theme === 'light' ? colors.$white : colors.$gray60};
-  border: 2px solid
+  border: 1px solid
     ${({ theme }) => (theme === 'light' ? colors.$gray20 : colors.$black)};
   border-radius: 10px;
   &:hover {
@@ -43,8 +43,8 @@ const StyledTooltipTop = styled(StyledTooltip)`
     position: absolute;
     top: 100%;
     left: 50%;
-    margin-left: -13px;
-    border: 13px solid transparent;
+    margin-left: -11px;
+    border: 11px solid transparent;
     border-top-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
   }
@@ -71,9 +71,9 @@ const StyledTooltipRight = styled(StyledTooltip)`
     position: absolute;
     top: 50%;
     right: 100%;
-    margin-top: -13px;
+    margin-top: -11px;
     bottom: 100%;
-    border: 13px solid transparent;
+    border: 11px solid transparent;
     border-right-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
   }
@@ -101,8 +101,8 @@ const StyledTooltipBottom = styled(StyledTooltip)`
     position: absolute;
     bottom: 100%;
     left: 50%;
-    margin-left: -13px;
-    border: 13px solid transparent;
+    margin-left: -11px;
+    border: 11px solid transparent;
     border-bottom-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
   }
@@ -129,9 +129,9 @@ const StyledTooltipLeft = styled(StyledTooltip)`
     position: absolute;
     top: 50%;
     left: 100%;
-    margin-top: -13px;
+    margin-top: -11px;
     bottom: 100%;
-    border: 13px solid transparent;
+    border: 11px solid transparent;
     border-left-color: ${({ theme }) =>
       theme === 'light' ? colors.$gray20 : colors.$black};
   }

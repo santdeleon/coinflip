@@ -35,7 +35,7 @@ const StyledToggleSwitch = styled.div`
       theme === 'light' ? 'translateX(-2px)' : 'translateX(18px)'};
   }
   ${StyledToggleTrack} {
-    border: 3px solid
+    border: 2px solid
       ${({ theme }) => (theme === 'light' ? '#d1d5da' : '#3c1e70')};
     background-color: ${({ theme }) =>
       theme === 'light' ? 'transparent' : '#271052'};

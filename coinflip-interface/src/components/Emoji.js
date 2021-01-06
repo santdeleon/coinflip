@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StyledEmoji = styled.span`
   margin: ${({ margin }) => (margin ? margin : '0 0.3rem')};
-  padding: ${({ padding }) => padding};
+  padding: ${({ padding }) => (padding ? padding : '0')};
 `;
 
 const propTypes = {

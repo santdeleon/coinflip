@@ -1,18 +1,16 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import { useWeb3React } from '@web3-react/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
   faCopy,
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { useWeb3React } from '@web3-react/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useLayout } from '../hooks';
-import { truncateString } from '../utils';
-import MetaMaskAvatar from '../assets/img/metamask-avatar.svg';
+
 import {
   Button,
-  Col,
   Modal,
   ModalDialog,
   ModalContent,
@@ -21,8 +19,13 @@ import {
   ModalCloseButton,
   ModalTitle,
   ModalBody,
-  Row,
 } from '.';
+
+import { useLayout } from '../hooks';
+
+import { truncateString } from '../utils';
+
+import MetaMaskAvatar from '../assets/img/metamask-avatar.svg';
 
 const AccountModal = () => {
   const { account } = useWeb3React();
@@ -61,14 +64,14 @@ const AccountModal = () => {
             <ModalCloseButton onClick={handleAccountModalClose} />
           </ModalHeader>
           <ModalDivider />
-          <ModalBody>
+          <ModalBody className="pt-2 pb-4">
             {/* Change Wallet Type */}
-            <Row>
+            <Row className="px-3 py-2" noGutters>
               <Col className="d-flex align-items-center justify-content-between w-100">
                 <small>Connected with MetaMask</small>
                 <Button
                   id="Modal__Button--change-connected-wallet"
-                  variant="red"
+                  variant="pink"
                   onClick={() => {
                     setLayout({
                       ...layout,
@@ -77,12 +80,12 @@ const AccountModal = () => {
                     });
                   }}
                 >
-                  <small>Change</small>
+                  Change
                 </Button>
               </Col>
             </Row>
             {/* Currently Selected Address */}
-            <Row>
+            <Row className="px-3 py-4" noGutters>
               <Col className="d-flex align-items-center w-100">
                 <img
                   src={MetaMaskAvatar}
@@ -90,11 +93,11 @@ const AccountModal = () => {
                   aria-label="MetaMask Avatar"
                   className="rounded-circle"
                 />
-                <h2 className="m-0 ml-2">{truncateString(account, 15)}</h2>
+                <h4 className="m-0 ml-2">{truncateString(account, 20)}</h4>
               </Col>
             </Row>
             {/* Copy Address/Show on Etherscan */}
-            <Row>
+            <Row className="px-3 py-2" noGutters>
               <Col>
                 {layout.accountModal.isAddressCopied ? (
                   <Button
@@ -113,7 +116,7 @@ const AccountModal = () => {
                   >
                     <Button
                       id="Modal__Button--copy-address"
-                      variant="primary"
+                      variant="light"
                       className="w-50"
                     >
                       <small>

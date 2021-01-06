@@ -15,17 +15,17 @@ const ButtonBase = styled.button`
   padding: ${({ padding }) => (padding ? padding : '0.375rem 0.75rem')};
   border-style: solid;
   border-radius: 0.65rem;
+  border-width: 1px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.3px;
   line-height: 1.5;
   white-space: nowrap;
-  border-width: 2px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out,
-    border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  /* transition: color 0s ease-in-out, background-color 0s ease-in-out,
+    border-color 0s ease-in-out, box-shadow 0s ease-in-out; */
   &:focus {
     outline: 0;
     box-shadow: 0 0 4pt transparent;
@@ -120,42 +120,50 @@ export const ButtonPink = styled(ButtonBase)`
   }
 `;
 
+// done
 export const ButtonLight = styled(ButtonBase)`
-  color: ${({ theme }) => (theme === 'light' ? colors.$gray60 : colors.$dark)};
+  color: ${colors.$dark};
   background-color: ${colors.$white};
   border-color: ${({ theme }) =>
-    theme === 'light' ? colors.$gray20 : colors.$black};
+    theme === 'light' ? colors.$gray20 : 'transparent'};
   &:hover {
-    color: ${colors.$dark};
     background-color: ${({ theme }) =>
-      theme === 'light' ? colors.$gray10 : colors.$gray10};
+      theme === 'light' ? colors.$gray10 : colors.$gray20};
   }
   &:focus {
     box-shadow: ${({ theme }) =>
       theme === 'light'
         ? `0 0 4pt ${colors.$gray20}`
-        : `0 0 4pt ${colors.$gray20}`};
+        : `0 0 4pt ${colors.$gray40}`};
   }
 `;
 
+// done
 export const ButtonDark = styled(ButtonBase)`
-  background-color: ${colors.$gray50};
-  border-color: ${colors.$black};
+  color: ${({ theme }) => (theme === 'light' ? colors.$black : colors.$gray10)};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? '#edeef2' : colors.$gray50};
+  border-color: ${({ theme }) =>
+    theme === 'light' ? colors.$gray20 : 'transparent'};
   &:hover {
-    background-color: ${colors.$gray60};
+    background-color: ${({ theme }) =>
+      theme === 'light' ? colors.$gray20 : colors.$gray60};
+  }
+  &:focus {
+    box-shadow: ${({ theme }) =>
+      theme === 'light'
+        ? `0 0 4pt ${colors.$gray20}`
+        : `0 0 4pt ${colors.$gray70}`};
   }
 `;
 
 export const ButtonTransparent = styled(ButtonBase)`
-  color: ${({ theme }) =>
-    theme === 'light' ? colors.$gray70 : colors.$gray20};
+  color: ${({ theme }) => (theme === 'light' ? colors.$dark : colors.$gray10)};
   border: 0;
+  padding: 0;
   &:hover {
     color: ${({ theme }) =>
       theme === 'light' ? colors.$black : colors.$white};
-  }
-  &:active {
-    transform: perspective(200px) translateY(0);
   }
 `;
 
@@ -164,9 +172,6 @@ export const ButtonLink = styled(ButtonBase)`
   border: 0;
   &:hover {
     color: ${colors.$linkHover};
-  }
-  &:active {
-    transform: perspective(200px) translateY(0);
   }
 `;
 

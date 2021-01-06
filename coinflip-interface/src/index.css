@@ -21,7 +21,7 @@ code {
     monospace;
 }
 
-.App--rainbow-border-top {
+.App--rainbow-border {
   background: linear-gradient(
     to right,
     #f76f6f,

@@ -23,10 +23,6 @@ export const ModalDivider = styled.div`
 const StyledModalCloseButton = styled.span`
   font-size: 1.1rem;
   cursor: pointer;
-  transition: color 0.25s;
-  &:hover {
-    transition: color 0.08s ease-in-out;
-  }
 `;
 
 const StyledModalTitle = styled.h5`
@@ -51,7 +47,7 @@ const StyledModalContent = styled.div`
   flex-direction: column;
   position: relative;
   border-style: solid;
-  border-width: 2px 2px 5px;
+  border-width: 0;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
   animation-name: animatetop;
@@ -73,24 +69,6 @@ const StyledModalContent = styled.div`
       opacity: 1;
     }
   }
-  &:before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 90%;
-    margin-left: -1.2rem;
-    bottom: 100%;
-    border: 13px solid transparent;
-  }
-  &:after {
-    content: ' ';
-    position: absolute;
-    top: 100%;
-    left: 90%;
-    margin-left: -1rem;
-    border-width: 10px;
-    border-style: solid;
-  }
 `;
 
 const StyledModal = styled.div`
@@ -107,7 +85,7 @@ const StyledModal = styled.div`
   overflow: hidden;
   display: ${({ show }) => (show === true ? 'flex' : 'none')};
   background-color: ${({ theme }) =>
-    theme === 'light' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(150, 150, 150, 0.1)'};
+    theme === 'light' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(0, 0, 0, 0.8)'};
 
   /**
     * Style all Modal children based on theme prop provided to Modal. This
@@ -116,7 +94,7 @@ const StyledModal = styled.div`
     */
   ${StyledModalContent} {
     color: ${({ theme }) =>
-      theme === 'light' ? colors.$gray50 : colors.$gray20};
+      theme === 'light' ? colors.$gray50 : colors.$white};
     background-color: ${({ theme }) =>
       theme === 'light' ? colors.$white : colors.$gray60};
     border-color: ${({ theme }) =>

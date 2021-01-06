@@ -1,234 +1,185 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import cx from 'classnames';
 import { useWeb3React } from '@web3-react/core';
-import { parseEther } from '@ethersproject/units';
+import { formatEther, parseEther } from '@ethersproject/units';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEthereum } from '@fortawesome/free-brands-svg-icons';
-import {
-  faArrowDown,
-  faMagic,
-  faCircle,
-} from '@fortawesome/free-solid-svg-icons';
-import { truncateString, colors } from '../utils';
-import { useTheme } from '../hooks';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { colors } from '../utils';
+import { useTheme, useContract, useTransaction } from '../hooks';
 import { Button } from '.';
 
 const Main = () => {
-  const { active, account } = useWeb3React();
+  const { account } = useWeb3React();
+  const { contract } = useContract();
+  const { transaction, setTransaction, sendTransaction } = useTransaction();
   const { theme } = useTheme();
-  // const { userBalance, setUserBalance } = useUser();
-  // const {
-  //   contract,
-  //   contractOwner,
-  //   contractBalance,
-  //   setContractBalance,
-  // } = useContract();
-  // const {
-  //   setShowModal,
-  //   currentTab,
-  //   transactionAmount,
-  //   transactionResults,
-  //   transactionButtonText,
-  //   setTransactionButtonText,
-  //   setTransactionAmount,
-  //   setCurrentTab,
-  //   setAlert,
-  //   setTransactionResults,
-  // } = useApplication();
 
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   setTransactionAmount(e.currentTarget.value);
-  // };
+  const [contractBalance, setContractBalance] = useState(null);
+  const [form, setForm] = useState({
+    canSubmit: false,
+    inputError: null,
+  });
 
-  // const sendTransaction = async (e) => {
-  //   switch (true) {
-  //     case transactionAmount === '':
-  //       return;
-  //     // only allow numbers and float points allowed
-  //     case !new RegExp(/^\d*\.?\d+$/).test(transactionAmount):
-  //       setAlert({
-  //         title: 'Woops!',
-  //         text: 'Only numbers are allowed',
-  //       });
-  //       return;
-  //     case parseFloat(transactionAmount) === 0:
-  //       setAlert({
-  //         title: 'Oh no!',
-  //         text: 'You have to send some ether to the contract',
-  //       });
-  //       return;
-  //     case parseFloat(transactionAmount) < 0.01:
-  //       setAlert({
-  //         title: 'Oh no!',
-  //         text: 'You have to send at least 0.01 ether',
-  //       });
-  //       return;
-  //     case parseFloat(transactionAmount) > 5:
-  //       setAlert({
-  //         title: 'Oh no!',
-  //         text: "You can't send more than 5 ether",
-  //       });
-  //       return;
-  //     default:
-  //       console.log('Your transaction is being submitted...');
-  //   }
-  //
-  //   let tx, receipt, sumEvent;
-  //   const config = { value: parseEther(transactionAmount) };
-  //
-  //   e.currentTarget.id === 'Fund Contract'
-  //     ? (tx = await contract.fundContract(config))
-  //     : (tx = await contract.bet(config));
-  //
-  //   receipt = await tx.wait(1);
-  //   sumEvent = receipt.events.pop();
-  //
-  //   setAlert({
-  //     title: 'Good News!',
-  //     text: `Your transaction of ${parseFloat(
-  //       transactionAmount,
-  //     )} ether has been accepted.`,
-  //   });
-  //   setTransactionAmount(0);
-  //
-  //   sumEvent.event === 'BetPlaced' &&
-  //     setTransactionResults({
-  //       won: sumEvent.args.betWon,
-  //       amount: sumEvent.args.betWon
-  //         ? transactionAmount * 2
-  //         : transactionAmount,
-  //     });
-  //
-  //   setContractBalance(
-  //     sumEvent.args.betWon
-  //       ? parseFloat(
-  //           parseFloat(contractBalance) - parseFloat(transactionAmount),
-  //         )
-  //       : parseFloat(
-  //           parseFloat(contractBalance) + parseFloat(transactionAmount),
-  //         ),
-  //   );
-  // };
+  useEffect(() => {
+    if (contract) {
+      console.log(contract);
+      // fetch contract balance
+      contract
+        .balances(contract.address)
+        .then((balance) => setContractBalance(formatEther(balance)))
+        .catch((err) => console.error(err));
+    }
+  }, [contract, account]);
 
-  // const withdraw = async () => {
-  //   switch (true) {
-  //     case contractBalance === 0:
-  //       setAlert({
-  //         title: 'Oh no!',
-  //         text: "The contract doesn't have any funds",
-  //       });
-  //       return;
-  //     case userBalance === 0:
-  //       setAlert({
-  //         title: 'Woops!',
-  //         text: 'You have to have funds in order to withdraw',
-  //       });
-  //       return;
-  //     default:
-  //       console.log('Initiating Transaction...');
-  //   }
-  //
-  //   let tx =
-  //     account === contractOwner
-  //       ? await contract.withdrawContract()
-  //       : await contract.withdraw();
-  //   let receipt = await tx.wait(1);
-  //
-  //   console.log(receipt);
-  //   setAlert({
-  //     title: 'Congratulations!',
-  //     text: 'The funds have made it to your account',
-  //   });
-  //   account === contractOwner ? setContractBalance(0) : setUserBalance(0);
-  // };
+  const handleChange = (e) => {
+    let query = e.currentTarget.value;
+    let regex = /^[+-]?(\d*\.)?\d+$/; // only allow numbers and periods
+
+    if (query === '' || regex.test(query)) {
+      setTransaction({ amount: query });
+      setForm({ canSubmit: true });
+    }
+
+    if (
+      query.length === 0 ||
+      query === '0' ||
+      parseFloat(query) > contractBalance / 2
+    ) {
+      setForm({ ...form, canSubmit: false });
+    }
+
+    const input = validateInput(query);
+    if (input) setForm({ ...form, inputError: input });
+  };
+
+  const validateInput = (inputValue) => {
+    let errorMessage;
+
+    switch (true) {
+      case parseInt(inputValue) > 5:
+        errorMessage = 'The limit for transactions is 5 ether';
+        break;
+      case inputValue === '0':
+        errorMessage = 'You have to send more ether than that';
+        break;
+      case parseInt(inputValue) > contractBalance / 2:
+        errorMessage =
+          'The contract must have at least twice as much ether as your sending it';
+        break;
+      default:
+        break;
+    }
+
+    return errorMessage ? errorMessage : false;
+  };
 
   return (
-    <>
-      {/* <Row
-        className={cx('', {
-          'bg-light': theme === 'light',
-          'bg-dark': theme === 'dark',
-        })}
-      >
-        <Col className="col">
-          <h1 className="display-6 mb-2 w-50">
-            A decentralized game on Ethereum.
-          </h1>
-          <FontAwesomeIcon icon={faEthereum} />
-          <p className="lead text-muted">Flip a coin and win some Ether.</p>
+    <Container className="my-5 py-4">
+      <Row className="mt-5">
+        <Col
+          xs={10}
+          md={8}
+          lg={6}
+          className={cx('border rounded shadow-sm rounded mx-auto', {
+            'bg-white border-light': theme === 'light',
+            'bg-black border-dark': theme === 'dark',
+          })}
+        >
+          {/* Header */}
+          <Row className="py-3">
+            <Col>
+              <h5 className="mb-0">Play Game</h5>
+            </Col>
+            <Col className="d-flex flex-column justify-content-end">
+              <small className="text-right text-muted">
+                Contract Balance:{' '}
+                {contractBalance
+                  ? contractBalance < 0.0001
+                    ? 0
+                    : contractBalance
+                  : null}{' '}
+                ETH
+              </small>
+              <Button
+                id="Main__Button--fund-contract"
+                variant="transparent"
+                className="p-0 m-0 text-right"
+              >
+                <small>No funds? Fund the contract.</small>
+              </Button>
+            </Col>
+          </Row>
+          <div className="App--rainbow-border rounded" />
+          {/* Body */}
+          <Row className="mt-5" noGutters>
+            <Col xs={8} md={6} className="mx-auto">
+              <div className="text-center mx-auto">
+                <h1>
+                  <FontAwesomeIcon icon={faEthereum} />
+                </h1>
+                <h1 className="text-center">
+                  <input
+                    type="text"
+                    value={transaction.amount}
+                    onChange={handleChange}
+                    placeholder="0.0"
+                    className={cx(
+                      'text-center border-0 w-100 p-0 bg-transparent outline-0',
+                      {
+                        'text-dark': theme === 'light',
+                        'text-light': theme === 'dark',
+                      },
+                    )}
+                  />
+                </h1>
+                {form.inputError && (
+                  <small className="text-danger">{form.inputError}</small>
+                )}
+              </div>
+            </Col>
+          </Row>
+          <Row className="my-5" noGutters>
+            <Col className="d-flex justify-content-center">
+              <Button
+                id="Button--play"
+                variant="green"
+                className="mx-2 w-25"
+                onClick={() => sendTransaction('bet')}
+                disabled={!form.canSubmit || transaction.amount === '0'}
+              >
+                Play
+              </Button>
+              <Button
+                id="Button--reset"
+                variant="pink"
+                className="mx-2 w-25"
+                onClick={() => {
+                  setTransaction({ amount: '0' });
+                  setForm({ inputError: null });
+                }}
+              >
+                Reset
+              </Button>
+            </Col>
+          </Row>
+          {transaction.status === 'pending' && (
+            <Row
+              className={cx('border-top py-4', {
+                'bg-light border-light': theme === 'light',
+                'bg-dark border-dark': theme === 'dark',
+              })}
+            >
+              <Col className="d-flex justify-content-center align-items-center">
+                <Spinner animation="border" size="sm" className="mr-2" />
+                Processing your transaction...
+              </Col>
+            </Row>
+          )}
         </Col>
-      </Row> */}
-      <Container className="my-5">
-        <Row className="mt-5">
-          <Col
-            xs={10}
-            md={8}
-            className={cx('border shadow-sm rounded mx-auto', {
-              'bg-white border-light': theme === 'light',
-              'bg-black border-dark': theme === 'dark',
-            })}
-          >
-            <h5 className="py-3 mb-0">Marketplace</h5>
-            <div className="App--rainbow-border-top rounded" />
-            <Row className="my-4">
-              <Col>
-                <h6 className="text-muted">Choose an amount.</h6>
-                <h5 className="text-dark">Press the play button.</h5>
-                <h4 className="text-black">Win (or lose) some ether.</h4>
-              </Col>
-              <Col xs={12} md={4}>
-                <div className="rounded p-4 py-md-0">
-                  Recent Transactions
-                  <ul className="p-0" style={{ listStyleType: 'none' }}>
-                    {[
-                      { wonMatch: true, amountEarnedOrLost: '2' },
-                      { wonMatch: false, amountEarnedOrLost: '4' },
-                      { wonMatch: true, amountEarnedOrLost: '2' },
-                    ].map((obj, idx) => (
-                      <li key={idx}>
-                        <FontAwesomeIcon
-                          icon={faCircle}
-                          className={
-                            obj.wonMatch ? 'text-success' : 'text-danger'
-                          }
-                        />
-                        {obj.wonMatch ? 'Won' : 'Lost'} {obj.amountEarnedOrLost}{' '}
-                        Ether
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Col>
-            </Row>
-
-            <Row noGutters>
-              <Col>
-                <div className="border p-4 rounded text-center">
-                  <h1>
-                    <FontAwesomeIcon icon={faEthereum} />
-                  </h1>
-                  <h1>
-                    <span>0.0</span> Ether
-                  </h1>
-                </div>
-              </Col>
-            </Row>
-            <Row className="my-5" noGutters>
-              <Col className="d-flex justify-content-center">
-                <Button id="Button--play" variant="green" className="mx-2 w-25">
-                  Play
-                </Button>
-                <Button id="Button--reset" variant="pink" className="mx-2 w-25">
-                  Reset
-                </Button>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </>
+      </Row>
+    </Container>
   );
 };
 
