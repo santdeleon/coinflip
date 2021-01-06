@@ -22,14 +22,14 @@ const Footer = () => (
           className="text-success mr-1"
         />
         <a
-          href="https://github.com/santdeleon/coinflip/commit/eef18ba840e1a7546233d0ef1e4590fa8a2e0132"
+          href="https://github.com/santdeleon/coinflip/commit/7c56a67e042ad3c2696dfe76ba6d9b65e33957eb"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Github"
           title="Github"
           className="mb-1 text-dark text-decoration-none"
         >
-          <small className="font-weight-light text-secondary">eef18ba</small>
+          <small className="font-weight-light text-secondary">7c56a67</small>
         </a>
       </Nav>
     </Navbar>
