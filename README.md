@@ -15,7 +15,3 @@
 6. run `truffle migrate` to deploy the contracts
 7. `cd coinflip-interface` and run `yarn start` to spin up the App front-end
 8. You're good to go.
-
-## Contributing
-
-If you'd like to contribute to the project `git fork` this repo at `main` and submit a pull request.
