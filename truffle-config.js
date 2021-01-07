@@ -11,7 +11,7 @@ module.exports = {
   ),
   networks: {
     develop: {
-      provider: () => new HDWalletProvider(mnemonic, `http://127.0.0.1:7545`),
+      provider: () => new HDWalletProvider(mnemonic, `http://127.0.0.1:8545`),
       network_id: "*",
     },
     ropsten: {

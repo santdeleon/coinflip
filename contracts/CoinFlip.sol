@@ -1,67 +1,35 @@
-import './Ownable.sol';
-import './Betting.sol';
+// SPDX-License-Identifier: MIT
 
-pragma solidity >=0.4.21 <0.7.0;
+pragma solidity >=0.5.0 <0.6.0;
 
-contract CoinFlip is Ownable, Betting {
+import './libraries/Ownable.sol';
+import './Playable.sol';
 
-    event ContractFunded(uint amount);
+contract Coinflip is Ownable, Playable {
 
-    function fundContract() public payable onlyOwner {
+    event ContractFunded(address indexed sender, uint256 amount);
+    event Withdraw(address indexed sender, uint256 amount);
+
+    function fundContract() public payable {
         require(msg.sender.balance >= msg.value);
-        balances[contractAddress] = balances[contractAddress].add(msg.value);
-        emit ContractFunded(msg.value);
+        balances[contractAddress] += msg.value;
+        emit ContractFunded(msg.sender, msg.value);
     }
 
-    function withdrawBalance() public {
-        require(balances[msg.sender] > 0, "There are no funds to withdraw");
-        uint withdrawal = balances[msg.sender];
+    function withdraw() public {
+        require(balances[msg.sender] > 0, "There are no funds available to withdraw.");
+        uint256 amount = balances[msg.sender];
         balances[msg.sender] = 0;
-        msg.sender.transfer(withdrawal);
+        msg.sender.transfer(amount);
+        emit Withdraw(msg.sender, amount);
     }
 
-    function withdrawContract() public onlyOwner {
+    function _withdrawContract() private onlyOwner {
         assert(msg.sender == owner);
-        require(balances[contractAddress] > 0, "There are no funds to withdraw");
-        uint withdrawalAmount = balances[contractAddress];
+        require(balances[contractAddress] > 0);
+        uint256 amount = balances[contractAddress];
         balances[contractAddress] = 0;
-        msg.sender.transfer(withdrawalAmount);
+        msg.sender.transfer(amount);
+        emit Withdraw(msg.sender, balances[contractAddress]);
     }
-
-    function getContract() public view returns (address, uint) {
-        return (contractAddress, contractAddress.balance);
-    }
-
-    function getBalance() public view returns (uint) {
-        return balances[msg.sender];
-    }
-
-    emit BetPlaced(msg.sender, msg.value, _betWon);
-  }
-
-  function withdraw() public {
-    require(balances[msg.sender] > 0, "There are no funds to withdraw");
-    uint withdrawal = balances[msg.sender];
-    balances[msg.sender] = 0;
-    msg.sender.transfer(withdrawal);
-  }
-
-  function withdrawContract() public onlyOwner {
-    require(balances[contractAddress] > 0, "There are no funds to withdraw");
-    uint withdrawal = balances[contractAddress];
-    balances[contractAddress] = 0;
-    msg.sender.transfer(withdrawal);
-  }
-
-  function getContract() public view returns (address, uint) {
-    return (contractAddress, balances[contractAddress]);
-  }
-
-  function getContractOwner() public view returns(address) {
-    return owner;
-  }
-
-  function getBalance() public view returns (uint) {
-    return balances[msg.sender];
-  }
 }
