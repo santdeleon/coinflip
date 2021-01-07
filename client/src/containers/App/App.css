@@ -1,7 +1,0 @@
-.App {
-  text-align: center;
-  min-height: 100vh;
-}
-
-.hyphens { background: url('../../assets/img/hyphens.svg');height: 1px;width: 100%;}
-.rainbow-top {background: linear-gradient(to right, #f76f6f , #fcfc83, #fcca67, #84ffaf, #83e0f7, #ca67e5, #ff87e1);padding: 2.5px;}
