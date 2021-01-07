@@ -11,8 +11,9 @@
 4. configure the `truffle-config.js` file to an Ethereum node (preferably Ganache)
 5. spin up your Ethereum node
 6. run `truffle migrate` to deploy the contracts
-7. `cd coinflip-interface` and run `yarn start` to spin up the App front-end
-8. You're good to go.
+7. `cd coinflip-interface` and run `yarn` to install the dependancies.
+8. run `yarn start` to spin up the App front-end.
+9. You're good to go.
 
 ## Contributing
 
