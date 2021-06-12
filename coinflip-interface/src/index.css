@@ -1,6 +1,5 @@
 html,
 body,
-.App,
 #root {
   height: 100%;
   overflow-x: hidden;
@@ -19,18 +18,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.App--rainbow-border {
-  background: linear-gradient(
-    to right,
-    #f76f6f,
-    #fcfc83,
-    #fcca67,
-    #84ffaf,
-    #83e0f7,
-    #ca67e5,
-    #ff87e1
-  );
-  padding: 1px;
 }

@@ -1,13 +1,15 @@
-import React, { useState, createContext, useCallback } from 'react';
+import React, { useState, createContext, useContext, useCallback } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { parseEther } from '@ethersproject/units';
-import { oneOfType, array, object, func } from 'prop-types';
+import { oneOfType, arrayOf, node } from 'prop-types';
 
-import { useContract } from '../hooks';
+import { useContract } from '.';
 
-const TransactionContext = createContext();
+export const TransactionContext = createContext();
 
-const TransactionProvider = ({ children }) => {
+export const useTransaction = () => useContext(TransactionContext);
+
+export const TransactionProvider = ({ children }) => {
   const { account } = useWeb3React();
   const { contract } = useContract();
   const [transaction, setTransaction] = useState({
@@ -79,5 +81,5 @@ const TransactionProvider = ({ children }) => {
   );
 };
 
-TransactionProvider.propTypes = { children: oneOfType([array, object, func]) };
-export { TransactionProvider, TransactionContext };
+TransactionProvider.propTypes = { children: oneOfType([arrayOf(node), node]) };
+export default TransactionProvider;

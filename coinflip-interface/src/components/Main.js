@@ -1,48 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEthereum } from '@fortawesome/free-brands-svg-icons';
+import React, { useState } from 'react';
+import { Container, Row, Col, Spinner, Button, Card } from 'react-bootstrap';
+import { FaEthereum } from 'react-icons/fa';
 import cx from 'classnames';
-import styled from 'styled-components';
-import { useWeb3React } from '@web3-react/core';
-import { formatEther } from '@ethersproject/units';
 
-import { Button } from '.';
-
-import { useTheme, useContract, useTransaction } from '../hooks';
-
-import { colors } from '../utils';
-
-const StyledInterface = styled(Col)`
-  border-radius: 12px;
-  max-width: 450px;
-  background-color: ${({ theme }) =>
-    theme === 'light' ? colors.$white : colors.$gray80};
-  box-shadow: rgba(0, 0, 0, 0.01) 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 4px 8px,
-    rgba(0, 0, 0, 0.04) 0px 16px 24px, rgba(0, 0, 0, 0.01) 0px 24px 32px;
-`;
+import { useContract, useTransaction } from '../context';
 
 const Main = () => {
-  const { account } = useWeb3React();
-  const { contract } = useContract();
+  const { balance } = useContract();
   const { transaction, setTransaction, sendTransaction } = useTransaction();
-  const { theme } = useTheme();
-
-  const [contractBalance, setContractBalance] = useState(null);
   const [form, setForm] = useState({
     canSubmit: false,
     inputError: null,
   });
-
-  useEffect(() => {
-    if (contract) {
-      // fetch contract balance
-      contract
-        .balances(contract.address)
-        .then((balance) => setContractBalance(formatEther(balance)))
-        .catch((err) => console.error(err));
-    }
-  }, [contract, account]);
 
   const handleChange = (e) => {
     let query = e.currentTarget.value;
@@ -53,11 +22,7 @@ const Main = () => {
       setForm({ canSubmit: true });
     }
 
-    if (
-      query.length === 0 ||
-      query === '0' ||
-      parseInt(query) > contractBalance / 2
-    ) {
+    if (query.length === 0 || query === '0' || parseInt(query) > balance / 2) {
       setForm({ ...form, canSubmit: false });
     }
 
@@ -75,111 +40,91 @@ const Main = () => {
       case inputValue === '0':
         errorMessage = 'You have to send more ether than that';
         break;
-      case parseInt(inputValue) > contractBalance / 2:
-        errorMessage = "Can't send more than twice the contract balance";
+      case parseInt(inputValue) > balance / 2:
+        errorMessage = "You can't send more than twice the contract balance";
         break;
       default:
         break;
     }
 
-    return errorMessage ? errorMessage : false;
+    return errorMessage || false;
   };
 
   return (
-    <main>
-      <Container className="my-5 py-4">
-        <Row className="mt-5">
-          <StyledInterface className="mx-auto" theme={theme}>
-            {/* Header */}
-            <Row className="py-3">
-              <Col className="d-flex align-items-center justify-content-between">
-                <small className="text-right text-muted">
-                  Contract Balance:{' '}
-                  {contractBalance
-                    ? contractBalance < 0.0001
-                      ? 0
-                      : contractBalance
-                    : null}{' '}
-                  ETH
-                </small>
-              </Col>
-            </Row>
-            <div className="App--rainbow-border rounded" />
-            {/* Body */}
-            <Row className="mt-5" noGutters>
-              <Col xs={8} md={6} className="mx-auto">
-                <div className="text-center mx-auto">
-                  <h1>
-                    <FontAwesomeIcon icon={faEthereum} />
-                  </h1>
-                  <h1 className="text-center">
-                    <input
-                      type="text"
-                      value={transaction.amount}
-                      onChange={handleChange}
-                      placeholder="0.0"
-                      className={cx(
-                        'text-center border-0 w-100 p-0 bg-transparent outline-0',
-                        {
-                          'text-dark': theme === 'light',
-                          'text-light': theme === 'dark',
-                        },
-                      )}
-                    />
-                  </h1>
-                </div>
-              </Col>
-            </Row>
-            {form.inputError && (
-              <Row className="justify-content-center w-100 mx-auto mt-2">
-                <Col className="d-flex justify-content-center">
-                  <small className="text-danger text-left">
-                    {form.inputError}
-                  </small>
-                </Col>
-              </Row>
-            )}
-            <Row className="my-5" noGutters>
-              <Col className="d-flex justify-content-center">
-                <Button
-                  id="Button--play"
-                  variant="pink"
-                  className="mx-2 w-25"
-                  onClick={() => sendTransaction('bet')}
-                  disabled={!form.canSubmit || transaction.amount === '0'}
-                >
-                  Play
-                </Button>
-                <Button
-                  id="Button--reset"
-                  variant="dark"
-                  className="mx-2 w-25"
-                  onClick={() => {
-                    setTransaction({ amount: '0' });
-                    setForm({ inputError: null });
-                  }}
-                >
-                  Reset
-                </Button>
-              </Col>
-            </Row>
-            {transaction.status === 'pending' && (
-              <Row
-                className={cx('border-top rounded py-4', {
-                  'bg-light border-light': theme === 'light',
-                  'bg-dark border-dark': theme === 'dark',
-                })}
+    <Container as="main">
+      <Card className="border shadow-sm rounded mx-auto mt-5">
+        <Card.Header>Contract Balance: {balance || 0} ETH</Card.Header>
+        <Card.Body className="text-center mx-auto">
+          <Row className="mb-5">
+            <Col>
+              <FaEthereum size="42" className="mb-4" />
+              <h1 className="text-center">
+                <input
+                  type="text"
+                  value={transaction.amount}
+                  onChange={handleChange}
+                  placeholder="0.0"
+                  className={cx('text-center text-dark border rounded', {
+                    'border-danger': form.inputError,
+                    'border-success': form.canSubmit,
+                    'border-dark': !form.canSubmit && !form.inputError,
+                  })}
+                  style={{ outline: 0 }}
+                />
+              </h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-center">
+              <Button
+                variant="primary"
+                className="mx-2 w-25"
+                onClick={() => sendTransaction('bet')}
+                disabled={!form.canSubmit || transaction.amount === '0'}
               >
-                <Col className="d-flex justify-content-center align-items-center">
-                  <Spinner animation="border" size="sm" className="mr-2" />
-                  Processing your transaction...
-                </Col>
-              </Row>
+                Play
+              </Button>
+              <Button
+                variant="danger"
+                className="mx-2 w-25"
+                onClick={() => {
+                  setTransaction({ amount: '0' });
+                  setForm({ inputError: null });
+                }}
+              >
+                Reset
+              </Button>
+            </Col>
+          </Row>
+        </Card.Body>
+        {(form.inputError || transaction.status === 'pending') && (
+          <Card.Footer className="text-center">
+            {form.inputError ? (
+              <small className="text-danger">{form.inputError}</small>
+            ) : (
+              <div className="d-flex justify-content-center align-items-center">
+                <Spinner animation="border" size="sm" className="mr-2" />
+                Processing your transaction...
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="ml-3"
+                  onClick={() =>
+                    setTransaction({
+                      amount: '',
+                      status: 'idle',
+                      error: null,
+                    })
+                  }
+                >
+                  Clear
+                </Button>
+              </div>
             )}
-          </StyledInterface>
-        </Row>
-      </Container>
-    </main>
+          </Card.Footer>
+        )}
+      </Card>
+    </Container>
   );
 };
 

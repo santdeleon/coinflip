@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { oneOfType, array, object, string, func } from 'prop-types';
+import { oneOfType, arrayOf, node } from 'prop-types';
 
 import { useEagerConnect, useInactiveListener } from '../hooks';
 
 import { getErrorMessage } from '../utils';
 
 const propTypes = {
-  children: oneOfType([array, object, string, func]),
+  children: oneOfType([arrayOf(node), node]),
 };
 
 const Web3ReactManager = ({ children }) => {
@@ -34,7 +34,7 @@ const Web3ReactManager = ({ children }) => {
   // connection successful
   if (triedEager && active) return children;
 
-  // fallback -- connection unsuccessful and no errors, render nothing
+  // fallback
   return null;
 };
 

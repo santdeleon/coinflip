@@ -2,14 +2,14 @@ import React from 'react';
 import {
   Header,
   AccountModal,
-  WalletModal,
   Main,
   Footer,
   Web3ReactManager,
+  WalletModal,
 } from './components';
 
 const App = () => (
-  <div className="App">
+  <>
     <Header />
     <WalletModal />
     <AccountModal />
@@ -17,7 +17,7 @@ const App = () => (
       <Main />
     </Web3ReactManager>
     <Footer />
-  </div>
+  </>
 );
 
 export default App;
