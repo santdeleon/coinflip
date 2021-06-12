@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { colors } from '../utils';
 
-import { useTheme } from '../hooks';
+import { useTheme } from '../context';
 
 export const TooltipDivider = styled.div`
   border-width: 1px;

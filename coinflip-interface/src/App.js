@@ -9,7 +9,7 @@ import {
 } from './components';
 
 const App = () => (
-  <div className="App">
+  <>
     <Header />
     <WalletModal />
     <AccountModal />
@@ -17,7 +17,7 @@ const App = () => (
       <Main />
     </Web3ReactManager>
     <Footer />
-  </div>
+  </>
 );
 
 export default App;

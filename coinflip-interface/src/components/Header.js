@@ -15,7 +15,7 @@ import {
   Tooltip,
 } from '.';
 
-import { useLayout, useTheme, useContract, useTransaction } from '../hooks';
+import { useLayout, useTheme, useContract, useTransaction } from '../context';
 
 import { truncateString, colors } from '../utils';
 

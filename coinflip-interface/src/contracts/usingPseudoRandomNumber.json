@@ -17,25 +17,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"random\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol\":\"usingPseudoRandomNumber\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol\":{\"keccak256\":\"0x32d395e3b742220e16fdf062e7bbce9b52bef86c5c17f3ced5d09a3bb8b4b7ad\",\"urls\":[\"bzz-raw://8fb9af11f278059f363c5d4fb504e834f5668e0b7affbad9c251ecb5ea620dad\",\"dweb:/ipfs/QmW9igM9iREAANwMPvbauskEUwg83WTPohn1y64UKYYWSY\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582087c97b9b145d0458d96dacd70e83ba3594743e9ff8774c1fee55afd959654ebb64736f6c63430005100032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582087c97b9b145d0458d96dacd70e83ba3594743e9ff8774c1fee55afd959654ebb64736f6c63430005100032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"random\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingPseudoRandomNumber.sol\":\"usingPseudoRandomNumber\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingPseudoRandomNumber.sol\":{\"keccak256\":\"0x32d395e3b742220e16fdf062e7bbce9b52bef86c5c17f3ced5d09a3bb8b4b7ad\",\"urls\":[\"bzz-raw://8fb9af11f278059f363c5d4fb504e834f5668e0b7affbad9c251ecb5ea620dad\",\"dweb:/ipfs/QmW9igM9iREAANwMPvbauskEUwg83WTPohn1y64UKYYWSY\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582085e489c56ca2530a4574f6f54a516f2b480b5283f7b63ca4174f0d969d848c7b64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635ec01e4d14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b600060024281605457fe5b0690509056fea265627a7a7231582085e489c56ca2530a4574f6f54a516f2b480b5283f7b63ca4174f0d969d848c7b64736f6c63430005100032",
   "sourceMap": "34:109:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:109:5;;;;;;;",
   "deployedSourceMap": "34:109:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:109:5;;;;;;;;;;;;;;;;;;;71:70;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;110:4;135:1;129:3;:7;;;;;;122:14;;71:70;:::o",
   "source": "pragma solidity >=0.4.21 <0.7.0;\n\ncontract usingPseudoRandomNumber {\n  function random() public view returns (uint) {\n    return now % 2;\n  }\n}\n",
-  "sourcePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol",
+  "sourcePath": "/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingPseudoRandomNumber.sol",
   "ast": {
-    "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol",
+    "absolutePath": "/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingPseudoRandomNumber.sol",
     "exportedSymbols": {
       "usingPseudoRandomNumber": [
-        608
+        659
       ]
     },
-    "id": 609,
+    "id": 660,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 597,
+        "id": 648,
         "literals": [
           "solidity",
           ">=",
@@ -54,16 +54,16 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 608,
+        "id": 659,
         "linearizedBaseContracts": [
-          608
+          659
         ],
         "name": "usingPseudoRandomNumber",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 606,
+              "id": 657,
               "nodeType": "Block",
               "src": "116:25:5",
               "statements": [
@@ -74,18 +74,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 604,
+                    "id": 655,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 602,
+                      "id": 653,
                       "name": "now",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 625,
+                      "referencedDeclaration": 676,
                       "src": "129:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -97,7 +97,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "32",
-                      "id": 603,
+                      "id": 654,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -118,36 +118,36 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 601,
-                  "id": 605,
+                  "functionReturnParameters": 652,
+                  "id": 656,
                   "nodeType": "Return",
                   "src": "122:14:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 607,
+            "id": 658,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "random",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 598,
+              "id": 649,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "86:2:5"
             },
             "returnParameters": {
-              "id": 601,
+              "id": 652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 600,
+                  "id": 651,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 607,
+                  "scope": 658,
                   "src": "110:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -156,7 +156,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 599,
+                    "id": 650,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "110:4:5",
@@ -171,177 +171,204 @@
               ],
               "src": "109:6:5"
             },
-            "scope": 608,
+            "scope": 659,
             "src": "71:70:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 609,
+        "scope": 660,
         "src": "34:109:5"
       }
     ],
     "src": "0:144:5"
   },
   "legacyAST": {
-    "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingPseudoRandomNumber.sol",
-    "exportedSymbols": {
-      "usingPseudoRandomNumber": [
-        608
-      ]
+    "attributes": {
+      "absolutePath": "/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingPseudoRandomNumber.sol",
+      "exportedSymbols": {
+        "usingPseudoRandomNumber": [
+          659
+        ]
+      }
     },
-    "id": 609,
-    "nodeType": "SourceUnit",
-    "nodes": [
+    "children": [
       {
-        "id": 597,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".21",
-          "<",
-          "0.7",
-          ".0"
-        ],
-        "nodeType": "PragmaDirective",
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".21",
+            "<",
+            "0.7",
+            ".0"
+          ]
+        },
+        "id": 648,
+        "name": "PragmaDirective",
         "src": "0:32:5"
       },
       {
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "contract",
-        "documentation": null,
-        "fullyImplemented": true,
-        "id": 608,
-        "linearizedBaseContracts": [
-          608
-        ],
-        "name": "usingPseudoRandomNumber",
-        "nodeType": "ContractDefinition",
-        "nodes": [
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            659
+          ],
+          "name": "usingPseudoRandomNumber",
+          "scope": 660
+        },
+        "children": [
           {
-            "body": {
-              "id": 606,
-              "nodeType": "Block",
-              "src": "116:25:5",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    },
-                    "id": 604,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 602,
-                      "name": "now",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 625,
-                      "src": "129:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "BinaryOperation",
-                    "operator": "%",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "hexValue": "32",
-                      "id": 603,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "135:1:5",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_2_by_1",
-                        "typeString": "int_const 2"
-                      },
-                      "value": "2"
-                    },
-                    "src": "129:7:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "functionReturnParameters": 601,
-                  "id": 605,
-                  "nodeType": "Return",
-                  "src": "122:14:5"
-                }
-              ]
-            },
-            "documentation": null,
-            "id": 607,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "random",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 598,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "86:2:5"
-            },
-            "returnParameters": {
-              "id": 601,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 600,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "110:4:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 599,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "110:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "109:6:5"
+              "name": "random",
+              "scope": 659,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "scope": 608,
-            "src": "71:70:5",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "public"
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 649,
+                "name": "ParameterList",
+                "src": "86:2:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 658,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 650,
+                        "name": "ElementaryTypeName",
+                        "src": "110:4:5"
+                      }
+                    ],
+                    "id": 651,
+                    "name": "VariableDeclaration",
+                    "src": "110:4:5"
+                  }
+                ],
+                "id": 652,
+                "name": "ParameterList",
+                "src": "109:6:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 652
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "%",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 676,
+                              "type": "uint256",
+                              "value": "now"
+                            },
+                            "id": 653,
+                            "name": "Identifier",
+                            "src": "129:3:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "32",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 2",
+                              "value": "2"
+                            },
+                            "id": 654,
+                            "name": "Literal",
+                            "src": "135:1:5"
+                          }
+                        ],
+                        "id": 655,
+                        "name": "BinaryOperation",
+                        "src": "129:7:5"
+                      }
+                    ],
+                    "id": 656,
+                    "name": "Return",
+                    "src": "122:14:5"
+                  }
+                ],
+                "id": 657,
+                "name": "Block",
+                "src": "116:25:5"
+              }
+            ],
+            "id": 658,
+            "name": "FunctionDefinition",
+            "src": "71:70:5"
           }
         ],
-        "scope": 609,
+        "id": 659,
+        "name": "ContractDefinition",
         "src": "34:109:5"
       }
     ],
+    "id": 660,
+    "name": "SourceUnit",
     "src": "0:144:5"
   },
   "compiler": {
@@ -349,8 +376,8 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.1.0",
-  "updatedAt": "2020-07-12T05:02:51.493Z",
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-06-12T03:04:24.998Z",
   "devdoc": {
     "methods": {}
   },

@@ -21,7 +21,7 @@ import {
   ModalBody,
 } from '.';
 
-import { useLayout } from '../hooks';
+import { useLayout } from '../context';
 
 import { truncateString } from '../utils';
 
@@ -29,24 +29,28 @@ import MetaMaskAvatar from '../assets/img/metamask-avatar.svg';
 
 const AccountModal = () => {
   const { account } = useWeb3React();
-  const { layout, setLayout } = useLayout();
+  const {
+    accountModal,
+    setAccountModal,
+    walletModal,
+    setWalletModal,
+  } = useLayout();
 
   const handleAccountModalClose = () =>
-    setLayout({
-      ...layout,
-      accountModal: { ...layout.accountModal, show: false },
+    setAccountModal({
+      show: false,
     });
 
   const handleCopyToClipboard = () => {
-    setLayout({
-      ...layout,
-      accountModal: { ...layout.accountModal, isAddressCopied: true },
+    setAccountModal({
+      ...accountModal,
+      isAddressCopied: true,
     });
 
     setTimeout(() => {
-      setLayout({
-        ...layout,
-        accountModal: { ...layout.accountModal, isAddressCopied: false },
+      setAccountModal({
+        ...accountModal,
+        isAddressCopied: false,
       });
     }, [800]);
   };
@@ -54,7 +58,7 @@ const AccountModal = () => {
   return (
     <Modal
       id="Modal--account-modal"
-      show={layout.accountModal.show}
+      show={accountModal.show}
       ariaDescribedBy="Modal__ModalTitle--account"
     >
       <ModalDialog>
@@ -73,11 +77,8 @@ const AccountModal = () => {
                   id="Modal__Button--change-connected-wallet"
                   variant="pink"
                   onClick={() => {
-                    setLayout({
-                      ...layout,
-                      walletModal: { ...layout.walletModal, show: true },
-                      accountModal: { ...layout.accountModal, show: false },
-                    });
+                    setWalletModal({ ...walletModal, show: true });
+                    setAccountModal()({ ...accountModal, show: false });
                   }}
                 >
                   Change
@@ -99,7 +100,7 @@ const AccountModal = () => {
             {/* Copy Address/Show on Etherscan */}
             <Row className="px-3 py-2" noGutters>
               <Col>
-                {layout.accountModal.isAddressCopied ? (
+                {accountModal.isAddressCopied ? (
                   <Button
                     id="Modal__Button--address-copied"
                     variant="green"

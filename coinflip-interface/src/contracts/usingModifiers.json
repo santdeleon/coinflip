@@ -1,25 +1,25 @@
 {
   "contractName": "usingModifiers",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol\":\"usingModifiers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol\":{\"keccak256\":\"0xba5089b28444db2b928a0373f64115edb5073762482519397f1dfc83fb694c27\",\"urls\":[\"bzz-raw://bc27c4bf3a1c09743f1b5a795e4a1b030f965a48ac00ed33ea75095ba2ba2323\",\"dweb:/ipfs/QmP2FMNDuY1txDvVFzFMCgx5Uj9EVCA9zpHJpN6wZGcStz\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820780b3d9220b2ab5d0f4704b9f3486393e73ee7ea71823ef0edf35043b865177564736f6c63430005100032",
-  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820780b3d9220b2ab5d0f4704b9f3486393e73ee7ea71823ef0edf35043b865177564736f6c63430005100032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingModifiers.sol\":\"usingModifiers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingModifiers.sol\":{\"keccak256\":\"0xba5089b28444db2b928a0373f64115edb5073762482519397f1dfc83fb694c27\",\"urls\":[\"bzz-raw://bc27c4bf3a1c09743f1b5a795e4a1b030f965a48ac00ed33ea75095ba2ba2323\",\"dweb:/ipfs/QmP2FMNDuY1txDvVFzFMCgx5Uj9EVCA9zpHJpN6wZGcStz\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820f0dfeac633c60c21698dbf113702451738b397e49ccf816d7cb21061605c0c1464736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820f0dfeac633c60c21698dbf113702451738b397e49ccf816d7cb21061605c0c1464736f6c63430005100032",
   "sourceMap": "34:258:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:258:4;;;;;;;",
   "deployedSourceMap": "34:258:4:-;;;;;",
   "source": "pragma solidity >=0.4.21 <0.7.0;\n\ncontract usingModifiers {\n  modifier costs(uint cost) {\n    require(msg.value >= cost, \"You must send the required cost or more\");\n    _;\n  }\n\n  modifier setBettingLimit() {\n    require(msg.value <= 5 ether, \"You can't wager more than 5 ether\");\n    _;\n  }\n}\n",
-  "sourcePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol",
+  "sourcePath": "/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingModifiers.sol",
   "ast": {
-    "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol",
+    "absolutePath": "/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingModifiers.sol",
     "exportedSymbols": {
       "usingModifiers": [
-        595
+        646
       ]
     },
-    "id": 596,
+    "id": 647,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 568,
+        "id": 619,
         "literals": [
           "solidity",
           ">=",
@@ -38,16 +38,16 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 595,
+        "id": 646,
         "linearizedBaseContracts": [
-          595
+          646
         ],
         "name": "usingModifiers",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 581,
+              "id": 632,
               "nodeType": "Block",
               "src": "88:87:4",
               "statements": [
@@ -61,7 +61,7 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 576,
+                        "id": 627,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -70,18 +70,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 573,
+                            "id": 624,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 623,
+                            "referencedDeclaration": 674,
                             "src": "102:3:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 574,
+                          "id": 625,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -99,11 +99,11 @@
                         "operator": ">=",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 575,
+                          "id": 626,
                           "name": "cost",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 570,
+                          "referencedDeclaration": 621,
                           "src": "115:4:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -119,7 +119,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "596f75206d7573742073656e642074686520726571756972656420636f7374206f72206d6f7265",
-                        "id": 577,
+                        "id": 628,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -146,21 +146,21 @@
                           "typeString": "literal_string \"You must send the required cost or more\""
                         }
                       ],
-                      "id": 572,
+                      "id": 623,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        626,
-                        627
+                        677,
+                        678
                       ],
-                      "referencedDeclaration": 627,
+                      "referencedDeclaration": 678,
                       "src": "94:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 578,
+                    "id": 629,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -174,31 +174,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 579,
+                  "id": 630,
                   "nodeType": "ExpressionStatement",
                   "src": "94:69:4"
                 },
                 {
-                  "id": 580,
+                  "id": 631,
                   "nodeType": "PlaceholderStatement",
                   "src": "169:1:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 582,
+            "id": 633,
             "name": "costs",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 571,
+              "id": 622,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 570,
+                  "id": 621,
                   "name": "cost",
                   "nodeType": "VariableDeclaration",
-                  "scope": 582,
+                  "scope": 633,
                   "src": "77:9:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -207,7 +207,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 569,
+                    "id": 620,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "77:4:4",
@@ -227,7 +227,7 @@
           },
           {
             "body": {
-              "id": 593,
+              "id": 644,
               "nodeType": "Block",
               "src": "206:84:4",
               "statements": [
@@ -241,7 +241,7 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 588,
+                        "id": 639,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -250,18 +250,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 585,
+                            "id": 636,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 623,
+                            "referencedDeclaration": 674,
                             "src": "220:3:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 586,
+                          "id": 637,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -280,7 +280,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "35",
-                          "id": 587,
+                          "id": 638,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -304,7 +304,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "596f752063616e2774207761676572206d6f7265207468616e2035206574686572",
-                        "id": 589,
+                        "id": 640,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -331,21 +331,21 @@
                           "typeString": "literal_string \"You can't wager more than 5 ether\""
                         }
                       ],
-                      "id": 584,
+                      "id": 635,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        626,
-                        627
+                        677,
+                        678
                       ],
-                      "referencedDeclaration": 627,
+                      "referencedDeclaration": 678,
                       "src": "212:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 590,
+                    "id": 641,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -359,23 +359,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 591,
+                  "id": 642,
                   "nodeType": "ExpressionStatement",
                   "src": "212:66:4"
                 },
                 {
-                  "id": 592,
+                  "id": 643,
                   "nodeType": "PlaceholderStatement",
                   "src": "284:1:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 594,
+            "id": 645,
             "name": "setBettingLimit",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 583,
+              "id": 634,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "203:2:4"
@@ -384,392 +384,425 @@
             "visibility": "internal"
           }
         ],
-        "scope": 596,
+        "scope": 647,
         "src": "34:258:4"
       }
     ],
     "src": "0:293:4"
   },
   "legacyAST": {
-    "absolutePath": "/Users/Sant/Desktop/code/projects/blockchain/ivanontechacademy/coinflip/contracts/usingModifiers.sol",
-    "exportedSymbols": {
-      "usingModifiers": [
-        595
-      ]
+    "attributes": {
+      "absolutePath": "/Users/santdeleon/Desktop/code/projects/coinflip/contracts/usingModifiers.sol",
+      "exportedSymbols": {
+        "usingModifiers": [
+          646
+        ]
+      }
     },
-    "id": 596,
-    "nodeType": "SourceUnit",
-    "nodes": [
+    "children": [
       {
-        "id": 568,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".21",
-          "<",
-          "0.7",
-          ".0"
-        ],
-        "nodeType": "PragmaDirective",
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".21",
+            "<",
+            "0.7",
+            ".0"
+          ]
+        },
+        "id": 619,
+        "name": "PragmaDirective",
         "src": "0:32:4"
       },
       {
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "contract",
-        "documentation": null,
-        "fullyImplemented": true,
-        "id": 595,
-        "linearizedBaseContracts": [
-          595
-        ],
-        "name": "usingModifiers",
-        "nodeType": "ContractDefinition",
-        "nodes": [
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            646
+          ],
+          "name": "usingModifiers",
+          "scope": 647
+        },
+        "children": [
           {
-            "body": {
-              "id": 581,
-              "nodeType": "Block",
-              "src": "88:87:4",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "arguments": [
+            "attributes": {
+              "documentation": null,
+              "name": "costs",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "cost",
+                      "scope": 633,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
                       {
-                        "argumentTypes": null,
-                        "commonType": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
                         },
-                        "id": 576,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
+                        "id": 620,
+                        "name": "ElementaryTypeName",
+                        "src": "77:4:4"
+                      }
+                    ],
+                    "id": 621,
+                    "name": "VariableDeclaration",
+                    "src": "77:9:4"
+                  }
+                ],
+                "id": 622,
+                "name": "ParameterList",
+                "src": "76:11:4"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
                           "argumentTypes": null,
-                          "expression": {
-                            "argumentTypes": null,
-                            "id": 573,
-                            "name": "msg",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 623,
-                            "src": "102:3:4",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_magic_message",
-                              "typeString": "msg"
-                            }
-                          },
-                          "id": 574,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
+                          "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "memberName": "value",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": null,
-                          "src": "102:9:4",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_5baddd79d10af082c7b90a7d7e010678dccd73d78c7884f832c6adbf87ef5360",
+                                  "typeString": "literal_string \"You must send the required cost or more\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                677,
+                                678
+                              ],
+                              "referencedDeclaration": 678,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 623,
+                            "name": "Identifier",
+                            "src": "94:7:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": ">=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 674,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 624,
+                                    "name": "Identifier",
+                                    "src": "102:3:4"
+                                  }
+                                ],
+                                "id": 625,
+                                "name": "MemberAccess",
+                                "src": "102:9:4"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 621,
+                                  "type": "uint256",
+                                  "value": "cost"
+                                },
+                                "id": 626,
+                                "name": "Identifier",
+                                "src": "115:4:4"
+                              }
+                            ],
+                            "id": 627,
+                            "name": "BinaryOperation",
+                            "src": "102:17:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "596f75206d7573742073656e642074686520726571756972656420636f7374206f72206d6f7265",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"You must send the required cost or more\"",
+                              "value": "You must send the required cost or more"
+                            },
+                            "id": 628,
+                            "name": "Literal",
+                            "src": "121:41:4"
                           }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": ">=",
-                        "rightExpression": {
-                          "argumentTypes": null,
-                          "id": 575,
-                          "name": "cost",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 570,
-                          "src": "115:4:4",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "src": "102:17:4",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "hexValue": "596f75206d7573742073656e642074686520726571756972656420636f7374206f72206d6f7265",
-                        "id": 577,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "121:41:4",
-                        "subdenomination": null,
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_5baddd79d10af082c7b90a7d7e010678dccd73d78c7884f832c6adbf87ef5360",
-                          "typeString": "literal_string \"You must send the required cost or more\""
-                        },
-                        "value": "You must send the required cost or more"
+                        ],
+                        "id": 629,
+                        "name": "FunctionCall",
+                        "src": "94:69:4"
                       }
                     ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_5baddd79d10af082c7b90a7d7e010678dccd73d78c7884f832c6adbf87ef5360",
-                          "typeString": "literal_string \"You must send the required cost or more\""
-                        }
-                      ],
-                      "id": 572,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        626,
-                        627
-                      ],
-                      "referencedDeclaration": 627,
-                      "src": "94:7:4",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 578,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "94:69:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
+                    "id": 630,
+                    "name": "ExpressionStatement",
+                    "src": "94:69:4"
                   },
-                  "id": 579,
-                  "nodeType": "ExpressionStatement",
-                  "src": "94:69:4"
-                },
-                {
-                  "id": 580,
-                  "nodeType": "PlaceholderStatement",
-                  "src": "169:1:4"
-                }
-              ]
-            },
-            "documentation": null,
-            "id": 582,
-            "name": "costs",
-            "nodeType": "ModifierDefinition",
-            "parameters": {
-              "id": 571,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 570,
-                  "name": "cost",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 582,
-                  "src": "77:9:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 569,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "77:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "76:11:4"
-            },
-            "src": "62:113:4",
-            "visibility": "internal"
+                  {
+                    "id": 631,
+                    "name": "PlaceholderStatement",
+                    "src": "169:1:4"
+                  }
+                ],
+                "id": 632,
+                "name": "Block",
+                "src": "88:87:4"
+              }
+            ],
+            "id": 633,
+            "name": "ModifierDefinition",
+            "src": "62:113:4"
           },
           {
-            "body": {
-              "id": 593,
-              "nodeType": "Block",
-              "src": "206:84:4",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "arguments": [
+            "attributes": {
+              "documentation": null,
+              "name": "setBettingLimit",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 634,
+                "name": "ParameterList",
+                "src": "203:2:4"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
                       {
-                        "argumentTypes": null,
-                        "commonType": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        },
-                        "id": 588,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
+                        "attributes": {
                           "argumentTypes": null,
-                          "expression": {
-                            "argumentTypes": null,
-                            "id": 585,
-                            "name": "msg",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 623,
-                            "src": "220:3:4",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_magic_message",
-                              "typeString": "msg"
-                            }
-                          },
-                          "id": 586,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
+                          "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "memberName": "value",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": null,
-                          "src": "220:9:4",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
                         },
-                        "nodeType": "BinaryOperation",
-                        "operator": "<=",
-                        "rightExpression": {
-                          "argumentTypes": null,
-                          "hexValue": "35",
-                          "id": 587,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": true,
-                          "kind": "number",
-                          "lValueRequested": false,
-                          "nodeType": "Literal",
-                          "src": "233:7:4",
-                          "subdenomination": "ether",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_rational_5000000000000000000_by_1",
-                            "typeString": "int_const 5000000000000000000"
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_a5c1cefedb4d34b8c5d91ae15774da06cf3277341260eb54776fcac5213a749f",
+                                  "typeString": "literal_string \"You can't wager more than 5 ether\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                677,
+                                678
+                              ],
+                              "referencedDeclaration": 678,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 635,
+                            "name": "Identifier",
+                            "src": "212:7:4"
                           },
-                          "value": "5"
-                        },
-                        "src": "220:20:4",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "hexValue": "596f752063616e2774207761676572206d6f7265207468616e2035206574686572",
-                        "id": 589,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "242:35:4",
-                        "subdenomination": null,
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_a5c1cefedb4d34b8c5d91ae15774da06cf3277341260eb54776fcac5213a749f",
-                          "typeString": "literal_string \"You can't wager more than 5 ether\""
-                        },
-                        "value": "You can't wager more than 5 ether"
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "<=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 674,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 636,
+                                    "name": "Identifier",
+                                    "src": "220:3:4"
+                                  }
+                                ],
+                                "id": 637,
+                                "name": "MemberAccess",
+                                "src": "220:9:4"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "35",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": "ether",
+                                  "token": "number",
+                                  "type": "int_const 5000000000000000000",
+                                  "value": "5"
+                                },
+                                "id": 638,
+                                "name": "Literal",
+                                "src": "233:7:4"
+                              }
+                            ],
+                            "id": 639,
+                            "name": "BinaryOperation",
+                            "src": "220:20:4"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "596f752063616e2774207761676572206d6f7265207468616e2035206574686572",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"You can't wager more than 5 ether\"",
+                              "value": "You can't wager more than 5 ether"
+                            },
+                            "id": 640,
+                            "name": "Literal",
+                            "src": "242:35:4"
+                          }
+                        ],
+                        "id": 641,
+                        "name": "FunctionCall",
+                        "src": "212:66:4"
                       }
                     ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_a5c1cefedb4d34b8c5d91ae15774da06cf3277341260eb54776fcac5213a749f",
-                          "typeString": "literal_string \"You can't wager more than 5 ether\""
-                        }
-                      ],
-                      "id": 584,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        626,
-                        627
-                      ],
-                      "referencedDeclaration": 627,
-                      "src": "212:7:4",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 590,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "212:66:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
+                    "id": 642,
+                    "name": "ExpressionStatement",
+                    "src": "212:66:4"
                   },
-                  "id": 591,
-                  "nodeType": "ExpressionStatement",
-                  "src": "212:66:4"
-                },
-                {
-                  "id": 592,
-                  "nodeType": "PlaceholderStatement",
-                  "src": "284:1:4"
-                }
-              ]
-            },
-            "documentation": null,
-            "id": 594,
-            "name": "setBettingLimit",
-            "nodeType": "ModifierDefinition",
-            "parameters": {
-              "id": 583,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "203:2:4"
-            },
-            "src": "179:111:4",
-            "visibility": "internal"
+                  {
+                    "id": 643,
+                    "name": "PlaceholderStatement",
+                    "src": "284:1:4"
+                  }
+                ],
+                "id": 644,
+                "name": "Block",
+                "src": "206:84:4"
+              }
+            ],
+            "id": 645,
+            "name": "ModifierDefinition",
+            "src": "179:111:4"
           }
         ],
-        "scope": 596,
+        "id": 646,
+        "name": "ContractDefinition",
         "src": "34:258:4"
       }
     ],
+    "id": 647,
+    "name": "SourceUnit",
     "src": "0:293:4"
   },
   "compiler": {
@@ -777,8 +810,8 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.1.0",
-  "updatedAt": "2020-07-12T05:02:51.493Z",
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-06-12T03:04:24.996Z",
   "devdoc": {
     "methods": {}
   },

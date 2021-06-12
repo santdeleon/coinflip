@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-import { useTheme } from '../hooks';
+import { useTheme } from '../context';
 
 import { colors } from '../utils';
 

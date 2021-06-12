@@ -10,7 +10,7 @@ import { formatEther, parseEther } from '@ethersproject/units';
 
 import { Button } from '.';
 
-import { useTheme, useContract, useTransaction } from '../hooks';
+import { useTheme, useContract, useTransaction } from '../context';
 
 import { colors } from '../utils';
 

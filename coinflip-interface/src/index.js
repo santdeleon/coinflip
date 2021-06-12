@@ -6,14 +6,16 @@ import { Web3ReactProvider } from '@web3-react/core';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { ThemeProvider, GlobalStyles } from './context/ThemeContext';
-import { LayoutProvider } from './context/LayoutContext';
-import { ContractProvider } from './context/ContractContext';
-import { TransactionProvider } from './context/TransactionContext';
+import {
+  TransactionProvider,
+  ContractProvider,
+  LayoutProvider,
+  ThemeProvider,
+  GlobalStyles,
+} from './context';
 
 import { getLibrary } from './utils';
 
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 render(
@@ -22,10 +24,10 @@ render(
       <ContractProvider>
         <TransactionProvider>
           <ThemeProvider>
-            <GlobalStyles />
             <LayoutProvider>
               <BrowserRouter>
                 <App />
+                <GlobalStyles />
               </BrowserRouter>
             </LayoutProvider>
           </ThemeProvider>

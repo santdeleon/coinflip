@@ -2,7 +2,7 @@ import React from 'react';
 import { string, func, bool, object, oneOfType, array } from 'prop-types';
 import styled from 'styled-components';
 
-import { useTheme } from '../hooks';
+import { useTheme } from '../context';
 
 import { colors } from '../utils';
 

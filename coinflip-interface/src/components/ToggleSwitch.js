@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { func, string, oneOfType, array, object } from 'prop-types';
 
-import { useTheme } from '../hooks';
+import { useTheme } from '../context';
 
 const StyledToggleThumb = styled.div`
   display: flex;

@@ -3,7 +3,6 @@ import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { useWeb3React } from '@web3-react/core';
-import styled from 'styled-components';
 import cx from 'classnames';
 
 import {
@@ -18,7 +17,8 @@ import {
   ModalBody,
 } from '.';
 
-import { useLayout, useTheme } from '../hooks';
+import { useLayout } from '../context';
+import { useTheme } from '../context';
 
 import { getErrorMessage, colors, wallets } from '../utils';
 
@@ -26,45 +26,33 @@ import { injected } from '../connectors';
 
 const WalletModal = () => {
   const { activate } = useWeb3React();
-  const { layout, setLayout } = useLayout();
+  const { walletModal, setWalletModal } = useLayout();
   const { theme } = useTheme();
 
   const handleWalletModalClose = () =>
-    setLayout({
-      ...layout,
-      walletModal: { ...layout.walletModal, show: false },
-    });
+    setWalletModal({ ...walletModal, show: false });
 
   const handleWalletConnect = (walletType) => {
-    setLayout({
-      ...layout,
-      walletModal: {
-        ...layout.walletModal,
-        status: 'connecting',
-        connectedWalletName: walletType,
-      },
+    setWalletModal({
+      ...walletModal,
+      status: 'connecting',
+      connectedWalletName: walletType,
     });
 
     activate(injected, undefined, true)
       .then(() => {
-        setLayout({
-          ...layout,
-          walletModal: {
-            ...layout.walletModal,
-            show: false,
-            status: 'connected',
-            connectedWalletName: 'metamask',
-          },
+        setWalletModal({
+          ...walletModal,
+          show: false,
+          status: 'connected',
+          connectedWalletName: 'metamask',
         });
       })
       .catch((err) => {
-        setLayout({
-          ...layout,
-          walletModal: {
-            ...layout.walletModal,
-            status: 'not_connected',
-            error: getErrorMessage(err),
-          },
+        setWalletModal({
+          ...walletModal,
+          status: 'not_connected',
+          error: getErrorMessage(err),
         });
       });
   };
@@ -73,13 +61,13 @@ const WalletModal = () => {
     let color = colors.$pink20;
 
     if (
-      layout.walletModal.status === 'connected' &&
-      layout.walletModal.connectedWalletName === walletName
+      walletModal.status === 'connected' &&
+      walletModal.connectedWalletName === walletName
     ) {
       color = colors.$green60;
     } else if (
-      layout.walletModal.status === 'connecting' &&
-      layout.walletModal.connectedWalletName === walletName
+      walletModal.status === 'connecting' &&
+      walletModal.connectedWalletName === walletName
     ) {
       color = colors.$yellow40;
     }
@@ -90,7 +78,7 @@ const WalletModal = () => {
   return (
     <Modal
       id="Modal--wallet-modal"
-      show={layout.walletModal.show}
+      show={walletModal.show}
       ariaDescribedBy="Modal__ModalTitle--connect-to-a-wallet"
     >
       <ModalDialog>
@@ -112,7 +100,7 @@ const WalletModal = () => {
               backgroundColor: colors.$gray70,
             }}
           >
-            {!layout.walletModal.error &&
+            {!walletModal.error &&
               wallets.map((wallet) => (
                 <Row
                   key={wallet.id}
@@ -123,7 +111,7 @@ const WalletModal = () => {
                   theme={theme}
                   disabled={wallet.name !== 'metamask'}
                   onClick={() =>
-                    layout.walletModal.status !== 'connected'
+                    walletModal.status !== 'connected'
                       ? handleWalletConnect(wallet.name)
                       : null
                   }
@@ -137,7 +125,7 @@ const WalletModal = () => {
                         'border-secondary': theme === 'dark',
                         'bg-dark':
                           wallet.name === 'metamask' &&
-                          layout.walletModal.status === 'connected',
+                          walletModal.status === 'connected',
                       },
                     )}
                     style={{
@@ -157,13 +145,13 @@ const WalletModal = () => {
                         className={cx('mb-0 ml-2 font-weight-normal', {
                           'text-dark':
                             theme === 'light' &&
-                            layout.walletModal.status !== 'connected',
+                            walletModal.status !== 'connected',
                           'text-light':
                             theme === 'dark' &&
-                            layout.walletModal.status !== 'connected',
+                            walletModal.status !== 'connected',
                           'text-white':
                             wallet.name === 'metamask' &&
-                            layout.walletModal.status === 'connected',
+                            walletModal.status === 'connected',
                         })}
                       >
                         {wallet.nameFormal}
@@ -179,12 +167,10 @@ const WalletModal = () => {
                   </Col>
                 </Row>
               ))}
-            {layout.walletModal.error && (
+            {walletModal.error && (
               <Row>
                 <Col className="w-100 p-5">
-                  <p className="mb-0 text-center w-100">
-                    {layout.walletModal.error}
-                  </p>
+                  <p className="mb-0 text-center w-100">{walletModal.error}</p>
                 </Col>
               </Row>
             )}

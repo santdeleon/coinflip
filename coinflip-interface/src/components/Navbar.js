@@ -5,7 +5,7 @@ import { string, oneOfType, array, object, func } from 'prop-types';
 
 import { colors } from '../utils';
 
-import { useTheme } from '../hooks';
+import { useTheme } from '../context';
 
 const StyledNav = styled.nav`
   display: flex;
