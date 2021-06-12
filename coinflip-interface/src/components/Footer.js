@@ -1,39 +1,44 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import { FaCircle } from 'react-icons/fa';
+import { Navbar, Nav } from 'react-bootstrap';
+import useAxios from 'axios-hooks';
+import cx from 'classnames';
 
-import { Navbar, Nav } from '.';
+import { truncateString } from '../utils';
 
-const StyledFooter = styled.footer`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`;
+const GITHUB_REPO_URL =
+  'https://api.github.com/repos/santdeleon/coinflip/commits/main';
 
-const Footer = () => (
-  <StyledFooter>
-    <Navbar>
+const Footer = () => {
+  const [{ data, loading, error }] = useAxios(GITHUB_REPO_URL);
+
+  return (
+    <Navbar fixed="bottom">
       <Nav className="ml-auto align-items-center px-2">
-        <FontAwesomeIcon
-          icon={faCircle}
-          style={{ fontSize: '10px' }}
-          className="text-success mr-1"
+        <FaCircle
+          size="10"
+          className={cx('mr-2', {
+            'text-success': data,
+            'text-warning': loading,
+            'text-danger': error,
+          })}
         />
         <a
-          href="https://github.com/santdeleon/coinflip/commit/eef18ba840e1a7546233d0ef1e4590fa8a2e0132"
+          href={`https://github.com/santdeleon/coinflip/commit/${data?.sha}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Github"
           title="Github"
-          className="mb-1 text-dark text-decoration-none"
+          className="mb-1 text-decoration-none text-truncate"
         >
-          <small className="font-weight-light text-secondary">eef18ba</small>
+          <small className="font-weight-light text-link">
+            {data && truncateString(data.sha, 15)}
+            {loading && 'Fetching last commit...'}
+            {error && 'Unable to retreive last commit.'}
+          </small>
         </a>
       </Nav>
     </Navbar>
-  </StyledFooter>
-);
+  );
+};
 
 export default Footer;

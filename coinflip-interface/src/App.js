@@ -2,10 +2,10 @@ import React from 'react';
 import {
   Header,
   AccountModal,
-  WalletModal,
   Main,
   Footer,
   Web3ReactManager,
+  WalletModal,
 } from './components';
 
 const App = () => (

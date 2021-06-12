@@ -1,40 +1,35 @@
-import React, { StrictMode } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { Web3ReactProvider } from '@web3-react/core';
 
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-
 import {
-  TransactionProvider,
-  ContractProvider,
   LayoutProvider,
-  ThemeProvider,
-  GlobalStyles,
+  ContractProvider,
+  TransactionProvider,
+  UserProvider,
 } from './context';
+
+import App from './App';
+
+import * as serviceWorker from './serviceWorker';
 
 import { getLibrary } from './utils';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 render(
-  <StrictMode>
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <ContractProvider>
-        <TransactionProvider>
-          <ThemeProvider>
-            <LayoutProvider>
-              <BrowserRouter>
-                <App />
-                <GlobalStyles />
-              </BrowserRouter>
-            </LayoutProvider>
-          </ThemeProvider>
-        </TransactionProvider>
-      </ContractProvider>
-    </Web3ReactProvider>
-  </StrictMode>,
+  <Web3ReactProvider getLibrary={getLibrary}>
+    <ContractProvider>
+      <TransactionProvider>
+        <UserProvider>
+          <LayoutProvider>
+            <App />
+          </LayoutProvider>
+        </UserProvider>
+      </TransactionProvider>
+    </ContractProvider>
+  </Web3ReactProvider>,
   document.getElementById('root'),
 );
 

@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { oneOfType, arrayOf, node } from 'prop-types';
 import { useWeb3React } from '@web3-react/core';
+import { formatEther } from '@ethersproject/units';
 
 import { getContract } from '../utils';
 
@@ -18,7 +19,12 @@ export const useContract = () => useContext(ContractContext);
 
 export const ContractProvider = ({ children }) => {
   const { active, library } = useWeb3React();
-  const [contract, setContract] = useState(null);
+  const [contract, setContract] = useState({
+    contract: null,
+    address: null,
+    balance: '',
+    owner: null,
+  });
 
   const connectToSmartContract = useCallback(async () => {
     const contract = getContract(
@@ -26,15 +32,25 @@ export const ContractProvider = ({ children }) => {
       COINFLIP_CONTRACT.abi,
       library.getSigner(),
     );
-    setContract(contract);
+    const rawContractBalance = await contract.balances(contract.address);
+    const owner = await contract.getContractOwner();
+
+    setContract({
+      contract,
+      address: COINFLIP_CONTRACT.networks['5777'].address,
+      balance: formatEther(rawContractBalance),
+      owner,
+    });
   }, [library]);
 
   useEffect(() => {
-    if (active) connectToSmartContract();
+    if (active) {
+      connectToSmartContract();
+    }
   }, [active, connectToSmartContract]);
 
   return (
-    <ContractContext.Provider value={{ contract, setContract }}>
+    <ContractContext.Provider value={{ ...contract }}>
       {children}
     </ContractContext.Provider>
   );
