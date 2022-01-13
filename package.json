@@ -15,7 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@openzeppelin/contract-loader": "^0.6.2",
-    "@openzeppelin/contracts": "^4.4.1",
+    "@openzeppelin/contracts": "^4.4.2",
     "@openzeppelin/contracts-ethereum-package": "^3.0.0",
     "@openzeppelin/solidity-loader": "^1.5.1",
     "@openzeppelin/test-helpers": "^0.5.10",
